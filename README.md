@@ -1,3 +1,0 @@
-# SYSISDEMU
-Sistema isdemu
-s
