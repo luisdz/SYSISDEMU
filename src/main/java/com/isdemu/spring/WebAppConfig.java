@@ -50,7 +50,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
 		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 		sessionFactoryBean.setDataSource(dataSource());
                
-		sessionFactoryBean.setPackagesToScan("sv.gob.isdemu.model");
+		sessionFactoryBean.setPackagesToScan("com.isdemu.model");
 		sessionFactoryBean.setHibernateProperties(hibernateProperties());
 		return sessionFactoryBean;
 	}

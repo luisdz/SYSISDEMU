@@ -28,35 +28,29 @@ public class TB_Inventario {
     
      @Column(name="nombre_inventario")
     private String ninventario;
-     
-     
-     public Integer getid_inventario() {
+
+    public Integer getId_inventario() {
         return id_inventario;
     }
-     
-     public void setid_inventario(Integer id_inventario) {
+
+    public void setId_inventario(Integer id_inventario) {
         this.id_inventario = id_inventario;
     }
-     
-      public String getc_inventario() {
+
+    public String getCinventario() {
         return cinventario;
     }
-     
-     public void setc_inventario(String cinventario) {
+
+    public void setCinventario(String cinventario) {
         this.cinventario = cinventario;
     }
-     
-      public String getninventario() {
+
+    public String getNinventario() {
         return ninventario;
     }
-     
-     public void setninventario(String ninventario) {
+
+    public void setNinventario(String ninventario) {
         this.ninventario = ninventario;
     }
-     
-     
-     
-     
-     
     
 }

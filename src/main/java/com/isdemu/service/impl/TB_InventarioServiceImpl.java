@@ -27,6 +27,7 @@ public class TB_InventarioServiceImpl implements TB_Inventario_Service {
     
     @Override
 	public List getAll() {
+             System.out.println("service impl");
 		// TODO Auto-generated method stub
 		return tbInventarioDao.getAll();
 	}
