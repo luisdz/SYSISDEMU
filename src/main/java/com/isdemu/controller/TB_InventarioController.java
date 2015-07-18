@@ -26,7 +26,7 @@ public class TB_InventarioController {
     
     @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
-		ModelAndView modelAndView = new ModelAndView("list-of-inventario");
+		ModelAndView modelAndView = new ModelAndView("consultar_inventario");
 
 		List inventario = tbInventarioService.getAll();
 		modelAndView.addObject("inventario", inventario);
