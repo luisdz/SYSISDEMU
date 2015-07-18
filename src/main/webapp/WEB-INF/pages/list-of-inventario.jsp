@@ -25,9 +25,9 @@
     
 <c:forEach var="inv" items="${inventario}">
 <tr align="center">
-        <td>${inv.id_inventario}</td>
-	<td>${inv.cinventario}</td>
-	<td>${inv.ninventario}</td>
+        <td>${inv.idInventario}</td>
+	<td>${inv.marca}</td>
+	<td>${inv.modelo}</td>
 	
 </tr>
 </c:forEach>

@@ -6,7 +6,8 @@
 package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TB_InventarioDao;
-import com.isdemu.model.TB_Inventario;
+
+import com.isdemu.model.TbInventario;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,8 +34,8 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
         @Override
 	public List getAll() {
 		// TODO Auto-generated method stub
-            DetachedCriteria dc = DetachedCriteria.forClass(TB_Inventario.class);
-            System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
+            DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
+           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
