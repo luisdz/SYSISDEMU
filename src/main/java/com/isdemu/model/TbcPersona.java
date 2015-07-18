@@ -28,8 +28,8 @@ class TbcPersona {
     
      private int idPersona;
      private String nombrePersona;
-     private Boolean jefatura;
-     private Boolean encargadoAfijo;
+     private String jefatura;
+     private String encargadoAfijo;
      private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
        @Id 
@@ -56,21 +56,21 @@ class TbcPersona {
 
     
     @Column(name="JEFATURA")
-    public Boolean getJefatura() {
+    public String getJefatura() {
         return this.jefatura;
     }
     
-    public void setJefatura(Boolean jefatura) {
+    public void setJefatura(String jefatura) {
         this.jefatura = jefatura;
     }
 
     
     @Column(name="ENCARGADO_AFIJO")
-    public Boolean getEncargadoAfijo() {
+    public String getEncargadoAfijo() {
         return this.encargadoAfijo;
     }
     
-    public void setEncargadoAfijo(Boolean encargadoAfijo) {
+    public void setEncargadoAfijo(String encargadoAfijo) {
         this.encargadoAfijo = encargadoAfijo;
     }
 
