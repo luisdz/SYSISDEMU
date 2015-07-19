@@ -98,12 +98,12 @@ public class TbInventario {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ID_REGION", nullable=false)
-    public TbcRegion getTbcRegiones() {
+    public TbcRegion getTbcRegion() {
         return this.tbcRegion;
     }
     
-    public void setTbcRegiones(TbcRegion tbcRegiones) {
-        this.tbcRegion = tbcRegiones;
+    public void setTbcRegion(TbcRegion tbcRegion) {
+        this.tbcRegion = tbcRegion;
     }
 
     

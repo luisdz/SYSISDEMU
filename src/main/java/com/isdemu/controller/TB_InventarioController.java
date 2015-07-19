@@ -78,7 +78,7 @@ public class TB_InventarioController {
 
             TbcRegion reg= new TbcRegion();
                reg.setIdRegion(1);
-            inventario.setTbcRegiones(reg);
+            inventario.setTbcRegion(reg);
 
 
                inventario.setClaseEquipo("asd");
