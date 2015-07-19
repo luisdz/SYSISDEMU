@@ -56,6 +56,20 @@ public class micontroller {
 		return new ModelAndView("poliza");
              }
         
+        @RequestMapping(value="/insertarPersonal")
+        public ModelAndView insertarPersonal(){
+       
+		
+		return new ModelAndView("Personal");
+             }
+        
+        @RequestMapping(value="/insertarRegiones")
+        public ModelAndView insertarRegiones(){
+       
+		
+		return new ModelAndView("regiones");
+             }
+        
         @RequestMapping(value="/consultarMovimiento")
         public ModelAndView consultarMovimiento(){
        
@@ -74,6 +88,19 @@ public class micontroller {
        
 		
 		return new ModelAndView("consultar_poliza");
+             }
+        
+        @RequestMapping(value="/consultarPersonal")
+        public ModelAndView consultarPersonal(){
+       
+		
+		return new ModelAndView("consultar_personal");
+             }
+        @RequestMapping(value="/consultarRegiones")
+        public ModelAndView consultarRegiones(){
+       
+		
+		return new ModelAndView("consultar_regiones");
              }
         
 }
