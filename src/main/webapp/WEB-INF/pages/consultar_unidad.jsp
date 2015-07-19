@@ -128,6 +128,8 @@
                             <table class="table table-striped table-hover" id="sample-table-2">
                                     <thead>
                                             <tr>
+                                                
+                                                    <th>Id</th>
                                                     <th>Nombre</th>
                                                     <th>Descripcion</th>
                                                      
@@ -138,8 +140,8 @@
                                         <c:forEach var="uni" items="${unidad}">
                                             <tr align="center">
                                                     <td>${uni.idUnidad}</td>
-                                                    <td>${mov.nombreUnidad}</td>
-                                                    <td>${mov.descripcion}</td>
+                                                    <td>${uni.nombreUnidad}</td>
+                                                    <td>${uni.descripcion}</td>
 
                                             </tr>
                                         </c:forEach>	

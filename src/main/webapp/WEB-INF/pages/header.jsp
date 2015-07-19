@@ -393,7 +393,7 @@
 										</a>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/llamar/consultarPoliza.html">
+										<a href="${pageContext.request.contextPath}/Poliza/consultarPoli.html">
 											Consultar Poliza <i class="icon-arrow"></i>
 										</a>
 										

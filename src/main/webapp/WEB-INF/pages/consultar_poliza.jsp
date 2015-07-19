@@ -128,15 +128,27 @@
                             <table class="table table-striped table-hover" id="sample-table-2">
                                     <thead>
                                             <tr>
+                                                   <th>id</th>
                                                     <th>Nombre</th>
                                                     <th>Codigo</th>
                                                     <th>Fecha inicio</th>
                                                     <th>Fecha fin</th>
-                                                    <th>Tipo inventario</th>
                                             </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
+                                        
+                                        <c:forEach var="pol" items="${poliza}">
+                                            <tr align="center">
+                                                    <td>${pol.idPoliza}</td>
+                                                    <td>${pol.nombrePoliza}</td>
+                                                    <td>${pol.codigoPoliza}</td>
+                                                    <td>${pol.fechaInicio}</td>
+                                                    <td>${pol.fechaFin}</td>
+                                            </tr>
+                                        </c:forEach>
+                                        
+                                        
+<!--                                            <tr>
                                                     <td>Peter Clark</td>
                                                     <td>UI Designer</td>
                                                     <td>(641)-734-4763</td>
@@ -200,7 +212,7 @@
                                                     <a href="#" class="delete-row">
                                                             Delete
                                                     </a></td>
-                                            </tr>
+                                            </tr>-->
                                     </tbody>
                             </table>
                     </div>

@@ -5,8 +5,8 @@
  */
 package com.isdemu.controller;
 
+import com.isdemu.service.TBC_Poliza_Service;
 import com.isdemu.service.TBC_Unidad_Service;
-import com.isdemu.service.TB_Movimiento_Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,19 +18,20 @@ import org.springframework.web.servlet.ModelAndView;
  * @author AlejandroPC
  */
 
+
 @Controller 
- @RequestMapping(value="/Unidad")
-public class TBC_UnidadController {
+ @RequestMapping(value="/Poliza")
+public class TBC_PolizaController {
     
     @Autowired
-	private TBC_Unidad_Service tbUnidadService;
+	private TBC_Poliza_Service tbPolizaService;
     
-    @RequestMapping(value="/consultarUni")
-	public ModelAndView consultarUnidades() {
-		ModelAndView modelAndView = new ModelAndView("consultar_unidad");
+    @RequestMapping(value="/consultarPoli")
+	public ModelAndView consultarPolizas() {
+		ModelAndView modelAndView = new ModelAndView("consultar_poliza");
 
-		List unidad = tbUnidadService.getAll();
-		modelAndView.addObject("unidad", unidad);
+		List poliza = tbPolizaService.getAll();
+		modelAndView.addObject("poliza", poliza);
 
 		return modelAndView;
 	}   
