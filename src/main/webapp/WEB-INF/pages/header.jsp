@@ -303,7 +303,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="${pageContext.request.contextPath}/llamar/consultarMovimiento.html">
+										<a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html">
 											Consultar Movimiento <i class="icon-arrow"></i>
 										</a>
 										
