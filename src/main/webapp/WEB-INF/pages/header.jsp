@@ -354,11 +354,16 @@
 							</li>
 
 							<li>
-								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Catalago</span><i class="icon-arrow"></i> </a>
+								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Catalogo</span><i class="icon-arrow"></i> </a>
 								<ul class="sub-menu">
 									<li>
-										<a href="login_login.html">
+										<a href="${pageContext.request.contextPath}/llamar/insertarPersonal.html">
 											<span class="title"> Personal </span>
+										</a>
+									</li>
+                                                                        <li>
+										<a href="${pageContext.request.contextPath}/llamar/consultarPersonal.html">
+											<span class="title"> Consultar Personal </span>
 										</a>
 									</li>
 									<li>
@@ -373,8 +378,13 @@
 										
 									</li>
 									<li>
-										<a href="login_login.html?box=forgot">
-											<span class="title"> Regiones</span>
+										<a href="${pageContext.request.contextPath}/llamar/insertarRegiones.html">
+											<span class="title">Regiones</span>
+										</a>
+									</li>
+                                                                        <li>
+										<a href="${pageContext.request.contextPath}/llamar/consultarRegiones.html">
+											<span class="title">Consultar Regiones</span>
 										</a>
 									</li>
 									<li>
