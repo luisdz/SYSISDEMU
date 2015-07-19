@@ -134,7 +134,16 @@
                                             </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
+                                        
+                                        <c:forEach var="uni" items="${unidad}">
+                                            <tr align="center">
+                                                    <td>${uni.idUnidad}</td>
+                                                    <td>${mov.nombreUnidad}</td>
+                                                    <td>${mov.descripcion}</td>
+
+                                            </tr>
+                                        </c:forEach>	
+<!--                                            <tr>
                                                     <td>Peter Clark</td>
                                                     <td>UI Designer</td>
                                                     
@@ -157,7 +166,7 @@
                                                     <td>Kenneth Ross</td>
                                                     <td>Senior Designer</td>
                                                     
-                                            </tr>
+                                            </tr>-->
                                     </tbody>
                             </table>
                     </div>
