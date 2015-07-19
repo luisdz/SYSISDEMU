@@ -7,12 +7,16 @@ package com.isdemu.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,12 +30,12 @@ import javax.persistence.TemporalType;
 public class TbInventario {
     
      private int idInventario;
-     private TbDescargo tbDescargo;
      private TbcClasificacionActivo tbcClasificacionActivo;
      private TbcPersona tbcPersona;
      private TbcPoliza tbcPoliza;
-     private TbcRegiones tbcRegiones;
+     private TbcRegion tbcRegion;
      private String claseEquipo;
+     private String codigoInventario;
      private String marca;
      private String modelo;
      private String serie;
@@ -47,10 +51,12 @@ public class TbInventario {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-    
-    
+     private Set<TbDescargo> tbDescargos = new HashSet<TbDescargo>(0);
+
     
      @Id 
+
+    @GeneratedValue
     @Column(name="ID_INVENTARIO", unique=true, nullable=false)
     public int getIdInventario() {
         return this.idInventario;
@@ -58,16 +64,6 @@ public class TbInventario {
     
     public void setIdInventario(int idInventario) {
         this.idInventario = idInventario;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_DESCARGO", nullable=false)
-    public TbDescargo getTbDescargo() {
-        return this.tbDescargo;
-    }
-    
-    public void setTbDescargo(TbDescargo tbDescargo) {
-        this.tbDescargo = tbDescargo;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -102,12 +98,12 @@ public class TbInventario {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ID_REGION", nullable=false)
-    public TbcRegiones getTbcRegiones() {
-        return this.tbcRegiones;
+    public TbcRegion getTbcRegiones() {
+        return this.tbcRegion;
     }
     
-    public void setTbcRegiones(TbcRegiones tbcRegiones) {
-        this.tbcRegiones = tbcRegiones;
+    public void setTbcRegiones(TbcRegion tbcRegiones) {
+        this.tbcRegion = tbcRegiones;
     }
 
     
@@ -118,6 +114,16 @@ public class TbInventario {
     
     public void setClaseEquipo(String claseEquipo) {
         this.claseEquipo = claseEquipo;
+    }
+
+    
+    @Column(name="CODIGO_INVENTARIO", nullable=false, length=1024)
+    public String getCodigoInventario() {
+        return this.codigoInventario;
+    }
+    
+    public void setCodigoInventario(String codigoInventario) {
+        this.codigoInventario = codigoInventario;
     }
 
     
@@ -270,6 +276,14 @@ public class TbInventario {
         this.fechaUpdate = fechaUpdate;
     }
 
-
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
+    public Set<TbDescargo> getTbDescargos() {
+        return this.tbDescargos;
+    }
     
+    public void setTbDescargos(Set<TbDescargo> tbDescargos) {
+        this.tbDescargos = tbDescargos;
+    }
+
+
 }

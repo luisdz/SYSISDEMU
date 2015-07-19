@@ -134,7 +134,7 @@
 												<tbody>
 													
 												<c:forEach var="inv" items="${inventario}">
-                                                                                                <tr align="center">
+                                                                                                <tr >
                                                                                                         <td>${inv.idInventario}</td>
                                                                                                         <td>${inv.marca}</td>
                                                                                                         <td>${inv.modelo}</td>

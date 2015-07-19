@@ -12,6 +12,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,11 +33,14 @@ class TbDescargo {
     
     
      private int idDescargo;
+     private TbInventario tbInventario;
      private Date fecha;
      private String comentario;
-     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
+    
      
-      @Id 
+       @Id 
+
+    
     @Column(name="ID_DESCARGO", unique=true, nullable=false)
     public int getIdDescargo() {
         return this.idDescargo;
@@ -43,6 +48,16 @@ class TbDescargo {
     
     public void setIdDescargo(int idDescargo) {
         this.idDescargo = idDescargo;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_INVENTARIO", nullable=false)
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
+    }
+    
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -63,15 +78,6 @@ class TbDescargo {
     
     public void setComentario(String comentario) {
         this.comentario = comentario;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbDescargo")
-    public Set<TbInventario> getTbInventarios() {
-        return this.tbInventarios;
-    }
-    
-    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-        this.tbInventarios = tbInventarios;
     }
 
 

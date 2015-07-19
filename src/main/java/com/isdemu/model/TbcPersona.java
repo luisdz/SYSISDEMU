@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Table(name="TBC_PERSONA"
     ,schema="dbo"
  )
-class TbcPersona {
+public class TbcPersona {
     
     
      private int idPersona;

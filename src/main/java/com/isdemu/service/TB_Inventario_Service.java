@@ -12,7 +12,7 @@ import java.util.List;
  * @author Jose Eduardo
  */
 public interface TB_Inventario_Service {
-    
+    public void save(Object obj);
     public List getAll();
     
 }

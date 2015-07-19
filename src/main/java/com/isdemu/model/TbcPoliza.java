@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
     ,schema="dbo"
 
 )
-class TbcPoliza {
+public class TbcPoliza {
     
      private int idPoliza;
      private String nombrePoliza;

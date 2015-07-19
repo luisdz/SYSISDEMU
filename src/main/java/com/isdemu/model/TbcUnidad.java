@@ -16,11 +16,11 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="TBC_UNIDADES"
+@Table(name="TBC_UNIDAD"
     ,schema="dbo"
-   
+    
 )
-public class TbcUnidades {
+public class TbcUnidad {
     
      private int idUnidad;
      private String nombreUnidad;
@@ -58,6 +58,4 @@ public class TbcUnidades {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-
 }

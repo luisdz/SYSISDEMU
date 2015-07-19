@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface TB_InventarioDao {
     
+    public void save(Object obj);
     public List getAll();
 }

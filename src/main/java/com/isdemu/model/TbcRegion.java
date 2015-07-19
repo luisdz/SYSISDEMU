@@ -20,13 +20,13 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="TBC_REGIONES"
+@Table(name="TBC_REGION"
     ,schema="dbo"
-   
+  
 )
-class TbcRegiones {
+public class TbcRegion {
     
-      private String idRegion;
+      private int idRegion;
      private String nombreRegion;
      private String direccion;
      private String descripcion;
@@ -34,12 +34,14 @@ class TbcRegiones {
      
      
       @Id 
-    @Column(name="ID_REGION", unique=true, nullable=false, length=10)
-    public String getIdRegion() {
+
+    
+    @Column(name="ID_REGION", unique=true, nullable=false)
+    public int getIdRegion() {
         return this.idRegion;
     }
     
-    public void setIdRegion(String idRegion) {
+    public void setIdRegion(int idRegion) {
         this.idRegion = idRegion;
     }
 
@@ -73,7 +75,7 @@ class TbcRegiones {
         this.descripcion = descripcion;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcRegiones")
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcRegion")
     public Set<TbInventario> getTbInventarios() {
         return this.tbInventarios;
     }

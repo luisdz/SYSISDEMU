@@ -24,7 +24,12 @@ public class TB_InventarioServiceImpl implements TB_Inventario_Service {
     @Autowired
 	private TB_InventarioDao tbInventarioDao;
     
-    
+    @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		tbInventarioDao.save(obj);
+	}
+        
     @Override
 	public List getAll() {
              System.out.println("service impl");

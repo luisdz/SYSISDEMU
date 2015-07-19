@@ -229,7 +229,7 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="${pageContext.request.contextPath}/llamar/irFormulario.html">
+										<a href="${pageContext.request.contextPath}/Inventario/add.html">
 											Ingresar Inventario <i class="icon-arrow"></i>
 										</a>
 										

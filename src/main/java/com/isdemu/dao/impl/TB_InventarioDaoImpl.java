@@ -30,6 +30,13 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
 		return sessionFactory.getCurrentSession();
 	}
         
+        @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		
+		TbInventario inventario =(TbInventario)obj;
+	        getCurrentSession().save(inventario);
+	}
         
         @Override
 	public List getAll() {

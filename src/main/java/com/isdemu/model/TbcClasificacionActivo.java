@@ -24,7 +24,7 @@ import javax.persistence.Table;
     ,schema="dbo"
   
 )
-class TbcClasificacionActivo {
+public class TbcClasificacionActivo {
      private int idClasificacionActivo;
      private String nombreClasificacion;
      private String codigoClasificacion;
