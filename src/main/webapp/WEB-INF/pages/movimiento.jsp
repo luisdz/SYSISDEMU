@@ -13,8 +13,8 @@
 <!--    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
   -->
-  <script src="${pageContext.request.contextPath}/assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+                <script src="${pageContext.request.contextPath}/assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
   
   <!-- jQuery Form Validation code -->
   
@@ -184,6 +184,10 @@
         messages: {
             razon:{ required:"Please enter your first name"},
             inventario: "Please enter your last name"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
         }
                
        });
