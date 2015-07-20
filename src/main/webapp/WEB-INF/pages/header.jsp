@@ -71,7 +71,10 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/print.css" type="text/css" media="print"/>
 		<!-- end: CORE CSS -->
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
-	</head>
+	
+        
+        
+        </head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body>

@@ -62,6 +62,9 @@
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+                
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.js"></script>
+                
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
@@ -113,6 +116,7 @@
 				Main.init();
 				SVExamples.init();
 				Index.init();
+                                FormValidator.init();
 			});
 		</script>
 	</body>
