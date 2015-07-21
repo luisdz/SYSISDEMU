@@ -48,6 +48,7 @@
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/weather-icons/css/weather-icons.min.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/nvd3/nv.d3.min.css">
+                <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/plugins/select2/select2.css" />
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
                 
                 <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
@@ -59,10 +60,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.css">
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
-                
-                
-                
-                
+
 		<!-- start: CORE CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles-responsive.css">
@@ -71,9 +69,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/print.css" type="text/css" media="print"/>
 		<!-- end: CORE CSS -->
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
-	
-        
-        
         </head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->

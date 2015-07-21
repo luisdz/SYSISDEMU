@@ -6,6 +6,25 @@
 
 <%@include file="header.jsp" %>
 
+<!-- start: BREADCRUMB -->
+<div class="row">
+        <div class="col-md-12">
+                <ol class="breadcrumb">
+                        <li>
+                                <a href="#">
+                                        Catalogos
+                                </a>
+                        </li>
+                        <li class="active">
+                                Ingreso Personal
+                        </li>
+                </ol>
+        </div>
+</div>
+<!-- end: BREADCRUMB -->
+                                                
+<!-- start: PAGE CONTENT -->
+
 <div class="row">
         <div class="col-md-12">
             <!-- start: FORM VALIDATION 1 PANEL -->
@@ -49,14 +68,14 @@
                             Ingreso del Personal de ISDEMU
                     </p>
                     <hr>
-                    <form action="#" role="form" id="form">
+                    <form action="validar.jsp" role="form2" id="form2">
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="errorHandler alert alert-danger no-display">
-                                                <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                                                <i class="fa fa-times-sign"></i> Tu tienes algunos errores. Favor verificar antes.
                                         </div>
                                         <div class="successHandler alert alert-success no-display">
-                                                <i class="fa fa-ok"></i> Your form validation is successful!
+                                                <i class="fa fa-ok"></i> Tu formulario esta listo!
                                         </div>
                                 </div>
                                 <div class="col-md-6">
@@ -65,15 +84,15 @@
                                                 <label class="control-label">
                                                         Nombre<span class="symbol required"></span>
                                                 </label>
-                                                <input type="text" placeholder="Nombre" class="form-control" id="firstname" name="firstname">
+                                                <input type="text" placeholder="Nombre" class="form-control" id="firstname2" name="firstname2">
                                     </div>
                                     
                                      <div class="form-group">
                                                 <label class="control-label">
                                                         Unidad<span class="symbol required"></span>
                                                 </label>
-                                         <select class="form-control" >                                             
-                                             <option selected="selected" value="">Seleccionar..</option>
+                                         <select class="form-control" id="dropdown" name="dropdown">                                             
+                                             <option value="">Select...</option>
                                              <option value="1">Unidad 1</option>
                                              <option value="2">Unidad 2</option>
                                          </select>
@@ -83,40 +102,53 @@
                                 </div>
                                 <div class="col-md-6">
                                     
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        Jefatura<span class="symbol required"></span>
-                                                </label><br/>
-                                                <input type="checkbox" id="check" name="check">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        Encargado AF<span class="symbol required"></span>
-                                                </label><br/>
-                                                <input type="checkbox" id="check_encargado" name="check_encargado">
-                                    </div>
-                                       
-                                </div>
-                        </div>
-                        <div class="row">
-                                <div class="col-md-12">
+                                   <div class="form-group">
+                                        <label class="control-label">
+                                                Services <em>(select at least two)</em> <span class="symbol required"></span>
+                                        </label>
                                         <div>
-                                                <span class="symbol required"></span>Campos Requeridos
-                                                <hr>
+                                                <div class="checkbox">
+                                                        <label>
+                                                                <input type="checkbox" class="grey" value="" name="services" id="service1">
+                                                                Service 1
+                                                        </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                        <label>
+                                                                <input type="checkbox" class="grey" value="" name="services"  id="service2">
+                                                                Service 2
+                                                        </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                        <label>
+                                                                <input type="checkbox" class="grey" value="" name="services"  id="service3">
+                                                                Service 3
+                                                        </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                        <label>
+                                                                <input type="checkbox" class="grey" value="" name="services"  id="service4">
+                                                                Service 4
+                                                        </label>
+                                                </div>
                                         </div>
+                                    </div>                                       
                                 </div>
                         </div>
+                        
                         <div class="row">
                                 <div class="col-md-8">
-
+                                        <p>
+                                                By clicking REGISTER, you are agreeing to the Policy and Terms &amp; Conditions.
+                                        </p>
                                 </div>
                                 <div class="col-md-4">
                                         <button class="btn btn-yellow btn-block" type="submit">
-                                                Ingresar <i class="fa fa-arrow-circle-right"></i>
+                                                Register <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
                         </div>
+                   
                     </form>
                 </div>
             </div>

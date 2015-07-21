@@ -30,9 +30,9 @@
 
 		<!-- start: MAIN JAVASCRIPTS -->
 		<!--[if lt IE 9]>
-		<script src="assets/plugins/respond.min.js"></script>
-		<script src="assets/plugins/excanvas.min.js"></script>
-		<script type="text/javascript" src="assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/respond.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/excanvas.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
 		<![endif]-->
 		<!--[if gte IE 9]><!-->
 		<script src="${pageContext.request.contextPath}/assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
@@ -62,9 +62,6 @@
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-                
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.js"></script>
-                
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/DataTables/media/js/DT_bootstrap.js"></script>
@@ -72,41 +69,27 @@
 		<script src="${pageContext.request.contextPath}/assets/plugins/summernote/dist/summernote.min.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/subview.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/js/subview-examples.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTNTS -->
-		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/nvd3/lib/d3.v3.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/nvd3/nv.d3.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/nvd3/src/models/historicalBar.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/nvd3/src/models/historicalBarChart.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/nvd3/src/models/stackedArea.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/nvd3/src/models/stackedAreaChart.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery.sparkline/jquery.sparkline.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
-		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONY -->
+              
                 
+               
                 
                 <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/autosize/jquery.autosize.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/select2/select2.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery.maskedinput/src/jquery.maskedinput.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-maskmoney/jquery.maskMoney.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpicker/js/commits.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
-		
-		<script src="${pageContext.request.contextPath}/assets/js/form-elements.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/select2/select2.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/tableExport.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/jquery.base64.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/html2canvas.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/jquery.base64.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/jspdf/libs/sprintf.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/jspdf/jspdf.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/tableExport/jspdf/libs/base64.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/table-export.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-                
+                <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<script src="${pageContext.request.contextPath}/assets/plugins/ckeditor/ckeditor.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/ckeditor/adapters/jquery.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/form-validation.js"></script>
+		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
                 
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
@@ -114,9 +97,9 @@
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();
-				SVExamples.init();
-				Index.init();
                                 FormValidator.init();
+                                TableExport.init();
+                                
 			});
 		</script>
 	</body>
