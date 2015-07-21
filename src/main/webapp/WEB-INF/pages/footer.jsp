@@ -91,6 +91,26 @@
 		<script src="${pageContext.request.contextPath}/assets/js/form-validation.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
                 
+                <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/autosize/jquery.autosize.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/select2/select2.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery.maskedinput/src/jquery.maskedinput.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-maskmoney/jquery.maskMoney.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpicker/js/commits.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/ckeditor/ckeditor.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/ckeditor/adapters/jquery.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/js/form-elements.js"></script>
+		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+                
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 		<!-- end: CORE JAVASCRIPTS  -->
@@ -99,7 +119,7 @@
 				Main.init();
                                 FormValidator.init();
                                 TableExport.init();
-                                
+                                FormElements.init();
 			});
 		</script>
 	</body>

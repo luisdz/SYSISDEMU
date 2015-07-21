@@ -132,6 +132,15 @@
                                                         </label>
                                                 </div>
                                         </div>
+                                       <div class="form-group">
+                                            <p>
+                                                    Date Picker
+                                            </p>
+                                            <div class="input-group">
+                                                    <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                            </div>
+                                       </div>
                                     </div>                                       
                                 </div>
                         </div>
