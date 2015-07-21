@@ -122,7 +122,7 @@ var FormValidator = function () {
             } else {
                 return false;
             }
-        }, 'This field is required.');
+        }, 'Este campo es requerido.');
         form2.validate({
             errorElement: "span", // contain the error msg in a small tag
             errorClass: 'help-block',
@@ -182,15 +182,15 @@ var FormValidator = function () {
                 }
             },
             messages: {
-                firstname: "Please specify your first name",
-                lastname: "Please specify your last name",
+                firstname2: "Favor escriba un primer nombre",
+                lastname2: "Favor escriba apellido",
+                dropdown: "Favor seleccione una opcion",
+                services: "Favor Checkee dos opciones",
                 email: {
                     required: "We need your email address to contact you",
                     email: "Your email address must be in the format of name@domain.com"
-                },
-                services: {
-                    minlength: jQuery.format("Please select  at least {0} types of Service")
                 }
+             
             },
             invalidHandler: function (event, validator) { //display error alert on form submit
                 successHandler2.hide();

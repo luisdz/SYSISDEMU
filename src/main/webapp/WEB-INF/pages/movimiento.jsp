@@ -4,8 +4,22 @@
     Author     : Luis diaz
 --%>
 
+
+
+
 <%@include file="header.jsp" %>
 						<!-- start: PAGE CONTENT -->
+		                                                
+<!--    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+  -->
+                <script src="${pageContext.request.contextPath}/assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+		<script src="${pageContext.request.contextPath}/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+  
+  <!-- jQuery Form Validation code -->
+  
+                                                
+                                                
     <div class="row">
         <div class="col-md-12">
             <!-- start: FORM VALIDATION 1 PANEL -->
@@ -49,7 +63,7 @@
                             Esta es la seccion de Ingreso de Activos Fijos
                     </p>
                     <hr>
-                    <form action="#" role="form" id="form">
+                    <form action="#" role="form" id="form2" >
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="errorHandler alert alert-danger no-display">
@@ -73,21 +87,21 @@
                                     
                                     <br>
 
-
+                                          
 
                                         <div class="form-group">
                                                 <label class="control-label">
                                                         Razon de cambio<span class="symbol required"></span>
                                                 </label>
-                                                <input type="text" placeholder="Razon de cambio" class="form-control" id="firstname" name="firstname">
-                                        </div>
+                                            <input type="text" placeholder="Razon de cambio" class="form-control" id="razon" name="razon" >
+                                                 </div>
                                      <br>
                                      
                                         <div class="form-group">
                                                 <label class="control-label">
                                                         Inventario <span class="symbol required"></span>
                                                 </label>
-                                                <select name="inventario" id="inventario" class="form-control" >
+                                                <select name="inventario" id="inventario" class="form-control"  >
                                                                         <option value="">Seleccionar</option>
                                                                         <option value="01">1</option>
                                                                         <option value="02">2</option>
@@ -96,8 +110,6 @@
                                         </div>
                                        
                                       
-
-
                                        </div>
                             
                             <div class="col-md-6">
@@ -106,7 +118,7 @@
                                                 <label class="control-label">
                                                         Nuevo responsable <span class="symbol required"></span>
                                                 </label>
-                                                <select name="nuevo_responsable" id="nuevo_responsable" class="form-control" >
+                                                <select name="nuevo_responsable" id="nuevo_responsable" class="form-control" required >
                                                                         <option value="">Responsable</option>
                                                                         <option value="01">1</option>
                                                                         <option value="02">2</option>
@@ -144,12 +156,48 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                        <button class="btn btn-yellow btn-block" type="submit">
+                                        <button class="btn btn-yellow btn-block"   type="submit" value="Submit">
                                                 Ingresar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
                         </div>
                     </form>
+                    
+<!--                    validation-->
+                    <script>
+          
+    $(function() {
+    // Setup form validation on the #register-form element
+    $("#form2").validate({
+    
+        // Specify the validation rules
+        rules: {
+            
+            razon: {required:true,
+                    minleght: 2
+                    },
+            inventario: "required"
+            
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            razon:{ required:"Please enter your first name"},
+            inventario: "Please enter your last name"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+               
+       });
+   });
+
+  
+    </script>
+<!--                    fin validation-->
+                    
+
                 </div>
             </div>
             <!-- end: FORM VALIDATION 1 PANEL -->
@@ -157,4 +205,7 @@
     </div>
 						
 						<!-- end: PAGE CONTENT-->
+                                                        
+                                                
+                                                
 <%@include file="footer.jsp" %>		

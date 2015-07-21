@@ -140,7 +140,17 @@
                                             </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
+                                        
+                                        
+                                        <c:forEach var="mov" items="${movimiento}">
+                                            <tr align="center">
+                                                    <td>${mov.idMovimiento}</td>
+                                                    <td>${mov.fechaMovimiento}</td>
+                                                    <td>${mov.razonCambio}</td>
+
+                                            </tr>
+                                        </c:forEach>	
+<!--                                            <tr>
                                                     <td>01/01/1999</td>
                                                     <td>UI Designer</td>
                                                     <td>(641)-734-4763</td>
@@ -230,7 +240,7 @@
                                                     <a href="#" class="delete-row">
                                                             Eliminar
                                                     </a></td>
-                                            </tr>
+                                            </tr>-->
                                     </tbody>
                             </table>
                     </div>

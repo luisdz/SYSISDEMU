@@ -5,11 +5,24 @@
 --%>
 
 <%@include file="header.jsp"%>
-<div class="row">
-    <div class="col-md-12">
-            
-    </div>
-    </div>
+<!-- start: BREADCRUMB -->
+						<div class="row">
+							<div class="col-md-12">
+								<ol class="breadcrumb">
+									<li>
+										<a href="#">
+											Catalogos
+										</a>
+									</li>
+									<li class="active">
+										Consultar Personal
+									</li>
+								</ol>
+							</div>
+						</div>
+						<!-- end: BREADCRUMB -->
+                                                
+<!-- start: PAGE CONTENT -->
     <!-- end: BREADCRUMB -->
     <!-- start: PAGE CONTENT -->
 
@@ -124,23 +137,7 @@
                                                      
                                             </tr>
                                     </thead>
-                                    <tbody>
-                                            <tr>
-                                                    <td>Peter Clark</td>
-                                                    <td>Unidad 1</td>
-                                                    <td><button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
-                                                        </button></td>
-                                                    <td>true</td>
-                                                    
-                                            <tr>
-                                                    <td>Nicole Bell</td>
-                                                    <td>Unidad 2</td>
-                                                    <td><button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                                                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                                                        </button></td>
-                                                    <td>true</td>
-                                            </tr>
+                          
                                                                 
                                     </tbody>
                             </table>
@@ -150,4 +147,13 @@
         <!-- end: EXPORT DATA TABLE PANEL -->
     </div>
     </div>
+    
+    				<script>
+			jQuery(document).ready(function() {
+				Main.init();
+				SVExamples.init();
+				TableExport.init();
+			});
+		</script>
+	
 <%@include file="footer.jsp"%>

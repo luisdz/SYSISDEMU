@@ -6,6 +6,25 @@
 
 <%@include file="header.jsp" %>
 
+<!-- start: BREADCRUMB -->
+						<div class="row">
+							<div class="col-md-12">
+								<ol class="breadcrumb">
+									<li>
+										<a href="#">
+											Catalogos
+										</a>
+									</li>
+									<li class="active">
+										Ingreso Personal
+									</li>
+								</ol>
+							</div>
+						</div>
+						<!-- end: BREADCRUMB -->
+                                                
+<!-- start: PAGE CONTENT -->
+
 <div class="row">
         <div class="col-md-12">
             <!-- start: FORM VALIDATION 1 PANEL -->

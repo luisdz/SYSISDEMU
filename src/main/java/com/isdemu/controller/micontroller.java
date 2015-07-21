@@ -73,7 +73,7 @@ public class micontroller {
         @RequestMapping(value="/consultarMovimiento")
         public ModelAndView consultarMovimiento(){
        
-		
+		System.out.println("micontroller");
 		return new ModelAndView("consultar_movimiento");
              }
         

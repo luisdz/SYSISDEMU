@@ -128,13 +128,24 @@
                             <table class="table table-striped table-hover" id="sample-table-2">
                                     <thead>
                                             <tr>
+                                                
+                                                    <th>Id</th>
                                                     <th>Nombre</th>
                                                     <th>Descripcion</th>
                                                      
                                             </tr>
                                     </thead>
                                     <tbody>
-                                            <tr>
+                                        
+                                        <c:forEach var="uni" items="${unidad}">
+                                            <tr align="center">
+                                                    <td>${uni.idUnidad}</td>
+                                                    <td>${uni.nombreUnidad}</td>
+                                                    <td>${uni.descripcion}</td>
+
+                                            </tr>
+                                        </c:forEach>	
+<!--                                            <tr>
                                                     <td>Peter Clark</td>
                                                     <td>UI Designer</td>
                                                     
@@ -157,7 +168,7 @@
                                                     <td>Kenneth Ross</td>
                                                     <td>Senior Designer</td>
                                                     
-                                            </tr>
+                                            </tr>-->
                                     </tbody>
                             </table>
                     </div>
