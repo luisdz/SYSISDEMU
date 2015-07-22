@@ -10,6 +10,7 @@ import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcRegion;
+import com.isdemu.service.TBC_Poliza_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -32,6 +33,7 @@ public class TB_InventarioController {
     
     @Autowired
 	private TB_Inventario_Service tbInventarioService;
+        private TBC_Poliza_Service tbPolizaService;
     
     @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
@@ -49,6 +51,8 @@ public class TB_InventarioController {
               System.out.println("esntra aqui GETTTT");
 		ModelAndView modelAndView = new ModelAndView("inventario");
 		modelAndView.addObject("inventario", new TbInventario());
+            
+                
 		return modelAndView;
 	}
         
@@ -85,11 +89,11 @@ public class TB_InventarioController {
                 inventario.setCodigoInventario("1321");
                  inventario.setValorLibro(BigDecimal.ZERO);
                   inventario.setFechaAdquisicion(new Date());
-                  inventario.setValor(BigDecimal.ZERO);
+                 inventario.setValor(BigDecimal.ZERO);
                   inventario.setLocalizacion("local");
                    inventario.setValorLibro(BigDecimal.ZERO);
           
-                System.out.println("LO QUE VA EN EL OBJETO INVENTARIO;"+inventario.getMarca()+inventario.getClaseEquipo()+inventario.getLocalizacion());
+                System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getValor());
                
 		tbInventarioService.save(inventario);
 		String message = "Pais was successfully added.";

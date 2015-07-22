@@ -85,6 +85,7 @@
                                                         Nombre<span class="symbol required"></span>
                                                 </label>
                                                 <input type="text" placeholder="Nombre" class="form-control" id="firstname2" name="firstname2">
+                                                
                                     </div>
                                     
                                      <div class="form-group">

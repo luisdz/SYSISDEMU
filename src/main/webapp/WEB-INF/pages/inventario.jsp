@@ -1,8 +1,5 @@
 <%@include file="header.jsp"%>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/select2/select2.css">
-<link rel="stylesheet"  href="${pageContext.request.contextPath}/assets/plugins/jQuery-Tags-Input/jquery.tagsinput.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css">
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!-- start: BREADCRUMB -->
@@ -67,7 +64,7 @@
 										</p>
 										<hr>
 
-<form:form method="POST" action="${pageContext.request.contextPath}/Inventario/add" modelAttribute="inventario">
+<form:form method="POST" action="${pageContext.request.contextPath}/Inventario/add" modelAttribute="inventario" >
 
 <div class="row">
         <div class="col-md-12">
@@ -81,18 +78,18 @@
         <div class="col-md-6">
             
           
+                
+<!--            
             
-            
-            
-            <div class="form-group">
+             <div class="form-group">
                     <label for="form-field-select-3">
                             Clasificacion Activo
                     </label>
-                    <form:select path="tbcClasificacionActivo"  id="form-field-select-3" class="form-control search-select">
-                            <option value="1">Seleccione un valor</option>
-                            <option value="2">Activo1</option>
-                            <option value="3">Activo2</option>
-                            <option value="4">Activo3</option>
+                     <form:select path="tbcClasificacionActivo" class="form-control" id="dropdown" name="dropdown">
+                            <form:option value=""  label="Selecciona una poliza"/>
+                            <form:option value="2"  label="Activo2"/>
+                            <form:option value="3"  label="Activo3"/>
+                            
                          
                     </form:select>
             </div>
@@ -101,42 +98,62 @@
                     <label for="form-field-select-3">
                             Poliza
                     </label>
-                     <form:select path="tbcPoliza" id="form-field-select-3" class="form-control search-select">
-                            <option value="1">&nbsp;</option>
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
+                     <form:select path="tbcPoliza" class="form-control" id="dropdown" name="dropdown">
+                            <form:option value=""  label="Selecciona una poliza"/>
+                            <form:option value="2"  label="Activo2"/>
+                            <form:option value="3"  label="Activo3"/>
+                            
                          
                     </form:select>
             </div>
+            
+            
             
              <div class="form-group">
                     <label for="form-field-select-3">
                             Encargado
                     </label>
-                    <select id="form-field-select-3" class="form-control search-select">
-                            <option value="">&nbsp;</option>
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
+                    <form:select path="tbcPersona" class="form-control" id="dropdown" name="dropdown">
+                          <form:option value=""  label="Selecciona encargado de Activo"/>
+                            <form:option value="2"  label="Persona1"/>
+                            <form:option value="3"  label="Persona2"/>
                          
-                    </select>
+                     </form:select>
             </div>
             
              <div class="form-group">
                     <label for="form-field-select-3">
                             Region
                     </label>
-                    <select id="form-field-select-3" class="form-control search-select">
-                            <option value="">&nbsp;</option>
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
+                    <form:select path="tbcRegion" class="form-control" id="dropdown" name="dropdown">
+                          <form:option value=""  label="Selecciona una region"/>
+                            <form:option value="2"  label="region1"/>
+                            <form:option value="3"  label="region2"/>
                          
-                    </select>
+                     </form:select>
             </div>
-            
-           
+            -->
+               
+            <div class="form-group">
+                        <label class="control-label">
+                                Marca<span class="symbol required"></span>
+                        </label>
+                        <form:input path="marca" type="text" placeholder="Ingrese la marca del equipo" class="form-control" id="lastname" name="lastname"/>
+                </div>
+                
+                <div class="form-group">
+                        <label class="control-label">
+                                Modelo<span class="symbol required"></span>
+                        </label>
+                        <form:input path="modelo" type="text" placeholder="Ingrese el modelo del equipo" class="form-control" id="lastname" name="lastname"/>
+                </div>
+                
+             <div class="form-group">
+                        <label class="control-label">
+                                Serie<span class="symbol required"></span>
+                        </label>
+                        <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="lastname" name="lastname"/>
+                </div>
 
             
 
@@ -145,23 +162,80 @@
 <!--     Cierre div izquiero-->
         <div class="col-md-6">
 
-              
-            <div class="form-group">
+<!--            
+               <div class="form-group">
+                    <p>
+                            Fecha Adquisicion
+                    </p>
+                    <div class="input-group">
+                            <form:input path="fechaAdquisicion" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                            <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                    </div>
+               </div>-->
+                
+            
+                
+                
+                
+                            
+               <div class="form-group">
+                        <label class="control-label">
+                                Valor<span class="symbol required"></span>
+                        </label>
+                        <form:input path="valor" type="text" placeholder="Ingrese el valor en $ del equipo" class="form-control" id="lastname" name="lastname"/>
+                </div>
+                
+                
+                 <div class="form-group">
+                        <label class="control-label">
+                                Localizacion<span class="symbol required"></span>
+                        </label>
+                        <form:input path="localizacion" type="text" placeholder="Ingrese la localizacion de equipo" class="form-control" id="lastname" name="lastname"/>
+                </div>
+                
+                  <div class="form-group">
+                        <label class="control-label">
+                                N Factura<span class="symbol required"></span>
+                        </label>
+                        <form:input path="NFactura" type="text" placeholder="Ingrese el numero de factura" class="form-control" id="lastname" name="lastname"/>
+                </div>
+                
+                
+                
+                  <div class="form-group">
+                        <label class="control-label">
+                                Financiamiento<span class="symbol required"></span>
+                        </label>
+                        <form:input path="financiamiento" type="text" placeholder="Ingrese el tipo de financiamiento del equipo" class="form-control" id="lastname" name="lastname"/>
+                </div>
+                
+                  <div class="form-group">
                         <label class="control-label">
                                 Descripcion<span class="symbol required"></span>
                         </label>
-                        <form:input path="descripcion" type="text" placeholder="Insert your Last Name" class="form-control" id="lastname" name="lastname"/>
+                        <form:input path="descripcion" type="text" placeholder="Ingrese una descripcion" class="form-control" id="lastname" name="lastname"/>
                 </div>
+              
+          
 
            
 
 
 
         </div>
+                
+                <div class="row">
+                                
+                                <div class="col-md-4">
+                                        <button class="btn btn-yellow btn-block" type="submit">
+                                                Guardar Activo <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                </div>
+  </div>
+</form:form>
 </div>
 
-<input value="Guardar" type="submit">
-</form:form>
+ 
 </div>
 								</div>
 								<!-- end: FORM VALIDATION 1 PANEL -->
