@@ -5,12 +5,9 @@
  */
 package com.isdemu.dao.impl;
 
-import com.isdemu.dao.TBC_PolizaDao;
-import com.isdemu.dao.TBC_UnidadDao;
-import com.isdemu.model.TbcPoliza;
-import com.isdemu.model.TbcUnidad;
+import com.isdemu.dao.TbcClasificacionActivoDao;
+import com.isdemu.model.TbcClasificacionActivo;
 import java.util.List;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,26 +15,18 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author AlejandroPC
+ * @author Jose Eduardo
  */
-
-
 @Repository
-public class TBC_PolizaDaoImp implements TBC_PolizaDao {
+public class TBC_ClasificacionActivoDaoImpl implements TbcClasificacionActivoDao{
     
-     @Autowired
+    @Autowired
 	private SessionFactory sessionFactory;
-
-	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
-        
-        
+    
         @Override
 	public List getAll() {
 		// TODO Auto-generated method stub
-             System.out.println("Llega al dao implements");
-            DetachedCriteria dc = DetachedCriteria.forClass(TbcPoliza.class);
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcClasificacionActivo.class);
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();

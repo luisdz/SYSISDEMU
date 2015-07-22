@@ -5,8 +5,10 @@
  */
 package com.isdemu.service.impl;
 
-import com.isdemu.dao.TBC_PolizaDao;
-import com.isdemu.service.TBC_Poliza_Service;
+
+import com.isdemu.dao.TbcClasificacionActivoDao;
+
+import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +16,19 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author AlejandroPC
+ * @author Jose Eduardo
  */
- 
-
 @Service
 @Transactional
-public class TBC_Poliza_ServiceImp implements TBC_Poliza_Service {
+public class TBC_ClasificacionActivoServiceImp implements TBC_ClasificacionActivo_Service{
     
     @Autowired
-	private TBC_PolizaDao tbPolizaDao;
-    
+	private TbcClasificacionActivoDao tbClasiActDao;
     
     @Override
 	public List getAll() {
-             System.out.println("service impl de poliza");
+             System.out.println("service impl");
 		// TODO Auto-generated method stub
-		return tbPolizaDao.getAll();
+		return tbClasiActDao.getAll();
 	}
 }

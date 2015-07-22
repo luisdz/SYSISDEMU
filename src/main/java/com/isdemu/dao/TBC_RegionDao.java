@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isdemu.service;
+package com.isdemu.dao;
 
 import java.util.List;
 
 /**
  *
- * @author AlejandroPC
+ * @author Jose Eduardo
  */
-public interface TBC_Poliza_Service {
-   
-             public List getAll();
+public interface TBC_RegionDao {
+    public List getAll();
+    
 }

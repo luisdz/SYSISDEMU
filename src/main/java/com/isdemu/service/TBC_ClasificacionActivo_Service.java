@@ -9,9 +9,8 @@ import java.util.List;
 
 /**
  *
- * @author AlejandroPC
+ * @author Jose Eduardo
  */
-public interface TBC_Poliza_Service {
-   
-             public List getAll();
+public interface TBC_ClasificacionActivo_Service {
+    public List getAll();
 }

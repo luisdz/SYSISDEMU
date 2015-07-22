@@ -62,8 +62,14 @@
 										<p>
 											Esta es la seccion de Ingreso de Activos Fijos
 										</p>
-										<hr>
+									<hr>
 
+        
+                         
+                         
+                   
+        
+        
 <form:form method="POST" action="${pageContext.request.contextPath}/Inventario/add" modelAttribute="inventario" >
 
 <div class="row">
@@ -76,63 +82,63 @@
                 </div>
         </div>
         <div class="col-md-6">
-            
-          
-                
-<!--            
-            
-             <div class="form-group">
+              <div class="form-group">
                     <label for="form-field-select-3">
                             Clasificacion Activo
                     </label>
-                     <form:select path="tbcClasificacionActivo" class="form-control" id="dropdown" name="dropdown">
-                            <form:option value=""  label="Selecciona una poliza"/>
-                            <form:option value="2"  label="Activo2"/>
-                            <form:option value="3"  label="Activo3"/>
-                            
-                         
-                    </form:select>
+                   
+                      <form:select path="tbcClasificacionActivo.idClasificacionActivo" class="form-control" id="dropdown" name="dropdown">
+                          <form:option value="0"  label="Selecciona una clasificacion"/>
+                                <c:forEach var="clasi" items="${clasificacionA}">
+                                    <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
+                                 </c:forEach>
+                      </form:select>
             </div>
+          
+                
+         
             
+         
              <div class="form-group">
                     <label for="form-field-select-3">
                             Poliza
                     </label>
-                     <form:select path="tbcPoliza" class="form-control" id="dropdown" name="dropdown">
-                            <form:option value=""  label="Selecciona una poliza"/>
-                            <form:option value="2"  label="Activo2"/>
-                            <form:option value="3"  label="Activo3"/>
-                            
-                         
-                    </form:select>
+                     <form:select path="tbcPoliza.idPoliza" class="form-control" id="dropdown" name="dropdown">
+                         <form:option value="0"  label="Selecciona una Poliza"/>
+                                <c:forEach var="poliz" items="${poliza}">
+                                    <form:option value="${poliz.idPoliza}"  label="${poliz.nombrePoliza}"/>
+                                 </c:forEach>
+                      </form:select>
             </div>
             
             
-            
+          
              <div class="form-group">
                     <label for="form-field-select-3">
-                            Encargado
+                            En custodia de
                     </label>
-                    <form:select path="tbcPersona" class="form-control" id="dropdown" name="dropdown">
-                          <form:option value=""  label="Selecciona encargado de Activo"/>
-                            <form:option value="2"  label="Persona1"/>
-                            <form:option value="3"  label="Persona2"/>
-                         
-                     </form:select>
+                     <form:select path="tbcPersona.idPersona" class="form-control" id="dropdown" name="dropdown">
+                         <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
+                         <c:forEach var="pers" items="${persona}">
+                                    <form:option value="${pers.idPersona}"  label="${pers.nombrePersona}"/>
+                                 </c:forEach>
+                      </form:select>
             </div>
-            
+              
              <div class="form-group">
                     <label for="form-field-select-3">
                             Region
                     </label>
-                    <form:select path="tbcRegion" class="form-control" id="dropdown" name="dropdown">
-                          <form:option value=""  label="Selecciona una region"/>
-                            <form:option value="2"  label="region1"/>
-                            <form:option value="3"  label="region2"/>
+                    <form:select path="tbcRegion.idRegion" class="form-control" id="dropdown" name="dropdown">
+                          <form:option value="0"  label="Selecciona la region del Activo"/>       
+                         <c:forEach var="reg" items="${region}">
+                                    <form:option value="${reg.idRegion}"  label="${reg.nombreRegion}"/>
+                                 </c:forEach>
+                      </form:select>
                          
-                     </form:select>
+                   
             </div>
-            -->
+          
                
             <div class="form-group">
                         <label class="control-label">
@@ -162,7 +168,7 @@
 <!--     Cierre div izquiero-->
         <div class="col-md-6">
 
-<!--            
+            
                <div class="form-group">
                     <p>
                             Fecha Adquisicion
@@ -171,7 +177,7 @@
                             <form:input path="fechaAdquisicion" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
                             <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                     </div>
-               </div>-->
+               </div>
                 
             
                 
