@@ -360,7 +360,7 @@
 										</a>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/llamar/consultarPersonal.html">
+										<a href="${pageContext.request.contextPath}/Persona/list">
 											<span class="title"> Consultar Personal </span>
 										</a>
 									</li>
