@@ -5,6 +5,7 @@
  */
 package com.isdemu.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ import java.util.List;
  */
 public interface TbcClasificacionActivoDao {
     public List getAll();
+     public Object findByKey(Serializable id);
 }

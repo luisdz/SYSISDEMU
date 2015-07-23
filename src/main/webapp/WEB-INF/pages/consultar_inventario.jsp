@@ -120,44 +120,42 @@
 												</div>
 											</div>
 										</div>
-										<div class="table-responsive">
-											<table class="table table-striped table-hover" id="sample-table-2">
-												<thead>
-													<tr>
-														<th>ID inventario</th>
-														<th>Marca</th>
-														<th>Modelo</th>
-														<th>Edit</th>
-														<th>Delete</th>
-													</tr>
-												</thead>
-												<tbody>
-													
-												<c:forEach var="inv" items="${inventario}">
-                                                                                                <tr >
-                                                                                                        <td>${inv.idInventario}</td>
-                                                                                                        <td>${inv.marca}</td>
-                                                                                                        <td>${inv.modelo}</td>
+                <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="sample-table-2">
+                                <thead>
+                                        <tr>
+                                                <th>ID inventario</th>
+                                                <th>Marca</th>
+                                                <th>Modelo</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
 
-                                                                                                </tr>
-                                                                                                </c:forEach>	
-													
-													
-												</tbody>
-											</table>
-										</div>
+                                <c:forEach var="inv" items="${inventario}">
+                                <tr >
+                                        <td>${inv.idInventario}</td>
+                                        <td>${inv.marca}</td>
+                                        <td>${inv.modelo}</td>
+                                        <td><a href="${pageContext.request.contextPath}/Inventario/delete/${inv.idInventario}">
+					Eliminar</a></td>
+                                        <td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">
+					Actualizar</a></td>
+
+                                </tr>
+                                </c:forEach>	
+
+
+                                </tbody>
+                        </table>
+                </div>
 									</div>
 								</div>
 								<!-- end: EXPORT DATA TABLE PANEL -->
 							</div>
 						</div>
 						<!-- end: PAGE CONTENT-->
-						<script>
-			jQuery(document).ready(function() {
-				Main.init();
-				SVExamples.init();
-				TableExport.init();
-			});
-		</script>
+						
 	
                 <%@include file="footer.jsp"%>
