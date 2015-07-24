@@ -12,7 +12,7 @@ import java.util.List;
  * @author AlejandroPC
  */
 public interface TB_MovimientoDao {
-    
+    public void save(Object obj);
      public List getAll();
     
 }

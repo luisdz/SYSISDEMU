@@ -7,6 +7,7 @@ package com.isdemu.dao.impl;
 
 
 import com.isdemu.dao.TB_MovimientoDao;
+import com.isdemu.model.TbInventario;
 
 
 import com.isdemu.model.TbMovimiento;
@@ -42,4 +43,13 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
+        
+        @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		
+		TbMovimiento movimiento =(TbMovimiento)obj;
+	        getCurrentSession().save(movimiento);
+	}
+        
 }

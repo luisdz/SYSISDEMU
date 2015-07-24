@@ -6,6 +6,7 @@
 package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TBC_UnidadDao;
+import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcUnidad;
 import java.util.List;
 import org.hibernate.Session;
@@ -39,4 +40,13 @@ public class TBC_UnidadDaoImp implements TBC_UnidadDao {
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
+        
+        @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		
+		TbcUnidad unidad =(TbcUnidad)obj;
+	        getCurrentSession().save(unidad);
+	}
+        
 }
