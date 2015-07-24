@@ -8,6 +8,7 @@ package com.isdemu.dao.impl;
 import com.isdemu.dao.TB_InventarioDao;
 
 import com.isdemu.model.TbInventario;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,5 +46,28 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+	}
+        
+        
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		TbInventario inventario = (TbInventario) getCurrentSession().get(TbInventario.class, id);
+		if(inventario!=null)
+			getCurrentSession().delete(inventario);
+	}
+        
+        
+	@Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		TbInventario inventario = (TbInventario) getCurrentSession().get(TbInventario.class, id);
+		return inventario;
+	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		getCurrentSession().update(obj);
 	}
 }

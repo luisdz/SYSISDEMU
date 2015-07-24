@@ -12,10 +12,7 @@ import java.util.List;
  *
  * @author Jose Eduardo
  */
-public interface TB_Inventario_Service {
-    public void save(Object obj);
+public interface TBC_ClasificacionActivo_Service {
     public List getAll();
-    public void delete(Serializable id);
-    public Object findByKey(Serializable id);
-    public void update(Object obj);
+     public Object findByKey(Serializable id);
 }

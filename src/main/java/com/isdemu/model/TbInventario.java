@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -156,7 +157,8 @@ public class TbInventario {
         this.serie = serie;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_ADQUISICION", nullable=false, length=23)
     public Date getFechaAdquisicion() {
         return this.fechaAdquisicion;

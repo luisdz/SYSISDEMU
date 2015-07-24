@@ -7,6 +7,7 @@ package com.isdemu.service.impl;
 
 import com.isdemu.dao.TB_InventarioDao;
 import com.isdemu.service.TB_Inventario_Service;
+import java.io.Serializable;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,24 @@ public class TB_InventarioServiceImpl implements TB_Inventario_Service {
              System.out.println("service impl");
 		// TODO Auto-generated method stub
 		return tbInventarioDao.getAll();
+	}
+        
+        
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		tbInventarioDao.delete(id);
+	}
+        
+        @Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		return tbInventarioDao.findByKey(id);
+	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbInventarioDao.update(obj);
 	}
 }

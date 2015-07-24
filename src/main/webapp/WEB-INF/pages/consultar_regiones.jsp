@@ -74,17 +74,17 @@
                                                             <ul class="dropdown-menu dropdown-light pull-right">
                                                                    
                                                                     <li>
-                                                                            <a href="#" class="export-excel" data-table="#sample-table-1">
+                                                                            <a href="#" class="export-excel" data-table="#sample-table-2">
                                                                                     Export to Excel
                                                                             </a>
                                                                     </li>
                                                                     <li>
-                                                                            <a href="#" class="export-doc" data-table="#sample-table-1">
+                                                                            <a href="#" class="export-doc" data-table="#sample-table-2">
                                                                                     Export to Word
                                                                             </a>
                                                                     </li>
                                                                     <li>
-                                                                            <a href="#" class="export-powerpoint" data-table="#sample-table-1">
+                                                                            <a href="#" class="export-powerpoint" data-table="#sample-table-2">
                                                                                     Export to PowerPoint
                                                                             </a>
                                                                     </li>
@@ -93,7 +93,7 @@
                                             </div>
                                     </div>
                                     <div class="table-responsive">
-                                            <table class="table table-hover" id="sample-table-1">
+                                            <table class="table table-hover" id="sample-table-2">
                                                     <thead>
                                                             <tr>
                                                                     <th>Country</th>
@@ -101,6 +101,7 @@
                                                                     <th>Date</th>
                                                                     <th>%ge</th>
                                                                     <th>Prueba</th>
+                                                                    <th>Paises</th>
                                                                     <th>Paises</th>
                                                             </tr>
                                                     </thead>
@@ -112,6 +113,7 @@
                                                                     <td>19.1</td>
                                                                     <td>19.1</td>
                                                                     <td>Brazil</td>
+                                                                    <td>Brazil</td>
                                                             </tr>
                                                             <tr>
                                                                     <td>India</td>
@@ -119,6 +121,7 @@
                                                                     <td>March 24, 2014</td>
                                                                     <td>17.4</td>
                                                                     <td>19.1</td>
+                                                                    <td>Brazil</td>
                                                                     <td>Brazil</td>
                                                             </tr>
                                                             <tr>
@@ -128,6 +131,7 @@
                                                                     <td>4.44</td>
                                                                     <td>19.1</td>
                                                                     <td>Brazil</td>
+                                                                    <td>Brazil</td>
                                                             </tr>
                                                             <tr>
                                                                     <td>Indonesia</td>
@@ -136,6 +140,7 @@
                                                                     <td>3.49</td>
                                                                     <td>19.1</td>
                                                                     <td>Brazil</td>
+                                                                    <td>Brazil</td>
                                                             </tr>
                                                             <tr>
                                                                     <td>Brazil</td>
@@ -143,6 +148,7 @@
                                                                     <td>July 1, 2013</td>
                                                                     <td>2.81</td>
                                                                     <td>19.1</td>
+                                                                    <td>Brazil</td>
                                                                     <td>Brazil</td>
                                                             </tr>
                                                     </tbody>

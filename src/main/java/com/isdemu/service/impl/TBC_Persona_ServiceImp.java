@@ -5,36 +5,28 @@
  */
 package com.isdemu.service.impl;
 
-import com.isdemu.dao.TBC_PolizaDao;
-import com.isdemu.service.TBC_Poliza_Service;
+import com.isdemu.dao.TBC_PersonaDao;
+import com.isdemu.service.TBC_Persona_Service;
 import java.util.List;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author AlejandroPC
+ * @author Jose Eduardo
  */
- 
-
 @Service
 @Transactional
-public class TBC_Poliza_ServiceImp implements TBC_Poliza_Service {
-    
-    @Autowired
-	private TBC_PolizaDao tbPolizaDao;
-    
-    @Override
-	public void save(Object obj) {
-		// TODO Auto-generated method stub
-		tbPolizaDao.save(obj);
-	}
-    
-    @Override
+public class TBC_Persona_ServiceImp implements TBC_Persona_Service{
+     @Autowired
+	private TBC_PersonaDao tbPersonaDao;
+     
+     @Override
 	public List getAll() {
-             System.out.println("service impl de poliza");
+             System.out.println("service impl");
 		// TODO Auto-generated method stub
-		return tbPolizaDao.getAll();
+		return tbPersonaDao.getAll();
 	}
 }

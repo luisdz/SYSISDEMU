@@ -23,21 +23,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author Jose Eduardo
+ * @author Walter
  */
-
 @Controller 
- @RequestMapping(value="/Inventario")
-public class TB_InventarioController {
+ @RequestMapping(value="/Persona")
+public class TBC_PersonaController {
     
-    @Autowired
+     @Autowired
 	private TB_Inventario_Service tbInventarioService;
     @Autowired
         private TBC_Poliza_Service tbPolizaService;
@@ -50,14 +48,13 @@ public class TB_InventarioController {
      
       @Autowired
         private TBC_Region_Service tbcRegionService;
-     
-    
-    @RequestMapping(value="/list")
+      
+     @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
-		ModelAndView modelAndView = new ModelAndView("consultar_inventario");
+		ModelAndView modelAndView = new ModelAndView("consultar_personal");
 
-		List inventario = tbInventarioService.getAll();
-		modelAndView.addObject("inventario", inventario);
+		List personal = tbcPersonaService.getAll();
+		modelAndView.addObject("persona", personal);
 
 		return modelAndView;
 	}
@@ -89,6 +86,28 @@ public class TB_InventarioController {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("esntra aquiPOSTTTT"+inventario);
 
+//               
+//            TbcClasificacionActivo activo= new TbcClasificacionActivo();
+//               activo.setIdClasificacionActivo(1);
+//            inventario.setTbcClasificacionActivo(activo);
+//
+//
+//            TbcPersona pers= new TbcPersona();
+//               pers.setIdPersona(1);
+//
+//            inventario.setTbcPersona(pers);
+//
+//
+//
+//            TbcPoliza poli= new TbcPoliza();
+//               poli.setIdPoliza(1);
+//            inventario.setTbcPoliza(poli);
+//
+//
+//            TbcRegion reg= new TbcRegion();
+//               reg.setIdRegion(1);
+//            inventario.setTbcRegion(reg);
+
 
                inventario.setClaseEquipo("asd");
                 inventario.setCodigoInventario("1321");
@@ -103,50 +122,6 @@ public class TB_InventarioController {
 		tbInventarioService.save(inventario);
 		String message = "Pais was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
-	}
-        
-        
-        @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
-	public ModelAndView deletePais(@PathVariable Integer id) {
-		ModelAndView modelAndView = new ModelAndView("home");
-		tbInventarioService.delete(id);
-		String message = "Pais was successfully deleted.";
-		modelAndView.addObject("message", message);
-		return modelAndView;
-	}
-        
-        
-        @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
-	public ModelAndView editPaisPage(@PathVariable Integer id) {
-		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
-		TbInventario inventario = (TbInventario) tbInventarioService.findByKey(id);
-                TbcClasificacionActivo activo = (TbcClasificacionActivo) tbClasActService.findByKey(inventario.getTbcClasificacionActivo().getIdClasificacionActivo());
-                
-                  Map<String, Object> myModel = new HashMap<String, Object>();
-                   List ClasAct = tbClasActService.getAll();  
-                   myModel.put("inventario",inventario ); 
-                  myModel.put("clasificacionA",activo );
-                  myModel.put("AllclasificacionA",ClasAct );
-                
-                  
-                   
-                System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
-		//modelAndView.addObject("inventario",inventario);
-		return new ModelAndView("actualizar_inventario",myModel);
-	}
-
-	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
-	public ModelAndView edditingPais(@ModelAttribute TbInventario inventario, @PathVariable Integer id) {
-		TbInventario ActivoActual = (TbInventario) tbInventarioService.findByKey(id);
-		ModelAndView modelAndView = new ModelAndView("home");
-		//inventario.setdPais(inventario.get .getdPais());
-		//pais.setcUsuario("ricardo.ardon");
-		tbInventarioService.update(inventario);
-
-		String message = "Pais was successfully edited.";
-		modelAndView.addObject("message", message);
-
 		return modelAndView;
 	}
     
