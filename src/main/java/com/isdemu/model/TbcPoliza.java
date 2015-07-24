@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -70,7 +71,8 @@ public class TbcPoliza {
         this.codigoPoliza = codigoPoliza;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INICIO", nullable=false, length=23)
     public Date getFechaInicio() {
         return this.fechaInicio;
@@ -80,7 +82,8 @@ public class TbcPoliza {
         this.fechaInicio = fechaInicio;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_FIN", nullable=false, length=23)
     public Date getFechaFin() {
         return this.fechaFin;
