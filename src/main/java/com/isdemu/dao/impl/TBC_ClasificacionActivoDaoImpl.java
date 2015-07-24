@@ -13,6 +13,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +35,9 @@ public class TBC_ClasificacionActivoDaoImpl implements TbcClasificacionActivoDao
 	public List getAll() {
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbcClasificacionActivo.class);
+            dc.add(Restrictions.ne("idClasificacionActivo", 1));
+                    
+            
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
