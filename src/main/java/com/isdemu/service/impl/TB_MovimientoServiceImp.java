@@ -32,4 +32,10 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
 		// TODO Auto-generated method stub
 		return tbMovimientoDao.getAll();
 	}
+        
+          @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		tbMovimientoDao.save(obj);
+	}
 }

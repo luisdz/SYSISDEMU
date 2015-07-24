@@ -12,6 +12,6 @@ import java.util.List;
  * @author AlejandroPC
  */
 public interface TBC_Poliza_Service {
-   
+            public void save(Object obj);
              public List getAll();
 }

@@ -7,6 +7,7 @@ package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TBC_PolizaDao;
 import com.isdemu.dao.TBC_UnidadDao;
+import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcUnidad;
 import java.util.List;
@@ -32,6 +33,13 @@ public class TBC_PolizaDaoImp implements TBC_PolizaDao {
 		return sessionFactory.getCurrentSession();
 	}
         
+         @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		
+		TbcPoliza poliza =(TbcPoliza)obj;
+	        getCurrentSession().save(poliza);
+	}
         
         @Override
 	public List getAll() {

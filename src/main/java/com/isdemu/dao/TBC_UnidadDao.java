@@ -12,6 +12,7 @@ import java.util.List;
  * @author AlejandroPC
  */
 public interface TBC_UnidadDao {
+    public void save(Object obj);
          public List getAll();
     
 }

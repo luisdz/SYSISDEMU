@@ -49,7 +49,7 @@ public class micontroller {
 		return new ModelAndView("unidad");
              }
         
-        @RequestMapping(value="/insertarPoliza")
+        @RequestMapping(value="/insertarPol")
         public ModelAndView insertarPoliza(){
        
 		
