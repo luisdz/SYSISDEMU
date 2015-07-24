@@ -25,6 +25,11 @@ public class TBC_Poliza_ServiceImp implements TBC_Poliza_Service {
     @Autowired
 	private TBC_PolizaDao tbPolizaDao;
     
+    @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		tbPolizaDao.save(obj);
+	}
     
     @Override
 	public List getAll() {
