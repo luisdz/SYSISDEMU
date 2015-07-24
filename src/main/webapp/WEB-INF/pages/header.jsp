@@ -386,7 +386,7 @@
 										</a>
 									</li>
 									<li>
-										<a  href="${pageContext.request.contextPath}/llamar/insertarPoliza.html">
+										<a  href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html">
 											<span class="title">Poliza</span>
 										</a>
 									</li>

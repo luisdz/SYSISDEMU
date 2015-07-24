@@ -12,6 +12,7 @@ import java.util.List;
  * @author AlejandroPC
  */
 public interface TB_Movimiento_Service {
+    public void save(Object obj);
      public List getAll();
     
 }

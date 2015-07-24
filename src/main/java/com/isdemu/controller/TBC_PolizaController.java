@@ -11,10 +11,11 @@ import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcRegion;
 import com.isdemu.service.TBC_Poliza_Service;
-import com.isdemu.service.TBC_Unidad_Service;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,6 +35,8 @@ public class TBC_PolizaController {
     
     @Autowired
 	private TBC_Poliza_Service tbPolizaService;
+    
+    
     //************consultar*********************
     @RequestMapping(value="/consultarPoli")
 	public ModelAndView consultarPolizas() 
@@ -48,46 +51,49 @@ public class TBC_PolizaController {
         
         
      //*************Insertar**************
+        @RequestMapping(value="/insertarPoliza", method=RequestMethod.GET)
+	public ModelAndView addPoliza() {
+              System.out.println("esntra aqui GET poliza");
+		//ModelAndView modelAndView = new ModelAndView("inventario");
+               Map<String, Object> myModel = new HashMap<String, Object>();
+		
+                 
+                 //List ClasAct = tbClasActService.getAll();
+                /// List poliza = tbPolizaService.getAll();
+                 //List persona=tbcPersonaService.getAll();
+                 //List region=tbcRegionService.getAll();
+                 myModel.put("poliza", new TbcPoliza());
+                // myModel.put("poliza",poliza );
+                // myModel.put("clasificacionA",ClasAct );
+                // myModel.put("persona",persona);
+                // myModel.put("region",region);
+                
+		return new ModelAndView("poliza",myModel);
+	}
+        
+        
         @RequestMapping(value="/insertarPoliza", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbInventario inventario) {
+	public ModelAndView addingPoliza(@ModelAttribute TbcPoliza poliza) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("esntra aquiPOSTTTT"+inventario);
-
-               
-            TbcClasificacionActivo activo= new TbcClasificacionActivo();
-               activo.setIdClasificacionActivo(1);
-            inventario.setTbcClasificacionActivo(activo);
+		 System.out.println("esntra aquiPOST poliza"+poliza);
 
 
-            TbcPersona pers= new TbcPersona();
-               pers.setIdPersona(1);
-
-            inventario.setTbcPersona(pers);
-
-
-
-            TbcPoliza poli= new TbcPoliza();
-               poli.setIdPoliza(1);
-            inventario.setTbcPoliza(poli);
-
-
-            TbcRegion reg= new TbcRegion();
-               reg.setIdRegion(1);
-            inventario.setTbcRegion(reg);
-
-
-               inventario.setClaseEquipo("asd");
-                inventario.setCodigoInventario("1321");
-                 inventario.setValorLibro(BigDecimal.ZERO);
-                  inventario.setFechaAdquisicion(new Date());
-                 inventario.setValor(BigDecimal.ZERO);
-                  inventario.setLocalizacion("local");
-                   inventario.setValorLibro(BigDecimal.ZERO);
+                 poliza.setNombrePoliza("asd");
+                 poliza.setFechaFin(new Date());
+                 poliza.setFechaInicio(new Date());
+                 poliza.setCodigoPoliza("1234");
+//               inventario.setClaseEquipo("asd");
+//                inventario.setCodigoInventario("1321");
+//                 inventario.setValorLibro(BigDecimal.ZERO);
+//                  inventario.setFechaAdquisicion(new Date());
+//                 inventario.setValor(BigDecimal.ZERO);
+//                  inventario.setLocalizacion("local");
+//                   inventario.setValorLibro(BigDecimal.ZERO);
           
-                System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getValor());
+               // System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
                
-		tbPolizaService.save(inventario);
-		String message = "Pais was successfully added.";
+		tbPolizaService.save(poliza);
+		String message = "Poliza was successfully added.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}

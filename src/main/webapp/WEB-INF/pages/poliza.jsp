@@ -49,7 +49,9 @@
                             Esta es la seccion de Ingreso de Polizas
                     </p>
                     <hr>
-                    <form action="#" role="form" id="form">
+<!--                    <form action="#" role="form" id="form">-->
+                    <form:form method="POST" action="${pageContext.request.contextPath}/Poliza/insertarPoliza" modelAttribute="poliza" >
+    
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="errorHandler alert alert-danger no-display">
@@ -68,21 +70,26 @@
                                                 <label class="control-label">
                                                         Nombre<span class="symbol required"></span>
                                                 </label>
-                                                <input type="text" placeholder="Nombre" class="form-control" id="nombre" name="firstname">
+<!--                                                <input type="text" placeholder="Nombre" class="form-control" id="nombre" name="firstname">-->
+                                                <form:input path="nombrePoliza" type="text" placeholder="Ingrese el nombre de la poliza" class="form-control" id="poliza" name="poliza"/>
+                
                                         </div>
                                          <div class="form-group">
                                                 <label class="control-label">
                                                         Codigo<span class="symbol required"></span>
                                                 </label>
-                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">
-                                        </div>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="codigoPoliza" type="text" placeholder="Ingrese el codigo de la poliza" class="form-control" id="codigo" name="codigo"/>
+                
+                                         </div>
                                        <label class="control-label">
                                                 Fecha inicio<span class="symbol required"></span>
                                       </label>   
                                     <div class="input-group">
                                         
-                                        
-                                        <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                        <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                            
+<!--                                        <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">-->
                                         <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                         
 				    </div>
@@ -91,17 +98,18 @@
                                       </label>   
                                     <div class="input-group">
                                         
-                                        
-                                        <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+                                        <form:input path="fechaFin" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                            
+<!--                                        <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">-->
                                         <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                         
 				    </div>
-                                    <div class="form-group">
+<!--                                    <div class="form-group">
                                                 <label class="control-label">
                                                         Tipo de equipo<span class="symbol required"></span>
                                                 </label>
                                                 <input type="text" placeholder="Tipo" class="form-control" id="tipo_equipo" name="firstname">
-                                        </div>
+                                        </div>-->
                                         
 
                                        

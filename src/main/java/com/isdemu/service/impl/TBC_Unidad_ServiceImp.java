@@ -23,13 +23,19 @@ import org.springframework.stereotype.Service;
 public class TBC_Unidad_ServiceImp implements TBC_Unidad_Service {
     
     @Autowired
-	private TBC_UnidadDao tbUnidadDao;
+	private TBC_UnidadDao tbcUnidadDao;
     
     
     @Override
 	public List getAll() {
              System.out.println("service impl");
 		// TODO Auto-generated method stub
-		return tbUnidadDao.getAll();
+		return tbcUnidadDao.getAll();
+	}
+        
+          @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		tbcUnidadDao.save(obj);
 	}
 }
