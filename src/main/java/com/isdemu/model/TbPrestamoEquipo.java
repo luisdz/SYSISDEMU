@@ -8,7 +8,10 @@ package com.isdemu.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,7 +28,9 @@ import javax.persistence.TemporalType;
 )
 public class TbPrestamoEquipo {
     
-     private int idPrestamoEquipo;
+    private int idPrestamoEquipo;
+     private TbInventario tbInventario;
+     private int NPrestamo;
      private Date fechaSolicitud;
      private Date fechaReservacion;
      private Date horaInicio;
@@ -33,6 +38,10 @@ public class TbPrestamoEquipo {
      private String temaImpartir;
      private String personaImpartir;
      private String destino;
+     private Integer userInsert;
+     private Date fechaInsert;
+     private Integer userUpdate;
+     private Date fechaUpdate;
 
      
       
@@ -46,6 +55,26 @@ public class TbPrestamoEquipo {
     
     public void setIdPrestamoEquipo(int idPrestamoEquipo) {
         this.idPrestamoEquipo = idPrestamoEquipo;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_INVENTARIO", nullable=false)
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
+    }
+    
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
+    }
+
+    
+    @Column(name="N_PRESTAMO", nullable=false)
+    public int getNPrestamo() {
+        return this.NPrestamo;
+    }
+    
+    public void setNPrestamo(int NPrestamo) {
+        this.NPrestamo = NPrestamo;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -109,7 +138,7 @@ public class TbPrestamoEquipo {
     }
 
     
-    @Column(name="DESTINO", nullable=false, length=1024)
+    @Column(name="DESTINO", length=1024)
     public String getDestino() {
         return this.destino;
     }
@@ -117,5 +146,47 @@ public class TbPrestamoEquipo {
     public void setDestino(String destino) {
         this.destino = destino;
     }
+
+    
+    @Column(name="USER_INSERT")
+    public Integer getUserInsert() {
+        return this.userInsert;
+    }
+    
+    public void setUserInsert(Integer userInsert) {
+        this.userInsert = userInsert;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_INSERT", length=10)
+    public Date getFechaInsert() {
+        return this.fechaInsert;
+    }
+    
+    public void setFechaInsert(Date fechaInsert) {
+        this.fechaInsert = fechaInsert;
+    }
+
+    
+    @Column(name="USER_UPDATE")
+    public Integer getUserUpdate() {
+        return this.userUpdate;
+    }
+    
+    public void setUserUpdate(Integer userUpdate) {
+        this.userUpdate = userUpdate;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_UPDATE", length=10)
+    public Date getFechaUpdate() {
+        return this.fechaUpdate;
+    }
+    
+    public void setFechaUpdate(Date fechaUpdate) {
+        this.fechaUpdate = fechaUpdate;
+    }
+
+
 
 }

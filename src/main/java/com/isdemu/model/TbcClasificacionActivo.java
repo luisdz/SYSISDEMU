@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,14 +27,16 @@ import javax.persistence.Table;
   
 )
 public class TbcClasificacionActivo {
+  
+
      private int idClasificacionActivo;
+     private TbcPoliza tbcPoliza;
      private String nombreClasificacion;
      private String codigoClasificacion;
      private String descripcionClasificacion;
      private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
-     
-      @Id 
+       @Id 
 
     
     @Column(name="ID_CLASIFICACION_ACTIVO", unique=true, nullable=false)
@@ -42,6 +46,16 @@ public class TbcClasificacionActivo {
     
     public void setIdClasificacionActivo(int idClasificacionActivo) {
         this.idClasificacionActivo = idClasificacionActivo;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_POLIZA", nullable=false)
+    public TbcPoliza getTbcPoliza() {
+        return this.tbcPoliza;
+    }
+    
+    public void setTbcPoliza(TbcPoliza tbcPoliza) {
+        this.tbcPoliza = tbcPoliza;
     }
 
     
@@ -82,5 +96,8 @@ public class TbcClasificacionActivo {
     public void setTbInventarios(Set<TbInventario> tbInventarios) {
         this.tbInventarios = tbInventarios;
     }
+
+
+
 
 }

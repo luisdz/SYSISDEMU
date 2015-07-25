@@ -26,14 +26,15 @@ import javax.persistence.Table;
 )
 public class TbcRegion {
     
-      private int idRegion;
+     private int idRegion;
      private String nombreRegion;
      private String direccion;
      private String descripcion;
-     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
+     private Set<TbcUnidad> tbcUnidads = new HashSet<TbcUnidad>(0);
+     private Set<TbcLocalizacion> tbcLocalizacions = new HashSet<TbcLocalizacion>(0);
+
      
-     
-      @Id 
+       @Id 
 
     
     @Column(name="ID_REGION", unique=true, nullable=false)
@@ -76,12 +77,24 @@ public class TbcRegion {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbcRegion")
-    public Set<TbInventario> getTbInventarios() {
-        return this.tbInventarios;
+    public Set<TbcUnidad> getTbcUnidads() {
+        return this.tbcUnidads;
     }
     
-    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-        this.tbInventarios = tbInventarios;
+    public void setTbcUnidads(Set<TbcUnidad> tbcUnidads) {
+        this.tbcUnidads = tbcUnidads;
     }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcRegion")
+    public Set<TbcLocalizacion> getTbcLocalizacions() {
+        return this.tbcLocalizacions;
+    }
+    
+    public void setTbcLocalizacions(Set<TbcLocalizacion> tbcLocalizacions) {
+        this.tbcLocalizacions = tbcLocalizacions;
+    }
+
+
+
 
 }

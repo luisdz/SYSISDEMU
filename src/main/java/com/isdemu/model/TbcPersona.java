@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,13 +28,14 @@ import javax.persistence.Table;
 public class TbcPersona {
     
     
-     private int idPersona;
+   private int idPersona;
+     private TbcUnidad tbcUnidad;
      private String nombrePersona;
      private String jefatura;
      private String encargadoAfijo;
      private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
-       @Id 
+      @Id 
 
     
     @Column(name="ID_PERSONA", unique=true, nullable=false)
@@ -42,6 +45,16 @@ public class TbcPersona {
     
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_UNIDAD", nullable=false)
+    public TbcUnidad getTbcUnidad() {
+        return this.tbcUnidad;
+    }
+    
+    public void setTbcUnidad(TbcUnidad tbcUnidad) {
+        this.tbcUnidad = tbcUnidad;
     }
 
     
@@ -55,7 +68,7 @@ public class TbcPersona {
     }
 
     
-    @Column(name="JEFATURA")
+    @Column(name="JEFATURA", length=10)
     public String getJefatura() {
         return this.jefatura;
     }
@@ -65,7 +78,7 @@ public class TbcPersona {
     }
 
     
-    @Column(name="ENCARGADO_AFIJO")
+    @Column(name="ENCARGADO_AFIJO", length=10)
     public String getEncargadoAfijo() {
         return this.encargadoAfijo;
     }
@@ -82,6 +95,8 @@ public class TbcPersona {
     public void setTbInventarios(Set<TbInventario> tbInventarios) {
         this.tbInventarios = tbInventarios;
     }
+
+
 
 
 }

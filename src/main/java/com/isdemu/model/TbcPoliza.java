@@ -30,11 +30,12 @@ import javax.persistence.TemporalType;
 )
 public class TbcPoliza {
     
-     private int idPoliza;
+    private int idPoliza;
      private String nombrePoliza;
      private String codigoPoliza;
      private Date fechaInicio;
      private Date fechaFin;
+     private Set<TbcClasificacionActivo> tbcClasificacionActivos = new HashSet<TbcClasificacionActivo>(0);
      private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
      
@@ -91,6 +92,15 @@ public class TbcPoliza {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="tbcPoliza")
+    public Set<TbcClasificacionActivo> getTbcClasificacionActivos() {
+        return this.tbcClasificacionActivos;
+    }
+    
+    public void setTbcClasificacionActivos(Set<TbcClasificacionActivo> tbcClasificacionActivos) {
+        this.tbcClasificacionActivos = tbcClasificacionActivos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcPoliza")
     public Set<TbInventario> getTbInventarios() {
         return this.tbInventarios;
     }
@@ -101,4 +111,7 @@ public class TbcPoliza {
 
 
 
+
 }
+
+

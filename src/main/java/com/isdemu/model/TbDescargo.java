@@ -32,13 +32,18 @@ class TbDescargo {
     
     
     
+    
      private int idDescargo;
      private TbInventario tbInventario;
+     private int idNumeroDescargo;
      private Date fecha;
      private String comentario;
-    
+     private Integer userInsert;
+     private Date fechaInsert;
+     private Integer userUpdate;
+     private Date fechaUpdate;
      
-       @Id 
+      @Id 
 
     
     @Column(name="ID_DESCARGO", unique=true, nullable=false)
@@ -60,6 +65,16 @@ class TbDescargo {
         this.tbInventario = tbInventario;
     }
 
+    
+    @Column(name="ID_NUMERO_DESCARGO", nullable=false)
+    public int getIdNumeroDescargo() {
+        return this.idNumeroDescargo;
+    }
+    
+    public void setIdNumeroDescargo(int idNumeroDescargo) {
+        this.idNumeroDescargo = idNumeroDescargo;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="FECHA", length=23)
     public Date getFecha() {
@@ -79,6 +94,47 @@ class TbDescargo {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    
+    @Column(name="USER_INSERT")
+    public Integer getUserInsert() {
+        return this.userInsert;
+    }
+    
+    public void setUserInsert(Integer userInsert) {
+        this.userInsert = userInsert;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_INSERT", length=10)
+    public Date getFechaInsert() {
+        return this.fechaInsert;
+    }
+    
+    public void setFechaInsert(Date fechaInsert) {
+        this.fechaInsert = fechaInsert;
+    }
+
+    
+    @Column(name="USER_UPDATE")
+    public Integer getUserUpdate() {
+        return this.userUpdate;
+    }
+    
+    public void setUserUpdate(Integer userUpdate) {
+        this.userUpdate = userUpdate;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_UPDATE", length=10)
+    public Date getFechaUpdate() {
+        return this.fechaUpdate;
+    }
+    
+    public void setFechaUpdate(Date fechaUpdate) {
+        this.fechaUpdate = fechaUpdate;
+    }
+
 
 
 }

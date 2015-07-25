@@ -98,20 +98,6 @@
                 
          
             
-         
-             <div class="form-group">
-                    <label for="form-field-select-3">
-                            Poliza
-                    </label>
-                     <form:select path="tbcPoliza.idPoliza" class="form-control" id="dropdown" name="dropdown">
-                         <form:option value="0"  label="Selecciona una Poliza"/>
-                                <c:forEach var="poliz" items="${poliza}">
-                                    <form:option value="${poliz.idPoliza}"  label="${poliz.nombrePoliza}"/>
-                                 </c:forEach>
-                      </form:select>
-            </div>
-            
-            
           
              <div class="form-group">
                     <label for="form-field-select-3">
@@ -124,19 +110,17 @@
                                  </c:forEach>
                       </form:select>
             </div>
-              
-             <div class="form-group">
+           
+            <div class="form-group">
                     <label for="form-field-select-3">
-                            Region
+                            Localizacion
                     </label>
-                    <form:select path="tbcRegion.idRegion" class="form-control" id="dropdown" name="dropdown">
-                          <form:option value="0"  label="Selecciona la region del Activo"/>       
-                         <c:forEach var="reg" items="${region}">
-                                    <form:option value="${reg.idRegion}"  label="${reg.nombreRegion}"/>
+                     <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown" name="dropdown">
+                         <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
+                         <c:forEach var="loca" items="${lozalizacion}">
+                                    <form:option value="${loca.idLocalizacion}"  label="${loca.nombreLocalizacion}"/>
                                  </c:forEach>
                       </form:select>
-                         
-                   
             </div>
           
                
@@ -192,12 +176,6 @@
                 </div>
                 
                 
-                 <div class="form-group">
-                        <label class="control-label">
-                                Localizacion<span class="symbol required"></span>
-                        </label>
-                        <form:input path="localizacion" type="text" placeholder="Ingrese la localizacion de equipo" class="form-control" id="lastname" name="lastname"/>
-                </div>
                 
                   <div class="form-group">
                         <label class="control-label">
@@ -215,12 +193,7 @@
                         <form:input path="financiamiento" type="text" placeholder="Ingrese el tipo de financiamiento del equipo" class="form-control" id="lastname" name="lastname"/>
                 </div>
                 
-                  <div class="form-group">
-                        <label class="control-label">
-                                Descripcion<span class="symbol required"></span>
-                        </label>
-                        <form:input path="descripcion" type="text" placeholder="Ingrese una descripcion" class="form-control" id="lastname" name="lastname"/>
-                </div>
+                 
               
           
 

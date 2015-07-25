@@ -8,7 +8,10 @@ package com.isdemu.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,13 +28,14 @@ import javax.persistence.TemporalType;
 )
 public class TbMovimiento {
      private int idMovimiento;
+     private TbInventario tbInventario;
+     private int NMovimiento;
      private Date fechaMovimiento;
      private String razonCambio;
      private Integer userInsert;
      private Date fechaInsert;
-     private Integer userUpdate;
+     private int userUpdate;
      private Date fechaUpdate;
-     
      
      
       @Id 
@@ -44,6 +48,26 @@ public class TbMovimiento {
     
     public void setIdMovimiento(int idMovimiento) {
         this.idMovimiento = idMovimiento;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_INVENTARIO", nullable=false)
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
+    }
+    
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
+    }
+
+    
+    @Column(name="N_MOVIMIENTO", nullable=false)
+    public int getNMovimiento() {
+        return this.NMovimiento;
+    }
+    
+    public void setNMovimiento(int NMovimiento) {
+        this.NMovimiento = NMovimiento;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -87,12 +111,12 @@ public class TbMovimiento {
     }
 
     
-    @Column(name="USER_UPDATE")
-    public Integer getUserUpdate() {
+    @Column(name="USER_UPDATE", nullable=false)
+    public int getUserUpdate() {
         return this.userUpdate;
     }
     
-    public void setUserUpdate(Integer userUpdate) {
+    public void setUserUpdate(int userUpdate) {
         this.userUpdate = userUpdate;
     }
 
@@ -105,4 +129,6 @@ public class TbMovimiento {
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
     }
+
+
 }

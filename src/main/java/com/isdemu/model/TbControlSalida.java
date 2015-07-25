@@ -8,7 +8,10 @@ package com.isdemu.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +27,9 @@ import javax.persistence.TemporalType;
     
 )
 public class TbControlSalida {
-      private int idControlSalida;
+     private int idControlSalida;
+     private TbInventario tbInventario;
+     private int NControlSalida;
      private String solicitante;
      private Date fechaSalida;
      private String observacion;
@@ -35,8 +40,7 @@ public class TbControlSalida {
      private Integer userUpdate;
      private Date fechaUpdate;
      
-     
-       @Id 
+        @Id 
 
     
     @Column(name="ID_CONTROL_SALIDA", unique=true, nullable=false)
@@ -46,6 +50,26 @@ public class TbControlSalida {
     
     public void setIdControlSalida(int idControlSalida) {
         this.idControlSalida = idControlSalida;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_INVENTARIO", nullable=false)
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
+    }
+    
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
+    }
+
+    
+    @Column(name="N_CONTROL_SALIDA", nullable=false)
+    public int getNControlSalida() {
+        return this.NControlSalida;
+    }
+    
+    public void setNControlSalida(int NControlSalida) {
+        this.NControlSalida = NControlSalida;
     }
 
     
@@ -137,5 +161,6 @@ public class TbControlSalida {
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
     }
+
 
 }

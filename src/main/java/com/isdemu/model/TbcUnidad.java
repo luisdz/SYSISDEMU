@@ -5,9 +5,15 @@
  */
 package com.isdemu.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,12 +28,15 @@ import javax.persistence.Table;
 )
 public class TbcUnidad {
     
+   
      private int idUnidad;
+     private TbcRegion tbcRegion;
      private String nombreUnidad;
      private String descripcion;
-     
-     
-      @Id 
+     private Set<TbcPersona> tbcPersonas = new HashSet<TbcPersona>(0);
+
+    
+     @Id 
 
     
     @Column(name="ID_UNIDAD", unique=true, nullable=false)
@@ -37,6 +46,16 @@ public class TbcUnidad {
     
     public void setIdUnidad(int idUnidad) {
         this.idUnidad = idUnidad;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_REGION", nullable=false)
+    public TbcRegion getTbcRegion() {
+        return this.tbcRegion;
+    }
+    
+    public void setTbcRegion(TbcRegion tbcRegion) {
+        this.tbcRegion = tbcRegion;
     }
 
     
@@ -58,4 +77,19 @@ public class TbcUnidad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcUnidad")
+    public Set<TbcPersona> getTbcPersonas() {
+        return this.tbcPersonas;
+    }
+    
+    public void setTbcPersonas(Set<TbcPersona> tbcPersonas) {
+        this.tbcPersonas = tbcPersonas;
+    }
+
+
+
+
 }
+
+

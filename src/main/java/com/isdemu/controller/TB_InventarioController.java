@@ -11,6 +11,7 @@ import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcRegion;
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
+import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 import com.isdemu.service.TBC_Region_Service;
@@ -39,8 +40,7 @@ public class TB_InventarioController {
     
     @Autowired
 	private TB_Inventario_Service tbInventarioService;
-    @Autowired
-        private TBC_Poliza_Service tbPolizaService;
+   
     
     @Autowired
         private TBC_ClasificacionActivo_Service tbClasActService;
@@ -49,7 +49,8 @@ public class TB_InventarioController {
         private TBC_Persona_Service tbcPersonaService;
      
       @Autowired
-        private TBC_Region_Service tbcRegionService;
+        private TBC_Localizacion_Service tbcLocalizacionService;
+     
      
     
     @RequestMapping(value="/list")
@@ -71,14 +72,15 @@ public class TB_InventarioController {
 		
                  
                  List ClasAct = tbClasActService.getAll();
-                 List poliza = tbPolizaService.getAll();
+                
                  List persona=tbcPersonaService.getAll();
-                 List region=tbcRegionService.getAll();
+                   List lozalizacion=tbcLocalizacionService.getAll();
                  myModel.put("inventario", new TbInventario());
-                 myModel.put("poliza",poliza );
+                
                  myModel.put("clasificacionA",ClasAct );
                  myModel.put("persona",persona);
-                 myModel.put("region",region);
+                 myModel.put("lozalizacion",lozalizacion);
+               
                 
 		return new ModelAndView("inventario",myModel);
 	}
@@ -95,7 +97,7 @@ public class TB_InventarioController {
                  inventario.setValorLibro(BigDecimal.ZERO);
                   inventario.setFechaAdquisicion(new Date());
                  inventario.setValor(BigDecimal.ZERO);
-                  inventario.setLocalizacion("local");
+                
                    inventario.setValorLibro(BigDecimal.ZERO);
           
                 System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());

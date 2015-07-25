@@ -32,9 +32,10 @@ public class TbInventario {
     
      private int idInventario;
      private TbcClasificacionActivo tbcClasificacionActivo;
+     private TbcLocalizacion tbcLocalizacion;
      private TbcPersona tbcPersona;
      private TbcPoliza tbcPoliza;
-     private TbcRegion tbcRegion;
+     private Integer responsableAnterior;
      private String claseEquipo;
      private String codigoInventario;
      private String marca;
@@ -42,8 +43,6 @@ public class TbInventario {
      private String serie;
      private Date fechaAdquisicion;
      private BigDecimal valor;
-     private String localizacion;
-     private String descripcion;
      private String NFactura;
      private String financiamiento;
      private String observacion;
@@ -53,11 +52,14 @@ public class TbInventario {
      private Integer userUpdate;
      private Date fechaUpdate;
      private Set<TbDescargo> tbDescargos = new HashSet<TbDescargo>(0);
+     private Set<TbPrestamoEquipo> tbPrestamoEquipos = new HashSet<TbPrestamoEquipo>(0);
+     private Set<TbControlSalida> tbControlSalidas = new HashSet<TbControlSalida>(0);
+     private Set<TbMovimiento> tbMovimientos = new HashSet<TbMovimiento>(0);
 
     
-     @Id 
-
-    @GeneratedValue
+      @Id 
+ @GeneratedValue
+    
     @Column(name="ID_INVENTARIO", unique=true, nullable=false)
     public int getIdInventario() {
         return this.idInventario;
@@ -78,6 +80,16 @@ public class TbInventario {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_LOCALIZACION", nullable=false)
+    public TbcLocalizacion getTbcLocalizacion() {
+        return this.tbcLocalizacion;
+    }
+    
+    public void setTbcLocalizacion(TbcLocalizacion tbcLocalizacion) {
+        this.tbcLocalizacion = tbcLocalizacion;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ID_PERSONA", nullable=false)
     public TbcPersona getTbcPersona() {
         return this.tbcPersona;
@@ -88,7 +100,7 @@ public class TbInventario {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_POLIZA", nullable=false)
+    @JoinColumn(name="ID_POLIZA")
     public TbcPoliza getTbcPoliza() {
         return this.tbcPoliza;
     }
@@ -97,14 +109,14 @@ public class TbInventario {
         this.tbcPoliza = tbcPoliza;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_REGION", nullable=false)
-    public TbcRegion getTbcRegion() {
-        return this.tbcRegion;
+    
+    @Column(name="RESPONSABLE_ANTERIOR")
+    public Integer getResponsableAnterior() {
+        return this.responsableAnterior;
     }
     
-    public void setTbcRegion(TbcRegion tbcRegion) {
-        this.tbcRegion = tbcRegion;
+    public void setResponsableAnterior(Integer responsableAnterior) {
+        this.responsableAnterior = responsableAnterior;
     }
 
     
@@ -158,8 +170,8 @@ public class TbInventario {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
-    @Column(name="FECHA_ADQUISICION", nullable=false, length=23)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @Column(name="FECHA_ADQUISICION", length=23)
     public Date getFechaAdquisicion() {
         return this.fechaAdquisicion;
     }
@@ -176,26 +188,6 @@ public class TbInventario {
     
     public void setValor(BigDecimal valor) {
         this.valor = valor;
-    }
-
-    
-    @Column(name="LOCALIZACION", nullable=false, length=1024)
-    public String getLocalizacion() {
-        return this.localizacion;
-    }
-    
-    public void setLocalizacion(String localizacion) {
-        this.localizacion = localizacion;
-    }
-
-    
-    @Column(name="DESCRIPCION", length=1024)
-    public String getDescripcion() {
-        return this.descripcion;
-    }
-    
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     
@@ -285,6 +277,33 @@ public class TbInventario {
     
     public void setTbDescargos(Set<TbDescargo> tbDescargos) {
         this.tbDescargos = tbDescargos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
+    public Set<TbPrestamoEquipo> getTbPrestamoEquipos() {
+        return this.tbPrestamoEquipos;
+    }
+    
+    public void setTbPrestamoEquipos(Set<TbPrestamoEquipo> tbPrestamoEquipos) {
+        this.tbPrestamoEquipos = tbPrestamoEquipos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
+    public Set<TbControlSalida> getTbControlSalidas() {
+        return this.tbControlSalidas;
+    }
+    
+    public void setTbControlSalidas(Set<TbControlSalida> tbControlSalidas) {
+        this.tbControlSalidas = tbControlSalidas;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
+    public Set<TbMovimiento> getTbMovimientos() {
+        return this.tbMovimientos;
+    }
+    
+    public void setTbMovimientos(Set<TbMovimiento> tbMovimientos) {
+        this.tbMovimientos = tbMovimientos;
     }
 
 

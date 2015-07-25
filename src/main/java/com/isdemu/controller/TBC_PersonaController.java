@@ -114,7 +114,7 @@ public class TBC_PersonaController {
                  inventario.setValorLibro(BigDecimal.ZERO);
                   inventario.setFechaAdquisicion(new Date());
                  inventario.setValor(BigDecimal.ZERO);
-                  inventario.setLocalizacion("local");
+                 
                    inventario.setValorLibro(BigDecimal.ZERO);
           
                 System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
