@@ -75,7 +75,7 @@ public class TBC_PolizaController {
         @RequestMapping(value="/insertarPoliza", method=RequestMethod.POST)
 	public ModelAndView addingPoliza(@ModelAttribute TbcPoliza poliza) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("esntra aquiPOST poliza"+poliza);
+		 System.out.println("entra aqui POST poliza"+poliza);
 
 
                  poliza.setNombrePoliza("asd");
