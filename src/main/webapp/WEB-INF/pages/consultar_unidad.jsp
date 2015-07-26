@@ -132,6 +132,7 @@
                                                     <th>Id</th>
                                                     <th>Nombre</th>
                                                     <th>Descripcion</th>
+                                                    <th>id region</th>
                                                      
                                             </tr>
                                     </thead>
@@ -142,6 +143,7 @@
                                                     <td>${uni.idUnidad}</td>
                                                     <td>${uni.nombreUnidad}</td>
                                                     <td>${uni.descripcion}</td>
+                                                    <td>${uni.tbcRegion.idRegion}</td>
 
                                             </tr>
                                         </c:forEach>	

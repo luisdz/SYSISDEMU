@@ -57,16 +57,9 @@ public class TBC_PolizaController {
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();
 		
-                 
-                 //List ClasAct = tbClasActService.getAll();
-                /// List poliza = tbPolizaService.getAll();
-                 //List persona=tbcPersonaService.getAll();
-                 //List region=tbcRegionService.getAll();
+               
                  myModel.put("poliza", new TbcPoliza());
-                // myModel.put("poliza",poliza );
-                // myModel.put("clasificacionA",ClasAct );
-                // myModel.put("persona",persona);
-                // myModel.put("region",region);
+               
                 
 		return new ModelAndView("poliza",myModel);
 	}
@@ -78,10 +71,11 @@ public class TBC_PolizaController {
 		 System.out.println("entra aqui POST poliza"+poliza);
 
 
-                 poliza.setNombrePoliza("asd");
-                 poliza.setFechaFin(new Date());
-                 poliza.setFechaInicio(new Date());
-                 poliza.setCodigoPoliza("1234");
+//                 poliza.setNombrePoliza("asd");
+//                 poliza.setFechaFin(new Date());
+//                 poliza.setFechaInicio(new Date());
+//                 poliza.setCodigoPoliza("1234");
+                 
 //               inventario.setClaseEquipo("asd");
 //                inventario.setCodigoInventario("1321");
 //                 inventario.setValorLibro(BigDecimal.ZERO);
