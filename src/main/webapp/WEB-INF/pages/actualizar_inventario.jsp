@@ -1,6 +1,5 @@
 <%@include file="header.jsp"%>
 
-
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!-- start: BREADCRUMB -->
 						<div class="row">
@@ -64,10 +63,8 @@
 										</p>
 									<hr>
 
-${clasificacionA.nombreClasificacion}
-${inventario.idInventario}
 
-<form:form method="POST" action="${pageContext.request.contextPath}/Inventario/add" modelAttribute="inventario" >
+<form:form method="POST" action="${pageContext.request.contextPath}/Inventario/edit/${inventario.idInventario}" modelAttribute="inventario" >
     
        
                  <div class="form-group">
@@ -76,7 +73,7 @@ ${inventario.idInventario}
                     </label>
                    
                       <form:select path="tbcClasificacionActivo.idClasificacionActivo" class="form-control" id="dropdown" name="dropdown">
-                          <form:option value="0"  label="${clasificacionA.nombreClasificacion}"/>
+                          <form:option value="${clasi.idClasificacionActivo}"  label="${clasificacionA.nombreClasificacion}"/>
                                 <c:forEach var="clasi" items="${AllclasificacionA}">
                                     <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
                                  </c:forEach>
@@ -90,6 +87,16 @@ ${inventario.idInventario}
                         </label>
                         <form:input path="marca" type="text" placeholder="${inventario.marca}" class="form-control" id="lastname" name="lastname"/>
                 </div>
+                        
+                        
+                            <div class="row">
+                                
+                                <div class="col-md-4">
+                                        <button class="btn btn-yellow btn-block" type="submit">
+                                                Actualizar <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                </div>
+  </div>
 </form:form>
 
 
