@@ -12,9 +12,10 @@ import java.util.List;
  *
  * @author AlejandroPC
  */
-public interface TBC_Unidad_Service {
-        public void save(Object obj);
-         public List getAll();
-          public void delete(Serializable id);
+public interface TB_Descargo_Service {
+    public void save(Object obj);
+     public List getAll();
+      public void delete(Serializable id);
     public Object findByKey(Serializable id);
+    
 }

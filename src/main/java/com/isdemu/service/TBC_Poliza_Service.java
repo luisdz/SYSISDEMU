@@ -5,6 +5,7 @@
  */
 package com.isdemu.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,4 +15,6 @@ import java.util.List;
 public interface TBC_Poliza_Service {
             public void save(Object obj);
              public List getAll();
+              public void delete(Serializable id);
+    public Object findByKey(Serializable id);
 }

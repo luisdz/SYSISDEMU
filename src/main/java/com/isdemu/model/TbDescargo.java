@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
 @Table(name="TB_DESCARGO"
     ,schema="dbo"
   )
-class TbDescargo {
+public class TbDescargo {
     
     
     

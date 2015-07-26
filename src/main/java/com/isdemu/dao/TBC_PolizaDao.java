@@ -5,6 +5,7 @@
  */
 package com.isdemu.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,4 +15,7 @@ import java.util.List;
 public interface TBC_PolizaDao {
             public void save(Object obj);
              public List getAll();
+             public void delete(Serializable id);
+             public Object findByKey(Serializable id);
+             
 }

@@ -19,6 +19,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,16 +78,22 @@ public class TBC_UnidadController {
 		 System.out.println("esntra aquiPOST unidad"+unidad);
 
 
-//               unidad.setNombreUnidad("asd");
-//                unidad.setDescripcion("1321");
-                
-          
-//                System.out.println("LO QUE VA EN EL OBJETO unidad e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
-//               
+     
 		tbUnidadService.save(unidad);
 		String message = "unidad was successfully added.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+        
+         @RequestMapping(value="/deleteUnidad/{id}", method=RequestMethod.GET)
+	public ModelAndView deleteUnidad(@PathVariable Integer id) 
+        {
+		ModelAndView modelAndView = new ModelAndView("home");
+		tbUnidadService.delete(id);
+		String message = "unidad was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
     
 }

@@ -10,6 +10,7 @@ import com.isdemu.dao.TBC_UnidadDao;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcUnidad;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,5 +50,20 @@ public class TBC_PolizaDaoImp implements TBC_PolizaDao {
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+	}
+        
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcPoliza poliza = (TbcPoliza) getCurrentSession().get(TbcPoliza.class, id);
+		if(poliza!=null)
+			getCurrentSession().delete(poliza);
+	}
+        
+        @Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcPoliza poliza = (TbcPoliza) getCurrentSession().get(TbcPoliza.class, id);
+		return poliza;
 	}
 }

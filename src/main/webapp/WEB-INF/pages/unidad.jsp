@@ -95,6 +95,9 @@
                                                 </label>
                                                 <form:input path="descripcion" type="text" placeholder="Ingrese la descripcion" class="form-control" id="lastname" name="lastname"/>
                                         </div>
+                                        
+                                       
+                                        
                                        
                                   
                                 </div>

@@ -133,6 +133,7 @@
                                                     <th>Nombre</th>
                                                     <th>Descripcion</th>
                                                     <th>id region</th>
+                                                    <th>Eliminar</th>
                                                      
                                             </tr>
                                     </thead>
@@ -144,6 +145,8 @@
                                                     <td>${uni.nombreUnidad}</td>
                                                     <td>${uni.descripcion}</td>
                                                     <td>${uni.tbcRegion.idRegion}</td>
+                                                    <td><a href="${pageContext.request.contextPath}/Unidad/deleteUnidad/${uni.idUnidad}"> Eliminar</a>
+                                                    </td>
 
                                             </tr>
                                         </c:forEach>	

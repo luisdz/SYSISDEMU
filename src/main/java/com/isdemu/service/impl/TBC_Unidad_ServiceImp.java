@@ -7,6 +7,7 @@ package com.isdemu.service.impl;
  
 import com.isdemu.dao.TBC_UnidadDao;
 import com.isdemu.service.TBC_Unidad_Service; 
+import java.io.Serializable;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class TBC_Unidad_ServiceImp implements TBC_Unidad_Service {
     
     @Override
 	public List getAll() {
-             System.out.println("service impl");
+             System.out.println("service impl unidad");
 		// TODO Auto-generated method stub
 		return tbcUnidadDao.getAll();
 	}
@@ -37,5 +38,17 @@ public class TBC_Unidad_ServiceImp implements TBC_Unidad_Service {
 	public void save(Object obj) {
 		// TODO Auto-generated method stub
 		tbcUnidadDao.save(obj);
+	}
+        
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		tbcUnidadDao.delete(id);
+	}
+        
+        @Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		return tbcUnidadDao.findByKey(id);
 	}
 }

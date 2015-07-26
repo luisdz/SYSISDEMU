@@ -8,6 +8,7 @@ package com.isdemu.service.impl;
 
 import com.isdemu.dao.TB_MovimientoDao;
 import com.isdemu.service.TB_Movimiento_Service;
+import java.io.Serializable;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,17 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
 	public void save(Object obj) {
 		// TODO Auto-generated method stub
 		tbMovimientoDao.save(obj);
+	}
+        
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		tbMovimientoDao.delete(id);
+	}
+        
+        @Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		return tbMovimientoDao.findByKey(id);
 	}
 }

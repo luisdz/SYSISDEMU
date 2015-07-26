@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isdemu.service;
+package com.isdemu.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
  *
  * @author AlejandroPC
  */
-public interface TBC_Unidad_Service {
-        public void save(Object obj);
-         public List getAll();
-          public void delete(Serializable id);
-    public Object findByKey(Serializable id);
+public interface TB_DescargoDao {
+     public void save(Object obj);
+     public List getAll();
+    public void delete(Serializable id);
+             public Object findByKey(Serializable id);
 }

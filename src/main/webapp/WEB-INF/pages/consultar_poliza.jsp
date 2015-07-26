@@ -4,7 +4,7 @@
      Author     : Luis Diaz
 --%>
 <%@include file="header.jsp"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="row">
     <div class="col-md-12">
             <ol class="breadcrumb">
@@ -133,6 +133,8 @@
                                                     <th>Codigo</th>
                                                     <th>Fecha inicio</th>
                                                     <th>Fecha fin</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
                                             </tr>
                                     </thead>
                                     <tbody>
@@ -144,6 +146,10 @@
                                                     <td>${pol.codigoPoliza}</td>
                                                     <td>${pol.fechaInicio}</td>
                                                     <td>${pol.fechaFin}</td>
+                                                    <td><a href="">
+					Actualizar</a></td>
+                                                    <td><a href="${pageContext.request.contextPath}/Poliza/deletePoliza/${pol.idPoliza}"> Eliminar</a>
+                                                    </td>
                                             </tr>
                                         </c:forEach>
                                         

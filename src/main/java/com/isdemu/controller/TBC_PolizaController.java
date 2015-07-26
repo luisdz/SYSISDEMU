@@ -19,6 +19,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,23 +72,19 @@ public class TBC_PolizaController {
 		 System.out.println("entra aqui POST poliza"+poliza);
 
 
-//                 poliza.setNombrePoliza("asd");
-//                 poliza.setFechaFin(new Date());
-//                 poliza.setFechaInicio(new Date());
-//                 poliza.setCodigoPoliza("1234");
-                 
-//               inventario.setClaseEquipo("asd");
-//                inventario.setCodigoInventario("1321");
-//                 inventario.setValorLibro(BigDecimal.ZERO);
-//                  inventario.setFechaAdquisicion(new Date());
-//                 inventario.setValor(BigDecimal.ZERO);
-//                  inventario.setLocalizacion("local");
-//                   inventario.setValorLibro(BigDecimal.ZERO);
-          
-               // System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
-               
+    
 		tbPolizaService.save(poliza);
 		String message = "Poliza was successfully added.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/deletePoliza/{id}", method=RequestMethod.GET)
+	public ModelAndView deletePoliz(@PathVariable Integer id) 
+        {
+		ModelAndView modelAndView = new ModelAndView("home");
+		tbPolizaService.delete(id);
+		String message = "poliza was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}

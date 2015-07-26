@@ -8,6 +8,7 @@ package com.isdemu.dao.impl;
 import com.isdemu.dao.TBC_UnidadDao;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcUnidad;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,4 +50,18 @@ public class TBC_UnidadDaoImp implements TBC_UnidadDao {
 	        getCurrentSession().save(unidad);
 	}
         
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcUnidad unidad = (TbcUnidad) getCurrentSession().get(TbcUnidad.class, id);
+		if(unidad!=null)
+			getCurrentSession().delete(unidad);
+	}
+        
+        @Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcUnidad unidad = (TbcUnidad) getCurrentSession().get(TbcUnidad.class, id);
+		return unidad;
+	}
 }
