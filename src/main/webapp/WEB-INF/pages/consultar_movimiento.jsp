@@ -128,11 +128,12 @@
                             <table class="table table-striped table-hover" id="sample-table-2">
                                     <thead>
                                             <tr>
+                                                    
+                                                    <th>id movimiento</th>
                                                     <th>Fecha</th>
                                                     <th>Razon de cambio</th>
                                                     <th>Inventario</th>
                                                     <th>Nuevo responsable</th>
-                                                    <th>Jefatura solicitante</th>
                                                     
                                                     <th>Editar</th>
                                                     
@@ -147,6 +148,7 @@
                                                     <td>${mov.idMovimiento}</td>
                                                     <td>${mov.fechaMovimiento}</td>
                                                     <td>${mov.razonCambio}</td>
+                                                    <td>${mov.tbInventario.idInventario}</td>
 
                                             </tr>
                                         </c:forEach>	
