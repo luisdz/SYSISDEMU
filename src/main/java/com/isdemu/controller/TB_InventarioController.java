@@ -142,9 +142,10 @@ public class TB_InventarioController {
 	public ModelAndView edditingPais(@ModelAttribute TbInventario inventario, @PathVariable Integer id) {
 		TbInventario ActivoActual = (TbInventario) tbInventarioService.findByKey(id);
 		ModelAndView modelAndView = new ModelAndView("home");
-		//inventario.setdPais(inventario.get .getdPais());
-		//pais.setcUsuario("ricardo.ardon");
-		tbInventarioService.update(inventario);
+                ActivoActual.setMarca(inventario.getMarca());
+		
+                
+		tbInventarioService.update(ActivoActual);
 
 		String message = "Pais was successfully edited.";
 		modelAndView.addObject("message", message);
