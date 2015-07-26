@@ -296,7 +296,7 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="${pageContext.request.contextPath}/llamar/insertarMovimiento.html">
+										<a href="${pageContext.request.contextPath}/Movimiento/insertarMovimiento.html">
 											Realizar Movimiento<i class="icon-arrow"></i>
 										</a>
 									</li>
