@@ -143,8 +143,7 @@ public class TB_InventarioController {
 		TbInventario ActivoActual = (TbInventario) tbInventarioService.findByKey(id);
 		ModelAndView modelAndView = new ModelAndView("home");
                 ActivoActual.setMarca(inventario.getMarca());
-		//inventario.setdPais(inventario.get .getdPais());
-		//pais.setcUsuario("ricardo.ardon");
+		
                 
 		tbInventarioService.update(ActivoActual);
 
