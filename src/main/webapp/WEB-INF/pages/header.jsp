@@ -275,13 +275,13 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/Descargo/insertarDescargo.html">
 											Realizar Descargo <i class="icon-arrow"></i>
 										</a>
 										
 									</li>
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/descargo/consultarDescargo.html">
 											Consultar Descarga<i class="icon-arrow"></i>
 										</a>
 										
