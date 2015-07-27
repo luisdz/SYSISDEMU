@@ -146,7 +146,7 @@
                                                     <td>${pol.codigoPoliza}</td>
                                                     <td>${pol.fechaInicio}</td>
                                                     <td>${pol.fechaFin}</td>
-                                                    <td><a href="">
+                                                    <td><a href="${pageContext.request.contextPath}/Poliza/editPoliza/${pol.idPoliza}">
 					Actualizar</a></td>
                                                     <td><a href="${pageContext.request.contextPath}/Poliza/deletePoliza/${pol.idPoliza}"> Eliminar</a>
                                                     </td>

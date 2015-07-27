@@ -50,4 +50,10 @@ public class TBC_Poliza_ServiceImp implements TBC_Poliza_Service {
 		// TODO Auto-generated method stub
 		return tbPolizaDao.findByKey(id);
 	}
+        
+         @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbPolizaDao.update(obj);
+	}
 }

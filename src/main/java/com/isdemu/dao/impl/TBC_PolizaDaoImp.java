@@ -66,4 +66,11 @@ public class TBC_PolizaDaoImp implements TBC_PolizaDao {
 		TbcPoliza poliza = (TbcPoliza) getCurrentSession().get(TbcPoliza.class, id);
 		return poliza;
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
 }

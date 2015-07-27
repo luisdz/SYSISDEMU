@@ -17,5 +17,6 @@ public interface TBC_UnidadDao {
          public List getAll();
          public void delete(Serializable id);
              public Object findByKey(Serializable id);
+             public void update(Object obj);
     
 }

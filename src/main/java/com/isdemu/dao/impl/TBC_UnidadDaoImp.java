@@ -64,4 +64,11 @@ public class TBC_UnidadDaoImp implements TBC_UnidadDao {
 		TbcUnidad unidad = (TbcUnidad) getCurrentSession().get(TbcUnidad.class, id);
 		return unidad;
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
 }

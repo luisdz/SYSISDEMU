@@ -34,9 +34,9 @@ public class TB_DescargoController
 {
     
 //    @Autowired
-//	private TB_Descargo_Service tbdescargoService;
-////    @Autowired
-////       private TB_Inventario_Service tbInventarioService;
+//      private TB_Descargo_Service tbdescargoService;
+//   @Autowired
+//      private TB_Inventario_Service tbInventarioService;
 //    
 ////    @RequestMapping(value="/consultarDescargo")
 ////	public ModelAndView consultarDescargo() {

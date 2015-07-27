@@ -10,6 +10,7 @@ import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcRegion;
+import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,7 +37,8 @@ public class TBC_PolizaController {
     
     @Autowired
 	private TBC_Poliza_Service tbPolizaService;
-    
+    @Autowired
+        private TBC_ClasificacionActivo_Service tbClasActService;
     
     //************consultar*********************
     @RequestMapping(value="/consultarPoli")
@@ -86,6 +88,45 @@ public class TBC_PolizaController {
 		tbPolizaService.delete(id);
 		String message = "poliza was successfully deleted.";
 		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/editPoliza/{id}", method=RequestMethod.GET)
+	public ModelAndView editPolizaPage(@PathVariable Integer id) {
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+		TbcPoliza poliza = (TbcPoliza) tbPolizaService.findByKey(id);
+                //TbcClasificacionActivo activo = (TbcClasificacionActivo) tbClasActService.findByKey(poliza.getTbcClasificacionActivos().getIdClasificacionActivo());
+                
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("poliza",poliza ); 
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_poliza",myModel);
+	}
+
+	@RequestMapping(value="/editPoliza/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingPoliza(@ModelAttribute TbcPoliza poliza, @PathVariable Integer id) {
+            
+		TbcPoliza polizaActual = (TbcPoliza) tbPolizaService.findByKey(id);
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                polizaActual.setCodigoPoliza(poliza.getCodigoPoliza());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                polizaActual.setNombrePoliza(poliza.getNombrePoliza());
+                
+		                
+		tbPolizaService.update(polizaActual);
+
+		String message = "poliza was successfully edited.";
+		modelAndView.addObject("message", message);
+
 		return modelAndView;
 	}
         
