@@ -38,6 +38,10 @@ public class TB_InventarioServiceImpl implements TB_Inventario_Service {
 		return tbInventarioDao.getAll();
 	}
         
+        @Override
+         public List getTop(){
+         return tbInventarioDao.getTop();
+         }
         
         @Override
 	public void delete(Serializable id) {

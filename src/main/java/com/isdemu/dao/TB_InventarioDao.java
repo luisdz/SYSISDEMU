@@ -19,4 +19,5 @@ public interface TB_InventarioDao {
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
     public void update(Object obj);
+    public List getTop();
 }

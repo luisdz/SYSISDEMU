@@ -12,11 +12,15 @@ import com.isdemu.model.TbInventario;
 
 import com.isdemu.model.TbMovimiento;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 /**
@@ -44,6 +48,25 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
+        
+        @Override
+	public List getTop() {
+		// TODO Auto-generated method stub
+            DetachedCriteria dc = DetachedCriteria.forClass(TbMovimiento.class,"movimiento");
+            dc.setFetchMode("tbInventario", FetchMode.JOIN);
+            
+           Date highestDate = new Date();
+           
+            System.out.println("fecha"+highestDate);
+
+            dc.add(Restrictions.ge("fechaMovimiento", highestDate));
+           // dc.add(Restrictions.lt("fechaMovimiento", highestDate));
+             
+      
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+          
+            	}
         
         @Override
 	public void save(Object obj) {

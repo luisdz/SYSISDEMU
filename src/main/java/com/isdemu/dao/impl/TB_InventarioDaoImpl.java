@@ -9,11 +9,13 @@ import com.isdemu.dao.TB_InventarioDao;
 
 import com.isdemu.model.TbInventario;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -45,6 +47,14 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
             DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
+            return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+	}
+        
+         @Override
+	public List getTop() {
+		// TODO Auto-generated method stub
+            DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
+              dc.addOrder(Order.asc("idInventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
