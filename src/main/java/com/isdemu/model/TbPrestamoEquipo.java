@@ -5,16 +5,22 @@
  */
 package com.isdemu.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -45,8 +51,8 @@ public class TbPrestamoEquipo {
 
      
       
-     @Id 
-
+    @Id 
+    @GeneratedValue
     
     @Column(name="ID_PRESTAMO_EQUIPO", unique=true, nullable=false)
     public int getIdPrestamoEquipo() {
@@ -77,7 +83,8 @@ public class TbPrestamoEquipo {
         this.NPrestamo = NPrestamo;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_SOLICITUD", nullable=false, length=23)
     public Date getFechaSolicitud() {
         return this.fechaSolicitud;
@@ -87,7 +94,8 @@ public class TbPrestamoEquipo {
         this.fechaSolicitud = fechaSolicitud;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_RESERVACION", nullable=false, length=23)
     public Date getFechaReservacion() {
         return this.fechaReservacion;
@@ -97,7 +105,8 @@ public class TbPrestamoEquipo {
         this.fechaReservacion = fechaReservacion;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="HORA_INICIO", nullable=false, length=23)
     public Date getHoraInicio() {
         return this.horaInicio;
@@ -107,7 +116,8 @@ public class TbPrestamoEquipo {
         this.horaInicio = horaInicio;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="HORA_FIN", nullable=false, length=23)
     public Date getHoraFin() {
         return this.horaFin;
@@ -158,6 +168,7 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INSERT", length=10)
     public Date getFechaInsert() {
         return this.fechaInsert;
@@ -178,6 +189,7 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_UPDATE", length=10)
     public Date getFechaUpdate() {
         return this.fechaUpdate;

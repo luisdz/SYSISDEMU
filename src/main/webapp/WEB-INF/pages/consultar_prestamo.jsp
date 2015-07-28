@@ -1,22 +1,21 @@
 <%-- 
-    Document   : consultar_regiones
-    Created on : 14-jul-2015, 21:20:14
-    Author     : Walter
+    Document   : consultar_prestamo
+    Created on : 26-jul-2015, 21:31:07
+    Author     : Miranda
 --%>
 
 <%@include file="header.jsp"%>
-
 <!-- start: BREADCRUMB -->
 <div class="row">
         <div class="col-md-12">
                 <ol class="breadcrumb">
                         <li>
                                 <a href="#">
-                                        Catalogos
+                                        Prestamos
                                 </a>
                         </li>
                         <li class="active">
-                                Consultar Regiones
+                                Consultar Prestamo Equipos
                         </li>
                 </ol>
         </div>
@@ -29,7 +28,7 @@
                     <!-- start: EXPORT BASIC TABLE PANEL -->
                     <div class="panel panel-white">
                             <div class="panel-heading">
-                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Region</h4>
+                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Prestamo</h4>
                                     <div class="panel-tools">
                                             <div class="dropdown">
                                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -62,7 +61,7 @@
                                     </div>
                             </div>
                             <div class="panel-body">
-                                   
+                                    
                                     <div class="row">
                                             <div class="col-md-12 space20">
                                                     <div class="btn-group pull-right">
@@ -94,28 +93,28 @@
                                             <table class="table table-hover" id="sample-table-2">
                                                     <thead>
                                                             <tr>
-                                                                    <th>idRegion</th>
-                                                                    <th>Nombre Region</th>
-                                                                    <th>Direccion</th>
-                                                                    <th>Descripcion</th>
-                                                                    <th>Modificar</th>
-                                                                    <th>Eliminar</th>
+                                                                    <th>idPrestamo</th>
+                                                                    <th>Nprestamo</th>
+                                                                    <th>fecha solicitu</th>
+                                                                    <th>hora inicio</th>
+                                                                    <th>Edit</th>
+                                                                    <th>Delete</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <c:forEach var="reg" items="${region}">
+                                                     <c:forEach var="pres" items="${prestamo}">
                                                             <tr >
-                                                                    <td>${reg.idRegion}</td>
-                                                                    <td>${reg.nombreRegion}</td>
-                                                                    <td>${reg.direccion}</td>
-                                                                    <td>${reg.descripcion}</td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Region/delete/${reg.idRegion}">
+                                                                    <td>${pres.idPrestamoEquipo}</td>
+                                                                    <td>${pres.NPrestamo}</td>
+                                                                    <td>${pres.fechaSolicitud}</td>
+                                                                    <td>${pres.horaInicio}</td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Prestamo/delete/${pres.idPrestamoEquipo}">
                                                                     Eliminar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Region/edit/${reg.idRegion}">
+                                                                    <td><a href="${pageContext.request.contextPath}/Prestamo/edit/${pres.idPrestamoEquipo}">
                                                                     Actualizar</a></td>
                                                                     
                                                             </tr>
-                                                        </c:forEach>                                         
+                                                        </c:forEach>
                                                     </tbody>
                                             </table>
                                     </div>
@@ -124,5 +123,4 @@
                     <!-- end: EXPORT BASIC TABLE PANEL -->
             </div>
     </div>
-   
 <%@include file="footer.jsp"%>

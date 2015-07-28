@@ -5,6 +5,7 @@
  */
 package com.isdemu.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,5 +13,8 @@ import java.util.List;
  * @author Jose Eduardo
  */
 public interface TBC_PersonaDao {
-     public List getAll();
+    public void save(Object obj); 
+    public List getAll();
+     public void delete(Serializable id);
+    public Object findByKey(Serializable id);
 }
