@@ -53,17 +53,13 @@ public class TB_DescargoController
               System.out.println("esntra aqui GETT descargo");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();
-		
                  
-                 List descar = tbdescargoService.getAll();
-                
+                 List invent = tbInventarioService.getAll();
                   
                  myModel.put("descargo", new TbDescargo());
                 
-                 myModel.put("inventario",descar );
-                  
-               
-                
+                 myModel.put("inventario",invent );  
+                 
 		return new ModelAndView("descargo",myModel);
 	}
         

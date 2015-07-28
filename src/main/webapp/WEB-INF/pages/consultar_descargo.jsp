@@ -1,7 +1,7 @@
 <%-- 
-    Document   : consultar_unidad
-    Created on : 12-jul-2015, 15:11:25
-     Author     : Luis Diaz
+    Document   : consultar_descargo
+    Created on : 07-27-2015, 11:09:57 PM
+    Author     : Zero
 --%>
 <%@include file="header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,7 +28,7 @@
         <!-- start: EXPORT DATA TABLE PANEL  -->
         <div class="panel panel-white">
             <div class="panel-heading">
-                    <h4 class="panel-title">Consultar <span class="text-bold">Unidades</span> </h4>
+                    <h4 class="panel-title">Consultar <span class="text-bold">Descargo</span> </h4>
                 <div class="panel-tools">
                         <div class="dropdown">
                                 <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -130,10 +130,11 @@
                                     <thead>
                                             <tr>
                                                 
-                                                    <th>Id</th>
-                                                    <th>Nombre</th>
-                                                    <th>Descripcion</th>
-                                                    <th>id region</th>
+                                                    <th>Id descargo</th>
+                                                    <th>Id inventario</th>
+                                                    <th>Numero descargo</th>
+                                                    <th>fecha</th>
+                                                    <th>comentario</th>
                                                     <th>Editar</th>
                                                     <th>Eliminar</th>
                                                      
@@ -141,43 +142,21 @@
                                     </thead>
                                     <tbody>
                                         
-                                        <c:forEach var="uni" items="${unidad}">
+                                        <c:forEach var="des" items="${descargo}">
                                             <tr align="center">
-                                                    <td>${uni.idUnidad}</td>
-                                                    <td>${uni.nombreUnidad}</td>
-                                                    <td>${uni.descripcion}</td>
-                                                    <td>${uni.tbcRegion.idRegion}</td>
-                                                    <td><a href="${pageContext.request.contextPath}/Unidad/editUnidad/${uni.idUnidad}"> Editar</a>
+                                                    <td>${des.idDescargo}</td>
+                                                    <td>${des.tbInventario.idInventario}</td>
+                                                    <td>${des.idNumeroDescargo}</td>
+                                                    <td>${des.fecha}</td>
+                                                    <td>${des.comentario}</td>
+                                                    <td><a href=""> Editar</a>
                                                     </td>
-                                                    <td><a href="${pageContext.request.contextPath}/Unidad/deleteUnidad/${uni.idUnidad}"> Eliminar</a>
+                                                    <td><a href="${pageContext.request.contextPath}/Descargo/deleteDescargo/${des.idDescargo}"> Eliminar</a>
                                                     </td>
 
                                             </tr>
                                         </c:forEach>	
-<!--                                            <tr>
-                                                    <td>Peter Clark</td>
-                                                    <td>UI Designer</td>
-                                                    
-                                            <tr>
-                                                    <td>Nicole Bell</td>
-                                                    <td>Content Designer</td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                    <td>Steven Thompson</td>
-                                                    <td>Visual Designer</td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                    <td>Ella Patterson</td>
-                                                    <td>Web Editor</td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                    <td>Kenneth Ross</td>
-                                                    <td>Senior Designer</td>
-                                                    
-                                            </tr>-->
+
                                     </tbody>
                             </table>
                     </div>

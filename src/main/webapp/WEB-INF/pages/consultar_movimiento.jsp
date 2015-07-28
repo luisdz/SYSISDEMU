@@ -132,8 +132,7 @@
                                                     <th>id movimiento</th>
                                                     <th>Fecha</th>
                                                     <th>Razon de cambio</th>
-                                                    <th>Inventario</th>
-                                                    <th>Nuevo responsable</th>
+                                                    <th>Inventario</th> 
                                                     
                                                     <th>Editar</th>
                                                     

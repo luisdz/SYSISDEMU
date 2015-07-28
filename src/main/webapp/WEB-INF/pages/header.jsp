@@ -281,7 +281,7 @@
 										
 									</li>
 									<li>
-										<a href="${pageContext.request.contextPath}/descargo/consultarDescargo.html">
+										<a href="${pageContext.request.contextPath}/Descargo/consultarDescargo.html">
 											Consultar Descarga<i class="icon-arrow"></i>
 										</a>
 										
