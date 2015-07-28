@@ -1,11 +1,10 @@
 <%-- 
-    Document   : consultar_regiones
-    Created on : 14-jul-2015, 21:20:14
-    Author     : Walter
+    Document   : control
+    Created on : 26-jul-2015, 17:59:48
+    Author     : Miranda
 --%>
 
 <%@include file="header.jsp"%>
-
 <!-- start: BREADCRUMB -->
 <div class="row">
         <div class="col-md-12">
@@ -16,7 +15,7 @@
                                 </a>
                         </li>
                         <li class="active">
-                                Consultar Regiones
+                                Consultar Personal
                         </li>
                 </ol>
         </div>
@@ -29,7 +28,7 @@
                     <!-- start: EXPORT BASIC TABLE PANEL -->
                     <div class="panel panel-white">
                             <div class="panel-heading">
-                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Region</h4>
+                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Personal</h4>
                                     <div class="panel-tools">
                                             <div class="dropdown">
                                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -62,7 +61,7 @@
                                     </div>
                             </div>
                             <div class="panel-body">
-                                   
+                                    
                                     <div class="row">
                                             <div class="col-md-12 space20">
                                                     <div class="btn-group pull-right">
@@ -94,28 +93,28 @@
                                             <table class="table table-hover" id="sample-table-2">
                                                     <thead>
                                                             <tr>
-                                                                    <th>idRegion</th>
-                                                                    <th>Nombre Region</th>
-                                                                    <th>Direccion</th>
-                                                                    <th>Descripcion</th>
-                                                                    <th>Modificar</th>
-                                                                    <th>Eliminar</th>
+                                                                    <th>idControl</th>
+                                                                    <th>Ncontol</th>
+                                                                    <th>solicitante</th>
+                                                                    <th>fecha</th>
+                                                                    <th>Edit</th>
+                                                                    <th>Delete</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <c:forEach var="reg" items="${region}">
+                                                     <c:forEach var="con" items="${control}">
                                                             <tr >
-                                                                    <td>${reg.idRegion}</td>
-                                                                    <td>${reg.nombreRegion}</td>
-                                                                    <td>${reg.direccion}</td>
-                                                                    <td>${reg.descripcion}</td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Region/delete/${reg.idRegion}">
+                                                                    <td>${con.idControlSalida}</td>
+                                                                    <td>${con.NControlSalida}</td>
+                                                                    <td>${con.solicitante}</td>
+                                                                    <td>${con.fechaSalida}</td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Control/delete/${con.idControlSalida}">
                                                                     Eliminar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Region/edit/${reg.idRegion}">
+                                                                    <td><a href="${pageContext.request.contextPath}/Control/edit/${con.idControlSalida}">
                                                                     Actualizar</a></td>
                                                                     
                                                             </tr>
-                                                        </c:forEach>                                         
+                                                        </c:forEach>
                                                     </tbody>
                                             </table>
                                     </div>
@@ -124,5 +123,4 @@
                     <!-- end: EXPORT BASIC TABLE PANEL -->
             </div>
     </div>
-   
 <%@include file="footer.jsp"%>

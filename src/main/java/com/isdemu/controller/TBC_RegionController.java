@@ -33,12 +33,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author Walter
+ * @author Miranda
  */
 @Controller 
- @RequestMapping(value="/Persona")
-public class TBC_PersonaController {
-    
+ @RequestMapping(value="/Region")
+public class TBC_RegionController {
+       
      @Autowired
 	private TB_Inventario_Service tbInventarioService;
     @Autowired
@@ -56,18 +56,17 @@ public class TBC_PersonaController {
     @Autowired
       private TBC_Unidad_Service tbcUnidadService;
       
-     @RequestMapping(value="/list")
-	public ModelAndView listOfPaises() {
-		ModelAndView modelAndView = new ModelAndView("consultar_personal");
+    @RequestMapping(value="/list")
+       public ModelAndView listOfPaises() {
+               ModelAndView modelAndView = new ModelAndView("consultar_regiones");
 
-		List personal = tbcPersonaService.getAll();
-		modelAndView.addObject("persona", personal);
-
-		return modelAndView;
-	}
-        
-              
-        @RequestMapping(value="/add", method=RequestMethod.GET)
+               List region = tbcRegionService.getAll();
+               modelAndView.addObject("region", region);
+                System.out.println("region list");
+               return modelAndView;
+       }
+       
+          @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
               System.out.println("esntra aqui GET persona");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
@@ -76,42 +75,43 @@ public class TBC_PersonaController {
                  
                  //List ClasAct = tbClasActService.getAll();
                 /// List poliza = tbPolizaService.getAll();
-                List unidad1= tbcUnidadService.getAll();
                  //List region=tbcRegionService.getAll();
-                 myModel.put("persona", new TbcPersona());
-                 myModel.put("unidad",unidad1);
+                 myModel.put("region", new TbcRegion());
                 // myModel.put("poliza",poliza );
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);
                 System.out.println("esntra aqui GET persona");
-		return new ModelAndView("persona",myModel);
-	}
-        
+		return new ModelAndView("region",myModel);
+	}      
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbcPersona persona) {
+	public ModelAndView addingPais(@ModelAttribute TbcRegion region) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+persona);
+		 System.out.println("entra aqui POST persona"+region);
 
 
-                 persona.setNombrePersona("persona2");
-                 persona.setJefatura("0");
-                 persona.setEncargadoAfijo("0");
+                 region.setNombreRegion("persona2");
+                 region.setDireccion("prueba");
+                 region.setDescripcion("prueba");
                  
-                tbcPersonaService.save(persona);
+                tbcRegionService.save(region);
 		String message = "Persona was successfully added.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
         
-        @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
-	public ModelAndView deletePais(@PathVariable Integer id) {
-		ModelAndView modelAndView = new ModelAndView("home");
-		tbcPersonaService.delete(id);
-		String message = "Pais was successfully deleted.";
-		modelAndView.addObject("message", message);
-		return modelAndView;
-	}
+       
+    @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+     public ModelAndView deletePais(@PathVariable Integer id) {
+         System.out.println(id);
+             ModelAndView modelAndView = new ModelAndView("home");
+             tbcRegionService.delete(id);
+             System.out.println("delete list");
+             String message = "Pais was successfully deleted.";
+             modelAndView.addObject("message", message);
+             return modelAndView;
+     }
+        
     
 }

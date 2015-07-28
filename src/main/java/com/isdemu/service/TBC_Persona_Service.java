@@ -5,12 +5,16 @@
  */
 package com.isdemu.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
- * @author Jose Eduardo
+ * @author Walter Miranda
  */
 public interface TBC_Persona_Service {
+    public void save(Object obj);
      public List getAll();
+    public void delete(Serializable id);
+    public Object findByKey(Serializable id);
 }

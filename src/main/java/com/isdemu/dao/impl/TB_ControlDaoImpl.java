@@ -5,9 +5,9 @@
  */
 package com.isdemu.dao.impl;
 
-import com.isdemu.dao.TBC_RegionDao;
+import com.isdemu.dao.TB_ControlDao;
 
-import com.isdemu.model.TbcRegion;
+import com.isdemu.model.TbControlSalida;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
@@ -19,39 +19,43 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Jose Eduardo
+ * @author Miranda
  */
 @Repository
-public class TBC_RegionDaoImpl implements TBC_RegionDao{
-     @Autowired
+public class TB_ControlDaoImpl implements TB_ControlDao{
+    
+@Autowired
 	private SessionFactory sessionFactory;
-     
-     private Session getCurrentSession() {
+    
+    private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
-     @Override
+
+    
+    @Override
 	public void save(Object obj) {
 		// TODO Auto-generated method stub
 		System.out.println("esntra aqui GET dao ");
-		TbcRegion region =(TbcRegion)obj;
-	        getCurrentSession().save(region);
+		TbControlSalida control =(TbControlSalida)obj;
+	        getCurrentSession().save(control);
 	}
         
-      @Override
+        
+     @Override
 	public List getAll() {
 		// TODO Auto-generated method stub
-            DetachedCriteria dc = DetachedCriteria.forClass(TbcRegion.class);
+            DetachedCriteria dc = DetachedCriteria.forClass(TbControlSalida.class);
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
-        
+                
         @Override
 	public void delete(Serializable id) {
 		// TODO Auto-generated method stub
-		TbcRegion region = (TbcRegion) getCurrentSession().get(TbcRegion.class, id);
-		if(region!=null)
-			getCurrentSession().delete(region);
+		TbControlSalida control = (TbControlSalida) getCurrentSession().get(TbControlSalida.class, id);
+		if(control!=null)
+			getCurrentSession().delete(control);
                         
 	}
         
@@ -59,7 +63,8 @@ public class TBC_RegionDaoImpl implements TBC_RegionDao{
 	@Override
 	public Object findByKey(Serializable id) {
 		// TODO Auto-generated method stub
-		TbcRegion region = (TbcRegion) getCurrentSession().get(TbcRegion.class, id);
-		return region;
+		TbControlSalida persona = (TbControlSalida) getCurrentSession().get(TbControlSalida.class, id);
+		return persona;
 	}
+    
 }

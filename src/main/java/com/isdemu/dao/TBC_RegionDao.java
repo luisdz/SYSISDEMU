@@ -6,12 +6,16 @@
 package com.isdemu.dao;
 
 import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author Jose Eduardo
  */
 public interface TBC_RegionDao {
+    public void save(Object obj);
     public List getAll();
+    public void delete(Serializable id);
+    public Object findByKey(Serializable id);
     
 }

@@ -1,10 +1,12 @@
 <%-- 
-    Document   : Personal
-    Created on : 14-jul-2015, 20:06:09
-    Author     : Walter
+    Document   : prestamo
+    Created on : 26-jul-2015, 21:30:38
+    Author     : Miranda
 --%>
 
 <%@include file="header.jsp" %>
+
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!-- start: BREADCRUMB -->
 <div class="row">
@@ -12,11 +14,11 @@
                 <ol class="breadcrumb">
                         <li>
                                 <a href="#">
-                                        Catalogos
+                                        Prestamo Equipo
                                 </a>
                         </li>
                         <li class="active">
-                                Ingreso Personal
+                                Ingreso Prestamo Equipo
                         </li>
                 </ol>
         </div>
@@ -30,7 +32,7 @@
             <!-- start: FORM VALIDATION 1 PANEL -->
             <div class="panel panel-white">
                 <div class="panel-heading">
-                        <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso Personal</span></h4>
+                        <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso Prestamo de Equipo</span></h4>
                     <div class="panel-tools">
                             <div class="dropdown">
                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -63,12 +65,12 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <h2><i class="fa fa-pencil-square"></i> Personal</h2>
+                    <h2><i class="fa fa-pencil-square"></i> Prestamo Equipo</h2>
                     <p>
-                            Ingreso del Personal de ISDEMU
+                            Ingreso de Prestamo Equipo de ISDEMU
                     </p>
                     <hr>
-                    <form action="validar.jsp" role="form2" id="form2">
+              <form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/add" modelAttribute="prestamo" >
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="errorHandler alert alert-danger no-display">
@@ -82,89 +84,66 @@
     
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Nombre<span class="symbol required"></span>
+                                                        Inventario<span class="symbol required"></span>
                                                 </label>
-                                                <input type="text" placeholder="Nombre" class="form-control" id="firstname2" name="firstname2">
+                                               <form:select path="tbInventario.idInventario" class="form-control" id="dropdown" name="dropdown">
+                                                    <form:option value="0"  label="Seleccione inventario"/>       
+                                                    <c:forEach var="inv" items="${inventario}">
+                                                               <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
+                                                            </c:forEach>
+                                                 </form:select>
                                                 
                                     </div>
-                                    
-                                     <div class="form-group">
+                                    <div class="form-group">
                                                 <label class="control-label">
-                                                        Unidad<span class="symbol required"></span>
+                                                        N Prestamo<span class="symbol required"></span>
                                                 </label>
-                                         <select class="form-control" id="dropdown" name="dropdown">                                             
-                                             <option value="">Select...</option>
-                                             <option value="1">Unidad 1</option>
-                                             <option value="2">Unidad 2</option>
-                                         </select>
-                                        </div>
-                                        
-                                        
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="NPrestamo" type="text" placeholder="Numero" class="form-control" id="numero" name="numero"/>
+                
+                                    </div>                        
+                                                                                
                                 </div>
                                 <div class="col-md-6">
                                     
                                    <div class="form-group">
                                         <label class="control-label">
-                                                Services <em>(select at least two)</em> <span class="symbol required"></span>
+                                                Fecha Prestamo<span class="symbol required"></span>
                                         </label>
-                                        <div>
-                                                <div class="checkbox">
-                                                        <label>
-                                                                <input type="checkbox" class="grey" value="" name="services" id="service1">
-                                                                Service 1
-                                                        </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                        <label>
-                                                                <input type="checkbox" class="grey" value="" name="services"  id="service2">
-                                                                Service 2
-                                                        </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                        <label>
-                                                                <input type="checkbox" class="grey" value="" name="services"  id="service3">
-                                                                Service 3
-                                                        </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                        <label>
-                                                                <input type="checkbox" class="grey" value="" name="services"  id="service4">
-                                                                Service 4
-                                                        </label>
-                                                </div>
-                                        </div>
-                                       <div class="form-group">
-                                            <p>
-                                                    Date Picker
-                                            </p>
-                                            <div class="input-group">
-                                                    <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
-                                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                            </div>
-                                       </div>
-                                    </div>                                       
-                                </div>
-                        </div>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaSolicitud" type="text" id="fecha_sol" name="fecha_sol" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div> 
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Hora Inicio<span class="symbol required"></span>
+                                        </label>
+    <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="horaInicio" type="text" id="hora_inicio" name="hora_inicio" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div> 
+                                    
+                                   
+                                </div>                                       
+                             </div>
+                      
                         
                         <div class="row">
                                 <div class="col-md-8">
-                                        <p>
-                                                By clicking REGISTER, you are agreeing to the Policy and Terms &amp; Conditions.
-                                        </p>
+                                       
                                 </div>
                                 <div class="col-md-4">
                                         <button class="btn btn-yellow btn-block" type="submit">
-                                                Register <i class="fa fa-arrow-circle-right"></i>
+                                                Guardar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
                         </div>
                    
-                    </form>
+                        </form:form>
+                   </div>
                 </div>
             </div>
             <!-- end: FORM VALIDATION 1 PANEL -->
         </div>
-    </div>
-
 
 <%@include file="footer.jsp" %>	
