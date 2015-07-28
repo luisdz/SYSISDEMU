@@ -1,5 +1,6 @@
 
-
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@include file="header.jsp" %>
 
 <!-- start: BREADCRUMB -->
@@ -117,257 +118,200 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-6 col-lg-4 col-sm-6">
-								<div class="panel panel-blue core-box">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold">
-														ULTIMOS MOVIMIENTOS DE EQUIPO
-													</div>
-													<div class="text-white space15">
-                                                                                                            <i class="fa fa-truck fa-4x pull-left"></i>
-														Ultimos movimientos Realizados (<i>Desglose de Activos</i>)
-													</div>
-													<div class="progress progress-xs transparent-black no-radius space5">
-														<div aria-valuetransitiongoal="88" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
-													</div>
-													
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> Movimientos </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													Ver listado Completo <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold">
-														ULTIMOS MOVIMIENTOS DE EQUIPO
-													</div>
-													<div class="text-white space15">
-														Prepare Commercial Offer For Mobile App
-													</div>
-													<div class="progress progress-xs transparent-black no-radius space5">
-														<div aria-valuetransitiongoal="59" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
-													</div>
-													<div class="text-light">
-														Leave Time
-													</div>
-													<div class="text-white text-extra-large pull-left">
-														8h 56m
-													</div>
-													<div class="text-white text-large pull-right">
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-pause"></i> Pause</a>
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Complete</a>
-													</div>
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													View More <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold">
-														ULTIMOS MOVIMIENTOS DE EQUIPO
-													</div>
-													<div class="text-white space15">
-														Release iPhone Update
-													</div>
-													<div class="progress progress-xs transparent-black no-radius space5">
-														<div aria-valuetransitiongoal="78" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
-													</div>
-													<div class="text-light">
-														Leave Time
-													</div>
-													<div class="text-white text-extra-large pull-left">
-														48h 32m
-													</div>
-													<div class="text-white text-large pull-right">
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-pause"></i> Pause</a>
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Complete</a>
-													</div>
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													View More <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-4 col-sm-6">
-								<div class="panel panel-green">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold space15">
-														
-													</div>
-													<div class="space5">
-														<i class="fa fa-thumbs-down fa-4x pull-left"></i>
-														Listado de Activos descargados del inventarios
-														<br/>
-														Selecciona la opcion de ver mas, para visualizar el detalle
-													</div>
-													
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light">Activos Descargados </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													Ver listado Completo <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold space15">
-														ULTIMOS ACTIVOS DESCARGADOS
-													</div>
-													<div class="space5">
-														<i class="fa fa-facebook fa-4x pull-left"></i>
-														Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy ibh euismod tincidunt.
-													</div>
-													<span class="text-light text-small block pull-right"> <i class="fa fa-clock-o"></i> 27 min ago </span>
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													View More <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold space15">
-														ULTIMOS ACTIVOS DESCARGADOS
-													</div>
-													<div class="space5">
-														<i class="fa fa-twitter fa-4x pull-left"></i>
-														Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy ibh euismod tincidunt.
-													</div>
-													<span class="text-light text-small block pull-right"> <i class="fa fa-clock-o"></i> 56 min ago </span>
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													View More <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-								<div class="col-md-6 col-lg-4 col-sm-6">
-								<div class="panel panel-blue core-box">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold">
-														ULTIMOS ACTIVOS INGRESADOS
-													</div>
-													<div class="text-white space15">
-                                                                                                              <i class="fa fa-laptop fa-4x pull-left"></i>
-														Ultimos Activos Ingresados (<i>Desglose de Activos</i>)
-													</div>
-                                                                                                    <div class="progress progress-xs transparent-black no-radius space5">
-														<div aria-valuetransitiongoal="59" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
-													</div>
-													
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> Activos Ingresados </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													Ver Listado Completo <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold">
-														ULTIMOS ACTIVOS INGRESADOS
-													</div>
-													<div class="text-white space15">
-														Prepare Commercial Offer For Mobile App
-													</div>
-													<div class="progress progress-xs transparent-black no-radius space5">
-														<div aria-valuetransitiongoal="59" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
-													</div>
-													<div class="text-light">
-														Leave Time
-													</div>
-													<div class="text-white text-extra-large pull-left">
-														8h 56m
-													</div>
-													<div class="text-white text-large pull-right">
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-pause"></i> Pause</a>
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Complete</a>
-													</div>
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													View More <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-dark text-bold">
-														ULTIMOS ACTIVOS INGRESADOS
-													</div>
-													<div class="text-white space15">
-														Release iPhone Update
-													</div>
-													<div class="progress progress-xs transparent-black no-radius space5">
-														<div aria-valuetransitiongoal="78" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
-													</div>
-													<div class="text-light">
-														Leave Time
-													</div>
-													<div class="text-white text-extra-large pull-left">
-														48h 32m
-													</div>
-													<div class="text-white text-large pull-right">
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-pause"></i> Pause</a>
-														<a href="#" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Complete</a>
-													</div>
-												</div>
-											</div>
-											<div class="padding-10">
-												<span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-												<a href="#" class="view-more pull-right text-dark text-bold">
-													View More <i class="fa fa-angle-right text-light"></i>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+<div class="row">
+        <div class="col-md-6 col-lg-4 col-sm-6">
+                <div class="panel panel-blue core-box">
+                        <div class="e-slider owl-carousel owl-theme">
+                                <div class="item">
+                                        <div class="panel-body">
+                                                <div class="core-box">
+<%
+Date dNow = new Date();
+SimpleDateFormat ft =  new SimpleDateFormat ("dd/MM/yyyy");
+String currentDate = ft.format(dNow);
+int i=0;
+%>								<div class="text-dark text-bold">
+                                                                ULTIMOS MOVIMIENTOS DE EQUIPO HOY: <%=currentDate%>
+
+
+
+                                        </div>
+                                                        <div class="text-white space15">
+                                                            <i class="fa fa-truck fa-4x pull-left"></i>
+                                                                Ultimos movimientos Realizados (<i>Desglose de Activos</i>)
+                                                        </div>
+                                                        <div class="progress progress-xs transparent-black no-radius space5">
+                                                                <div aria-valuetransitiongoal="88" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
+                                                        </div>
+
+                                                </div>
+                                        </div>
+                                        <div class="padding-10">
+                                                <span class="bold-text">${nmov}</span><span class="text-light"> Movimientos </span>
+                                                <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
+                                                        Ver listado Completo <i class="fa fa-angle-right text-light"></i>
+                                                </a>
+                                        </div>
+                                </div>
+                        <div class="item">
+                            <div class="panel-body">
+                                <div class="core-box">
+                                    <div class="text-dark text-bold">
+                                    ULTIMOS MOVIMIENTOS DE EQUIPO
+
+
+                                    </div>
+                                    <table>  
+                                        <thead>  
+                                            <tr>
+                                            <th>Codigo</th> &nbsp;
+                                            <th>Marca</th> &nbsp;
+                                            <th>Modelo</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="mov" items="${mov}" begin="1" end="4">
+
+                                                <tr>
+                                                <td>  ${mov.tbInventario.codigoInventario}&nbsp; &nbsp;</td>
+                                                <td>  ${mov.tbInventario.marca}&nbsp; &nbsp;</td> 
+                                                <td>  ${mov.tbInventario.modelo}</td> 
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="padding-10">
+                                <span class="bold-text">${nmov}</span><span class="text-light"> Movimientos </span>
+                                <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
+                                Ver listado Completo <i class="fa fa-angle-right text-light"></i>
+                                </a>
+                            </div>
+                    </div>
+
+                </div>
+        </div>
+</div>
+<div class="col-md-6 col-lg-4 col-sm-6">
+        <div class="panel panel-green">
+                <div class="e-slider owl-carousel owl-theme">
+                        <div class="item">
+                                <div class="panel-body">
+                                        <div class="core-box">
+                                                <div class="text-dark text-bold space15">
+
+                                                </div>
+                                                <div class="space5">
+                                                        <i class="fa fa-thumbs-down fa-4x pull-left"></i>
+                                                        Listado de Activos descargados del inventarios
+                                                        <br/>
+                                                        Selecciona la opcion de ver mas, para visualizar el detalle
+                                                </div>
+
+                                        </div>
+                                </div>
+                                <div class="padding-10">
+                                        <span class="bold-text">1527</span><span class="text-light">Activos Descargados </span>
+                                        <a href="#" class="view-more pull-right text-dark text-bold">
+                                                Ver listado Completo <i class="fa fa-angle-right text-light"></i>
+                                        </a>
+                                </div>
+                        </div>
+                        <div class="item">
+                                <div class="panel-body">
+                                        <div class="core-box">
+                                                <div class="text-dark text-bold space15">
+                                                        ULTIMOS ACTIVOS DESCARGADOS
+                                                </div>
+                                                <div class="space5">
+                                                        <i class="fa fa-facebook fa-4x pull-left"></i>
+                                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy ibh euismod tincidunt.
+                                                </div>
+                                                <span class="text-light text-small block pull-right"> <i class="fa fa-clock-o"></i> 27 min ago </span>
+                                        </div>
+                                </div>
+                                <div class="padding-10">
+                                        <span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
+                                        <a href="#" class="view-more pull-right text-dark text-bold">
+                                                View More <i class="fa fa-angle-right text-light"></i>
+                                        </a>
+                                </div>
+                        </div>
+                      
+                </div>
+        </div>
+</div>
+<div class="col-md-6 col-lg-4 col-sm-6">
+<div class="panel panel-blue core-box">
+        <div class="e-slider owl-carousel owl-theme">
+                <div class="item">
+                        <div class="panel-body">
+                                <div class="core-box">
+                                        <div class="text-dark text-bold">
+                                                ULTIMOS ACTIVOS INGRESADOS
+                                        </div>
+                                        <div class="text-white space15">
+                                              <i class="fa fa-laptop fa-4x pull-left"></i>
+                                                Ultimos Activos Ingresados (<i>Desglose de Activos</i>)
+                                        </div>
+                                    <div class="progress progress-xs transparent-black no-radius space5">
+                                                <div aria-valuetransitiongoal="59" class="progress-bar progress-bar-success partition-white animate-progress-bar" ></div>
+                                        </div>
+
+                                </div>
+                        </div>
+                        <div class="padding-10">
+                                <span class="bold-text">${ninv}</span><span class="text-light"> Activos Ingresados </span>
+                                <a href="#" class="view-more pull-right text-dark text-bold">
+                                        Ver Listado Completo <i class="fa fa-angle-right text-light"></i>
+                                </a>
+                        </div>
+                </div>
+              <div class="item">
+                            <div class="panel-body">
+                                <div class="core-box">
+                                    <div class="text-dark text-bold">
+                                    ULTIMOS ACTIVOS INGRESADOS
+
+
+                                    </div>
+                                    <table>  
+                                        <thead>  
+                                            <tr>
+                                            <th>Codigo</th> &nbsp;
+                                            <th>Marca</th> &nbsp;
+                                            <th>Modelo</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="inv" items="${inv}" begin="0" end="4">
+
+                                                <tr>
+                                                <td>  ${inv.codigoInventario}&nbsp; &nbsp;</td>
+                                                <td>  ${inv.marca}&nbsp; &nbsp;</td> 
+                                                <td>  ${inv.modelo}</td> 
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="padding-10">
+                                <span class="bold-text">${ninv}</span><span class="text-light"> Movimientos </span>
+                                <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
+                                Ver listado Completo <i class="fa fa-angle-right text-light"></i>
+                                </a>
+                            </div>
+                    </div>
+               
+        </div>
+</div>
+</div>
 							
 						</div>
 				

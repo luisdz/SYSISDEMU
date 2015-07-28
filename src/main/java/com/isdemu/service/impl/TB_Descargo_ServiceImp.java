@@ -54,3 +54,4 @@ public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
 //		return tbDescargoDao.findByKey(id);
 //	}
 }
+}
