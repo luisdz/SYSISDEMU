@@ -11,12 +11,18 @@ import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Movimiento_Service;
 import java.io.Serializable;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author AlejandroPC
  */
+
+@Service
+@Transactional
+
 public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
     
     @Autowired

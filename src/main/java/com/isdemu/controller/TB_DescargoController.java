@@ -33,8 +33,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class TB_DescargoController 
 {
     
-//    @Autowired
-//      private TB_Descargo_Service tbdescargoService;
+    @Autowired
+      private TB_Descargo_Service tbdescargoService;
 //   @Autowired
 //      private TB_Inventario_Service tbInventarioService;
 //    

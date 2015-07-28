@@ -6,6 +6,8 @@
 package com.isdemu.controller;
 
 import com.isdemu.model.TbInventario;
+import com.isdemu.model.TbcPoliza;
+import com.isdemu.model.TbcRegion;
 import com.isdemu.model.TbcUnidad;
 import com.isdemu.service.TBC_Region_Service;
 import com.isdemu.service.TBC_Unidad_Service;
@@ -92,6 +94,46 @@ public class TBC_UnidadController {
 		tbUnidadService.delete(id);
 		String message = "unidad was successfully deleted.";
 		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
+        
+         @RequestMapping(value="/editUnidad/{id}", method=RequestMethod.GET)
+	public ModelAndView editUnidadPage(@PathVariable Integer id) {
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+		TbcUnidad unidad = (TbcUnidad) tbUnidadService.findByKey(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("unidad",unidad ); 
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_unidad",myModel);
+	}
+
+	@RequestMapping(value="/editUnidad/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingUnidad(@ModelAttribute TbcUnidad unidad, @PathVariable Integer id) {
+            
+		TbcUnidad unidadActual = (TbcUnidad) tbUnidadService.findByKey(id);
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                unidadActual.setNombreUnidad(unidad.getNombreUnidad());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                unidadActual.setDescripcion(unidad.getDescripcion());
+                
+		                
+		tbUnidadService.update(unidadActual);
+
+		String message = "unidad was successfully edited.";
+		modelAndView.addObject("message", message);
+
 		return modelAndView;
 	}
         

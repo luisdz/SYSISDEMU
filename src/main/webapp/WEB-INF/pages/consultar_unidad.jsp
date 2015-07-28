@@ -133,6 +133,7 @@
                                                     <th>Nombre</th>
                                                     <th>Descripcion</th>
                                                     <th>id region</th>
+                                                    <th>Editar</th>
                                                     <th>Eliminar</th>
                                                      
                                             </tr>
@@ -145,6 +146,8 @@
                                                     <td>${uni.nombreUnidad}</td>
                                                     <td>${uni.descripcion}</td>
                                                     <td>${uni.tbcRegion.idRegion}</td>
+                                                    <td><a href="${pageContext.request.contextPath}/Unidad/editUnidad/${uni.idUnidad}"> Editar</a>
+                                                    </td>
                                                     <td><a href="${pageContext.request.contextPath}/Unidad/deleteUnidad/${uni.idUnidad}"> Eliminar</a>
                                                     </td>
 
