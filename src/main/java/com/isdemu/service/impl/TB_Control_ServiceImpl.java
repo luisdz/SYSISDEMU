@@ -5,8 +5,8 @@
  */
 package com.isdemu.service.impl;
 
-import com.isdemu.dao.TBC_PersonaDao;
-import com.isdemu.service.TBC_Persona_Service;
+import com.isdemu.dao.TB_ControlDao;
+import com.isdemu.service.TB_Control_Service;
 import java.util.List;
 import java.io.Serializable;
 import javax.transaction.Transactional;
@@ -15,37 +15,38 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Jose Eduardo
+ * @author Miranda
  */
 @Service
 @Transactional
-public class TBC_Persona_ServiceImp implements TBC_Persona_Service{
+public class TB_Control_ServiceImpl implements TB_Control_Service {
+    
     @Autowired
-       private TBC_PersonaDao tbPersonaDao;
+       private TB_ControlDao tbControlDao;
 
     @Override
 	public void save(Object obj) {
              System.out.println("esntra aqui GET service");
 		// TODO Auto-generated method stub
-		tbPersonaDao.save(obj);
+		tbControlDao.save(obj);
 	}
         
     @Override
        public List getAll() {
             System.out.println("service impl");
                // TODO Auto-generated method stub
-               return tbPersonaDao.getAll();
+               return tbControlDao.getAll();
        }
         
    @Override
    public void delete(Serializable id) {
            // TODO Auto-generated method stub
-           tbPersonaDao.delete(id);
+           tbControlDao.delete(id);
    }
 
    @Override
    public Object findByKey(Serializable id) {
            // TODO Auto-generated method stub
-           return tbPersonaDao.findByKey(id);
+           return tbControlDao.findByKey(id);
    }
 }

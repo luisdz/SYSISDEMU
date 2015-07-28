@@ -5,16 +5,23 @@
  */
 package com.isdemu.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  *
@@ -40,8 +47,8 @@ public class TbControlSalida {
      private Integer userUpdate;
      private Date fechaUpdate;
      
-        @Id 
-
+    @Id 
+    @GeneratedValue
     
     @Column(name="ID_CONTROL_SALIDA", unique=true, nullable=false)
     public int getIdControlSalida() {
@@ -81,8 +88,9 @@ public class TbControlSalida {
     public void setSolicitante(String solicitante) {
         this.solicitante = solicitante;
     }
-
-    @Temporal(TemporalType.TIMESTAMP)
+    
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_SALIDA", nullable=false, length=23)
     public Date getFechaSalida() {
         return this.fechaSalida;
@@ -112,7 +120,8 @@ public class TbControlSalida {
         this.destino = destino;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_TENTATIVA_DEVOLUCION", length=23)
     public Date getFechaTentativaDevolucion() {
         return this.fechaTentativaDevolucion;
@@ -132,7 +141,8 @@ public class TbControlSalida {
         this.userInsert = userInsert;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INSERT", length=23)
     public Date getFechaInsert() {
         return this.fechaInsert;
@@ -152,7 +162,8 @@ public class TbControlSalida {
         this.userUpdate = userUpdate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_UPDATE", length=23)
     public Date getFechaUpdate() {
         return this.fechaUpdate;

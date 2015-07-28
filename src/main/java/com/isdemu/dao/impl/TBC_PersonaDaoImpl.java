@@ -8,9 +8,12 @@ package com.isdemu.dao.impl;
 import com.isdemu.dao.TBC_PersonaDao;
 
 import com.isdemu.model.TbcPersona;
+import java.io.Serializable;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +25,21 @@ import org.springframework.stereotype.Repository;
 public class TBC_PersonaDaoImpl implements TBC_PersonaDao{
     @Autowired
 	private SessionFactory sessionFactory;
+    
+    private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
+	}
 
+    
+    @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		System.out.println("esntra aqui GET dao ");
+		TbcPersona persona =(TbcPersona)obj;
+	        getCurrentSession().save(persona);
+	}
+        
+        
      @Override
 	public List getAll() {
 		// TODO Auto-generated method stub
@@ -30,5 +47,22 @@ public class TBC_PersonaDaoImpl implements TBC_PersonaDao{
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+	}
+                
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcPersona persona = (TbcPersona) getCurrentSession().get(TbcPersona.class, id);
+		if(persona!=null)
+			getCurrentSession().delete(persona);
+                        
+	}
+        
+        
+	@Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcPersona persona = (TbcPersona) getCurrentSession().get(TbcPersona.class, id);
+		return persona;
 	}
 }

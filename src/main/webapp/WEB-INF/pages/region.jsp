@@ -5,23 +5,23 @@
 --%>
 
 <%@include file="header.jsp" %>
-
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!-- start: BREADCRUMB -->
-						<div class="row">
-							<div class="col-md-12">
-								<ol class="breadcrumb">
-									<li>
-										<a href="#">
-											Catalogos
-										</a>
-									</li>
-									<li class="active">
-										Ingreso Personal
-									</li>
-								</ol>
-							</div>
-						</div>
-						<!-- end: BREADCRUMB -->
+<div class="row">
+        <div class="col-md-12">
+                <ol class="breadcrumb">
+                        <li>
+                                <a href="#">
+                                        Catalogos
+                                </a>
+                        </li>
+                        <li class="active">
+                                Ingreso Personal
+                        </li>
+                </ol>
+        </div>
+</div>
+<!-- end: BREADCRUMB -->
                                                 
 <!-- start: PAGE CONTENT -->
 
@@ -68,7 +68,7 @@
                             Ingreso del Regiones
                     </p>
                     <hr>
-                    <form action="#" role="form" id="form">
+                    <form:form method="POST" action="${pageContext.request.contextPath}/Region/add" modelAttribute="region" >
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="errorHandler alert alert-danger no-display">
@@ -84,30 +84,30 @@
                                                 <label class="control-label">
                                                         Nombre<span class="symbol required"></span>
                                                 </label>
-                                                <input type="text" placeholder="Nombre" class="form-control" id="firstname" name="firstname">
+                                        <form:input path="nombreRegion" type="text" placeholder="Nombre" class="form-control" id="nombre" name="nombre"/>
+                                                
                                     </div>
                                     <div class="form-group">
                                                 <label class="control-label">
                                                         Direccion<span class="symbol required"></span>
                                                 </label><br/>
-                                                <input type="text" placeholder="Direccion" class="form-control" id="direccion" name="direccion">
+                                                <form:input path="direccion" type="text" placeholder="Direccion" class="form-control" id="direccion" name="direccion"/>
+                                                
                                     </div>
                                     
                                     <div class="form-group">
                                                 <label class="control-label">
                                                         Descripcion
                                                 </label>
-                                        <input type="text" placeholder="Descripcion" class="form-control" id="description" name="description">
+                                        <form:input path="descripcion" type="text" placeholder="Descripcion" class="form-control" id="description" name="description"/>
+                                        
                                     </div>
                                     
                                         
                                         
                                 </div>
                                 <div class="col-md-6">
-                                    
-                                                                       
-                                    
-                                       
+                                  
                                 </div>
                         </div>
                         <div class="row">
@@ -128,7 +128,7 @@
                                         </button>
                                 </div>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
             <!-- end: FORM VALIDATION 1 PANEL -->

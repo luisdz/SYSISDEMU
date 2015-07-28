@@ -93,10 +93,12 @@
                                             <table class="table table-hover" id="sample-table-2">
                                                     <thead>
                                                             <tr>
-                                                                    <th>Country</th>
-                                                                    <th>Population</th>
-                                                                    <th>Date</th>
-                                                                    <th>%ge</th>
+                                                                    <th>IdPersona</th>
+                                                                    <th>Persona</th>
+                                                                    <th>Jefe</th>
+                                                                    <th>Encargado</th>
+                                                                    <th>Edit</th>
+                                                                    <th>Delete</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
@@ -106,6 +108,11 @@
                                                                     <td>${per.nombrePersona}</td>
                                                                     <td>${per.jefatura}</td>
                                                                     <td>${per.encargadoAfijo}</td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Persona/delete/${per.idPersona}">
+                                                                    Eliminar</a></td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Persona/edit/${per.idPersona}">
+                                                                    Actualizar</a></td>
+                                                                    
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>

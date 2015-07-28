@@ -11,12 +11,14 @@ import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcRegion;
 import com.isdemu.model.TbcUnidad;
+import com.isdemu.model.TbControlSalida;
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 import com.isdemu.service.TBC_Region_Service;
 import com.isdemu.service.TBC_Unidad_Service;
+import com.isdemu.service.TB_Control_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -30,44 +32,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 /**
  *
- * @author Walter
+ * @author Miranda
  */
 @Controller 
- @RequestMapping(value="/Persona")
-public class TBC_PersonaController {
+ @RequestMapping(value="/Control")
+public class TB_ControlController {
     
-     @Autowired
+    @Autowired
 	private TB_Inventario_Service tbInventarioService;
     @Autowired
         private TBC_Poliza_Service tbPolizaService;
     
     @Autowired
-        private TBC_ClasificacionActivo_Service tbClasActService;
+        private TB_Control_Service tbControlService;
     
-     @Autowired
-        private TBC_Persona_Service tbcPersonaService;
-     
-      @Autowired
-        private TBC_Region_Service tbcRegionService;
-      
-    @Autowired
-      private TBC_Unidad_Service tbcUnidadService;
       
      @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
-		ModelAndView modelAndView = new ModelAndView("consultar_personal");
+		ModelAndView modelAndView = new ModelAndView("control_consultar");
 
-		List personal = tbcPersonaService.getAll();
-		modelAndView.addObject("persona", personal);
+		List control = tbControlService.getAll();
+		modelAndView.addObject("control", control);
 
 		return modelAndView;
 	}
         
-              
-        @RequestMapping(value="/add", method=RequestMethod.GET)
+       @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
               System.out.println("esntra aqui GET persona");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
@@ -76,39 +68,42 @@ public class TBC_PersonaController {
                  
                  //List ClasAct = tbClasActService.getAll();
                 /// List poliza = tbPolizaService.getAll();
-                List unidad1= tbcUnidadService.getAll();
+                List inventario= tbInventarioService.getAll();
                  //List region=tbcRegionService.getAll();
-                 myModel.put("persona", new TbcPersona());
-                 myModel.put("unidad",unidad1);
+                 myModel.put("control", new TbControlSalida());
+                 myModel.put("inventario",inventario);
                 // myModel.put("poliza",poliza );
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);
                 System.out.println("esntra aqui GET persona");
-		return new ModelAndView("persona",myModel);
+		return new ModelAndView("control",myModel);
 	}
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbcPersona persona) {
+	public ModelAndView addingPais(@ModelAttribute TbControlSalida control) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+persona);
+		 System.out.println("entra aqui POST persona"+control);
 
 
-                 persona.setNombrePersona("persona2");
-                 persona.setJefatura("0");
-                 persona.setEncargadoAfijo("0");
+                 control.setNControlSalida(2);
+                 control.setSolicitante("walter");
+                 control.setFechaSalida(new Date());
+                 control.setObservacion("prueba");
+                 control.setDestino("nahuizalco");
                  
-                tbcPersonaService.save(persona);
+                tbControlService.save(control);
 		String message = "Persona was successfully added.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
         
-        @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+      @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public ModelAndView deletePais(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		tbcPersonaService.delete(id);
+                System.out.println(id);
+		tbControlService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;

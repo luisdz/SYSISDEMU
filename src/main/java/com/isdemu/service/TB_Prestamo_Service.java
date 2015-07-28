@@ -5,13 +5,13 @@
  */
 package com.isdemu.service;
 
-import java.util.List;
 import java.io.Serializable;
+import java.util.List;
 /**
  *
- * @author Jose Eduardo
+ * @author Miranda
  */
-public interface TBC_Region_Service {
+public interface TB_Prestamo_Service {
     public void save(Object obj);
     public List getAll();
     public void delete(Serializable id);
