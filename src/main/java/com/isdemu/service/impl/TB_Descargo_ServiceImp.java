@@ -5,24 +5,31 @@
  */
 package com.isdemu.service.impl;
 
+import com.isdemu.dao.TB_DescargoDao;
 import com.isdemu.dao.TB_MovimientoDao;
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Movimiento_Service;
 import java.io.Serializable;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author AlejandroPC
  */
+
+@Service
+@Transactional
+
 public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
     
     @Autowired
-	private TB_MovimientoDao tbDescargoDao;
+	private TB_DescargoDao tbDescargoDao;
     
     
-    @Override
+        @Override
 	public List getAll() {
              System.out.println("service impl descargo");
 		// TODO Auto-generated method stub
@@ -35,15 +42,15 @@ public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
 		tbDescargoDao.save(obj);
 	}
         
-        @Override
-	public void delete(Serializable id) {
-		// TODO Auto-generated method stub
-		tbDescargoDao.delete(id);
-	}
-        
-        @Override
-	public Object findByKey(Serializable id) {
-		// TODO Auto-generated method stub
-		return tbDescargoDao.findByKey(id);
-	}
+//        @Override
+//	public void delete(Serializable id) {
+//		// TODO Auto-generated method stub
+//		tbDescargoDao.delete(id);
+//	}
+//        
+//        @Override
+//	public Object findByKey(Serializable id) {
+//		// TODO Auto-generated method stub
+//		return tbDescargoDao.findByKey(id);
+//	}
 }

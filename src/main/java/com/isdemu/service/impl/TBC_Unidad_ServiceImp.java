@@ -51,4 +51,10 @@ public class TBC_Unidad_ServiceImp implements TBC_Unidad_Service {
 		// TODO Auto-generated method stub
 		return tbcUnidadDao.findByKey(id);
 	}
+        
+         @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbcUnidadDao.update(obj);
+	}
 }

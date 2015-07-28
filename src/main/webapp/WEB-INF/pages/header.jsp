@@ -275,13 +275,13 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/Descargo/insertarDescargo.html">
 											Realizar Descargo <i class="icon-arrow"></i>
 										</a>
 										
 									</li>
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/descargo/consultarDescargo.html">
 											Consultar Descarga<i class="icon-arrow"></i>
 										</a>
 										
@@ -316,13 +316,13 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/Control/add">
 											Realizar Control <i class="icon-arrow"></i>
 										</a>
 										
 									</li>
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/Control/list">
 											Cosultar Control <i class="icon-arrow"></i>
 										</a>
 									
@@ -336,13 +336,13 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/Prestamo/add">
 											Registrar Prestamo <i class="icon-arrow"></i>
 										</a>
 										
 									</li>
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/Prestamo/list">
 											Consultar Prestamos <i class="icon-arrow"></i>
 										</a>
 										
@@ -355,7 +355,7 @@
 								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Catalogo</span><i class="icon-arrow"></i> </a>
 								<ul class="sub-menu">
 									<li>
-										<a href="${pageContext.request.contextPath}/llamar/insertarPersonal.html">
+										<a href="${pageContext.request.contextPath}/Persona/add">
 											<span class="title"> Personal </span>
 										</a>
 									</li>
@@ -376,12 +376,12 @@
 										
 									</li>
 									<li>
-										<a href="${pageContext.request.contextPath}/llamar/insertarRegiones.html">
+										<a href="${pageContext.request.contextPath}/Region/add">
 											<span class="title">Regiones</span>
 										</a>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/llamar/consultarRegiones.html">
+										<a href="${pageContext.request.contextPath}/Region/list">
 											<span class="title">Consultar Regiones</span>
 										</a>
 									</li>
