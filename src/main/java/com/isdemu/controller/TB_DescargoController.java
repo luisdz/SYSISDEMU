@@ -35,67 +35,67 @@ public class TB_DescargoController
     
     @Autowired
       private TB_Descargo_Service tbdescargoService;
-//   @Autowired
-//      private TB_Inventario_Service tbInventarioService;
+   @Autowired
+      private TB_Inventario_Service tbInventarioService;
 //    
-////    @RequestMapping(value="/consultarDescargo")
-////	public ModelAndView consultarDescargo() {
-////		ModelAndView modelAndView = new ModelAndView("consultar_descargo");
-////
-////		List descargo = tbDescargoService.getAll();
-////		modelAndView.addObject("descargo", descargo);
-////
-////		return modelAndView;
-////	}
-//        
-//         @RequestMapping(value="/insertarDescargo", method=RequestMethod.GET)
-//	public ModelAndView addDescargo() {
-//              System.out.println("esntra aqui GETT descargo");
-//		//ModelAndView modelAndView = new ModelAndView("inventario");
-//               Map<String, Object> myModel = new HashMap<String, Object>();
-//		
-//                 
-//                 List descar = tbDescargoService.getAll();
-//                
-//                  
-//                 myModel.put("descargo", new TbDescargo());
-//                
-//                 myModel.put("inventario",descar );
-//                  
-//               
-//                
-//		return new ModelAndView("descargo",myModel);
-//	}
-//        
-//        
-//        @RequestMapping(value="/insertarDescargo", method=RequestMethod.POST)
-//	public ModelAndView addingDescargo(@ModelAttribute TbDescargo des) {
-//		ModelAndView modelAndView = new ModelAndView("home");
-//		 System.out.println("esntra aquiPOST movimiento"+des);
-//
-//
-//               des.setFecha(new Date());
-//                des.setIdNumeroDescargo(2);
-//                 des.setComentario("asdfasf");
-//                  
-//                
-//              
-//            
-//		tbDescargoService.save(des);
-//		String message = "descargo was successfully added.";
-//		modelAndView.addObject("message", message);
-//		return modelAndView;
-//	}
+    @RequestMapping(value="/consultarDescargo")
+	public ModelAndView consultarDescargo() {
+		ModelAndView modelAndView = new ModelAndView("consultar_descargo");
+
+		List descargo = tbdescargoService.getAll();
+		modelAndView.addObject("descargo", descargo);
+
+		return modelAndView;
+	}
         
-//         @RequestMapping(value="/deleteDescargo/{id}", method=RequestMethod.GET)
-//	public ModelAndView deleteDes(@PathVariable Integer id) 
-//        {
-//		ModelAndView modelAndView = new ModelAndView("home");
-//		tbDescargoService.delete(id);
-//		String message = "descargo was successfully deleted.";
-//		modelAndView.addObject("message", message);
-//		return modelAndView;
-//	}
+         @RequestMapping(value="/insertarDescargo", method=RequestMethod.GET)
+	public ModelAndView addDescargo() {
+              System.out.println("esntra aqui GETT descargo");
+		//ModelAndView modelAndView = new ModelAndView("inventario");
+               Map<String, Object> myModel = new HashMap<String, Object>();
+		
+                 
+                 List descar = tbdescargoService.getAll();
+                
+                  
+                 myModel.put("descargo", new TbDescargo());
+                
+                 myModel.put("inventario",descar );
+                  
+               
+                
+		return new ModelAndView("descargo",myModel);
+	}
+        
+        
+        @RequestMapping(value="/insertarDescargo", method=RequestMethod.POST)
+	public ModelAndView addingDescargo(@ModelAttribute TbDescargo des) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		 System.out.println("esntra aquiPOST movimiento"+des);
+
+
+               des.setFecha(new Date());
+                des.setIdNumeroDescargo(2);
+                 des.setComentario("asdfasf");
+                  
+                
+              
+            
+		tbdescargoService.save(des);
+		String message = "descargo was successfully added.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/deleteDescargo/{id}", method=RequestMethod.GET)
+	public ModelAndView deleteDes(@PathVariable Integer id) 
+        {
+		ModelAndView modelAndView = new ModelAndView("home");
+		tbdescargoService.delete(id);
+		String message = "descargo was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
         
         
     
