@@ -34,6 +34,11 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
 		return tbMovimientoDao.getAll();
 	}
         
+         @Override
+         public List getTop(){
+         return tbMovimientoDao.getTop();
+         }
+         
           @Override
 	public void save(Object obj) {
 		// TODO Auto-generated method stub
@@ -45,6 +50,8 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
 		// TODO Auto-generated method stub
 		tbMovimientoDao.delete(id);
 	}
+        
+        
         
         @Override
 	public Object findByKey(Serializable id) {

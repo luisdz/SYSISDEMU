@@ -46,6 +46,8 @@ public class TB_MovimientoController {
 		return modelAndView;
 	}
         
+        
+        
          @RequestMapping(value="/insertarMovimiento", method=RequestMethod.GET)
 	public ModelAndView addMovimiento() {
               System.out.println("esntra aqui GETT movimiento");
