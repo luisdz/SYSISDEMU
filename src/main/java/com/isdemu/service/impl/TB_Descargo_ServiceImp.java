@@ -42,15 +42,15 @@ public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
 		tbDescargoDao.save(obj);
 	}
         
-//        @Override
-//	public void delete(Serializable id) {
-//		// TODO Auto-generated method stub
-//		tbDescargoDao.delete(id);
-//	}
-//        
-//        @Override
-//	public Object findByKey(Serializable id) {
-//		// TODO Auto-generated method stub
-//		return tbDescargoDao.findByKey(id);
-//	}
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		tbDescargoDao.delete(id);
+	}
+        
+        @Override
+	public Object findByKey(Serializable id) {
+		// TODO Auto-generated method stub
+		return tbDescargoDao.findByKey(id);
+	}
 }
