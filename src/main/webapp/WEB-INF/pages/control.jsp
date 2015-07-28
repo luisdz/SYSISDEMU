@@ -100,27 +100,51 @@
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
                                                 <form:input path="NControlSalida" type="text" placeholder="Numero" class="form-control" id="numero" name="numero"/>
                 
-                                    </div>                        
-                                                                                
-                                </div>
-                                <div class="col-md-6">
-                                    
-                                   <div class="form-group">
+                                    </div>
+                                    <div class="form-group">
                                                 <label class="control-label">
                                                         Solicitante<span class="symbol required"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
                                                 <form:input path="solicitante" type="text" class="form-control" id="solicitante" name="solicitante"/>
                 
-                                    </div> 
-                                                <div class="form-group">
-                                                    <label class="control-label">
-                                                            Fecha Salida<span class="symbol required"></span>
-                                                    </label>
-            <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                    <form:input path="fechaSalida" type="text" id="fecha_sal" name="fecha_sal" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Observacion<span class="symbol required"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="observacion" type="text" class="form-control" id="observacion" name="observacion"/>
+                
+                                    </div>
+                                                                                
+                                </div>
+                                <div class="col-md-6">                                    
+                                   
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Salida<span class="symbol required"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaSalida" type="text" id="fecha_sal" name="fecha_sal" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
 
-                                                </div> 
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Destino<span class="symbol required"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="destino" type="text" class="form-control" id="destino" name="destino"/>
+                
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Tentativo Devolucion<span class="symbol required"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaTentativaDevolucion" type="text" id="fecha_devolucion" name="fecha_devolucion" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div>
                                     
                                    
                                 </div>                                       

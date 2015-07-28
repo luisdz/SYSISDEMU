@@ -93,11 +93,6 @@ public class TBC_PersonaController {
 	public ModelAndView addingPais(@ModelAttribute TbcPersona persona) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST persona"+persona);
-
-
-                 persona.setNombrePersona("persona2");
-                 persona.setJefatura("0");
-                 persona.setEncargadoAfijo("0");
                  
                 tbcPersonaService.save(persona);
 		String message = "Persona was successfully added.";
