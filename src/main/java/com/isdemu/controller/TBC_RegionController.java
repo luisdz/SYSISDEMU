@@ -89,11 +89,6 @@ public class TBC_RegionController {
 	public ModelAndView addingPais(@ModelAttribute TbcRegion region) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST persona"+region);
-
-
-                 region.setNombreRegion("persona2");
-                 region.setDireccion("prueba");
-                 region.setDescripcion("prueba");
                  
                 tbcRegionService.save(region);
 		String message = "Persona was successfully added.";

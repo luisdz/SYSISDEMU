@@ -101,25 +101,65 @@
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
                                                 <form:input path="NPrestamo" type="text" placeholder="Numero" class="form-control" id="numero" name="numero"/>
                 
-                                    </div>                        
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Tema Impartir<span class="symbol required"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="temaImpartir" type="text" placeholder="Tema" class="form-control" id="tema" name="tema"/>
+                
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Persona a Impartir<span class="symbol required"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="personaImpartir" type="text" placeholder="persona" class="form-control" id="persona" name="persona"/>
+                
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="control-label">
+                                                    Destino<span class="symbol required"></span>
+                                            </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                            <form:input path="destino" type="text" placeholder="destino" class="form-control" id="destino" name="destino"/>
+                
+                                    </div>
                                                                                 
                                 </div>
                                 <div class="col-md-6">
                                     
                                    <div class="form-group">
                                         <label class="control-label">
-                                                Fecha Prestamo<span class="symbol required"></span>
+                                                Fecha Solicitud<span class="symbol required"></span>
                                         </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
                                         <form:input path="fechaSolicitud" type="text" id="fecha_sol" name="fecha_sol" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
 
-                                    </div> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Reservacion<span class="symbol required"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaReservacion" type="text" id="fecha_pres" name="fecha_pres" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div>
                                     <div class="form-group">
                                         <label class="control-label">
                                                 Hora Inicio<span class="symbol required"></span>
                                         </label>
     <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
                                         <form:input path="horaInicio" type="text" id="hora_inicio" name="hora_inicio" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Hora Fin<span class="symbol required"></span>
+                                        </label>
+    <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="horaFin" type="text" id="hora_fin" name="hora_fin" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
 
                                     </div> 
                                     

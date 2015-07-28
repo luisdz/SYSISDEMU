@@ -85,13 +85,6 @@ public class TB_ControlController {
 	public ModelAndView addingPais(@ModelAttribute TbControlSalida control) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST persona"+control);
-
-
-                 control.setNControlSalida(2);
-                 control.setSolicitante("walter");
-                 control.setFechaSalida(new Date());
-                 control.setObservacion("prueba");
-                 control.setDestino("nahuizalco");
                  
                 tbControlService.save(control);
 		String message = "Persona was successfully added.";

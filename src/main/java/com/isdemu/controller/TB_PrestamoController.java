@@ -87,14 +87,6 @@ public class TB_PrestamoController {
 	public ModelAndView addingPais(@ModelAttribute TbPrestamoEquipo prestamo) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST persona"+prestamo);
-
-
-                 prestamo.setNPrestamo(2);
-                 prestamo.setFechaSolicitud(new Date());
-                 prestamo.setFechaReservacion(new Date());
-                 prestamo.setHoraInicio(new Date());
-                 prestamo.setHoraFin(new Date());
-                 prestamo.setTemaImpartir("prueba");
                  
                 tbPrestamoService.save(prestamo);
 		String message = "Persona was successfully added.";
