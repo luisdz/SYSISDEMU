@@ -6,6 +6,7 @@
 package com.isdemu.controller;
 
 import com.isdemu.model.TbDescargo;
+import com.isdemu.model.TbcUnidad;
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import java.util.Date;
@@ -90,6 +91,45 @@ public class TB_DescargoController
 		tbdescargoService.delete(id);
 		String message = "descargo was successfully deleted.";
 		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/editDescargo/{id}", method=RequestMethod.GET)
+	public ModelAndView editDescargoPage(@PathVariable Integer id) {
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+		TbDescargo descargo = (TbDescargo) tbdescargoService.findByKey(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("descargo",descargo ); 
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_descargo",myModel);
+	}
+
+	@RequestMapping(value="/editDescargo/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingUnidad(@ModelAttribute TbDescargo descarg, @PathVariable Integer id) {
+            
+		TbDescargo descargoActual = (TbDescargo) tbdescargoService.findByKey(id);
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                descargoActual.setIdNumeroDescargo(descarg.getIdNumeroDescargo());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                descargoActual.setComentario(descarg.getComentario());
+                
+		                
+		tbdescargoService.update(descargoActual);
+
+		String message = "descargo was successfully edited.";
+		modelAndView.addObject("message", message);
+
 		return modelAndView;
 	}
         

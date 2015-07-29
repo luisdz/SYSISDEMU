@@ -58,4 +58,10 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
 		// TODO Auto-generated method stub
 		return tbMovimientoDao.findByKey(id);
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbMovimientoDao.update(obj);
+	}
 }
