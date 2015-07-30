@@ -5,7 +5,11 @@
  */
 package com.isdemu.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +35,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 )
 public class TbMovimiento {
      private int idMovimiento;
-     private TbInventario tbInventario;
      private int NMovimiento;
      private Date fechaMovimiento;
      private String razonCambio;
@@ -38,6 +42,8 @@ public class TbMovimiento {
      private Date fechaInsert;
      private int userUpdate;
      private Date fechaUpdate;
+     private Set<TbrMovimientoInventario> tbrMovimientoInventarios = new HashSet<TbrMovimientoInventario>(0);
+
      
      
       @Id 
@@ -48,18 +54,9 @@ public class TbMovimiento {
         return this.idMovimiento;
     }
     
+   
     public void setIdMovimiento(int idMovimiento) {
         this.idMovimiento = idMovimiento;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_INVENTARIO", nullable=false)
-    public TbInventario getTbInventario() {
-        return this.tbInventario;
-    }
-    
-    public void setTbInventario(TbInventario tbInventario) {
-        this.tbInventario = tbInventario;
     }
 
     
@@ -72,9 +69,8 @@ public class TbMovimiento {
         this.NMovimiento = NMovimiento;
     }
 
-     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
-    @Column(name="FECHA_MOVIMIENTO", nullable=false, length=23)
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_MOVIMIENTO", nullable=false, length=10)
     public Date getFechaMovimiento() {
         return this.fechaMovimiento;
     }
@@ -103,8 +99,8 @@ public class TbMovimiento {
         this.userInsert = userInsert;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="FECHA_INSERT", length=23)
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_INSERT", length=10)
     public Date getFechaInsert() {
         return this.fechaInsert;
     }
@@ -123,7 +119,7 @@ public class TbMovimiento {
         this.userUpdate = userUpdate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_UPDATE", length=23)
     public Date getFechaUpdate() {
         return this.fechaUpdate;
@@ -133,5 +129,18 @@ public class TbMovimiento {
         this.fechaUpdate = fechaUpdate;
     }
 
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbMovimiento")
+    public Set<TbrMovimientoInventario> getTbrMovimientoInventarios() {
+        return this.tbrMovimientoInventarios;
+    }
+    
+    public void setTbrMovimientoInventarios(Set<TbrMovimientoInventario> tbrMovimientoInventarios) {
+        this.tbrMovimientoInventarios = tbrMovimientoInventarios;
+    }
+
+
+
 
 }
+
+

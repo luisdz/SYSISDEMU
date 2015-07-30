@@ -5,7 +5,9 @@
  */
 package com.isdemu.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +32,7 @@ import javax.persistence.Table;
 public class TbcUnidad {
     
    
-     private int idUnidad;
+      private int idUnidad;
      private TbcRegion tbcRegion;
      private String nombreUnidad;
      private String descripcion;
@@ -49,7 +51,7 @@ public class TbcUnidad {
         this.idUnidad = idUnidad;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_REGION", nullable=false)
     public TbcRegion getTbcRegion() {
         return this.tbcRegion;
@@ -79,7 +81,7 @@ public class TbcUnidad {
         this.descripcion = descripcion;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcUnidad")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcUnidad")
     public Set<TbcPersona> getTbcPersonas() {
         return this.tbcPersonas;
     }

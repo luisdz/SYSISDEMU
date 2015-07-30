@@ -5,9 +5,9 @@
  */
 package com.isdemu.service.impl;
 
+import com.isdemu.dao.TBC_ClaseActivoDao;
 import com.isdemu.dao.TB_InventarioDao;
-import com.isdemu.model.TbInventario;
-import com.isdemu.service.TB_Inventario_Service;
+import com.isdemu.service.TBC_ClaseActivo_Service;
 import java.io.Serializable;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -18,47 +18,47 @@ import org.springframework.stereotype.Service;
  *
  * @author Jose Eduardo
  */
-
 @Service
 @Transactional
-public class TB_InventarioServiceImpl implements TB_Inventario_Service {
+public class TBC_ClaseActivoServiceImp implements TBC_ClaseActivo_Service{
+    
     
     @Autowired
-	private TB_InventarioDao tbInventarioDao;
+	private TBC_ClaseActivoDao tbClaseActivoDao;
     
     @Override
 	public void save(Object obj) {
 		// TODO Auto-generated method stub
-		tbInventarioDao.save(obj);
+		tbClaseActivoDao.save(obj);
 	}
         
     @Override
-	public List<TbInventario> getAll() {
+	public List getAll() {
              System.out.println("service impl");
 		// TODO Auto-generated method stub
-		return tbInventarioDao.getAll();
+		return tbClaseActivoDao.getAll();
 	}
         
         @Override
          public List getTop(){
-         return tbInventarioDao.getTop();
+         return tbClaseActivoDao.getTop();
          }
         
         @Override
 	public void delete(Serializable id) {
 		// TODO Auto-generated method stub
-		tbInventarioDao.delete(id);
+		tbClaseActivoDao.delete(id);
 	}
         
         @Override
 	public Object findByKey(Serializable id) {
 		// TODO Auto-generated method stub
-		return tbInventarioDao.findByKey(id);
+		return tbClaseActivoDao.findByKey(id);
 	}
         
         @Override
 	public void update(Object obj) {
 		// TODO Auto-generated method stub
-		tbInventarioDao.update(obj);
+		tbClaseActivoDao.update(obj);
 	}
 }

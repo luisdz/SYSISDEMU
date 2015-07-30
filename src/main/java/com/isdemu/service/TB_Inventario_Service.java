@@ -5,6 +5,7 @@
  */
 package com.isdemu.service;
 
+import com.isdemu.model.TbInventario;
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface TB_Inventario_Service {
     public void save(Object obj);
-    public List getAll();
+    public List<TbInventario> getAll();
     public List getTop();
     public void delete(Serializable id);
     public Object findByKey(Serializable id);

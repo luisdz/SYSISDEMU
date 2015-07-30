@@ -53,7 +53,7 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
 	public List getTop() {
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbMovimiento.class,"movimiento");
-            dc.setFetchMode("tbInventario", FetchMode.JOIN);
+            dc.setFetchMode("TbrMovimientoInventario", FetchMode.JOIN);
             
            Date highestDate = new Date();
            

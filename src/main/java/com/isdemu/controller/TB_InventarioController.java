@@ -5,28 +5,38 @@
  */
 package com.isdemu.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.isdemu.model.TbDescargo;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 import com.isdemu.model.TbcRegion;
+import com.isdemu.service.TBC_ClaseActivo_Service;
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 import com.isdemu.service.TBC_Region_Service;
+import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.json.Json;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -50,6 +60,13 @@ public class TB_InventarioController {
      
       @Autowired
         private TBC_Localizacion_Service tbcLocalizacionService;
+    
+      @Autowired
+        private TBC_ClaseActivo_Service tbcClaseActivoService;
+      
+        @Autowired
+        private TB_Descargo_Service tbDescargoService;
+     
      
      
     
@@ -64,6 +81,28 @@ public class TB_InventarioController {
 	}
         
         
+        @RequestMapping(value="/listaClaseA", method=RequestMethod.POST)
+	public @ResponseBody  String ClaseA(@RequestBody String clasi) {
+		
+                System.out.println("INGRESA CONTROLLER LISTA CLASE");
+		System.out.println(clasi.toString());
+              
+                List<TbInventario> inventario = tbInventarioService.getAll();
+               System.out.println("lista="+inventario.get(0).getMarca());
+               
+               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                
+               
+               //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
+                String var=gson.toJson(inventario.get(0).getFechaAdquisicion());
+            
+                //ModelAndView modelAndView = new ModelAndView("home");
+               // System.out.println("return String:"+inventarioString);
+                return var;
+                 
+	}
+        
+        
         @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
               System.out.println("esntra aqui GETTTT");
@@ -72,12 +111,14 @@ public class TB_InventarioController {
 		
                  
                  List ClasAct = tbClasActService.getAll();
-                
                  List persona=tbcPersonaService.getAll();
-                   List lozalizacion=tbcLocalizacionService.getAll();
+                 List lozalizacion=tbcLocalizacionService.getAll();
+                 List ClaseActivo=tbcClaseActivoService.getAll();
+                 
                  myModel.put("inventario", new TbInventario());
                 
                  myModel.put("clasificacionA",ClasAct );
+                 myModel.put("claseActivo",ClaseActivo );
                  myModel.put("persona",persona);
                  myModel.put("lozalizacion",lozalizacion);
                
@@ -100,7 +141,7 @@ public class TB_InventarioController {
                 
                    inventario.setValorLibro(BigDecimal.ZERO);
           
-                System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
+               // System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
                
 		tbInventarioService.save(inventario);
 		String message = "Pais was successfully added.";
@@ -123,17 +164,17 @@ public class TB_InventarioController {
 	public ModelAndView editPaisPage(@PathVariable Integer id) {
 		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
 		TbInventario inventario = (TbInventario) tbInventarioService.findByKey(id);
-                TbcClasificacionActivo activo = (TbcClasificacionActivo) tbClasActService.findByKey(inventario.getTbcClasificacionActivo().getIdClasificacionActivo());
+              //  TbcClasificacionActivo activo = (TbcClasificacionActivo) tbClasActService.findByKey(inventario.getTbcClasificacionActivo().getIdClasificacionActivo());
                 
                   Map<String, Object> myModel = new HashMap<String, Object>();
                    List ClasAct = tbClasActService.getAll();  
                    myModel.put("inventario",inventario ); 
-                  myModel.put("clasificacionA",activo );
+                 // myModel.put("clasificacionA",activo );
                   myModel.put("AllclasificacionA",ClasAct );
                 
                   
                    
-                System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
 		//modelAndView.addObject("inventario",inventario);
 		return new ModelAndView("actualizar_inventario",myModel);
 	}

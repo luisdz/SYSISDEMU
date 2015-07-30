@@ -174,9 +174,9 @@ int i=0;
                                             <c:forEach var="mov" items="${mov}" begin="1" end="4">
 
                                                 <tr>
-                                                <td>  ${mov.tbInventario.codigoInventario}&nbsp; &nbsp;</td>
-                                                <td>  ${mov.tbInventario.marca}&nbsp; &nbsp;</td> 
-                                                <td>  ${mov.tbInventario.modelo}</td> 
+                                                <td>  ${mov.razonCambio}&nbsp; &nbsp;</td>
+                                                <td>  &nbsp;</td> 
+                                                <td>  </td> 
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -214,33 +214,50 @@ int i=0;
                                         </div>
                                 </div>
                                 <div class="padding-10">
-                                        <span class="bold-text">1527</span><span class="text-light">Activos Descargados </span>
+                                        <span class="bold-text">${nmov} </span><span class="text-light"> Activos Descargados </span>
                                         <a href="#" class="view-more pull-right text-dark text-bold">
                                                 Ver listado Completo <i class="fa fa-angle-right text-light"></i>
                                         </a>
                                 </div>
                         </div>
                         <div class="item">
-                                <div class="panel-body">
-                                        <div class="core-box">
-                                                <div class="text-dark text-bold space15">
-                                                        ULTIMOS ACTIVOS DESCARGADOS
-                                                </div>
-                                                <div class="space5">
-                                                        <i class="fa fa-facebook fa-4x pull-left"></i>
-                                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy ibh euismod tincidunt.
-                                                </div>
-                                                <span class="text-light text-small block pull-right"> <i class="fa fa-clock-o"></i> 27 min ago </span>
-                                        </div>
+                            <div class="panel-body">
+                                <div class="core-box">
+                                    <div class="text-dark text-bold">
+                                    ULTIMOS DESCARGOS DE EQUIPO
+
+
+                                    </div>
+                                    <table>  
+                                        <thead>  
+                                            <tr>
+                                            <th>Codigo</th> &nbsp;
+                                            <th>Marca</th> &nbsp;
+                                            <th>Modelo</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                              <c:forEach var="mov" items="${mov}" begin="1" end="4">
+
+                                                <tr>
+                                                <td>  ${mov.razonCambio}&nbsp; &nbsp;</td>
+                                                <td>  &nbsp;</td> 
+                                                <td>  </td> 
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+
                                 </div>
-                                <div class="padding-10">
-                                        <span class="bold-text">1527</span><span class="text-light"> people share this goal </span>
-                                        <a href="#" class="view-more pull-right text-dark text-bold">
-                                                View More <i class="fa fa-angle-right text-light"></i>
-                                        </a>
-                                </div>
-                        </div>
-                      
+                            </div>
+                            <div class="padding-10">
+                                <span class="bold-text">${nmov}</span><span class="text-light"> Descargos </span>
+                                <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
+                                Ver listado Completo <i class="fa fa-angle-right text-light"></i>
+                                </a>
+                            </div>
+                    </div>
                 </div>
         </div>
 </div>
@@ -264,7 +281,7 @@ int i=0;
                                 </div>
                         </div>
                         <div class="padding-10">
-                                <span class="bold-text">${ninv}</span><span class="text-light"> Activos Ingresados </span>
+                                <span class="bold-text">${nmov}</span><span class="text-light"> Activos Ingresados </span>
                                 <a href="#" class="view-more pull-right text-dark text-bold">
                                         Ver Listado Completo <i class="fa fa-angle-right text-light"></i>
                                 </a>
@@ -288,12 +305,12 @@ int i=0;
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach var="inv" items="${inv}" begin="0" end="4">
+                                              <c:forEach var="mov" items="${mov}" begin="1" end="4">
 
                                                 <tr>
-                                                <td>  ${inv.codigoInventario}&nbsp; &nbsp;</td>
-                                                <td>  ${inv.marca}&nbsp; &nbsp;</td> 
-                                                <td>  ${inv.modelo}</td> 
+                                                <td>  ${mov.razonCambio}&nbsp; &nbsp;</td>
+                                                <td>  &nbsp;</td> 
+                                                <td>  </td> 
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -302,7 +319,7 @@ int i=0;
                                 </div>
                             </div>
                             <div class="padding-10">
-                                <span class="bold-text">${ninv}</span><span class="text-light"> Movimientos </span>
+                                <span class="bold-text">${nmov}</span><span class="text-light"> Movimientos </span>
                                 <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
                                 Ver listado Completo <i class="fa fa-angle-right text-light"></i>
                                 </a>
@@ -318,4 +335,3 @@ int i=0;
 	
 						<!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>		
-

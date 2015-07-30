@@ -6,8 +6,10 @@
 package com.isdemu.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -84,7 +86,7 @@ public class TbcRegion {
         this.descripcion = descripcion;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcRegion")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcRegion")
     public Set<TbcUnidad> getTbcUnidads() {
         return this.tbcUnidads;
     }
@@ -93,7 +95,7 @@ public class TbcRegion {
         this.tbcUnidads = tbcUnidads;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcRegion")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcRegion")
     public Set<TbcLocalizacion> getTbcLocalizacions() {
         return this.tbcLocalizacions;
     }
@@ -106,3 +108,5 @@ public class TbcRegion {
 
 
 }
+
+

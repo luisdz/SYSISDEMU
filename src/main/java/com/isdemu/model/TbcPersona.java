@@ -6,8 +6,10 @@
 package com.isdemu.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +41,7 @@ public class TbcPersona {
      private String nombrePersona;
      private String jefatura;
      private String encargadoAfijo;
-     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
+//     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
     @Id 
     @GeneratedValue
@@ -53,7 +55,7 @@ public class TbcPersona {
         this.idPersona = idPersona;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_UNIDAD", nullable=false)
     public TbcUnidad getTbcUnidad() {
         return this.tbcUnidad;
@@ -93,16 +95,18 @@ public class TbcPersona {
         this.encargadoAfijo = encargadoAfijo;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcPersona")
-    public Set<TbInventario> getTbInventarios() {
-        return this.tbInventarios;
-    }
-    
-    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-        this.tbInventarios = tbInventarios;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcPersona")
+//    public Set<TbInventario> getTbInventarios() {
+//        return this.tbInventarios;
+//    }
+//    
+//    public void setTbInventarios(Set<TbInventario> tbInventarios) {
+//        this.tbInventarios = tbInventarios;
+//    }
 
 
 
 
 }
+
+

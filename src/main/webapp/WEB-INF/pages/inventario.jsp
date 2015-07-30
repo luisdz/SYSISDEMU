@@ -87,10 +87,23 @@
                             Clasificacion Activo
                     </label>
                    
-                      <form:select path="tbcClasificacionActivo.idClasificacionActivo" class="form-control" id="dropdown" name="dropdown">
+                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown" name="dropdown">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
                                 <c:forEach var="clasi" items="${clasificacionA}">
                                     <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
+                                 </c:forEach>
+                      </form:select>
+            </div>
+            
+            <div class="form-group">
+                    <label for="form-field-select-3">
+                            Clase de Activo
+                    </label>
+                   
+                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown" name="dropdown">
+                          <form:option value="0"  label="Selecciona una clasificacion"/>
+                                <c:forEach var="claseA" items="${claseActivo}">
+                                    <form:option value="${claseA.idClaseActivo}"  label="${claseA.nombreClase}"/>
                                  </c:forEach>
                       </form:select>
             </div>
@@ -223,3 +236,35 @@
 						
 						<!-- end: PAGE CONTENT-->
 				<%@include file="footer.jsp" %>		
+           
+<script>
+$("#dropdown").change(function () {
+   var conceptName = $('#dropdown :selected').val(); // define the variable
+    alert(conceptName);
+    
+    
+    
+   $.ajax({ 
+                url: "${pageContext.request.contextPath}/Inventario/listaClaseA", 
+                type: 'POST', 
+                dataType: 'json', 
+                contentType: 'application/json',
+                mimeType: 'application/json',
+                
+                
+                data: "{id:" + conceptName + "}", 
+                
+               success: function(data) { 
+                   var len = data.length;
+                    alert("devuelve algo"+data);
+                    
+                    
+                },
+                error:function(data,status,er) { 
+                    alert("error: "+data+" status: "+status+" er:"+er);
+                }
+            });
+   
+       
+    });
+ </script>

@@ -5,9 +5,12 @@
  */
 package com.isdemu.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +31,12 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "TB_INVENTARIO", schema = "dbo")
-public class TbInventario {
+public class TbInventario implements Serializable {
     
      private int idInventario;
-     private TbcClasificacionActivo tbcClasificacionActivo;
+     private TbcClaseActivo tbcClaseActivo;
      private TbcLocalizacion tbcLocalizacion;
      private TbcPersona tbcPersona;
-     private TbcPoliza tbcPoliza;
      private Integer responsableAnterior;
      private String claseEquipo;
      private String codigoInventario;
@@ -51,10 +53,7 @@ public class TbInventario {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-     private Set<TbDescargo> tbDescargos = new HashSet<TbDescargo>(0);
-     private Set<TbPrestamoEquipo> tbPrestamoEquipos = new HashSet<TbPrestamoEquipo>(0);
-     private Set<TbControlSalida> tbControlSalidas = new HashSet<TbControlSalida>(0);
-     private Set<TbMovimiento> tbMovimientos = new HashSet<TbMovimiento>(0);
+//     private Set<TbDescargo> tbDescargos = new HashSet<TbDescargo>(0);
 
     
       @Id 
@@ -69,17 +68,17 @@ public class TbInventario {
         this.idInventario = idInventario;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_CLASIFICACION_ACTIVO", nullable=false)
-    public TbcClasificacionActivo getTbcClasificacionActivo() {
-        return this.tbcClasificacionActivo;
+@ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="ID_CLASE_ACTIVO", nullable=false)
+    public TbcClaseActivo getTbcClaseActivo() {
+        return this.tbcClaseActivo;
     }
     
-    public void setTbcClasificacionActivo(TbcClasificacionActivo tbcClasificacionActivo) {
-        this.tbcClasificacionActivo = tbcClasificacionActivo;
+    public void setTbcClaseActivo(TbcClaseActivo tbcClaseActivo) {
+        this.tbcClaseActivo = tbcClaseActivo;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_LOCALIZACION", nullable=false)
     public TbcLocalizacion getTbcLocalizacion() {
         return this.tbcLocalizacion;
@@ -89,7 +88,7 @@ public class TbInventario {
         this.tbcLocalizacion = tbcLocalizacion;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_PERSONA", nullable=false)
     public TbcPersona getTbcPersona() {
         return this.tbcPersona;
@@ -97,16 +96,6 @@ public class TbInventario {
     
     public void setTbcPersona(TbcPersona tbcPersona) {
         this.tbcPersona = tbcPersona;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_POLIZA")
-    public TbcPoliza getTbcPoliza() {
-        return this.tbcPoliza;
-    }
-    
-    public void setTbcPoliza(TbcPoliza tbcPoliza) {
-        this.tbcPoliza = tbcPoliza;
     }
 
     
@@ -170,7 +159,7 @@ public class TbInventario {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
+ @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_ADQUISICION", length=23)
     public Date getFechaAdquisicion() {
         return this.fechaAdquisicion;
@@ -240,8 +229,10 @@ public class TbInventario {
         this.userInsert = userInsert;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="FECHA_INSERT", length=23)
+    @Temporal(TemporalType.DATE)
+   
+    @Column(name="FECHA_INSERT", length=10)
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     public Date getFechaInsert() {
         return this.fechaInsert;
     }
@@ -260,8 +251,10 @@ public class TbInventario {
         this.userUpdate = userUpdate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
+   
     @Column(name="FECHA_UPDATE", length=23)
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     public Date getFechaUpdate() {
         return this.fechaUpdate;
     }
@@ -269,42 +262,19 @@ public class TbInventario {
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
     }
+//
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbInventario")
+//    public Set<TbDescargo> getTbDescargos() {
+//        return this.tbDescargos;
+//    }
+//    
+//    public void setTbDescargos(Set<TbDescargo> tbDescargos) {
+//        this.tbDescargos = tbDescargos;
+//    }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
-    public Set<TbDescargo> getTbDescargos() {
-        return this.tbDescargos;
-    }
-    
-    public void setTbDescargos(Set<TbDescargo> tbDescargos) {
-        this.tbDescargos = tbDescargos;
-    }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
-    public Set<TbPrestamoEquipo> getTbPrestamoEquipos() {
-        return this.tbPrestamoEquipos;
-    }
-    
-    public void setTbPrestamoEquipos(Set<TbPrestamoEquipo> tbPrestamoEquipos) {
-        this.tbPrestamoEquipos = tbPrestamoEquipos;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
-    public Set<TbControlSalida> getTbControlSalidas() {
-        return this.tbControlSalidas;
-    }
-    
-    public void setTbControlSalidas(Set<TbControlSalida> tbControlSalidas) {
-        this.tbControlSalidas = tbControlSalidas;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbInventario")
-    public Set<TbMovimiento> getTbMovimientos() {
-        return this.tbMovimientos;
-    }
-    
-    public void setTbMovimientos(Set<TbMovimiento> tbMovimientos) {
-        this.tbMovimientos = tbMovimientos;
-    }
 
 
 }
+
+

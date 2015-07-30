@@ -5,8 +5,10 @@
  */
 package com.isdemu.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,13 +33,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 )
 public class TbcPoliza {
     
-    private int idPoliza;
+     private int idPoliza;
      private String nombrePoliza;
      private String codigoPoliza;
      private Date fechaInicio;
      private Date fechaFin;
      private Set<TbcClasificacionActivo> tbcClasificacionActivos = new HashSet<TbcClasificacionActivo>(0);
-     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
      
        @Id 
@@ -48,7 +49,7 @@ public class TbcPoliza {
         return this.idPoliza;
     }
     
-    public void setIdPoliza(int idPoliza) {
+   public void setIdPoliza(int idPoliza) {
         this.idPoliza = idPoliza;
     }
 
@@ -73,7 +74,7 @@ public class TbcPoliza {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INICIO", nullable=false, length=23)
     public Date getFechaInicio() {
         return this.fechaInicio;
@@ -84,7 +85,7 @@ public class TbcPoliza {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_FIN", nullable=false, length=23)
     public Date getFechaFin() {
         return this.fechaFin;
@@ -94,22 +95,13 @@ public class TbcPoliza {
         this.fechaFin = fechaFin;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcPoliza")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcPoliza")
     public Set<TbcClasificacionActivo> getTbcClasificacionActivos() {
         return this.tbcClasificacionActivos;
     }
     
     public void setTbcClasificacionActivos(Set<TbcClasificacionActivo> tbcClasificacionActivos) {
         this.tbcClasificacionActivos = tbcClasificacionActivos;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcPoliza")
-    public Set<TbInventario> getTbInventarios() {
-        return this.tbInventarios;
-    }
-    
-    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-        this.tbInventarios = tbInventarios;
     }
 
 

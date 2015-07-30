@@ -5,7 +5,9 @@
  */
 package com.isdemu.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +30,12 @@ import javax.persistence.Table;
 )
 public class TbcClasificacionActivo {
   
-
-     private int idClasificacionActivo;
+private int idClasificacionActivo;
      private TbcPoliza tbcPoliza;
      private String nombreClasificacion;
      private String codigoClasificacion;
      private String descripcionClasificacion;
-     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
+     private Set<TbcClaseActivo> tbcClaseActivos = new HashSet<TbcClaseActivo>(0);
 
        @Id 
 
@@ -48,7 +49,7 @@ public class TbcClasificacionActivo {
         this.idClasificacionActivo = idClasificacionActivo;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_POLIZA", nullable=false)
     public TbcPoliza getTbcPoliza() {
         return this.tbcPoliza;
@@ -88,16 +89,18 @@ public class TbcClasificacionActivo {
         this.descripcionClasificacion = descripcionClasificacion;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcClasificacionActivo")
-    public Set<TbInventario> getTbInventarios() {
-        return this.tbInventarios;
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcClasificacionActivo")
+    public Set<TbcClaseActivo> getTbcClaseActivos() {
+        return this.tbcClaseActivos;
     }
     
-    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-        this.tbInventarios = tbInventarios;
+    public void setTbcClaseActivos(Set<TbcClaseActivo> tbcClaseActivos) {
+        this.tbcClaseActivos = tbcClaseActivos;
     }
 
 
 
 
 }
+
+

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isdemu.dao;
+package com.isdemu.service;
 
-import com.isdemu.model.TbInventario;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,12 +12,12 @@ import java.util.List;
  *
  * @author Jose Eduardo
  */
-public interface TB_InventarioDao {
+public interface TBC_ClaseActivo_Service {
     
-    public void save(Object obj);
-    public List<TbInventario> getAll();
+      public void save(Object obj);
+    public List getAll();
+    public List getTop();
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
     public void update(Object obj);
-    public List getTop();
 }

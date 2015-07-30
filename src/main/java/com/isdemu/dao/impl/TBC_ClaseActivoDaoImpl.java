@@ -5,17 +5,15 @@
  */
 package com.isdemu.dao.impl;
 
-import com.isdemu.dao.TB_InventarioDao;
+import com.isdemu.dao.TBC_ClaseActivoDao;
 
-import com.isdemu.model.TbInventario;
+import com.isdemu.model.TbcClaseActivo;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +22,7 @@ import org.springframework.stereotype.Repository;
  * @author Jose Eduardo
  */
 @Repository
-public class TB_InventarioDaoImpl implements TB_InventarioDao {
-    
+public class TBC_ClaseActivoDaoImpl implements TBC_ClaseActivoDao{
      @Autowired
 	private SessionFactory sessionFactory;
 
@@ -37,25 +34,24 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
 	public void save(Object obj) {
 		// TODO Auto-generated method stub
 		
-		TbInventario inventario =(TbInventario)obj;
-	        getCurrentSession().save(inventario);
+		TbcClaseActivo claseActivo =(TbcClaseActivo)obj;
+	        getCurrentSession().save(claseActivo);
 	}
         
         @Override
-	public List<TbInventario> getAll() {
+	public List getAll() {
 		// TODO Auto-generated method stub
-            DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcClaseActivo.class);
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
-            List<TbInventario> inventario = dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
-            return inventario;
+            return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
          @Override
 	public List getTop() {
 		// TODO Auto-generated method stub
-            DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
-              dc.addOrder(Order.asc("idInventario"));
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcClaseActivo.class);
+              
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
@@ -63,17 +59,17 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
         @Override
 	public void delete(Serializable id) {
 		// TODO Auto-generated method stub
-		TbInventario inventario = (TbInventario) getCurrentSession().get(TbInventario.class, id);
-		if(inventario!=null)
-			getCurrentSession().delete(inventario);
+		TbcClaseActivo claseActivo = (TbcClaseActivo) getCurrentSession().get(TbcClaseActivo.class, id);
+		if(claseActivo!=null)
+			getCurrentSession().delete(claseActivo);
 	}
         
         
 	@Override
 	public Object findByKey(Serializable id) {
 		// TODO Auto-generated method stub
-		TbInventario inventario = (TbInventario) getCurrentSession().get(TbInventario.class, id);
-		return inventario;
+		TbcClaseActivo claseActivo = (TbcClaseActivo) getCurrentSession().get(TbcClaseActivo.class, id);
+		return claseActivo;
 	}
         
         @Override

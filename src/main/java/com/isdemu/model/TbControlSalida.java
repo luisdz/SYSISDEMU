@@ -6,8 +6,10 @@
 package com.isdemu.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +36,8 @@ import org.springframework.format.annotation.DateTimeFormat;
     
 )
 public class TbControlSalida {
+     
      private int idControlSalida;
-     private TbInventario tbInventario;
      private int NControlSalida;
      private String solicitante;
      private Date fechaSalida;
@@ -46,6 +48,8 @@ public class TbControlSalida {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
+     private Set<TbrControlSalidaInventario> tbrControlSalidaInventarios = new HashSet<TbrControlSalidaInventario>(0);
+
      
     @Id 
     @GeneratedValue
@@ -54,19 +58,8 @@ public class TbControlSalida {
     public int getIdControlSalida() {
         return this.idControlSalida;
     }
-    
-    public void setIdControlSalida(int idControlSalida) {
+     public void setIdControlSalida(int idControlSalida) {
         this.idControlSalida = idControlSalida;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_INVENTARIO", nullable=false)
-    public TbInventario getTbInventario() {
-        return this.tbInventario;
-    }
-    
-    public void setTbInventario(TbInventario tbInventario) {
-        this.tbInventario = tbInventario;
     }
 
     
@@ -88,9 +81,8 @@ public class TbControlSalida {
     public void setSolicitante(String solicitante) {
         this.solicitante = solicitante;
     }
-    
+
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_SALIDA", nullable=false, length=23)
     public Date getFechaSalida() {
         return this.fechaSalida;
@@ -121,7 +113,6 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_TENTATIVA_DEVOLUCION", length=23)
     public Date getFechaTentativaDevolucion() {
         return this.fechaTentativaDevolucion;
@@ -142,7 +133,6 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INSERT", length=23)
     public Date getFechaInsert() {
         return this.fechaInsert;
@@ -163,7 +153,6 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_UPDATE", length=23)
     public Date getFechaUpdate() {
         return this.fechaUpdate;
@@ -173,5 +162,18 @@ public class TbControlSalida {
         this.fechaUpdate = fechaUpdate;
     }
 
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbControlSalida")
+    public Set<TbrControlSalidaInventario> getTbrControlSalidaInventarios() {
+        return this.tbrControlSalidaInventarios;
+    }
+    
+    public void setTbrControlSalidaInventarios(Set<TbrControlSalidaInventario> tbrControlSalidaInventarios) {
+        this.tbrControlSalidaInventarios = tbrControlSalidaInventarios;
+    }
+
+
+
 
 }
+
+

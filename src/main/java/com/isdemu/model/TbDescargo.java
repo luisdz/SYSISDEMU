@@ -5,6 +5,7 @@
  */
 package com.isdemu.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,12 +31,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="TB_DESCARGO"
     ,schema="dbo"
   )
-public class TbDescargo {
+public class TbDescargo implements Serializable {
     
-    
-    
-    
-     private int idDescargo;
+    private int idDescargo;
      private TbInventario tbInventario;
      private int idNumeroDescargo;
      private Date fecha;
@@ -52,12 +50,11 @@ public class TbDescargo {
     public int getIdDescargo() {
         return this.idDescargo;
     }
-    
-    public void setIdDescargo(int idDescargo) {
+     public void setIdDescargo(int idDescargo) {
         this.idDescargo = idDescargo;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER )
     @JoinColumn(name="ID_INVENTARIO", nullable=false)
     public TbInventario getTbInventario() {
         return this.tbInventario;
@@ -78,7 +75,7 @@ public class TbDescargo {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA", length=23)
     public Date getFecha() {
         return this.fecha;
@@ -109,6 +106,7 @@ public class TbDescargo {
     }
 
     @Temporal(TemporalType.DATE)
+ @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INSERT", length=10)
     public Date getFechaInsert() {
         return this.fechaInsert;
@@ -129,7 +127,9 @@ public class TbDescargo {
     }
 
     @Temporal(TemporalType.DATE)
+   
     @Column(name="FECHA_UPDATE", length=10)
+    @DateTimeFormat(pattern = "dd-mm-yyyy")
     public Date getFechaUpdate() {
         return this.fechaUpdate;
     }
@@ -140,4 +140,7 @@ public class TbDescargo {
 
 
 
+
 }
+
+

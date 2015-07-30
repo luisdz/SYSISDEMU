@@ -6,8 +6,10 @@
 package com.isdemu.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +36,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 )
 public class TbPrestamoEquipo {
     
-    private int idPrestamoEquipo;
-     private TbInventario tbInventario;
+      private int idPrestamoEquipo;
      private int NPrestamo;
      private Date fechaSolicitud;
      private Date fechaReservacion;
@@ -48,6 +49,7 @@ public class TbPrestamoEquipo {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
+     private Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios = new HashSet<TbrPrestamoEquipoInventario>(0);
 
      
       
@@ -58,19 +60,8 @@ public class TbPrestamoEquipo {
     public int getIdPrestamoEquipo() {
         return this.idPrestamoEquipo;
     }
-    
     public void setIdPrestamoEquipo(int idPrestamoEquipo) {
         this.idPrestamoEquipo = idPrestamoEquipo;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ID_INVENTARIO", nullable=false)
-    public TbInventario getTbInventario() {
-        return this.tbInventario;
-    }
-    
-    public void setTbInventario(TbInventario tbInventario) {
-        this.tbInventario = tbInventario;
     }
 
     
@@ -83,8 +74,7 @@ public class TbPrestamoEquipo {
         this.NPrestamo = NPrestamo;
     }
 
-    @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="FECHA_SOLICITUD", nullable=false, length=23)
     public Date getFechaSolicitud() {
         return this.fechaSolicitud;
@@ -95,7 +85,6 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_RESERVACION", nullable=false, length=23)
     public Date getFechaReservacion() {
         return this.fechaReservacion;
@@ -106,7 +95,6 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="HORA_INICIO", nullable=false, length=23)
     public Date getHoraInicio() {
         return this.horaInicio;
@@ -117,7 +105,6 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="HORA_FIN", nullable=false, length=23)
     public Date getHoraFin() {
         return this.horaFin;
@@ -168,7 +155,6 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INSERT", length=10)
     public Date getFechaInsert() {
         return this.fechaInsert;
@@ -189,7 +175,6 @@ public class TbPrestamoEquipo {
     }
 
     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_UPDATE", length=10)
     public Date getFechaUpdate() {
         return this.fechaUpdate;
@@ -199,6 +184,18 @@ public class TbPrestamoEquipo {
         this.fechaUpdate = fechaUpdate;
     }
 
+@OneToMany(fetch=FetchType.EAGER, mappedBy="tbPrestamoEquipo")
+    public Set<TbrPrestamoEquipoInventario> getTbrPrestamoEquipoInventarios() {
+        return this.tbrPrestamoEquipoInventarios;
+    }
+    
+    public void setTbrPrestamoEquipoInventarios(Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios) {
+        this.tbrPrestamoEquipoInventarios = tbrPrestamoEquipoInventarios;
+    }
+
+
 
 
 }
+
+

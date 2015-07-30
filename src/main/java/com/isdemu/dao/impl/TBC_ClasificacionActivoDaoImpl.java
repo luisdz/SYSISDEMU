@@ -35,11 +35,6 @@ public class TBC_ClasificacionActivoDaoImpl implements TbcClasificacionActivoDao
 	public List getAll() {
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbcClasificacionActivo.class);
-            dc.add(Restrictions.ne("idClasificacionActivo", 1));
-                    
-            
-           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
-           // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         

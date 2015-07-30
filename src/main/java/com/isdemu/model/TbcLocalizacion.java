@@ -5,7 +5,9 @@
  */
 package com.isdemu.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,10 +28,11 @@ import javax.persistence.Table;
     
 )
 public class TbcLocalizacion {
+   
      private int idLocalizacion;
      private TbcRegion tbcRegion;
      private String nombreLocalizacion;
-     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
+//     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
 
      
        @Id 
@@ -40,11 +43,11 @@ public class TbcLocalizacion {
         return this.idLocalizacion;
     }
     
-    public void setIdLocalizacion(int idLocalizacion) {
+  public void setIdLocalizacion(int idLocalizacion) {
         this.idLocalizacion = idLocalizacion;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_REGION", nullable=false)
     public TbcRegion getTbcRegion() {
         return this.tbcRegion;
@@ -55,7 +58,7 @@ public class TbcLocalizacion {
     }
 
     
-    @Column(name="NOMBRE_LOCALIZACION", nullable=false)
+    @Column(name="NOMBRE_LOCALIZACION", nullable=false, length=1024)
     public String getNombreLocalizacion() {
         return this.nombreLocalizacion;
     }
@@ -64,13 +67,18 @@ public class TbcLocalizacion {
         this.nombreLocalizacion = nombreLocalizacion;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tbcLocalizacion")
-    public Set<TbInventario> getTbInventarios() {
-        return this.tbInventarios;
-    }
-    
-    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-        this.tbInventarios = tbInventarios;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcLocalizacion")
+//    public Set<TbInventario> getTbInventarios() {
+//        return this.tbInventarios;
+//    }
+//    
+//    public void setTbInventarios(Set<TbInventario> tbInventarios) {
+//        this.tbInventarios = tbInventarios;
+//    }
+
+
+
 
 }
+
+
