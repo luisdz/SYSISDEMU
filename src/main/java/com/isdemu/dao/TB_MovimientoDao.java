@@ -18,4 +18,5 @@ public interface TB_MovimientoDao {
      public List getTop();
     public void delete(Serializable id);
              public Object findByKey(Serializable id);
+             public void update(Object obj);
 }

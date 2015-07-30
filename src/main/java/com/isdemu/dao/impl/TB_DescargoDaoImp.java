@@ -63,4 +63,12 @@ public class TB_DescargoDaoImp implements TB_DescargoDao {
 		TbDescargo descargo = (TbDescargo) getCurrentSession().get(TbDescargo.class, id);
 		return descargo;
 	}
+        
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
 }

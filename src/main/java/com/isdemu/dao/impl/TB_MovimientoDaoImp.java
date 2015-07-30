@@ -91,4 +91,11 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
 		return movimiento;
 	}
         
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
+        
 }

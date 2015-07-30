@@ -53,4 +53,10 @@ public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
 		// TODO Auto-generated method stub
 		return tbDescargoDao.findByKey(id);
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbDescargoDao.update(obj);
+	}
 }

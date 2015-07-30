@@ -149,7 +149,7 @@
                                                     <td>${des.idNumeroDescargo}</td>
                                                     <td>${des.fecha}</td>
                                                     <td>${des.comentario}</td>
-                                                    <td><a href=""> Editar</a>
+                                                    <td><a href="${pageContext.request.contextPath}/Descargo/editDescargo/${des.idDescargo}"> Editar</a>
                                                     </td>
                                                     <td><a href="${pageContext.request.contextPath}/Descargo/deleteDescargo/${des.idDescargo}"> Eliminar</a>
                                                     </td>
