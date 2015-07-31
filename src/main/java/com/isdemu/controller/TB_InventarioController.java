@@ -92,7 +92,7 @@ public class TB_InventarioController {
 		System.out.println(clasi.toString());
               
                 List<TbcClaseActivo> movi = tbcClaseActivoService.getAll();
-               System.out.println("lista="+movi.get(0).getNombreClase());
+               //System.out.println("lista="+movi.get(0).getNombreClase());
                
 //               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
                 
@@ -102,6 +102,9 @@ public class TB_InventarioController {
             
                 //ModelAndView modelAndView = new ModelAndView("home");
                // System.out.println("return String:"+inventarioString);
+               
+                
+               
                 return movi;
                  
 	}
@@ -117,7 +120,10 @@ public class TB_InventarioController {
                  List ClasAct = tbClasActService.getAll();
                  List persona=tbcPersonaService.getAll();
                  List lozalizacion=tbcLocalizacionService.getAll();
-                 List ClaseActivo=tbcClaseActivoService.getAll();
+                 //List ClaseActivo=tbcClaseActivoService.getAll();
+                 
+                 
+                 List ClaseActivo=tbcClaseActivoService.getTop();
                  
                  myModel.put("inventario", new TbInventario());
                 

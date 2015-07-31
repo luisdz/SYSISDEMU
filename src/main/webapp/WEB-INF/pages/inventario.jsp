@@ -87,7 +87,7 @@
                             Clasificacion Activo
                     </label>
                    
-                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown" name="dropdown">
+                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown1" name="dropdown1">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
                                 <c:forEach var="clasi" items="${clasificacionA}">
                                     <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
@@ -100,15 +100,15 @@
                             Clase de Activo
                     </label>
                    
-                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown" name="dropdown">
+                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown2" name="dropdown">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
                                 <c:forEach var="claseA" items="${claseActivo}">
                                     <form:option value="${claseA.idClaseActivo}"  label="${claseA.nombreClase}"/>
                                  </c:forEach>
                       </form:select>
             </div>
-          
-                
+            
+             
          
             
           
@@ -238,8 +238,8 @@
 				<%@include file="footer.jsp" %>		
            
 <script>
-$("#dropdown").change(function () {
-   var conceptName = $('#dropdown :selected').val(); // define the variable
+$("#dropdown1").change(function () {
+   var conceptName = $('#dropdown1 :selected').val(); // define the variable
     alert(conceptName);
     
     
@@ -255,14 +255,17 @@ $("#dropdown").change(function () {
                 data: "{id:" + conceptName + "}", 
                 
                success: function(data) { 
-                   
+                   var html = '';
                    var len = data.length;
                     //alert("devuelve algo"+data);
                     
-                                       data.forEach(function(entry) {
+                            data.forEach(function(entry) 
+                            {
                                     console.log(entry);
-                                    alert("foreach :"+entry.nombreClase );
+                                   // alert("foreach :"+entry.nombreClase );
+                                   html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
                             });
+                            $('#dropdown2').append(html);
                     alert("devuelve algo: "+data);
                 },
                 error:function(data,status,er) { 
