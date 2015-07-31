@@ -38,7 +38,7 @@ public class TbcPoliza {
      private String codigoPoliza;
      private Date fechaInicio;
      private Date fechaFin;
-     private Set<TbcClasificacionActivo> tbcClasificacionActivos = new HashSet<TbcClasificacionActivo>(0);
+    // private Set<TbcClasificacionActivo> tbcClasificacionActivos = new HashSet<TbcClasificacionActivo>(0);
 
      
        @Id 
@@ -95,14 +95,14 @@ public class TbcPoliza {
         this.fechaFin = fechaFin;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcPoliza")
-    public Set<TbcClasificacionActivo> getTbcClasificacionActivos() {
-        return this.tbcClasificacionActivos;
-    }
-    
-    public void setTbcClasificacionActivos(Set<TbcClasificacionActivo> tbcClasificacionActivos) {
-        this.tbcClasificacionActivos = tbcClasificacionActivos;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcPoliza")
+//    public Set<TbcClasificacionActivo> getTbcClasificacionActivos() {
+//        return this.tbcClasificacionActivos;
+//    }
+//    
+//    public void setTbcClasificacionActivos(Set<TbcClasificacionActivo> tbcClasificacionActivos) {
+//        this.tbcClasificacionActivos = tbcClasificacionActivos;
+//    }
 
 
 

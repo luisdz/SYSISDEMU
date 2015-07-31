@@ -36,7 +36,7 @@ public class TbcUnidad {
      private TbcRegion tbcRegion;
      private String nombreUnidad;
      private String descripcion;
-     private Set<TbcPersona> tbcPersonas = new HashSet<TbcPersona>(0);
+     //private Set<TbcPersona> tbcPersonas = new HashSet<TbcPersona>(0);
 
     
      @Id 
@@ -81,14 +81,14 @@ public class TbcUnidad {
         this.descripcion = descripcion;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcUnidad")
-    public Set<TbcPersona> getTbcPersonas() {
-        return this.tbcPersonas;
-    }
-    
-    public void setTbcPersonas(Set<TbcPersona> tbcPersonas) {
-        this.tbcPersonas = tbcPersonas;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcUnidad")
+//    public Set<TbcPersona> getTbcPersonas() {
+//        return this.tbcPersonas;
+//    }
+//    
+//    public void setTbcPersonas(Set<TbcPersona> tbcPersonas) {
+//        this.tbcPersonas = tbcPersonas;
+//    }
 
 
 

@@ -255,13 +255,20 @@ $("#dropdown").change(function () {
                 data: "{id:" + conceptName + "}", 
                 
                success: function(data) { 
+                   
                    var len = data.length;
-                    alert("devuelve algo"+data);
+                    //alert("devuelve algo"+data);
                     
-                    
+                                       data.forEach(function(entry) {
+                                    console.log(entry);
+                                    alert("foreach :"+entry.nombreClase );
+                            });
+                    alert("devuelve algo: "+data);
                 },
                 error:function(data,status,er) { 
                     alert("error: "+data+" status: "+status+" er:"+er);
+                    
+                    
                 }
             });
    
