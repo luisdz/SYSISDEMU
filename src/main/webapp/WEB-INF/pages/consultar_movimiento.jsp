@@ -147,7 +147,7 @@
                                                     <td>${mov.idMovimiento}</td>
                                                     <td>${mov.fechaMovimiento}</td>
                                                     <td>${mov.razonCambio}</td>
-                                                    <td>Editar</td>
+                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimiento/${mov.idMovimiento}"> Editar</a></td>
                                                     <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${mov.idMovimiento}"> Eliminar</a>
                                                     </td>
 

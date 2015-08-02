@@ -5,8 +5,12 @@
  */
 package com.isdemu.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbcClaseActivo;
+import com.isdemu.model.TbcUnidad;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service;
 import java.math.BigDecimal;
@@ -18,8 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -97,6 +103,70 @@ public class TB_MovimientoController {
 		return modelAndView;
 	}
         
+         @RequestMapping(value="/editMovimiento/{id}", method=RequestMethod.GET)
+	public ModelAndView editMovimientoPage(@PathVariable Integer id) {
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+		TbMovimiento mov = (TbMovimiento) tbMovimientoService.findByKey(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("movimiento",mov ); 
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_movimiento",myModel);
+	}
+
+	@RequestMapping(value="/editMovimiento/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingMovimiento(@ModelAttribute TbMovimiento mov, @PathVariable Integer id) {
+            
+		TbMovimiento movActual = (TbMovimiento) tbMovimientoService.findByKey(id);
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                movActual.setRazonCambio(mov.getRazonCambio());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                movActual.setNMovimiento(mov.getNMovimiento());
+                
+		                
+		tbMovimientoService.update(movActual);
+
+		String message = "unidad was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
         
+        
+         @RequestMapping(value="/detalleInventarios", method=RequestMethod.POST)
+	public @ResponseBody  List<TbInventario> detalleInv(@RequestBody String clasi) {
+		
+                System.out.println("INGRESA CONTROLLER detalle inv");
+		System.out.println(clasi.toString());
+              
+                List<TbInventario> movi = tbInventarioService.getAll();
+                
+                
+               System.out.println("lista="+movi.get(0).getClaseEquipo());
+               
+               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                
+               
+               //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
+                String var=gson.toJson(movi.get(0).getFechaAdquisicion());
+            
+                //ModelAndView modelAndView = new ModelAndView("home");
+               // System.out.println("return String:"+inventarioString);
+               
+                
+               
+                return movi;
+                 
+	}
     
 }
