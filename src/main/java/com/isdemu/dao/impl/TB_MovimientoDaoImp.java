@@ -11,6 +11,7 @@ import com.isdemu.model.TbInventario;
 
 
 import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbrMovimientoInventario;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -67,6 +68,27 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
           
             	}
+        
+        @Override
+	public List getMovInv() {
+            
+		// TODO Auto-generated method stub
+            //DetachedCriteria dc = DetachedCriteria.forClass(TbMovimiento.class,"movimiento");
+            DetachedCriteria dc = DetachedCriteria.forClass(TbrMovimientoInventario.class,"movimientoInventario");
+            dc.setFetchMode("TbMovimiento", FetchMode.JOIN);
+            dc.setFetchMode("TbInventario", FetchMode.JOIN);
+            
+           //Date highestDate = new Date();
+           
+            //System.out.println("fecha"+highestDate);
+
+           // dc.add(Restrictions.ge("fechaMovimiento", highestDate));
+           // dc.add(Restrictions.lt("fechaMovimiento", highestDate));
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+          
+            	}
+        
         
         @Override
 	public void save(Object obj) {

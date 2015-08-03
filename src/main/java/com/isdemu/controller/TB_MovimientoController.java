@@ -142,9 +142,52 @@ public class TB_MovimientoController {
 		return modelAndView;
 	}
         
+         @RequestMapping(value="/editMovimientoI/{id}", method=RequestMethod.GET)
+	public ModelAndView editMovimientoInventarioPage(@PathVariable Integer id) 
+        {
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+		List mov = tbMovimientoService.getMovInv();
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("movimientoInv",mov ); 
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_movimiento",myModel);
+	}
+        
+        
+        @RequestMapping(value="/editMovimientoI/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingMovimientoInventario(@ModelAttribute TbMovimiento mov, @PathVariable Integer id) {
+            
+		TbMovimiento movActual = (TbMovimiento) tbMovimientoService.findByKey(id);
+                
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                movActual.setRazonCambio(mov.getRazonCambio());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                movActual.setNMovimiento(mov.getNMovimiento());
+                
+		                
+		tbMovimientoService.update(movActual);
+
+		String message = "unidad was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
+        
         
          @RequestMapping(value="/detalleInventarios", method=RequestMethod.POST)
-	public @ResponseBody  List<TbInventario> detalleInv(@RequestBody String clasi) {
+	public @ResponseBody  List<TbInventario> detalleInv(@RequestBody String clasi) 
+        {
 		
                 System.out.println("INGRESA CONTROLLER detalle inv");
 		System.out.println(clasi.toString());
@@ -168,5 +211,7 @@ public class TB_MovimientoController {
                 return movi;
                  
 	}
+        
+      
     
 }
