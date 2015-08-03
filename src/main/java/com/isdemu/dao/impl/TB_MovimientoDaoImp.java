@@ -70,20 +70,13 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
             	}
         
         @Override
-	public List getMovInv() {
+	public List getMovInv(Serializable id) {
             
-		// TODO Auto-generated method stub
-            //DetachedCriteria dc = DetachedCriteria.forClass(TbMovimiento.class,"movimiento");
-            DetachedCriteria dc = DetachedCriteria.forClass(TbrMovimientoInventario.class,"movimientoInventario");
-            dc.setFetchMode("TbMovimiento", FetchMode.JOIN);
-            dc.setFetchMode("TbInventario", FetchMode.JOIN);
+		
+            DetachedCriteria dc = DetachedCriteria.forClass(TbrMovimientoInventario.class,"movimientoInventario");            
             
-           //Date highestDate = new Date();
-           
-            //System.out.println("fecha"+highestDate);
-
-           // dc.add(Restrictions.ge("fechaMovimiento", highestDate));
-           // dc.add(Restrictions.lt("fechaMovimiento", highestDate));
+            dc.createAlias("movimientoInventario.tbMovimiento", "movi");
+            dc.add(Restrictions.eq("movi.idMovimiento", id));         
              
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
           

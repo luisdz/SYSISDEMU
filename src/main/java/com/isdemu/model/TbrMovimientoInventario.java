@@ -26,7 +26,7 @@ import javax.persistence.Table;
 public class TbrMovimientoInventario {
     private int idMovimientoInventario;
      private TbMovimiento tbMovimiento;
-     private Integer idInventario;
+     private TbInventario tbInventario;
      
      
  @Id 
@@ -51,14 +51,15 @@ public class TbrMovimientoInventario {
         this.tbMovimiento = tbMovimiento;
     }
 
-    
-    @Column(name="ID_INVENTARIO")
-    public Integer getIdInventario() {
-        return this.idInventario;
+   @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="ID_INVENTARIO") 
+   // @Column(name="ID_INVENTARIO")
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
     }
     
-    public void setIdInventario(Integer idInventario) {
-        this.idInventario = idInventario;
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
     }
 
 

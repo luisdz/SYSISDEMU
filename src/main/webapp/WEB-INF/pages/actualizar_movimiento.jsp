@@ -70,7 +70,7 @@
 									<hr>
 
 
-<form:form method="POST" action="${pageContext.request.contextPath}/Movimiento/editMovimiento/${movimiento.idMovimiento}" modelAttribute="movimiento" >
+<form:form method="POST" action="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${movimiento.idMovimiento}" modelAttribute="movimiento" >
     
        
                 <div class="form-group">
@@ -88,12 +88,13 @@
                         <form:input path="razonCambio" type="text" placeholder="${movimiento.razonCambio}" class="form-control" id="lastname" name="lastname"/>
                 </div>
                <div class="row">
+      
                                 
-                                <div class="col-md-4">
+<!--                                <div class="col-md-4">
                                     <button class="btn btn-yellow btn-block" id="btnDetalle" type="button">
                                                 Detalle inventario <i class="fa fa-arrow-circle-right"></i>
                                         </button>
-                                </div>
+                                </div>-->
                         
                         
                             <div class="row">
@@ -112,16 +113,30 @@
                         <table class="table table-striped table-hover" id="sample-table-2">
                                 <thead>
                                         <tr>
+                                             <th>id mov inv</th>
+                                               <th>ID movimiento</th>
                                                 <th>ID inventario</th>
-                                                <th>Marca</th>
-                                                <th>Modelo</th>
-                                                <th>Edit</th>
+                                               
+                                                <th>razon</th>
+                                                <th>marca</th>
                                                 <th>Delete</th>
                                         </tr>
                                 </thead>
                                 <tbody id="tablabody" name="tablabody">
 
-                                
+                                <c:forEach var="mov" items="${movimientoInv}">
+                                            <tr align="center">
+                                                <td>${mov.idMovimientoInventario}</td>
+                                                  <td>${mov.tbMovimiento.idMovimiento}</td>
+                                                  <td>${mov.tbInventario.idInventario}</td>
+                                                    
+                                                    <td>${mov.tbMovimiento.razonCambio}</td>                                                    
+                                                    <td>${mov.tbInventario.marca}</td> 
+                                                    <td><a href=""> Eliminar</a></td>
+
+                                            </tr>
+                                        </c:forEach>	
+                                          
 
                                 </tbody>
                         </table>

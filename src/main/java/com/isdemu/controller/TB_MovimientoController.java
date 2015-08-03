@@ -146,12 +146,15 @@ public class TB_MovimientoController {
 	public ModelAndView editMovimientoInventarioPage(@PathVariable Integer id) 
         {
 		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
-		List mov = tbMovimientoService.getMovInv();
+            
+                TbMovimiento movi = (TbMovimiento) tbMovimientoService.findByKey(id);
+		List mov = tbMovimientoService.getMovInv(id);
                // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
-                
+              
                   Map<String, Object> myModel = new HashMap<String, Object>();
                    //List ClasAct = tbClasActService.getAll();  
                    myModel.put("movimientoInv",mov ); 
+                   myModel.put("movimiento",movi);
                  // myModel.put("clasificacionA",activo );
                   //myModel.put("AllclasificacionA",ClasAct );
                 
