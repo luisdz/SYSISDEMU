@@ -231,13 +231,15 @@
 
     });
 
+
     jsonArray=jsonArray.substring(0,jsonArray.length-1);
     jsonArray=jsonArray+"]";
-    alert(jsonArray);
+    //alert(jsonArray);
          $.ajax({
            type: "POST",
            url: "${pageContext.request.contextPath}/Control/add",
            dataType: "json",
+           contentType: 'application/json',
            success: function (msg) {
                alert("entra");
            },
