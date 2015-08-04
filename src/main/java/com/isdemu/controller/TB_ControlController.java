@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
  *
@@ -83,21 +86,29 @@ public class TB_ControlController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@RequestBody List<TbControlSalida> control) {
+	public @ResponseBody String addingPais(@RequestBody String control) {
 		ModelAndView modelAndView = new ModelAndView("home");
 //                JSONObject jsonObj = new JSONObject(control);
-		System.out.println("entra aqui POST persona"+control.get(0).getIdControlSalida());
+		//System.out.println("entra aqui POST persona"+control.get(0).getIdControlSalida());
+                 System.out.println("String Json:"+control);
+                 JSONArray array = new JSONArray(control);
                  
+                 for(int i=0;i<array.length();i++){
+                    JSONObject object = array.getJSONObject(i);
+                    String id = object.getString("idControlSalida");
+                    System.out.println("Id Json:"+id);
+                   
+                }
 //	Gson gson = new Gson();
  
 	// convert java object to JSON format,
 	// and returned as JSON formatted string
 	//List<TbControlSalida> json = gson.fromJson(control, List<TbControlSalida>);
                
-                tbControlService.save(control);
+             //   tbControlService.save(control);
 		String message = "Persona was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return "22";
 	}
         
       @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
