@@ -118,7 +118,7 @@
                     </label>
                      <form:select path="tbcPersona.idPersona" class="form-control" id="dropdown3" name="dropdown">
                          <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
-                         <%-- <c:forEach var="pers" items="${persona}">
+                       <c:forEach var="pers" items="${persona}">
                                     <form:option value="${pers.idPersona}"  label="${pers.nombrePersona}"/>
                                  </c:forEach> --%>
                       </form:select>
@@ -252,7 +252,7 @@ $("#dropdown1").change(function () {
                 mimeType: 'application/json',
                 
                 
-                data: "{id:" + conceptName + "}", 
+                data: conceptName, 
                 
                success: function(data) { 
                    var html = '';
@@ -266,7 +266,7 @@ $("#dropdown1").change(function () {
                                    html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
                             });
                             $('#dropdown2').append(html);
-                    alert("devuelve algo: "+data);
+                   // alert("devuelve algo: "+data);
                 },
                 error:function(data,status,er) { 
                     alert("error: "+data+" status: "+status+" er:"+er);

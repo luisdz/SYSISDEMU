@@ -87,11 +87,13 @@ public class TB_InventarioController {
         
        @RequestMapping(value="/listaClaseA", method=RequestMethod.POST)
 	public @ResponseBody  List<TbcClaseActivo> ClaseA(@RequestBody String clasi) {
-		
-                System.out.println("INGRESA CONTROLLER LISTA CLASE");
-		System.out.println(clasi.toString());
+		int idClasi= Integer.parseInt(clasi);
+                
               
-                List<TbcClaseActivo> movi = tbcClaseActivoService.getAll();
+                System.out.println("INGRESA CONTROLLER LISTA CLASE---");
+		System.out.println(idClasi);
+              
+                List<TbcClaseActivo> movi = tbcClaseActivoService.getAllidClasi(idClasi);
                //System.out.println("lista="+movi.get(0).getNombreClase());
                
 //               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();

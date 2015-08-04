@@ -8,11 +8,13 @@ package com.isdemu.dao.impl;
 import com.isdemu.dao.TBC_ClaseActivoDao;
 
 import com.isdemu.model.TbcClaseActivo;
+import com.isdemu.model.TbcClasificacionActivo;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -55,6 +57,16 @@ public class TBC_ClaseActivoDaoImpl implements TBC_ClaseActivoDao{
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
+        @Override
+        public List getAllidClasi(Serializable id){
+        	
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcClaseActivo.class,"clase");            
+            
+            dc.createAlias("clase.tbcClasificacionActivo", "clasi");
+            dc.add(Restrictions.eq("clasi.idClasificacionActivo", id));         
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+        }
         
         @Override
 	public void delete(Serializable id) {
