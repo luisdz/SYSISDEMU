@@ -49,9 +49,9 @@ public class TbPrestamoEquipo {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-     private Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios = new HashSet<TbrPrestamoEquipoInventario>(0);
-
-     
+//     private Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios = new HashSet<TbrPrestamoEquipoInventario>(0);
+//
+//     
       
     @Id 
     @GeneratedValue
@@ -184,14 +184,14 @@ public class TbPrestamoEquipo {
         this.fechaUpdate = fechaUpdate;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbPrestamoEquipo")
-    public Set<TbrPrestamoEquipoInventario> getTbrPrestamoEquipoInventarios() {
-        return this.tbrPrestamoEquipoInventarios;
-    }
-    
-    public void setTbrPrestamoEquipoInventarios(Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios) {
-        this.tbrPrestamoEquipoInventarios = tbrPrestamoEquipoInventarios;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbPrestamoEquipo")
+//    public Set<TbrPrestamoEquipoInventario> getTbrPrestamoEquipoInventarios() {
+//        return this.tbrPrestamoEquipoInventarios;
+//    }
+//    
+//    public void setTbrPrestamoEquipoInventarios(Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios) {
+//        this.tbrPrestamoEquipoInventarios = tbrPrestamoEquipoInventarios;
+//    }
 
 
 

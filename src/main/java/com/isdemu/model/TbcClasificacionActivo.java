@@ -35,7 +35,7 @@ private int idClasificacionActivo;
      private String nombreClasificacion;
      private String codigoClasificacion;
      private String descripcionClasificacion;
-     private Set<TbcClaseActivo> tbcClaseActivos = new HashSet<TbcClaseActivo>(0);
+//     private Set<TbcClaseActivo> tbcClaseActivos = new HashSet<TbcClaseActivo>(0);
 
        @Id 
 
@@ -89,14 +89,14 @@ private int idClasificacionActivo;
         this.descripcionClasificacion = descripcionClasificacion;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcClasificacionActivo")
-    public Set<TbcClaseActivo> getTbcClaseActivos() {
-        return this.tbcClaseActivos;
-    }
-    
-    public void setTbcClaseActivos(Set<TbcClaseActivo> tbcClaseActivos) {
-        this.tbcClaseActivos = tbcClaseActivos;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcClasificacionActivo")
+//    public Set<TbcClaseActivo> getTbcClaseActivos() {
+//        return this.tbcClaseActivos;
+//    }
+//    
+//    public void setTbcClaseActivos(Set<TbcClaseActivo> tbcClaseActivos) {
+//        this.tbcClaseActivos = tbcClaseActivos;
+//    }
 
 
 

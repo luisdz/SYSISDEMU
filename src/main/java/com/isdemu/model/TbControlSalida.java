@@ -48,7 +48,7 @@ public class TbControlSalida {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-     private Set<TbrControlSalidaInventario> tbrControlSalidaInventarios = new HashSet<TbrControlSalidaInventario>(0);
+//     private Set<TbrControlSalidaInventario> tbrControlSalidaInventarios = new HashSet<TbrControlSalidaInventario>(0);
 
      
     @Id 
@@ -162,15 +162,15 @@ public class TbControlSalida {
         this.fechaUpdate = fechaUpdate;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbControlSalida")
-    public Set<TbrControlSalidaInventario> getTbrControlSalidaInventarios() {
-        return this.tbrControlSalidaInventarios;
-    }
-    
-    public void setTbrControlSalidaInventarios(Set<TbrControlSalidaInventario> tbrControlSalidaInventarios) {
-        this.tbrControlSalidaInventarios = tbrControlSalidaInventarios;
-    }
-
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbControlSalida")
+//    public Set<TbrControlSalidaInventario> getTbrControlSalidaInventarios() {
+//        return this.tbrControlSalidaInventarios;
+//    }
+//    
+//    public void setTbrControlSalidaInventarios(Set<TbrControlSalidaInventario> tbrControlSalidaInventarios) {
+//        this.tbrControlSalidaInventarios = tbrControlSalidaInventarios;
+//    }
+//
 
 
 

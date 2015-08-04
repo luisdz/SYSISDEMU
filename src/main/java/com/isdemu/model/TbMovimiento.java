@@ -42,7 +42,7 @@ public class TbMovimiento {
      private Date fechaInsert;
      private int userUpdate;
      private Date fechaUpdate;
-     private Set<TbrMovimientoInventario> tbrMovimientoInventarios = new HashSet<TbrMovimientoInventario>(0);
+//     private Set<TbrMovimientoInventario> tbrMovimientoInventarios = new HashSet<TbrMovimientoInventario>(0);
 
      
      
@@ -129,14 +129,14 @@ public class TbMovimiento {
         this.fechaUpdate = fechaUpdate;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbMovimiento")
-    public Set<TbrMovimientoInventario> getTbrMovimientoInventarios() {
-        return this.tbrMovimientoInventarios;
-    }
-    
-    public void setTbrMovimientoInventarios(Set<TbrMovimientoInventario> tbrMovimientoInventarios) {
-        this.tbrMovimientoInventarios = tbrMovimientoInventarios;
-    }
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbMovimiento")
+//    public Set<TbrMovimientoInventario> getTbrMovimientoInventarios() {
+//        return this.tbrMovimientoInventarios;
+//    }
+//    
+//    public void setTbrMovimientoInventarios(Set<TbrMovimientoInventario> tbrMovimientoInventarios) {
+//        this.tbrMovimientoInventarios = tbrMovimientoInventarios;
+//    }
 
 
 

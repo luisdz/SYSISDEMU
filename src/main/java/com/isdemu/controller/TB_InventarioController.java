@@ -90,11 +90,11 @@ public class TB_InventarioController {
                 List<TbInventario> inventario = tbInventarioService.getAll();
                System.out.println("lista="+inventario.get(0).getMarca());
                
-               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 
                
                //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
-                String var=gson.toJson(inventario.get(0).getFechaAdquisicion());
+                String var=gson.toJson(inventario.get(0));
             
                 //ModelAndView modelAndView = new ModelAndView("home");
                // System.out.println("return String:"+inventarioString);
