@@ -48,7 +48,7 @@ public class TbControlSalida {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-//     private Set<TbrControlSalidaInventario> tbrControlSalidaInventarios = new HashSet<TbrControlSalidaInventario>(0);
+     //private Set<TbrControlSalidaInventario> tbrControlSalidaInventarios = new HashSet<TbrControlSalidaInventario>(0);
 
      
     @Id 
@@ -170,7 +170,7 @@ public class TbControlSalida {
 //    public void setTbrControlSalidaInventarios(Set<TbrControlSalidaInventario> tbrControlSalidaInventarios) {
 //        this.tbrControlSalidaInventarios = tbrControlSalidaInventarios;
 //    }
-//
+
 
 
 

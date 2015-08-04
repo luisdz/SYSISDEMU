@@ -40,8 +40,8 @@ public class TbcRegion {
      private String nombreRegion;
      private String direccion;
      private String descripcion;
-     private Set<TbcUnidad> tbcUnidads = new HashSet<TbcUnidad>(0);
-//     private Set<TbcLocalizacion> tbcLocalizacions = new HashSet<TbcLocalizacion>(0);
+     //private Set<TbcUnidad> tbcUnidads = new HashSet<TbcUnidad>(0);
+     //private Set<TbcLocalizacion> tbcLocalizacions = new HashSet<TbcLocalizacion>(0);
 
      
     @Id 
@@ -86,15 +86,15 @@ public class TbcRegion {
         this.descripcion = descripcion;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcRegion")
-    public Set<TbcUnidad> getTbcUnidads() {
-        return this.tbcUnidads;
-    }
-    
-    public void setTbcUnidads(Set<TbcUnidad> tbcUnidads) {
-        this.tbcUnidads = tbcUnidads;
-    }
-
+//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcRegion")
+//    public Set<TbcUnidad> getTbcUnidads() {
+//        return this.tbcUnidads;
+//    }
+//    
+//    public void setTbcUnidads(Set<TbcUnidad> tbcUnidads) {
+//        this.tbcUnidads = tbcUnidads;
+//    }
+//
 //@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcRegion")
 //    public Set<TbcLocalizacion> getTbcLocalizacions() {
 //        return this.tbcLocalizacions;

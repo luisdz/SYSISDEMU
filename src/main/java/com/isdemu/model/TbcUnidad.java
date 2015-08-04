@@ -36,7 +36,7 @@ public class TbcUnidad {
      private TbcRegion tbcRegion;
      private String nombreUnidad;
      private String descripcion;
-//     private Set<TbcPersona> tbcPersonas = new HashSet<TbcPersona>(0);
+     //private Set<TbcPersona> tbcPersonas = new HashSet<TbcPersona>(0);
 
     
      @Id 

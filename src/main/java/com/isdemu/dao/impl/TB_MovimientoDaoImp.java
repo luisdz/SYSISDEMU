@@ -11,6 +11,7 @@ import com.isdemu.model.TbInventario;
 
 
 import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbrMovimientoInventario;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -67,6 +68,20 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
           
             	}
+        
+        @Override
+	public List getMovInv(Serializable id) {
+            
+		
+            DetachedCriteria dc = DetachedCriteria.forClass(TbrMovimientoInventario.class,"movimientoInventario");            
+            
+            dc.createAlias("movimientoInventario.tbMovimiento", "movi");
+            dc.add(Restrictions.eq("movi.idMovimiento", id));         
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+          
+            	}
+        
         
         @Override
 	public void save(Object obj) {

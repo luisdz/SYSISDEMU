@@ -19,4 +19,5 @@ public interface TBC_ClaseActivoDao {
     public Object findByKey(Serializable id);
     public void update(Object obj);
     public List getTop();
+    public List getAllidClasi(Serializable id);
 }

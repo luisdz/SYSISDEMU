@@ -49,9 +49,9 @@ public class TbPrestamoEquipo {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-//     private Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios = new HashSet<TbrPrestamoEquipoInventario>(0);
-//
-//     
+    // private Set<TbrPrestamoEquipoInventario> tbrPrestamoEquipoInventarios = new HashSet<TbrPrestamoEquipoInventario>(0);
+
+     
       
     @Id 
     @GeneratedValue

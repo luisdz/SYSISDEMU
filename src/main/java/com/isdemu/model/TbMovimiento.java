@@ -42,7 +42,7 @@ public class TbMovimiento {
      private Date fechaInsert;
      private int userUpdate;
      private Date fechaUpdate;
-//     private Set<TbrMovimientoInventario> tbrMovimientoInventarios = new HashSet<TbrMovimientoInventario>(0);
+     //private Set<TbrMovimientoInventario> tbrMovimientoInventarios = new HashSet<TbrMovimientoInventario>(0);
 
      
      

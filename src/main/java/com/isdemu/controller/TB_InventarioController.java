@@ -10,6 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.isdemu.model.TbDescargo;
 import com.isdemu.model.TbInventario;
+import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbcClaseActivo;
 import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
@@ -22,6 +24,7 @@ import com.isdemu.service.TBC_Poliza_Service;
 import com.isdemu.service.TBC_Region_Service;
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
+import com.isdemu.service.TB_Movimiento_Service;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,7 +53,8 @@ public class TB_InventarioController {
     
     @Autowired
 	private TB_Inventario_Service tbInventarioService;
-   
+   @Autowired
+        private TB_Movimiento_Service tbMovimientoService;
     
     @Autowired
         private TBC_ClasificacionActivo_Service tbClasActService;
@@ -81,24 +85,29 @@ public class TB_InventarioController {
 	}
         
         
-        @RequestMapping(value="/listaClaseA", method=RequestMethod.POST)
-	public @ResponseBody  String ClaseA(@RequestBody String clasi) {
-		
-                System.out.println("INGRESA CONTROLLER LISTA CLASE");
-		System.out.println(clasi.toString());
+       @RequestMapping(value="/listaClaseA", method=RequestMethod.POST)
+	public @ResponseBody  List<TbcClaseActivo> ClaseA(@RequestBody String clasi) {
+		int idClasi= Integer.parseInt(clasi);
+                
               
-                List<TbInventario> inventario = tbInventarioService.getAll();
-               System.out.println("lista="+inventario.get(0).getMarca());
+                System.out.println("INGRESA CONTROLLER LISTA CLASE---");
+		System.out.println(idClasi);
+              
+                List<TbcClaseActivo> movi = tbcClaseActivoService.getAllidClasi(idClasi);
+               //System.out.println("lista="+movi.get(0).getNombreClase());
                
-               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
                 
                
                //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
-                String var=gson.toJson(inventario.get(0));
+//                String var=gson.toJson(movi.get(0).getFechaMovimiento());
             
                 //ModelAndView modelAndView = new ModelAndView("home");
                // System.out.println("return String:"+inventarioString);
-                return var;
+               
+                
+               
+                return movi;
                  
 	}
         
@@ -113,7 +122,10 @@ public class TB_InventarioController {
                  List ClasAct = tbClasActService.getAll();
                  List persona=tbcPersonaService.getAll();
                  List lozalizacion=tbcLocalizacionService.getAll();
-                 List ClaseActivo=tbcClaseActivoService.getAll();
+                 //List ClaseActivo=tbcClaseActivoService.getAll();
+                 
+                 
+                 List ClaseActivo=tbcClaseActivoService.getTop();
                  
                  myModel.put("inventario", new TbInventario());
                 

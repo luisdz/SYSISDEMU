@@ -38,6 +38,11 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
          public List getTop(){
          return tbMovimientoDao.getTop();
          }
+         @Override
+         public List getMovInv(Serializable id){
+             System.out.println("service impl getmovinv");
+         return tbMovimientoDao.getMovInv(id);
+         }
          
           @Override
 	public void save(Object obj) {

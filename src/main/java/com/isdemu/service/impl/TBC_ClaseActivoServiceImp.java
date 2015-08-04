@@ -43,6 +43,11 @@ public class TBC_ClaseActivoServiceImp implements TBC_ClaseActivo_Service{
          public List getTop(){
          return tbClaseActivoDao.getTop();
          }
+         
+          @Override
+         public List getAllidClasi(Serializable id){
+         return tbClaseActivoDao.getAllidClasi(id);
+         }
         
         @Override
 	public void delete(Serializable id) {

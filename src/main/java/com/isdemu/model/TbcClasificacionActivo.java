@@ -35,7 +35,7 @@ private int idClasificacionActivo;
      private String nombreClasificacion;
      private String codigoClasificacion;
      private String descripcionClasificacion;
-//     private Set<TbcClaseActivo> tbcClaseActivos = new HashSet<TbcClaseActivo>(0);
+     //private Set<TbcClaseActivo> tbcClaseActivos = new HashSet<TbcClaseActivo>(0);
 
        @Id 
 

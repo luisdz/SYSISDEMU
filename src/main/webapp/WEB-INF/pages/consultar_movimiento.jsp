@@ -132,7 +132,7 @@
                                                     <th>id movimiento</th>
                                                     <th>Fecha</th>
                                                     <th>Razon de cambio</th>
-                                                    <th>Inventario</th> 
+                                                     
                                                     
                                                     <th>Editar</th>
                                                     
@@ -147,104 +147,13 @@
                                                     <td>${mov.idMovimiento}</td>
                                                     <td>${mov.fechaMovimiento}</td>
                                                     <td>${mov.razonCambio}</td>
-                                                    <td>${mov.tbInventario.idInventario}</td>
-                                                    <td>Editar</td>
+                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${mov.idMovimiento}"> Editar</a></td>
                                                     <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${mov.idMovimiento}"> Eliminar</a>
                                                     </td>
 
                                             </tr>
                                         </c:forEach>	
-<!--                                            <tr>
-                                                    <td>01/01/1999</td>
-                                                    <td>UI Designer</td>
-                                                    <td>(641)-734-4763</td>
-                                                    <td>
-                                                    Peter Clark
-                                                    </td>
-                                                    <td>
-                                                        Activos fijos
-                                                    </td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Editar
-                                                    </a></td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Eliminar
-                                                    </a></td>
-                                            </tr>
-                                            <tr>
-                                                    <td>01/01/1999</td>
-                                                    <td>Content Designer</td>
-                                                    <td>(741)-034-4573</td>
-                                                    <td>
-                                                    Nicole Bell</td>
-                                                    <td>
-                                                        Activos fijos
-                                                    </td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Editar
-                                                    </a></td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Eliminar
-                                                    </a></td>
-                                            </tr>
-                                            <tr>
-                                                    <td>01/01/1999</td>
-                                                    <td>Visual Designer</td>
-                                                    <td>(471)-543-4073</td>
-                                                    <td>
-                                                    Steven Thompson</td>
-                                                    <td>
-                                                        Activos fijos
-                                                    </td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Editar
-                                                    </a></td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Eliminar
-                                                    </a></td>
-                                            </tr>
-                                            <tr>
-                                                    <td>01/01/1999</td>
-                                                    <td>Web Editor</td>
-                                                    <td>(799)-994-9999</td>
-                                                    <td>
-                                                    Ella Patterson</td>
-                                                    <td>
-                                                        Activos fijos
-                                                    </td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Editar
-                                                    </a></td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Eliminar
-                                                    </a></td>
-                                            </tr>
-                                            <tr>
-                                                    <td>01/01/1999</td>
-                                                    <td>Senior Designer</td>
-                                                    <td>(111)-114-1173</td>
-                                                    <td>
-                                                    Kenneth Ross/td>
-                                                    <td>
-                                                        Activos fijos
-                                                    </td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Editar
-                                                    </a></td>
-                                                    <td>
-                                                    <a href="#" class="delete-row">
-                                                            Eliminar
-                                                    </a></td>
-                                            </tr>-->
+<!--                                            
                                     </tbody>
                             </table>
                     </div>

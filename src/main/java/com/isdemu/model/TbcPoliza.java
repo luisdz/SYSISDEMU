@@ -38,7 +38,7 @@ public class TbcPoliza {
      private String codigoPoliza;
      private Date fechaInicio;
      private Date fechaFin;
-//     private Set<TbcClasificacionActivo> tbcClasificacionActivos = new HashSet<TbcClasificacionActivo>(0);
+    // private Set<TbcClasificacionActivo> tbcClasificacionActivos = new HashSet<TbcClasificacionActivo>(0);
 
      
        @Id 

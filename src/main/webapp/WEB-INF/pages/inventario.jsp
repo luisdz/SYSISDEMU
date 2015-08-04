@@ -87,7 +87,7 @@
                             Clasificacion Activo
                     </label>
                    
-                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown" name="dropdown">
+                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown1" name="dropdown1">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
                                 <c:forEach var="clasi" items="${clasificacionA}">
                                     <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
@@ -100,15 +100,15 @@
                             Clase de Activo
                     </label>
                    
-                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown" name="dropdown">
+                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown2" name="dropdown">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
-                                <c:forEach var="claseA" items="${claseActivo}">
+                          <%--  <c:forEach var="claseA" items="${claseActivo}">
                                     <form:option value="${claseA.idClaseActivo}"  label="${claseA.nombreClase}"/>
-                                 </c:forEach>
+                                 </c:forEach> --%>
                       </form:select>
             </div>
-          
-                
+            
+             
          
             
           
@@ -116,9 +116,9 @@
                     <label for="form-field-select-3">
                             En custodia de
                     </label>
-                     <form:select path="tbcPersona.idPersona" class="form-control" id="dropdown" name="dropdown">
+                     <form:select path="tbcPersona.idPersona" class="form-control" id="dropdown3" name="dropdown">
                          <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
-                         <c:forEach var="pers" items="${persona}">
+                       <c:forEach var="pers" items="${persona}">
                                     <form:option value="${pers.idPersona}"  label="${pers.nombrePersona}"/>
                                  </c:forEach>
                       </form:select>
@@ -128,11 +128,11 @@
                     <label for="form-field-select-3">
                             Localizacion
                     </label>
-                     <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown" name="dropdown">
+                     <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown4" name="dropdown">
                          <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
-                         <c:forEach var="loca" items="${lozalizacion}">
+                        <%-- <c:forEach var="loca" items="${lozalizacion}">
                                     <form:option value="${loca.idLocalizacion}"  label="${loca.nombreLocalizacion}"/>
-                                 </c:forEach>
+                                 </c:forEach> --%>
                       </form:select>
             </div>
           
@@ -238,8 +238,8 @@
 				<%@include file="footer.jsp" %>		
            
 <script>
-$("#dropdown").change(function () {
-   var conceptName = $('#dropdown :selected').val(); // define the variable
+$("#dropdown1").change(function () {
+   var conceptName = $('#dropdown1 :selected').val(); // define the variable
     alert(conceptName);
     
     
@@ -252,16 +252,26 @@ $("#dropdown").change(function () {
                 mimeType: 'application/json',
                 
                 
-                data: "{id:" + conceptName + "}", 
+                data: conceptName, 
                 
                success: function(data) { 
+                   var html = '';
                    var len = data.length;
-                    alert("devuelve algo"+data);
-                    
-                    
+                    //alert("devuelve algo"+data);
+                            $('#dropdown2').empty();
+                            data.forEach(function(entry) 
+                            {
+                                    console.log(entry);
+                                   // alert("foreach :"+entry.nombreClase );
+                                   html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
+                            });
+                            $('#dropdown2').append(html);
+                   // alert("devuelve algo: "+data);
                 },
                 error:function(data,status,er) { 
                     alert("error: "+data+" status: "+status+" er:"+er);
+                    
+                    
                 }
             });
    

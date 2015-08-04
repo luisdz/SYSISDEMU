@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -82,10 +83,17 @@ public class TB_ControlController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbControlSalida control) {
+	public ModelAndView addingPais(@RequestBody List<TbControlSalida> control) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+control);
+//                JSONObject jsonObj = new JSONObject(control);
+		System.out.println("entra aqui POST persona"+control.get(0).getIdControlSalida());
                  
+//	Gson gson = new Gson();
+ 
+	// convert java object to JSON format,
+	// and returned as JSON formatted string
+	//List<TbControlSalida> json = gson.fromJson(control, List<TbControlSalida>);
+               
                 tbControlService.save(control);
 		String message = "Persona was successfully added.";
 		modelAndView.addObject("message", message);
