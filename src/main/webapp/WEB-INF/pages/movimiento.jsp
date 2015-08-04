@@ -103,13 +103,25 @@
                                                     Inventario
                                             </label>
 
-                                              <form:select path="TbInventario.idInventario" class="form-control" id="dropdown" name="dropdown">
+                                              <form:select path="" class="form-control" id="dropdown" name="dropdown">
                                                   <form:option value="0"  label="Selecciona un elemento"/>
                                                         <c:forEach var="inv" items="${inventario}">
                                                             <form:option value="${inv.idInventario}"  label="${inv.claseEquipo}"/>
                                                          </c:forEach>
                                               </form:select>
                                      </div>
+                                     
+                                     <br>
+
+                                          
+
+                                        <div class="form-group">
+                                                <label class="control-label">
+                                                        Codigo inventario<span class="symbol required"></span>
+                                                </label>
+                                            <form:input path="" type="text" placeholder="Ingrese el nombre" class="form-control" id="codigo" name="lastname"/>
+                
+                                        </div>
                                       
                                       
                                        </div>
@@ -137,12 +149,35 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                        <button class="btn btn-yellow btn-block"   type="submit" value="Submit">
+                                    <button class="btn btn-yellow btn-block"  id="btnAgregarInv" type="button" value="Agregar">
                                                 Ingresar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
                         </div>
                     </form:form>
+                    
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="sample-table-2">
+                                <thead>
+                                        <tr>
+                                             <th>id mov inv</th>
+                                               <th>ID movimiento</th>
+                                                <th>ID inventario</th>
+                                               
+                                                <th>razon</th>
+                                                <th>marca</th>
+                                                <th>Delete</th>
+                                        </tr>
+                                </thead>
+                                <tbody id="tablabody" name="tablabody">
+
+                              	
+                                          
+
+                                </tbody>
+                        </table>
+                </div>
                     
 <!--                    validation-->
                    
@@ -160,3 +195,58 @@
                                                 
                                                 
 <%@include file="footer.jsp" %>		
+
+<script>
+$("#btnAgregarInv").click(function () {
+   var conceptName = $("#codigo").val(); // define the variable
+    //var conceptName = 1;
+    alert(conceptName);
+    
+    
+    
+   $.ajax({ 
+                url: "${pageContext.request.contextPath}/Movimiento/agregarInvMov", 
+                type: 'POST', 
+                dataType: 'json', 
+                contentType: 'application/json',
+                mimeType: 'application/json',
+                
+                
+                data: conceptName, 
+                
+               success: function(data) 
+            { 
+                   var html = '';
+                   var len = data.length;
+                    
+                    alert("devuelve algo: "+data);
+                                       
+                   
+//                        $('#tablabody').empty();
+                        data.forEach(function(entry) 
+                            {
+                                 console.log(entry);
+                                 html = '';
+                                 html+="<tr>";
+                                 html+="<td>"+entry.idInventario+"</td>";
+                                 html+="<td>"+entry.marca+"</td>";
+                                 html+="<td>"+entry.modelo+"</td>";
+                                 html+="</tr>";
+                                 
+                                
+                                 $('#tablabody').append(html);                      
+                                
+                          });
+                            
+                         },    
+                error:function(data,status,er) 
+                { 
+                    alert("error: "+data+" status: "+status+" er:"+er);
+                    
+                    
+                }
+            });
+   
+       
+    });
+ </script>

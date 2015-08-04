@@ -215,6 +215,34 @@ public class TB_MovimientoController {
                  
 	}
         
+        
+        @RequestMapping(value="/agregarInvMov", method=RequestMethod.POST)
+	public @ResponseBody   TbInventario agreagrInvM(@RequestBody String clasi) 
+        {
+		
+                System.out.println("INGRESA CONTROLLER detalle inv");
+		System.out.println(clasi.toString());
+              
+                TbInventario movi =(TbInventario) tbInventarioService.findByKey(13);
+                
+                
+               System.out.println("lista="+movi.getClaseEquipo());
+               
+               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                
+               
+               //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
+                String var=gson.toJson(movi.getFechaAdquisicion());
+            
+                //ModelAndView modelAndView = new ModelAndView("home");
+               // System.out.println("return String:"+inventarioString);
+               
+                
+               
+                return movi;
+                 
+	}
+        
       
     
 }
