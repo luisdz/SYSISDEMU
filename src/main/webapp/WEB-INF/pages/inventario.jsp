@@ -120,7 +120,7 @@
                          <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
                        <c:forEach var="pers" items="${persona}">
                                     <form:option value="${pers.idPersona}"  label="${pers.nombrePersona}"/>
-                                 </c:forEach>
+                                 </c:forEach> --%>
                       </form:select>
             </div>
            
