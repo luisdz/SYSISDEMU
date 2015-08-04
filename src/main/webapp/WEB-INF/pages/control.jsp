@@ -95,14 +95,7 @@
                                                  </form:select>
                                                 
                                     </div>
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        N Control Salida<span class="symbol required"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="NControlSalida" type="text" placeholder="Numero" class="form-control" id="numero" name="numero"/>
-                
-                                    </div>
+                                  
                                     <div class="form-group">
                                                 <label class="control-label">
                                                         Solicitante<span class="symbol required"></span>
@@ -212,7 +205,12 @@
         
     function enviar()
     {
-        alert("quas");
+        var solicitante=$("#solicitante").val();
+        var solicitante=$("#fecha_sal").val();
+        var solicitante=$("#observacion").val();
+        var solicitante=$("#destino").val();
+        var solicitante=$("#fecha_devolucion").val();
+        
         var jsonArray="["
         
         var personal = new Array();
