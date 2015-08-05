@@ -222,14 +222,19 @@
         
     function enviar()
     {
-         alert("enviar");
-        var solicitante=$("#fecha").val();
-        var solicitante=$("#razon").val();
+        // alert("enviar");
+        var fechaM=$("#fecha").val();
+        var razonM=$("#razon").val();
        
-         //var jsonArray="["
-        var jsonArray="{\"Inventario\":[";
+       
+       
+         var jsonArray="{";
+         
+         jsonArray+="\"Movimiento\":[{\"fecha\":\""+fechaM+"\",\"razon\":\" "+razonM+"\""  +"}],";
+         
+         jsonArray+="\"Inventario\":[";
         
-        var personal = new Array();
+        
         var l=0;
     
         $('#tabla_prueba tr').each(function(index, element){

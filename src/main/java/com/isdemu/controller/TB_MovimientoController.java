@@ -79,12 +79,13 @@ public class TB_MovimientoController {
         @RequestMapping(value="/insertarMovimiento", method=RequestMethod.POST)
 	public @ResponseBody String addingMovimiento(@RequestBody String movi) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("esntra aquiPOST movimiento"+movi);
+		 System.out.println("esntra aquiPOST movimiento insertar"+movi);
 
 
 //               movi.setFechaMovimiento(new Date());
 //                movi.setNMovimiento(2);
 //                 movi.setRazonCambio("asdfasf");
+                 
                   System.out.println("String Json:"+movi);
                  //JSONArray array = new JSONArray(movi);
                  JSONObject array = new JSONObject(movi);
