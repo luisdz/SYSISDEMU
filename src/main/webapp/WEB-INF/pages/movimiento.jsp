@@ -79,7 +79,7 @@
                                                 Fecha 
                                         </p>
                                         <div class="input-group">
-                                                <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                            <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" id="fecha" data-date-viewmode="years" class="form-control date-picker"/>
                                                 <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                         </div>
                                    </div>
@@ -93,7 +93,7 @@
                                                 <label class="control-label">
                                                         Razon de cambio<span class="symbol required"></span>
                                                 </label>
-                                            <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="lastname" name="lastname"/>
+                                            <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="razon" name="lastname"/>
                 
                                         </div>
                                      <br>
@@ -205,10 +205,11 @@
 <script>
     
     function agregarInventario(){            
-
-                  var idInv = $("#dropdown").val();
+                alert("entra");
+                  var id = $("#dropdown").val();
                   var codigo = $('#dropdown option:selected').text();
-                 
+//                 alert(idInv);
+                 var idInv=id.toString();
                       $('#tabla_prueba').append('<tr id="' + idInv + '"><td>' + idInv + '</td><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
                 };
 
@@ -216,18 +217,17 @@
     {
         var el = document.getElementById(id);
         el.parentNode.removeChild(el);
-        return false;
+        return false; 
         }
         
     function enviar()
     {
-        var solicitante=$("#solicitante").val();
-        var solicitante=$("#fecha_sal").val();
-        var solicitante=$("#observacion").val();
-        var solicitante=$("#destino").val();
-        var solicitante=$("#fecha_devolucion").val();
-        
-        var jsonArray="["
+         alert("enviar");
+        var solicitante=$("#fecha").val();
+        var solicitante=$("#razon").val();
+       
+         //var jsonArray="["
+        var jsonArray="{\"Inventario\":[";
         
         var personal = new Array();
         var l=0;
@@ -236,9 +236,10 @@
 
         var id = $(element).find("td").eq(0).html();
       
-        if(l!=0){
-            jsonArray=jsonArray+"{\"idControlSalida\":"+id+"},";
-
+        if(l!=0)
+        {
+            jsonArray=jsonArray+"{\"idInv\":"+'"'+id+'"'+"},";
+                    
           }
 
         l=1;
@@ -247,11 +248,11 @@
 
 
     jsonArray=jsonArray.substring(0,jsonArray.length-1);
-    jsonArray=jsonArray+"]";
+    jsonArray=jsonArray+"]}";
     //alert(jsonArray);
          $.ajax({
            type: "POST",
-           url: "${pageContext.request.contextPath}/Control/add",
+           url: "${pageContext.request.contextPath}/Movimiento/insertarMovimiento",
            dataType: "json",
            contentType: 'application/json',
            success: function (msg) {

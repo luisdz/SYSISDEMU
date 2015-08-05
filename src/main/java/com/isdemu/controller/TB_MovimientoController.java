@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -75,22 +77,34 @@ public class TB_MovimientoController {
         
         
         @RequestMapping(value="/insertarMovimiento", method=RequestMethod.POST)
-	public ModelAndView addingMovimiento(@ModelAttribute TbMovimiento movi) {
+	public @ResponseBody String addingMovimiento(@RequestBody String movi) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("esntra aquiPOST movimiento"+movi);
 
 
-               movi.setFechaMovimiento(new Date());
-                movi.setNMovimiento(2);
-                 movi.setRazonCambio("asdfasf");
+//               movi.setFechaMovimiento(new Date());
+//                movi.setNMovimiento(2);
+//                 movi.setRazonCambio("asdfasf");
+                  System.out.println("String Json:"+movi);
+                 //JSONArray array = new JSONArray(movi);
+                 JSONObject array = new JSONObject(movi);
+                 JSONArray object = array.getJSONArray("Inventario");
+                 for(int i=0;i<array.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
                   
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
+                    System.out.println("Id Json:"+id);
+                   
+                }
                 
               
             
-		tbMovimientoService.save(movi);
+		//tbMovimientoService.save(movi);
 		String message = "Movimiento was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return "22";
 	}
         
          @RequestMapping(value="/deleteMovimiento/{id}", method=RequestMethod.GET)
