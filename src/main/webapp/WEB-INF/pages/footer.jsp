@@ -89,6 +89,7 @@
 		<script src="${pageContext.request.contextPath}/assets/plugins/ckeditor/ckeditor.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/plugins/ckeditor/adapters/jquery.js"></script>
 		<script src="${pageContext.request.contextPath}/assets/js/form-validation.js"></script>
+                <script src="${pageContext.request.contextPath}/assets/js/select2.min.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
                 
                 <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->

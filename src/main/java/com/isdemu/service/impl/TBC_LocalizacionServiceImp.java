@@ -33,6 +33,12 @@ public class TBC_LocalizacionServiceImp implements  TBC_Localizacion_Service{
 	}
         
      @Override
+        public void delete(Serializable id) {
+                // TODO Auto-generated method stub
+                tbcLocalizacionDao.delete(id);
+        }
+        
+     @Override
 	public Object findByKey(Serializable id) {
 		// TODO Auto-generated method stub
 		return tbcLocalizacionDao.findByKey(id);
