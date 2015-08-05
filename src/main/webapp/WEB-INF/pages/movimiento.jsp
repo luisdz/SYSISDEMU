@@ -99,17 +99,17 @@
                                      <br>
                                      
                                          <div class="form-group">
-                                            <label for="form-field-select-3">
-                                                    Inventario
-                                            </label>
-
-                                              <form:select path="" class="form-control" id="dropdown" name="dropdown">
-                                                  <form:option value="0"  label="Selecciona un elemento"/>
-                                                        <c:forEach var="inv" items="${inventario}">
-                                                            <form:option value="${inv.idInventario}"  label="${inv.claseEquipo}"/>
-                                                         </c:forEach>
-                                              </form:select>
-                                     </div>
+                                                <label class="control-label">
+                                                        Inventario<span class="symbol required"></span>
+                                                </label>
+                                               <form:select path=""  id="dropdown" name="dropdown">
+                                                    <form:option value="0"  label="Seleccione inventario"/>       
+                                                    <c:forEach var="inv" items="${inventario}">
+                                                           <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
+                                                    </c:forEach>
+                                                 </form:select>
+                                                
+                                    </div>
                                      
                                      <br>
 
@@ -144,29 +144,24 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="row">
-                                <div class="col-md-8">
-
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-yellow btn-block"  id="btnAgregarInv" type="button" value="Agregar">
-                                                Ingresar <i class="fa fa-arrow-circle-right"></i>
-                                        </button>
-                                </div>
-                        </div>
+                        
                     </form:form>
-                    
+                    <div class="col-md-12 text-center">
+                                   <button type="button" class="btn btn-default" onclick="agregarInventario();" >Agregar</button>     
+                            </div>
+                            <div class="col-md-12 text-center">
+                                &nbsp;<br/>
+                            </div>  
                     
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="sample-table-2">
+                        <table class="table table-striped table-hover" id="tabla_prueba">
                                 <thead>
                                         <tr>
-                                             <th>id mov inv</th>
-                                               <th>ID movimiento</th>
+                                             <th>id  inv</th>
+                                               <th>codigo</th>
                                                 <th>ID inventario</th>
                                                
-                                                <th>razon</th>
-                                                <th>marca</th>
+                                                <th>razon</th>                                                
                                                 <th>Delete</th>
                                         </tr>
                                 </thead>
@@ -178,6 +173,17 @@
                                 </tbody>
                         </table>
                 </div>
+                    
+                    <div class="row">
+                                <div class="col-md-8">
+                                       
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-yellow btn-block" type="button" onclick="enviar();">
+                                                Guardar1 <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                </div>
+                        </div>
                     
 <!--                    validation-->
                    
@@ -197,56 +203,71 @@
 <%@include file="footer.jsp" %>		
 
 <script>
-$("#btnAgregarInv").click(function () {
-   var conceptName = $("#codigo").val(); // define the variable
-    //var conceptName = 1;
-    alert(conceptName);
     
+    function agregarInventario(){            
+
+                  var idInv = $("#dropdown").val();
+                  var codigo = $('#dropdown option:selected').text();
+                 
+                      $('#tabla_prueba').append('<tr id="' + idInv + '"><td>' + idInv + '</td><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                };
+
+    function deleteElement(id)
+    {
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false;
+        }
+        
+    function enviar()
+    {
+        var solicitante=$("#solicitante").val();
+        var solicitante=$("#fecha_sal").val();
+        var solicitante=$("#observacion").val();
+        var solicitante=$("#destino").val();
+        var solicitante=$("#fecha_devolucion").val();
+        
+        var jsonArray="["
+        
+        var personal = new Array();
+        var l=0;
     
-    
-   $.ajax({ 
-                url: "${pageContext.request.contextPath}/Movimiento/agregarInvMov", 
-                type: 'POST', 
-                dataType: 'json', 
-                contentType: 'application/json',
-                mimeType: 'application/json',
-                
-                
-                data: conceptName, 
-                
-               success: function(data) 
-            { 
-                   var html = '';
-                   var len = data.length;
-                    
-                    alert("devuelve algo: "+data);
-                                       
-                   
-//                        $('#tablabody').empty();
-                        data.forEach(function(entry) 
-                            {
-                                 console.log(entry);
-                                 html = '';
-                                 html+="<tr>";
-                                 html+="<td>"+entry.idInventario+"</td>";
-                                 html+="<td>"+entry.marca+"</td>";
-                                 html+="<td>"+entry.modelo+"</td>";
-                                 html+="</tr>";
-                                 
-                                
-                                 $('#tablabody').append(html);                      
-                                
-                          });
-                            
-                         },    
-                error:function(data,status,er) 
-                { 
-                    alert("error: "+data+" status: "+status+" er:"+er);
-                    
-                    
-                }
-            });
-   
-       
+        $('#tabla_prueba tr').each(function(index, element){
+
+        var id = $(element).find("td").eq(0).html();
+      
+        if(l!=0){
+            jsonArray=jsonArray+"{\"idControlSalida\":"+id+"},";
+
+          }
+
+        l=1;
+
     });
- </script>
+
+
+    jsonArray=jsonArray.substring(0,jsonArray.length-1);
+    jsonArray=jsonArray+"]";
+    //alert(jsonArray);
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Control/add",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               alert("entra");
+           },
+           data: jsonArray
+       });
+        
+    }
+                    
+                    
+    $( document ).ready(function() {
+
+
+           $('#dropdown').select2();
+
+
+       });          
+</script>
