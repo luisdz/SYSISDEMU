@@ -5,21 +5,19 @@
  */
 package com.isdemu.controller;
 
-import com.isdemu.model.TbInventario;
-import com.isdemu.model.TbcClasificacionActivo;
-import com.isdemu.model.TbcPersona;
-import com.isdemu.model.TbcPoliza;
-import com.isdemu.model.TbcRegion;
-import com.isdemu.model.TbcUnidad;
 import com.isdemu.model.TbControlSalida;
-import com.isdemu.service.TBC_ClasificacionActivo_Service;
-import com.isdemu.service.TBC_Localizacion_Service;
-import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
-import com.isdemu.service.TBC_Region_Service;
-import com.isdemu.service.TBC_Unidad_Service;
 import com.isdemu.service.TB_Control_Service;
 import com.isdemu.service.TB_Inventario_Service;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.isdemu.model.TbInventario;
+import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbcClaseActivo;
+import com.isdemu.model.TbcUnidad;
+import com.isdemu.model.TbControlSalida;
+import com.isdemu.service.TB_Inventario_Service;
+import com.isdemu.service.TB_Movimiento_Service;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,7 +63,7 @@ public class TB_ControlController {
         
        @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
-              System.out.println("esntra aqui GET persona");
+              System.out.println("esntra aqui GET control");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();
 		
@@ -80,7 +78,6 @@ public class TB_ControlController {
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);
-                System.out.println("esntra aqui GET persona");
 		return new ModelAndView("control",myModel);
 	}
         
@@ -91,22 +88,23 @@ public class TB_ControlController {
 //                JSONObject jsonObj = new JSONObject(control);
 		//System.out.println("entra aqui POST persona"+control.get(0).getIdControlSalida());
                  System.out.println("String Json:"+control);
-                 JSONArray array = new JSONArray(control);
                  
-                 for(int i=0;i<array.length();i++){
-                    JSONObject object = array.getJSONObject(i);
-                    String id = object.getString("idControlSalida");
+                 JSONObject array = new JSONObject(control);
+                 JSONArray object = array.getJSONArray("Inventario");
+                 for(int i=0;i<array.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
+                  
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
                     System.out.println("Id Json:"+id);
                    
                 }
-//	Gson gson = new Gson();
- 
-	// convert java object to JSON format,
-	// and returned as JSON formatted string
-	//List<TbControlSalida> json = gson.fromJson(control, List<TbControlSalida>);
-               
-             //   tbControlService.save(control);
-		String message = "Persona was successfully added.";
+                
+              
+            
+		//tbMovimientoService.save(movi);
+		String message = "Constrol was successfully added.";
 		modelAndView.addObject("message", message);
 		return "22";
 	}
@@ -120,5 +118,54 @@ public class TB_ControlController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+        
+        @RequestMapping(value="/editControl1/{id}", method=RequestMethod.GET)
+	public ModelAndView editControlInventarioPage(@PathVariable Integer id) 
+        {
+                System.out.println("Entra actualiza1");
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+            
+                TbControlSalida cont = (TbControlSalida) tbControlService.findByKey(id);
+                System.out.println("Entra actualiza5");
+		List con = tbControlService.getConInv(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                System.out.println("Entra actualiza2");
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("controlInv",con ); 
+                   myModel.put("control",cont);
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   System.out.println("Entra actualiza");
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_control",myModel);
+	}
+        
+        
+        @RequestMapping(value="/editControl1/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingControlInventario(@ModelAttribute TbControlSalida con, @PathVariable Integer id) {
+            
+		TbControlSalida conActual = (TbControlSalida) tbControlService.findByKey(id);
+                
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                //conActual.setRazonCambio(con.getRazonCambio());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                //conActual.setNControl(con.getNMovimiento());
+                
+		                
+		tbControlService.update(conActual);
+
+		String message = "unidad was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
+        
+        
     
 }

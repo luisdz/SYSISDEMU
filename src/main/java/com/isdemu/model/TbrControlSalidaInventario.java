@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
 
 /**
  *
@@ -28,11 +29,11 @@ public class TbrControlSalidaInventario {
     
      private int idControlSalidaInventario;
      private TbControlSalida tbControlSalida;
-     private int idInventario;
+     private TbInventario tbInventario;
      
     @Id 
 
-    
+    @GeneratedValue
     @Column(name="ID_CONTROL_SALIDA_INVENTARIO", unique=true, nullable=false)
     public int getIdControlSalidaInventario() {
         return this.idControlSalidaInventario;
@@ -52,17 +53,16 @@ public class TbrControlSalidaInventario {
         this.tbControlSalida = tbControlSalida;
     }
 
-    
-    @Column(name="ID_INVENTARIO", nullable=false)
-    public int getIdInventario() {
-        return this.idInventario;
+   @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="ID_INVENTARIO") 
+   // @Column(name="ID_INVENTARIO")
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
     }
     
-    public void setIdInventario(int idInventario) {
-        this.idInventario = idInventario;
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
     }
-
-
 
 
 }
