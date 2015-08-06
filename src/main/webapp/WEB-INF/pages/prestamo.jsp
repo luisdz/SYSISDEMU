@@ -70,7 +70,7 @@
                             Ingreso de Prestamo Equipo de ISDEMU
                     </p>
                     <hr>
-              <form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/add" modelAttribute="prestamo" >
+              <form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/add" modelAttribute="prestamo" id="prestamoE" name="prestamoE">
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="errorHandler alert alert-danger no-display">
@@ -82,24 +82,13 @@
                                 </div>
                                 <div class="col-md-6">
     
-                                   <div class="form-group">
-                                                <label class="control-label">
-                                                        Inventario<span class="symbol required"></span>
-                                                </label>
-                                               <form:select path=""  id="dropdown" name="dropdown">
-                                                    <form:option value="0"  label="Seleccione inventario"/>       
-                                                    <c:forEach var="inv" items="${inventario}">
-                                                           <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
-                                                    </c:forEach>
-                                                 </form:select>
-                                                
-                                    </div>
+                                   
                                     <div class="form-group">
                                                 <label class="control-label">
                                                         N Prestamo<span class="symbol required"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="NPrestamo" type="text" placeholder="Numero" class="form-control" id="numero" name="numero"/>
+                                                <form:input path="NPrestamo" type="text" class="form-control" id="numero" name="numero" onkeypress="return valideKey(event);"/>
                 
                                     </div>
                                     <div class="form-group">
@@ -167,6 +156,19 @@
                                 </div>                                       
                              </div>
                          <div class="col-md-12 text-center">
+                             <div class="form-group">
+                                                <label class="control-label">
+                                                        Inventario<span class="symbol required"></span>
+                                                </label>
+                                               <form:select path=""  id="dropdown1" name="dropdown1">
+                                                    <form:option value=""  label="Seleccione inventario"/>       
+                                                    <c:forEach var="inv" items="${inventario}">
+                                                           <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
+                                                    </c:forEach>
+                                                 </form:select>
+                                                
+                                    </div>
+                             
                                    <button type="button" class="btn btn-default" onclick="myFunction_personal();" >Agregar</button>     
                             </div>
                             <div class="col-md-12 text-center">
@@ -213,12 +215,18 @@
 
 <script>
     
-    function myFunction_personal(){            
+    function myFunction_personal(){
+        if (document.prestamoE.dropdown1.selectedIndex==0){ 
+        alert("Debe seleccionar un inventario para agregar a la tabla")
+      return 0; 
+   	}
 
-                  var telefono_personal = $("#dropdown").val();
-                  var codigo = $('#dropdown option:selected').text();
+                  var telefono_personal = $("#dropdown1").val();
+                  var codigo = $('#dropdown1 option:selected').text();
                       $('#tabla_prueba').append('<tr id="' + telefono_personal + '"><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ telefono_personal +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
-                };
+      
+        document.prestamoE.dropdown1.selectedIndex = "0";
+    };
 
     function deleteElement(id){
         var el = document.getElementById(id);
@@ -228,6 +236,28 @@
         
     function enviar()
     {
+      
+        if (document.prestamoE.numero.value.length==0){ 
+      alert("Debe ingresar Numero") 
+      document.prestamoE.numero.focus() 
+      return 0; 
+  	}
+        if (document.prestamoE.numero.value<0){ 
+      alert("Debe ingresar Numero mayor a cero") 
+      document.prestamoE.numero.focus() 
+      return 0; 
+  	}
+        if (document.prestamoE.tema.value.length==0){ 
+      alert("Debe ingresar tema a impartir") 
+      document.prestamoE.tema.focus() 
+      return 0; 
+  	}
+        if (document.prestamoE.persona.value.length==0){ 
+      alert("Debe ingresar persona") 
+      document.prestamoE.persona.focus() 
+      return 0; 
+  	}
+        
         var nPrestamo=$("#numero").val();
         var tema=$("#tema").val();
         var persona=$("#persona").val();
@@ -280,8 +310,27 @@
     $( document ).ready(function() {
 
 
-           $('#dropdown').select2();
+           $('#dropdown1').select2();
 
 
-       });          
+       });
+       
+       function valideKey(evt)
+		    {
+		        var code = (evt.which) ? evt.which : evt.keyCode;
+		            if(code==8)
+		            {
+		                //backspace
+		                return true;
+		            }
+		            else if(code>=48 && code<=57)
+		            {
+		                //is a number
+		                return true;
+		            }
+		            else
+		            {
+		                return false;
+		            }
+		    };
 </script>
