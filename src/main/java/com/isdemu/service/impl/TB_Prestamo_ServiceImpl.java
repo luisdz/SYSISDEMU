@@ -49,4 +49,16 @@ public class TB_Prestamo_ServiceImpl implements TB_Prestamo_Service {
            // TODO Auto-generated method stub
            return tbPrestamoDao.findByKey(id);
    }
+   
+   @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbPrestamoDao.update(obj);
+	}
+        
+    @Override
+    public List getPreInv(Serializable id){
+        System.out.println("service impl getconinv");
+    return tbPrestamoDao.getPreInv(id);
+    }
 }

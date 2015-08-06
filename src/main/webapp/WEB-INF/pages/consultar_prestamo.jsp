@@ -97,8 +97,8 @@
                                                                     <th>Nprestamo</th>
                                                                     <th>fecha solicitu</th>
                                                                     <th>hora inicio</th>
-                                                                    <th>Edit</th>
-                                                                    <th>Delete</th>
+                                                                    <th>Eliminar</th>
+                                                                    <th>Actualizar</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
@@ -110,7 +110,7 @@
                                                                     <td>${pres.horaInicio}</td>
                                                                     <td><a href="${pageContext.request.contextPath}/Prestamo/delete/${pres.idPrestamoEquipo}">
                                                                     Eliminar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Prestamo/edit/${pres.idPrestamoEquipo}">
+                                                                    <td><a href="${pageContext.request.contextPath}/Prestamo/editPrestamo2/${pres.idPrestamoEquipo}">
                                                                     Actualizar</a></td>
                                                                     
                                                             </tr>

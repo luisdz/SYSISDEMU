@@ -1,6 +1,6 @@
 <%-- 
-    Document   : actualizar_control
-    Created on : 05-ago-2015, 21:48:32
+    Document   : actualizar_prestamo
+    Created on : 06-ago-2015, 10:57:51
     Author     : Walter
 --%>
 
@@ -31,7 +31,7 @@
                 <!-- start: FORM VALIDATION 1 PANEL -->
                 <div class="panel panel-white">
                 <div class="panel-heading">
-                                <h4 class="panel-title">Edicion de <span class="text-bold">Control</span></h4>
+                                <h4 class="panel-title">Edicion de <span class="text-bold">Prestamo Equipo</span></h4>
                                 <div class="panel-tools">
                                         <div class="dropdown">
                                                 <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -64,27 +64,27 @@
                                 </div>
                         </div>
                                 <div class="panel-body">
-                                <h2><i class="fa fa-pencil-square"></i> Control de Salida</h2>
+                                <h2><i class="fa fa-pencil-square"></i> Prestamo de Equipo</h2>
                               
                         <hr>
 
 
-<form:form method="POST" action="${pageContext.request.contextPath}/Control/editControl1/${control.idControlSalida}" modelAttribute="control" >
+<form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/editPrestamo2/${prestamo.idPrestamoEquipo}" modelAttribute="prestamo" >
     
        
                 <div class="form-group">
                         <label class="control-label">
-                                id control salida<span class="symbol required"></span>
+                                id Prestamo Equipo<span class="symbol required"></span>
                         </label>
-                        <form:input path="idControlSalida" type="text" placeholder="${control.idControlSalida}" class="form-control" id="id" name="lastname"/>
+                        <form:input path="idPrestamoEquipo" type="text" placeholder="${prestamo.idPrestamoEquipo}" class="form-control" id="id" name="lastname"/>
                 </div>
     
                <div class="form-group">
                             <label class="control-label">
-                                    Observacion<span class="symbol required"></span>
+                                    Fecha Solicitud<span class="symbol required"></span>
                             </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                            <form:input path="observacion" type="text" placeholder="${control.observacion}" class="form-control" id="observacion" name="observacion"/>
+                            <form:input path="fechaSolicitud" type="text" placeholder="${prestamo.fechaSolicitud}" class="form-control" id="fecha_sol" name="fecha_sol"/>
 
                 </div> 
                 
@@ -124,12 +124,12 @@
                                 </thead>
                                 <tbody id="tablabody" name="tablabody">
 
-                                <c:forEach var="con" items="${controlInv}">
+                                <c:forEach var="pre" items="${prestamoInv}">
                                             <tr align="center">
-                                                <td>${con.idControlSalidaInventario}</td>
-                                                <td>${con.tbControlSalida.idControlSalida}</td>
-                                                <td>${con.tbInventario.idInventario}</td>                                                  
-                                                <td>${con.tbInventario.marca}</td> 
+                                                <td>${pre.idPrestamoEquipoInventario}</td>
+                                                <td>${pre.tbPrestamoEquipo.idPrestamoEquipo}</td>
+                                                <td>${pre.tbInventario.idInventario}</td>                                                  
+                                                <td>${pre.tbInventario.marca}</td> 
                                                 <td><a href=""> Eliminar</a></td>
 
                                             </tr>

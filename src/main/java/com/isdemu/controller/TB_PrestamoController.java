@@ -121,5 +121,52 @@ public class TB_PrestamoController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+        
+        @RequestMapping(value="/editPrestamo2/{id}", method=RequestMethod.GET)
+	public ModelAndView editControlInventarioPage(@PathVariable Integer id) 
+        {
+                System.out.println("Entra actualiza1");
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+            
+                TbPrestamoEquipo pres = (TbPrestamoEquipo) tbPrestamoService.findByKey(id);
+                System.out.println("Entra actualiza5");
+		List pre = tbPrestamoService.getPreInv(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                System.out.println("Entra actualiza2");
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("prestamoInv",pre ); 
+                   myModel.put("prestamo",pres);
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   System.out.println("Entra actualiza");
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_prestamo",myModel);
+	}
+        
+        
+        @RequestMapping(value="/editPrestamo2/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingControlInventario(@ModelAttribute TbControlSalida con, @PathVariable Integer id) {
+            
+		TbPrestamoEquipo preActual = (TbPrestamoEquipo) tbPrestamoService.findByKey(id);
+                
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                //conActual.setRazonCambio(con.getRazonCambio());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                //conActual.setNControl(con.getNMovimiento());
+                
+		                
+		tbPrestamoService.update(preActual);
+
+		String message = "prestamo was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
     
 }
