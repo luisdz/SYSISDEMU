@@ -82,15 +82,15 @@
                                 </div>
                                 <div class="col-md-6">
     
-                                    <div class="form-group">
+                                   <div class="form-group">
                                                 <label class="control-label">
                                                         Inventario<span class="symbol required"></span>
                                                 </label>
-                                               <form:select path="tbInventario.idInventario" class="form-control" id="dropdown" name="dropdown">
+                                               <form:select path=""  id="dropdown" name="dropdown">
                                                     <form:option value="0"  label="Seleccione inventario"/>       
                                                     <c:forEach var="inv" items="${inventario}">
-                                                               <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
-                                                            </c:forEach>
+                                                           <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
+                                                    </c:forEach>
                                                  </form:select>
                                                 
                                     </div>
@@ -166,14 +166,37 @@
                                    
                                 </div>                                       
                              </div>
-                      
+                         <div class="col-md-12 text-center">
+                                   <button type="button" class="btn btn-default" onclick="myFunction_personal();" >Agregar</button>     
+                            </div>
+                            <div class="col-md-12 text-center">
+                                &nbsp;<br/>
+                            </div>      
+                        
+                       <div class="table-responsive">
+                            <table class="table table-striped table-hover table-bordered" id="tabla_prueba">
+                                    <thead>
+                                            <tr>                                               
+                                                    <th>Id</th>                                                 
+                                                    <th>opcion</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        
+                                    </tbody>
+                            </table>    
+                                        
+                                        
+                            </table>
+                        </div>                
                         
                         <div class="row">
                                 <div class="col-md-8">
                                        
                                 </div>
                                 <div class="col-md-4">
-                                        <button class="btn btn-yellow btn-block" type="submit">
+                                        <button class="btn btn-yellow btn-block" type="button" onclick="enviar();">
                                                 Guardar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
@@ -187,3 +210,78 @@
         </div>
 
 <%@include file="footer.jsp" %>	
+
+<script>
+    
+    function myFunction_personal(){            
+
+                  var telefono_personal = $("#dropdown").val();
+                  var codigo = $('#dropdown option:selected').text();
+                      $('#tabla_prueba').append('<tr id="' + telefono_personal + '"><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ telefono_personal +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                };
+
+    function deleteElement(id){
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false;
+        }
+        
+    function enviar()
+    {
+        var nPrestamo=$("#numero").val();
+        var tema=$("#tema").val();
+        var persona=$("#persona").val();
+        var destino=$("#destino").val();
+        var fecha_solic=$("#fecha_sol").val();
+        var fecha_reser=$("#fecha_pres").val();
+        var hora_inicio=$("#hora_inicio").val();
+        var hora_fin=$("#hora_fin").val();
+        
+        var jsonArray="{"
+        
+      
+        jsonArray+="\"Prestamo\":[{\"nPrestamo\":\""+nPrestamo+"\",\"destino\":\""+destino+"\",\"hora_inicio\":\""+hora_inicio+"\",\"hora_fin\":\""+hora_fin+"\",\"tema\":\""+tema+"\",\"persona\":\""+persona+"\",\"fecha_solic\":\""+fecha_solic+"\",\"fecha_reser\":\" "+fecha_reser+"\""+"}],";
+         
+         jsonArray+="\"Inventario\":[";
+        
+        var l=0;
+    
+        $('#tabla_prueba tr').each(function(index, element){
+
+        var id = $(element).find("td").eq(0).html();
+      
+        if(l!=0){
+            jsonArray=jsonArray+"{\"idInv\":"+'"'+id+'"'+"},";
+
+          }
+
+        l=1;
+
+    });
+
+
+    jsonArray=jsonArray.substring(0,jsonArray.length-1);
+    jsonArray=jsonArray+"]}";
+    //alert(jsonArray);
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Prestamo/add",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               alert("entra");
+           },
+           data: jsonArray
+       });
+        
+    }
+                    
+                    
+    $( document ).ready(function() {
+
+
+           $('#dropdown').select2();
+
+
+       });          
+</script>

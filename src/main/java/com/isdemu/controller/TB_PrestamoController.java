@@ -27,12 +27,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
  *
@@ -84,14 +88,28 @@ public class TB_PrestamoController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbPrestamoEquipo prestamo) {
+	public @ResponseBody String addingPais(@RequestBody String prestamo) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+prestamo);
+		 System.out.println("String Json:"+prestamo);
                  
-                tbPrestamoService.save(prestamo);
-		String message = "Persona was successfully added.";
+                 JSONObject array = new JSONObject(prestamo);
+                 JSONArray object = array.getJSONArray("Inventario");
+                 for(int i=0;i<array.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
+                  
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
+                    System.out.println("Id Json:"+id);
+                   
+                }
+                
+              
+            
+		//tbMovimientoService.save(movi);
+		String message = "Prestamo was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return "22";
 	}
         
       @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
