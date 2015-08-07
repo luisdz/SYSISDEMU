@@ -79,15 +79,15 @@ public class TB_MovimientoController {
         @RequestMapping(value="/insertarMovimiento", method=RequestMethod.POST)
 	public @ResponseBody String addingMovimiento(@RequestBody String movi) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("esntra aquiPOST movimiento insertar"+movi);
+		 System.out.println("esntra aqui POST movimiento insertar"+movi);
 
 
 //               movi.setFechaMovimiento(new Date());
 //                movi.setNMovimiento(2);
 //                 movi.setRazonCambio("asdfasf");
                  
-                  System.out.println("String Json:"+movi);
-                 //JSONArray array = new JSONArray(movi);
+                System.out.println("String Json:"+movi);
+                 
                  JSONObject array = new JSONObject(movi);
                  JSONArray object = array.getJSONArray("Inventario");
                  for(int i=0;i<array.length();i++)
@@ -97,8 +97,7 @@ public class TB_MovimientoController {
                      //JSONArray object = array.getJSONArray("Inventario");
                     String id = object2.getString("idInv");
                     System.out.println("Id Json:"+id);
-                   
-                }
+                 }
                 
               
             
