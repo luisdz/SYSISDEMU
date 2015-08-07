@@ -111,7 +111,7 @@
                                     Fecha Inicio
                                 </p>
                                 <div class="input-group">
-                                    <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onblur="return validaFechaIni(event);"/>
+                                    <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onchange="return validaFechaIni(event);" onblur="return validaFechaIni(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                     <span for="fechaInicio" class="help-block  no-display" id="span_fechaIniT">Ingrese una fecha</span>    
                             
@@ -182,7 +182,7 @@
     
     function validaCodigo()
     {
-        var x = document.forms["polizaF"]["nombre"].value;
+        var x = document.forms["polizaF"]["codigo"].value;
         if (x === null || x === "")
         {
             //$('#span_nombre').addClass("symbol required");
@@ -250,7 +250,7 @@ function validaFechaFn()
 
     function valida_envio()
     {
-        
+        flag=true;
         
         if(validaNombre()===false)
         {        
