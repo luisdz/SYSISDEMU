@@ -59,6 +59,16 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
+        @Override
+        public List LastCodInventario(Serializable id){
+            DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class,"inv");
+            dc.createAlias("inv.tbcClaseActivo", "clase");
+            dc.add(Restrictions.eq("clase.idClaseActivo", id));
+             dc.addOrder(Order.desc("idInventario"));
+          
+		return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+        }
+        
         
         @Override
 	public void delete(Serializable id) {

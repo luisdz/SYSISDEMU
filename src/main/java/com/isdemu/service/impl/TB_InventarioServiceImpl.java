@@ -57,6 +57,10 @@ public class TB_InventarioServiceImpl implements TB_Inventario_Service {
 	}
         
         @Override
+        public List LastCodInventario(Serializable id){
+                    return tbInventarioDao.LastCodInventario(id);
+        }
+        @Override
 	public void update(Object obj) {
 		// TODO Auto-generated method stub
 		tbInventarioDao.update(obj);

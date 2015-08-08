@@ -50,6 +50,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller 
  @RequestMapping(value="/Inventario")
 public class TB_InventarioController {
+    public static String CodigoClasificacion="";
     
     @Autowired
 	private TB_Inventario_Service tbInventarioService;
@@ -92,22 +93,39 @@ public class TB_InventarioController {
               
                 System.out.println("INGRESA CONTROLLER LISTA CLASE---");
 		System.out.println(idClasi);
-              
-                List<TbcClaseActivo> movi = tbcClaseActivoService.getAllidClasi(idClasi);
-               //System.out.println("lista="+movi.get(0).getNombreClase());
-               
-//               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                //obtener el codigo de la clasificacion del activo seleccionado y guardarlo en una variable local
+                TbcClasificacionActivo clasificacionActivo = (TbcClasificacionActivo) tbClasActService.findByKey(idClasi);
+                CodigoClasificacion=clasificacionActivo.getCodigoClasificacion();
+                System.out.println("Variable con ocidgo Clasificacion;"+CodigoClasificacion);
+                //
                 
-               
-               //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
-//                String var=gson.toJson(movi.get(0).getFechaMovimiento());
-            
-                //ModelAndView modelAndView = new ModelAndView("home");
-               // System.out.println("return String:"+inventarioString);
-               
+                 List<TbcClaseActivo> movi = tbcClaseActivoService.getAllidClasi(idClasi);
+              
                 
                
                 return movi;
+                 
+	}
+        
+        //METODO PARA DEVOLVER LA REGION DEL INVENTARIO
+         @RequestMapping(value="/regionPersona", method=RequestMethod.POST)
+	public @ResponseBody  String regPersona(@RequestBody String idPersona) {
+		int idClasi= Integer.parseInt(idPersona);
+                
+              
+                System.out.println("INGRESA CONTROLLER LISTA CLASE---");
+		System.out.println(idClasi);
+                //obtener el codigo de la clasificacion del activo seleccionado y guardarlo en una variable local
+                TbcClasificacionActivo clasificacionActivo = (TbcClasificacionActivo) tbClasActService.findByKey(idClasi);
+                CodigoClasificacion=clasificacionActivo.getCodigoClasificacion();
+                System.out.println("Variable con ocidgo Clasificacion;"+CodigoClasificacion);
+                //
+                
+                 List<TbcClaseActivo> movi = tbcClaseActivoService.getAllidClasi(idClasi);
+              
+                
+               
+                return "";
                  
 	}
         
@@ -153,8 +171,49 @@ public class TB_InventarioController {
                 
                    inventario.setValorLibro(BigDecimal.ZERO);
           
+                   //obtener el codigo de la clase seleccionada para armar el codigo de inventario
+                    TbcClaseActivo codigoClaseA = (TbcClaseActivo)tbcClaseActivoService.findByKey(inventario.getTbcClaseActivo().getIdClaseActivo());
+                    String CodigoClase=codigoClaseA.getObervacion();
+                    
+                    //ir a inventario y consultar el ultimo codigo con la clase que se ingreso devolver el codigo, convertilo a int y sumarle uno
+                    List<TbInventario> LastInv=tbInventarioService.LastCodInventario(inventario.getTbcClaseActivo().getIdClaseActivo());
+                    
+                    String Correlativo="";
+                    if(LastInv.size()!=0){
+                     System.out.println("CODIGO DE ULTIMO INVENTARIO:"+LastInv.get(0).getCodigoInventario());
+                    
+                    //extraer los ultimos digitos convertitlo a int, sumarle uno y luego concatenarlo con CodigoInventario
+                    String LastCodInv=LastInv.get(0).getCodigoInventario();
+                    int LongLastCod=LastCodInv.length();
+                    String CodIncrement=LastCodInv.substring(7,LongLastCod);
+                    System.out.println("ULTIMOS DIGITOS DEL CODIGO;"+CodIncrement);
+                    
+                      int CodIncrementInt=Integer.parseInt(CodIncrement);
+                      int Increment=CodIncrementInt+1;
+                       System.out.println("YA INCREMENTADO;"+Increment);
+                      if(Increment<99)
+                      {
+                          Correlativo="00"+Increment;
+                         // Correlativo=String.valueOf(Increment);
+                          
+                      }
+                      
+                      else
+                          Correlativo=String.valueOf(Increment);
+                    
+                    }
+                    else{
+                         Correlativo="001";
+                    }
+                   
+                    
+                    
+                   
+                    
+                    String CodigoInventario=CodigoClasificacion+CodigoClase+Correlativo;
+                    System.out.println("codigo inventario a ingresar:"+CodigoInventario);
                // System.out.println("LO QUE VA EN EL OBJETO INVENTARIO e VALOR;"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+"en fecha:"+inventario.getFechaAdquisicion());
-               
+               inventario.setCodigoInventario(CodigoInventario);
 		tbInventarioService.save(inventario);
 		String message = "Pais was successfully added.";
 		modelAndView.addObject("message", message);

@@ -21,4 +21,5 @@ public interface TB_InventarioDao {
     public Object findByKey(Serializable id);
     public void update(Object obj);
     public List getTop();
+    public List LastCodInventario(Serializable id);
 }
