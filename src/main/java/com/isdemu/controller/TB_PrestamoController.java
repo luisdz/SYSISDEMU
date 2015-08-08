@@ -27,12 +27,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
  *
@@ -84,14 +88,28 @@ public class TB_PrestamoController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbPrestamoEquipo prestamo) {
+	public @ResponseBody String addingPais(@RequestBody String prestamo) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+prestamo);
+		 System.out.println("String Json:"+prestamo);
                  
-                tbPrestamoService.save(prestamo);
-		String message = "Persona was successfully added.";
+                 JSONObject array = new JSONObject(prestamo);
+                 JSONArray object = array.getJSONArray("Inventario");
+                 for(int i=0;i<array.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
+                  
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
+                    System.out.println("Id Json:"+id);
+                   
+                }
+                
+              
+            
+		//tbMovimientoService.save(movi);
+		String message = "Prestamo was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return "22";
 	}
         
       @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
@@ -101,6 +119,53 @@ public class TB_PrestamoController {
 		tbPrestamoService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/editPrestamo2/{id}", method=RequestMethod.GET)
+	public ModelAndView editControlInventarioPage(@PathVariable Integer id) 
+        {
+                System.out.println("Entra actualiza1");
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+            
+                TbPrestamoEquipo pres = (TbPrestamoEquipo) tbPrestamoService.findByKey(id);
+                System.out.println("Entra actualiza5");
+		List pre = tbPrestamoService.getPreInv(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                System.out.println("Entra actualiza2");
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("prestamoInv",pre ); 
+                   myModel.put("prestamo",pres);
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   System.out.println("Entra actualiza");
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("actualizar_prestamo",myModel);
+	}
+        
+        
+        @RequestMapping(value="/editPrestamo2/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingControlInventario(@ModelAttribute TbControlSalida con, @PathVariable Integer id) {
+            
+		TbPrestamoEquipo preActual = (TbPrestamoEquipo) tbPrestamoService.findByKey(id);
+                
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                //conActual.setRazonCambio(con.getRazonCambio());
+//                polizaActual.setFechaInicio(poliza.getFechaInicio());
+//                polizaActual.setFechaFin(poliza.getFechaFin());
+                //conActual.setNControl(con.getNMovimiento());
+                
+		                
+		tbPrestamoService.update(preActual);
+
+		String message = "prestamo was successfully edited.";
+		modelAndView.addObject("message", message);
+
 		return modelAndView;
 	}
     

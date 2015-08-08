@@ -9,15 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
-import com.isdemu.model.TbcClaseActivo;
-import com.isdemu.model.TbcUnidad;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -75,22 +73,34 @@ public class TB_MovimientoController {
         
         
         @RequestMapping(value="/insertarMovimiento", method=RequestMethod.POST)
-	public ModelAndView addingMovimiento(@ModelAttribute TbMovimiento movi) {
+	public @ResponseBody String addingMovimiento(@RequestBody String movi) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("esntra aquiPOST movimiento"+movi);
+		 System.out.println("esntra aqui POST movimiento insertar"+movi);
 
 
-               movi.setFechaMovimiento(new Date());
-                movi.setNMovimiento(2);
-                 movi.setRazonCambio("asdfasf");
+//               movi.setFechaMovimiento(new Date());
+//                movi.setNMovimiento(2);
+//                 movi.setRazonCambio("asdfasf");
+                 
+                System.out.println("String Json:"+movi);
+                 
+                 JSONObject array = new JSONObject(movi);
+                 JSONArray object = array.getJSONArray("Inventario");
+                 for(int i=0;i<array.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
                   
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
+                    System.out.println("Id Json:"+id);
+                 }
                 
               
             
-		tbMovimientoService.save(movi);
+		//tbMovimientoService.save(movi);
 		String message = "Movimiento was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return "22";
 	}
         
          @RequestMapping(value="/deleteMovimiento/{id}", method=RequestMethod.GET)
@@ -205,6 +215,34 @@ public class TB_MovimientoController {
                
                //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
                 String var=gson.toJson(movi.get(0).getFechaAdquisicion());
+            
+                //ModelAndView modelAndView = new ModelAndView("home");
+               // System.out.println("return String:"+inventarioString);
+               
+                
+               
+                return movi;
+                 
+	}
+        
+        
+        @RequestMapping(value="/agregarInvMov", method=RequestMethod.POST)
+	public @ResponseBody   TbInventario agreagrInvM(@RequestBody String clasi) 
+        {
+		
+                System.out.println("INGRESA CONTROLLER detalle inv");
+		System.out.println(clasi.toString());
+              
+                TbInventario movi =(TbInventario) tbInventarioService.findByKey(13);
+                
+                
+               System.out.println("lista="+movi.getClaseEquipo());
+               
+               Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                
+               
+               //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
+                String var=gson.toJson(movi.getFechaAdquisicion());
             
                 //ModelAndView modelAndView = new ModelAndView("home");
                // System.out.println("return String:"+inventarioString);

@@ -17,5 +17,7 @@ public interface TB_PrestamoDao {
     public List getAll();
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
+    public void update(Object obj);
+    public List getPreInv(Serializable id);
     
 }

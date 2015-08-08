@@ -12,13 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
 
 /**
  *
  * @author Jose Eduardo
  */
 @Entity
-@Table(name="TBR_CONTROL_SALIDA_INVENTARIO"
+@Table(name="TBR_PRESTAMO_EQUIPO_INVENTARIO"
     ,schema="dbo"
    
 )
@@ -26,10 +27,10 @@ public class TbrPrestamoEquipoInventario {
 
      private int idPrestamoEquipoInventario;
      private TbPrestamoEquipo tbPrestamoEquipo;
-     private int idInventario;
-    @Id 
-
+     private TbInventario tbInventario;
     
+    @Id 
+    @GeneratedValue    
     @Column(name="ID_PRESTAMO_EQUIPO_INVENTARIO", unique=true, nullable=false)
     public int getIdPrestamoEquipoInventario() {
         return this.idPrestamoEquipoInventario;
@@ -49,17 +50,16 @@ public class TbrPrestamoEquipoInventario {
         this.tbPrestamoEquipo = tbPrestamoEquipo;
     }
 
-    
-    @Column(name="ID_INVENTARIO", nullable=false)
-    public int getIdInventario() {
-        return this.idInventario;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="ID_INVENTARIO") 
+   // @Column(name="ID_INVENTARIO")
+    public TbInventario getTbInventario() {
+        return this.tbInventario;
     }
     
-    public void setIdInventario(int idInventario) {
-        this.idInventario = idInventario;
+    public void setTbInventario(TbInventario tbInventario) {
+        this.tbInventario = tbInventario;
     }
-
-
 
 
 }

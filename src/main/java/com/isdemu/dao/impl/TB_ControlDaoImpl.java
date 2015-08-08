@@ -8,12 +8,17 @@ package com.isdemu.dao.impl;
 import com.isdemu.dao.TB_ControlDao;
 
 import com.isdemu.model.TbControlSalida;
+import com.isdemu.model.TbrControlSalidaInventario;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -66,5 +71,26 @@ public class TB_ControlDaoImpl implements TB_ControlDao{
 		TbControlSalida persona = (TbControlSalida) getCurrentSession().get(TbControlSalida.class, id);
 		return persona;
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
+        
+        
+        @Override
+	public List getConInv(Serializable id) {
+            
+		System.out.println("Entra actualiza3");
+            DetachedCriteria dc = DetachedCriteria.forClass(TbrControlSalidaInventario.class,"controlInventario");            
+            
+            dc.createAlias("controlInventario.tbControlSalida", "cont");
+            dc.add(Restrictions.eq("cont.idControlSalida", id));         
+             System.out.println("Entra actualiza4");
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+          
+            	}
     
 }

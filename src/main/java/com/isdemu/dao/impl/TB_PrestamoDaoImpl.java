@@ -7,12 +7,17 @@ package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TB_PrestamoDao;
 import com.isdemu.model.TbPrestamoEquipo;
+import com.isdemu.model.TbrPrestamoEquipoInventario;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 /**
@@ -64,4 +69,26 @@ public class TB_PrestamoDaoImpl implements TB_PrestamoDao {
 		TbPrestamoEquipo prestamo = (TbPrestamoEquipo) getCurrentSession().get(TbPrestamoEquipo.class, id);
 		return prestamo;
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
+        
+        
+        @Override
+	public List getPreInv(Serializable id) {
+            
+		System.out.println("Entra actualiza3");
+            DetachedCriteria dc = DetachedCriteria.forClass(TbrPrestamoEquipoInventario.class,"prestamoInventario");            
+            
+            dc.createAlias("prestamoInventario.tbPrestamoEquipo", "pres");
+            dc.add(Restrictions.eq("pres.idPrestamoEquipo", id));         
+             System.out.println("Entra actualiza4");
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+          
+            }
+    
 }

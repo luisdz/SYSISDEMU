@@ -79,7 +79,7 @@
                                                 Fecha 
                                         </p>
                                         <div class="input-group">
-                                                <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                            <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" id="fecha" data-date-viewmode="years" class="form-control date-picker"/>
                                                 <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                         </div>
                                    </div>
@@ -93,23 +93,35 @@
                                                 <label class="control-label">
                                                         Razon de cambio<span class="symbol required"></span>
                                                 </label>
-                                            <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="lastname" name="lastname"/>
+                                            <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="razon" name="lastname"/>
                 
                                         </div>
                                      <br>
                                      
                                          <div class="form-group">
-                                            <label for="form-field-select-3">
-                                                    Inventario
-                                            </label>
+                                                <label class="control-label">
+                                                        Inventario<span class="symbol required"></span>
+                                                </label>
+                                               <form:select path=""  id="dropdown" name="dropdown">
+                                                    <form:option value="0"  label="Seleccione inventario"/>       
+                                                    <c:forEach var="inv" items="${inventario}">
+                                                           <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
+                                                    </c:forEach>
+                                                 </form:select>
+                                                
+                                    </div>
+                                     
+                                     <br>
 
-                                              <form:select path="TbInventario.idInventario" class="form-control" id="dropdown" name="dropdown">
-                                                  <form:option value="0"  label="Selecciona un elemento"/>
-                                                        <c:forEach var="inv" items="${inventario}">
-                                                            <form:option value="${inv.idInventario}"  label="${inv.claseEquipo}"/>
-                                                         </c:forEach>
-                                              </form:select>
-                                     </div>
+                                          
+
+                                        <div class="form-group">
+                                                <label class="control-label">
+                                                        Codigo inventario<span class="symbol required"></span>
+                                                </label>
+                                            <form:input path="" type="text" placeholder="Ingrese el nombre" class="form-control" id="codigo" name="lastname"/>
+                
+                                        </div>
                                       
                                       
                                        </div>
@@ -132,17 +144,46 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="row">
-                                <div class="col-md-8">
+                        
+                    </form:form>
+                    <div class="col-md-12 text-center">
+                                   <button type="button" class="btn btn-default" onclick="agregarInventario();" >Agregar</button>     
+                            </div>
+                            <div class="col-md-12 text-center">
+                                &nbsp;<br/>
+                            </div>  
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="tabla_prueba">
+                                <thead>
+                                        <tr>
+                                             <th>id  inv</th>
+                                               <th>codigo</th>
+                                                <th>ID inventario</th>
+                                               
+                                                <th>razon</th>                                                
+                                                <th>Delete</th>
+                                        </tr>
+                                </thead>
+                                <tbody id="tablabody" name="tablabody">
 
+                              	
+                                          
+
+                                </tbody>
+                        </table>
+                </div>
+                    
+                    <div class="row">
+                                <div class="col-md-8">
+                                       
                                 </div>
                                 <div class="col-md-4">
-                                        <button class="btn btn-yellow btn-block"   type="submit" value="Submit">
-                                                Ingresar <i class="fa fa-arrow-circle-right"></i>
+                                    <button class="btn btn-yellow btn-block" type="button" onclick="enviar();">
+                                                Guardar1 <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
                         </div>
-                    </form:form>
                     
 <!--                    validation-->
                    
@@ -160,3 +201,79 @@
                                                 
                                                 
 <%@include file="footer.jsp" %>		
+
+<script>
+    
+    function agregarInventario(){            
+                alert("entra");
+                  var id = $("#dropdown").val();
+                  var codigo = $('#dropdown option:selected').text();
+//                 alert(idInv);
+                 var idInv=id.toString();
+                      $('#tabla_prueba').append('<tr id="' + idInv + '"><td>' + idInv + '</td><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                };
+
+    function deleteElement(id)
+    {
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false; 
+        }
+        
+    function enviar()
+    {
+        // alert("enviar");
+        var fechaM=$("#fecha").val();
+        var razonM=$("#razon").val();
+       
+       
+       
+         var jsonArray="{";
+         
+         jsonArray+="\"Movimiento\":[{\"fecha\":\""+fechaM+"\",\"razon\":\" "+razonM+"\""  +"}],";
+         
+         jsonArray+="\"Inventario\":[";
+        
+        
+        var l=0;
+    
+        $('#tabla_prueba tr').each(function(index, element){
+
+        var id = $(element).find("td").eq(0).html();
+      
+        if(l!=0)
+        {
+            jsonArray=jsonArray+"{\"idInv\":"+'"'+id+'"'+"},";
+                    
+          }
+
+        l=1;
+
+    });
+
+
+    jsonArray=jsonArray.substring(0,jsonArray.length-1);
+    jsonArray=jsonArray+"]}";
+    //alert(jsonArray);
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Movimiento/insertarMovimiento",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               alert("entra");
+           },
+           data: jsonArray
+       });
+        
+    }
+                    
+                    
+    $( document ).ready(function() {
+
+
+           $('#dropdown').select2();
+
+
+       });          
+</script>

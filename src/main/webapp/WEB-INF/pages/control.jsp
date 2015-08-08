@@ -5,7 +5,6 @@
 --%>
 
 <%@include file="header.jsp" %>
-
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 
@@ -206,14 +205,18 @@
     function enviar()
     {
         var solicitante=$("#solicitante").val();
-        var solicitante=$("#fecha_sal").val();
-        var solicitante=$("#observacion").val();
-        var solicitante=$("#destino").val();
-        var solicitante=$("#fecha_devolucion").val();
+        var fecha_sal=$("#fecha_sal").val();
+        var observacion=$("#observacion").val();
+        var destino=$("#destino").val();
+        var fecha_devolucion=$("#fecha_devolucion").val();
         
-        var jsonArray="["
+        var jsonArray="{"
         
-        var personal = new Array();
+      
+        jsonArray+="\"Control\":[{\"solicitante\":\""+solicitante+"\",\"observacion\":\""+observacion+"\",\"destino\":\""+destino+"\",\"fecha_devolucion\":\""+fecha_devolucion+"\",\"fecha_sal\":\" "+fecha_sal+"\""+"}],";
+         
+         jsonArray+="\"Inventario\":[";
+        
         var l=0;
     
         $('#tabla_prueba tr').each(function(index, element){
@@ -221,7 +224,7 @@
         var id = $(element).find("td").eq(0).html();
       
         if(l!=0){
-            jsonArray=jsonArray+"{\"idControlSalida\":"+id+"},";
+            jsonArray=jsonArray+"{\"idInv\":"+'"'+id+'"'+"},";
 
           }
 
@@ -231,7 +234,7 @@
 
 
     jsonArray=jsonArray.substring(0,jsonArray.length-1);
-    jsonArray=jsonArray+"]";
+    jsonArray=jsonArray+"]}";
     //alert(jsonArray);
          $.ajax({
            type: "POST",

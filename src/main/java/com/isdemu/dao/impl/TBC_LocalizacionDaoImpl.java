@@ -38,6 +38,14 @@ public class TBC_LocalizacionDaoImpl implements  TBC_LocalizacionDao{
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		TbcLocalizacion localizacion = (TbcLocalizacion) getCurrentSession().get(TbcLocalizacion.class, id);
+		if(localizacion!=null)
+			getCurrentSession().delete(localizacion);
+                        
+	}
         
         @Override
 	public Object findByKey(Serializable id) {

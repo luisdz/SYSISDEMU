@@ -31,6 +31,13 @@ public class TB_Control_ServiceImpl implements TB_Control_Service {
 		tbControlDao.save(obj);
 	}
         
+        
+    @Override
+         public List getConInv(Serializable id){
+             System.out.println("service impl getconinv");
+         return tbControlDao.getConInv(id);
+         }
+        
     @Override
        public List getAll() {
             System.out.println("service impl");
@@ -49,4 +56,10 @@ public class TB_Control_ServiceImpl implements TB_Control_Service {
            // TODO Auto-generated method stub
            return tbControlDao.findByKey(id);
    }
+   
+   @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbControlDao.update(obj);
+	}
 }

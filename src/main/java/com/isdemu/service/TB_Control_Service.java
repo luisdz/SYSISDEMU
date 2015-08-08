@@ -17,5 +17,6 @@ public interface TB_Control_Service {
      public List getAll();
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
-    
+    public List getConInv(Serializable id);
+    public void update(Object obj);
 }

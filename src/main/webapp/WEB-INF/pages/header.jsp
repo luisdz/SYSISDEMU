@@ -67,7 +67,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/plugins.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/themes/theme-default.css" type="text/css" id="skin_color">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/print.css" type="text/css" media="print"/>
-		<!-- end: CORE CSS -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/select2.min.css">
+                <!-- end: CORE CSS -->
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
         </head>
 	<!-- end: HEAD -->
@@ -362,6 +363,11 @@
                                                                         <li>
 										<a href="${pageContext.request.contextPath}/Persona/list">
 											<span class="title"> Consultar Personal </span>
+										</a>
+									</li>
+                                                                        <li>
+										<a href="${pageContext.request.contextPath}/Localizacion/list">
+											<span class="title"> Consultar Localizacion </span>
 										</a>
 									</li>
 									<li>

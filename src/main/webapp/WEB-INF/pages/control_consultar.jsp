@@ -97,8 +97,8 @@
                                                                     <th>Ncontol</th>
                                                                     <th>solicitante</th>
                                                                     <th>fecha</th>
-                                                                    <th>Edit</th>
-                                                                    <th>Delete</th>
+                                                                    <th>Eliminar</th>
+                                                                    <th>Actualizar</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
@@ -108,10 +108,8 @@
                                                                     <td>${con.NControlSalida}</td>
                                                                     <td>${con.solicitante}</td>
                                                                     <td>${con.fechaSalida}</td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Control/delete/${con.idControlSalida}">
-                                                                    Eliminar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Control/edit/${con.idControlSalida}">
-                                                                    Actualizar</a></td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Control/delete/${con.idControlSalida}">Eliminar</a></td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Control/editControl1/${con.idControlSalida}">Actualizar</a></td>
                                                                     
                                                             </tr>
                                                         </c:forEach>

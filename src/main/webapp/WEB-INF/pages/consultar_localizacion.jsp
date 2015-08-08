@@ -1,7 +1,7 @@
 <%-- 
-    Document   : consultar_prestamo
-    Created on : 26-jul-2015, 21:31:07
-    Author     : Miranda
+    Document   : consultar_localizacion
+    Created on : 27-jul-2015, 23:28:56
+    Author     : Walter
 --%>
 
 <%@include file="header.jsp"%>
@@ -11,11 +11,11 @@
                 <ol class="breadcrumb">
                         <li>
                                 <a href="#">
-                                        Prestamos
+                                        Catalogos
                                 </a>
                         </li>
                         <li class="active">
-                                Consultar Prestamo Equipos
+                                Consultar Localizacion
                         </li>
                 </ol>
         </div>
@@ -28,7 +28,7 @@
                     <!-- start: EXPORT BASIC TABLE PANEL -->
                     <div class="panel panel-white">
                             <div class="panel-heading">
-                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Prestamo</h4>
+                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Localizacion</h4>
                                     <div class="panel-tools">
                                             <div class="dropdown">
                                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -93,24 +93,20 @@
                                             <table class="table table-hover" id="sample-table-2">
                                                     <thead>
                                                             <tr>
-                                                                    <th>idPrestamo</th>
-                                                                    <th>Nprestamo</th>
-                                                                    <th>fecha solicitu</th>
-                                                                    <th>hora inicio</th>
-                                                                    <th>Eliminar</th>
-                                                                    <th>Actualizar</th>
+                                                                    <th>IdLocalizacion</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Edit</th>
+                                                                    <th>Delete</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
-                                                     <c:forEach var="pres" items="${prestamo}">
+                                                     <c:forEach var="loc" items="${localizacion}">
                                                             <tr >
-                                                                    <td>${pres.idPrestamoEquipo}</td>
-                                                                    <td>${pres.NPrestamo}</td>
-                                                                    <td>${pres.fechaSolicitud}</td>
-                                                                    <td>${pres.horaInicio}</td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Prestamo/delete/${pres.idPrestamoEquipo}">
+                                                                    <td>${loc.idLocalizacion}</td>
+                                                                    <td>${loc.nombreLocalizacion}</td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Localizacion/delete/${loc.idLocalizacion}">
                                                                     Eliminar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Prestamo/editPrestamo2/${pres.idPrestamoEquipo}">
+                                                                    <td><a href="${pageContext.request.contextPath}/Localizacion/edit/${loc.idLocalizacion}">
                                                                     Actualizar</a></td>
                                                                     
                                                             </tr>
