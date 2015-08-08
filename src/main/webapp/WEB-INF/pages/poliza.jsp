@@ -163,7 +163,7 @@
         var x = document.forms["polizaF"]["nombre"].value;
         if (x === null || x === "")
         {
-            //$('#span_nombre').addClass("symbol required");
+             
             $('#span_nombreT').removeClass("no-display");            
             $('#span_nombreT').closest("div").addClass("has-error");            
              $('#span_nombreT').closest("div").removeClass("has-success");
@@ -172,7 +172,7 @@
         }
         else
         {
-            //$('#span_nombre').to("required");
+            
             $('#span_nombreT').addClass("no-display");
              $('#span_nombreT').closest("div").removeClass("has-error");
              $('#span_nombreT').closest("div").addClass("has-success");
