@@ -87,7 +87,7 @@
                             Clasificacion Activo
                     </label>
                    
-                      <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown1" name="dropdown1">
+                      <form:select path="" class="form-control" id="dropdown1" name="dropdown1">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
                                 <c:forEach var="clasi" items="${clasificacionA}">
                                     <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
@@ -102,9 +102,7 @@
                    
                       <form:select path="TbcClaseActivo.idClaseActivo" class="form-control" id="dropdown2" name="dropdown">
                           <form:option value="0"  label="Selecciona una clasificacion"/>
-                          <%--  <c:forEach var="claseA" items="${claseActivo}">
-                                    <form:option value="${claseA.idClaseActivo}"  label="${claseA.nombreClase}"/>
-                                 </c:forEach> --%>
+                         
                       </form:select>
             </div>
             
@@ -120,7 +118,7 @@
                          <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
                        <c:forEach var="pers" items="${persona}">
                                     <form:option value="${pers.idPersona}"  label="${pers.nombrePersona}"/>
-                                 </c:forEach> --%>
+                        </c:forEach> 
                       </form:select>
             </div>
            
@@ -130,9 +128,9 @@
                     </label>
                      <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown4" name="dropdown">
                          <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
-                        <%-- <c:forEach var="loca" items="${lozalizacion}">
+                        <c:forEach var="loca" items="${lozalizacion}">
                                     <form:option value="${loca.idLocalizacion}"  label="${loca.nombreLocalizacion}"/>
-                                 </c:forEach> --%>
+                                 </c:forEach> 
                       </form:select>
             </div>
           
@@ -240,7 +238,7 @@
 <script>
 $("#dropdown1").change(function () {
    var conceptName = $('#dropdown1 :selected').val(); // define the variable
-    alert(conceptName);
+   // alert(conceptName);
     
     
     
@@ -259,6 +257,7 @@ $("#dropdown1").change(function () {
                    var len = data.length;
                     //alert("devuelve algo"+data);
                             $('#dropdown2').empty();
+                            html= '<option value="0"  label="Selecciona una clasificacion"/>';
                             data.forEach(function(entry) 
                             {
                                     console.log(entry);
@@ -277,4 +276,46 @@ $("#dropdown1").change(function () {
    
        
     });
+    
+    
+    //AJAX PARA QUE APAREZCA LA REGION EN LA QUE SE VA INGRESAR EL INVENTARIO AL SELECCIONAR LA PERSONA
+    $("#dropdown3").change(function () {
+   var conceptName = $('#dropdown3 :selected').val(); // define the variable
+    //alert(conceptName);
+    
+    
+    
+//   $.ajax({ 
+//                url: "${pageContext.request.contextPath}/Inventario/listaClaseA", 
+//                type: 'POST', 
+//                dataType: 'json', 
+//                contentType: 'application/json',
+//                mimeType: 'application/json',
+//                
+//                
+//                data: conceptName, 
+//                
+//               success: function(data) { 
+//                   var html = '';
+//                   var len = data.length;
+//                    //alert("devuelve algo"+data);
+//                            $('#dropdown2').empty();
+//                            html= '<option value="0"  label="Selecciona una clasificacion"/>';
+//                            data.forEach(function(entry) 
+//                            {
+//                                    console.log(entry);
+//                                   // alert("foreach :"+entry.nombreClase );
+//                                   html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
+//                            });
+//                            $('#dropdown2').append(html);
+//                   // alert("devuelve algo: "+data);
+//                },
+//                error:function(data,status,er) { 
+//                    alert("error: "+data+" status: "+status+" er:"+er);
+//                    
+//                    
+//                }
+//            });
+//   
+   });
  </script>
