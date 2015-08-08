@@ -132,4 +132,14 @@
     </div>
 						
 						<!-- end: PAGE CONTENT-->
-<%@include file="footer.jsp" %>		
+<%@include file="footer.jsp" %>	
+
+<script>
+    $(document).ready(function () {
+
+
+        $('#dropdown').select2();
+
+
+    });
+</script>

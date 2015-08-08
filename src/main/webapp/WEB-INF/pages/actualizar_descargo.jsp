@@ -85,7 +85,29 @@
                         <form:input path="comentario" type="text" placeholder="${descargo.comentario}" class="form-control" id="lastname" name="lastname"/>
                 </div>
                 
-                        
+                        <div class="form-group">
+                                <p>
+                                    Fecha 
+                                </p>
+                                <div class="input-group">
+                                    <form:input path="fecha" placeholder="${descargo.fecha}" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                </div>
+                            </div>
+                                    
+                    <div class="form-group" >
+                                <label class="control-label">
+                                    Inventario<span class="symbol required"></span>
+                                </label>
+                                <form:select path="TbInventario.idInventario"  id="dropdown" name="dropdown" >
+                                    <form:option value="0"   label="Seleccione inventario"/>       
+                                    <c:forEach var="inv" items="${inventario}">
+                                        <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
+                                    </c:forEach>
+                                </form:select>
+
+                            </div>                
+
                         
                             <div class="row">
                                 
@@ -108,4 +130,14 @@
 						</div>
 						
 						<!-- end: PAGE CONTENT-->
-				<%@include file="footer.jsp" %>		
+				<%@include file="footer.jsp" %>	
+                                
+                                <script>
+    $(document).ready(function () {
+
+
+        $('#dropdown').select2();
+
+
+    });
+</script>
