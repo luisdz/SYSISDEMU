@@ -69,7 +69,7 @@
 
 
                 <!--                    <form action="#" role="form" id="form">-->
-                <form:form method="POST" action="${pageContext.request.contextPath}/Poliza/insertarPoliza" onsubmit="return valida_envio(event);" modelAttribute="poliza" id="polizaF"  >
+                <form:form method="POST" action="${pageContext.request.contextPath}/Poliza/insertarPoliza" onsubmit="return valida_envio();" modelAttribute="poliza" id="polizaF"  >
 
                     <div class="row">
                         <div class="col-md-12">
@@ -91,7 +91,7 @@
                                     Nombre<span id="span_nombre" class="symbol "></span>
                                 </label>
                                 <!--                                                <input type="text" placeholder="Nombre" class="form-control" id="nombre" name="firstname">-->
-                                <form:input path="nombrePoliza" type="text" placeholder="Ingrese el nombre de la poliza" class="form-control" id="nombre" name="nombre" onblur="return validaNombre(event);"/>
+                                <form:input path="nombrePoliza" type="text" placeholder="Ingrese el nombre de la poliza" class="form-control" id="nombre" name="nombre" onblur="return validaNombrePoliza(event);"/>
                                 <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un nombre</span>    
                             </div>
                             <div class="form-group">
@@ -99,7 +99,7 @@
                                     Codigo<span class="symbol"></span>
                                 </label>
                                 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                <form:input path="codigoPoliza" type="text" placeholder="Ingrese el codigo de la poliza" class="form-control" id="codigo" name="codigo" onblur="return validaCodigo(event);"/>
+                                <form:input path="codigoPoliza" type="text" placeholder="Ingrese el codigo de la poliza" class="form-control" id="codigo" name="codigo" onblur="return validaCodigoPoliza(event);"/>
                                 <span for="codigo" class="help-block  no-display" id="span_codigoT">Ingrese un codigo</span>    
                             
                             </div>
@@ -111,7 +111,7 @@
                                     Fecha Inicio
                                 </p>
                                 <div class="input-group">
-                                    <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onchange="return validaFechaIni(event);" onblur="return validaFechaIni(event);"/>
+                                    <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onchange="return validaFechaIniPoliza(event);" onblur="return validaFechaIniPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                     <span for="fechaInicio" class="help-block  no-display" id="span_fechaIniT">Ingrese una fecha</span>    
                             
@@ -124,7 +124,7 @@
                                     Fecha Fin
                                 </p>
                                 <div class="input-group">
-                                    <form:input path="fechaFin" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" id="fechaFin" class="form-control date-picker" onchange="return validaFechaFn(event);" onblur="return validaFechaFn(event);"/>
+                                    <form:input path="fechaFin" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" id="fechaFin" class="form-control date-picker" onchange="return validaFechaFnPoliza(event);" onblur="return validaFechaFnPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                     <span for="fechaFin" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>    
                             
@@ -139,7 +139,7 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <button class="btn btn-yellow btn-block" type="submit">
+                                <button class="btn btn-yellow btn-block" type="submit"  >
                                     Guardar Activo <i class="fa fa-arrow-circle-right"></i>
                                 </button>
                             </div>
@@ -157,141 +157,10 @@
 <!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>	
 
+
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
+ 
 <script>
-    function validaNombre()
-    {
-        var x = document.forms["polizaF"]["nombre"].value;
-        if (x === null || x === "")
-        {
-             
-            $('#span_nombreT').removeClass("no-display");            
-            $('#span_nombreT').closest("div").addClass("has-error");            
-             $('#span_nombreT').closest("div").removeClass("has-success");
-             
-            return false;
-        }
-        else
-        {
-            
-            $('#span_nombreT').addClass("no-display");
-             $('#span_nombreT').closest("div").removeClass("has-error");
-             $('#span_nombreT').closest("div").addClass("has-success");
-        }
-
-    };
     
-    function validaCodigo()
-    {
-        var x = document.forms["polizaF"]["codigo"].value;
-        if (x === null || x === "")
-        {
-            //$('#span_nombre').addClass("symbol required");
-            $('#span_codigoT').removeClass("no-display");            
-            $('#span_codigoT').closest("div").addClass("has-error");            
-             $('#span_codigoT').closest("div").removeClass("has-success");
-
-            return false;
-        }
-        else
-        {
-            //$('#span_nombre').to("required");
-            $('#span_codigoT').addClass("no-display");
-             $('#span_codigoT').closest("div").removeClass("has-error");
-             $('#span_codigoT').closest("div").addClass("has-success");
-        }
-
-    };
-function validaFechaIni()
-    {
-        var x = document.forms["polizaF"]["fechaInicio"].value;
-        if (x === null || x === "")
-        {
-            //$('#span_nombre').addClass("symbol required");
-            $('#span_fechaIniT').removeClass("no-display");            
-            $('#span_fechaIniT').closest("div").addClass("has-error");            
-             $('#span_fechaIniT').closest("div").removeClass("has-success");
-
-            return false;
-        }
-        else
-        {
-            //$('#span_nombre').to("required");
-            $('#span_fechaIniT').addClass("no-display");
-             $('#span_fechaIniT').closest("div").removeClass("has-error");
-             $('#span_fechaIniT').closest("div").addClass("has-success");
-        }
-
-    };
-
-function validaFechaFn()
-    {
-        var x = document.forms["polizaF"]["fechaFin"].value;
-        if (x === null || x === "")
-        {
-            //$('#span_nombre').addClass("symbol required");
-            $('#span_fechaFnT').removeClass("no-display");            
-            $('#span_fechaFnT').closest("div").addClass("has-error");            
-             $('#span_fechaFnT').closest("div").removeClass("has-success");
-
-            return false;
-        }
-        else
-        {
-            //$('#span_nombre').to("required");
-            $('#span_fechaFnT').addClass("no-display");
-             $('#span_fechaFnT').closest("div").removeClass("has-error");
-             $('#span_fechaFnT').closest("div").addClass("has-success");
-        }
-
-    };
-
-
-   var  flag=true;
-
-    function valida_envio()
-    {
-        flag=true;
-        
-        if(validaNombre()===false)
-        {        
-            $('#mensajeErrorForm').removeClass("no-display");
-            flag = false;
-        }
-        if(validaCodigo()===false)
-        {
-         $('#mensajeErrorForm').removeClass("no-display");
-             flag =  false;
-        }
-        
-        if(validaFechaIni()===false)
-        {
-         $('#mensajeErrorForm').removeClass("no-display");
-             flag =  false;
-        }
-        
-        if(validaFechaFn()===false)
-        {
-         $('#mensajeErrorForm').removeClass("no-display");
-             flag =  false;
-        }
-       return flag;
-    };
-
-
-    $(window).click(function ()
-    {
-         $('#mensajeErrorForm').addClass("no-display");       
-    });
-     
     
-
-
-
-    $(document).ready(function ()
-    {        
-        console.log("ready!");
-    });
-
-
-</script>
-
+ </script>
