@@ -117,8 +117,8 @@ public class TBC_PolizaController {
 		ModelAndView modelAndView = new ModelAndView("home");
                 
                 polizaActual.setCodigoPoliza(poliza.getCodigoPoliza());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
+                polizaActual.setFechaInicio(poliza.getFechaInicio());
+                polizaActual.setFechaFin(poliza.getFechaFin());
                 polizaActual.setNombrePoliza(poliza.getNombrePoliza());
                 
 		                

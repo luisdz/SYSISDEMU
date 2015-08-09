@@ -70,7 +70,7 @@ public class TbMovimiento {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name="FECHA_MOVIMIENTO", nullable=false, length=10)
     public Date getFechaMovimiento() {
         return this.fechaMovimiento;
