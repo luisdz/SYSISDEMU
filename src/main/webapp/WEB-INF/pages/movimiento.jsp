@@ -91,7 +91,7 @@
 
                                         <div class="form-group">
                                                 <label class="control-label">
-                                                        Razon de cambio<span class="symbol required"></span>
+                                                        Razon de cambio<span class="symbol "></span>
                                                 </label>
                                             <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="razon" name="lastname"/>
                 
@@ -127,10 +127,10 @@
                             </div>
                                
                         </div>
-                        <div class="row">
+                        <div class="row  no-display">
                                 <div class="col-md-12">
                                         <div>
-                                                <span class="symbol required no-display"></span>Campos Requeridos
+                                                <span class="symbol required"></span>Campos Requeridos
                                                 <hr>
                                         </div>
                                 </div>

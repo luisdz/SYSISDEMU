@@ -90,9 +90,9 @@
 
                             <div class="form-group">
                                 <label class="control-label">
-                                    Comentario<span class="symbol required"></span>
+                                    Comentario<span class="symbol "></span>
                                 </label>
-                                <form:input path="comentario" type="text" placeholder="Ingrese el nombre" class="form-control" id="lastname" name="lastname"/>
+                                <form:input path="comentario" type="text" placeholder="Ingrese un comentario" class="form-control" id="lastname" name="lastname"/>
 
                             </div>
                             <br>
@@ -100,7 +100,7 @@
 
                             <div class="form-group" >
                                 <label class="control-label">
-                                    Inventario<span class="symbol required"></span>
+                                    Inventario<span class="symbol "></span>
                                 </label>
                                 <form:select path="TbInventario.idInventario"  id="dropdown" name="dropdown" >
                                     <form:option value="0"  label="Seleccione inventario"/>       
@@ -108,7 +108,6 @@
                                         <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
                                     </c:forEach>
                                 </form:select>
-
                             </div>
 
 
@@ -125,7 +124,7 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row no-display">
                         <div class="col-md-12">
                             <div>
                                 <span class="symbol required"></span>Campos Requeridos
