@@ -23,6 +23,9 @@ import com.isdemu.service.TB_Control_Service;
 import com.isdemu.service.TB_Prestamo_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -88,13 +91,48 @@ public class TB_PrestamoController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public @ResponseBody String addingPais(@RequestBody String prestamo) {
+	public @ResponseBody String addingPais(@RequestBody String prestamo) throws ParseException {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("String Json:"+prestamo);
                  
+                TbPrestamoEquipo prestamoEquipo = null;
+                
+                
+                JSONObject array2 = new JSONObject(prestamo);
+                JSONArray object3 = array2.getJSONArray("Prestamo");
+                
+                JSONObject objectNumero = object3.getJSONObject(0);
+                String nPrestamo = objectNumero.getString("nPrestamo");
+                String destino = objectNumero.getString("destino");
+                String hora_inicio = objectNumero.getString("hora_inicio");
+                String hora_fin = objectNumero.getString("hora_fin");
+                String fecha_solic = objectNumero.getString("fecha_solic");
+                String fecha_reser = objectNumero.getString("fecha_reser");
+                
+                System.out.println("nPrestamo Json:"+nPrestamo);
+                System.out.println("Numero Json:"+destino);
+                System.out.println("hora_inicio Json:"+hora_inicio);
+                System.out.println("hora_fin Json:"+hora_fin);
+                System.out.println("fecha_solic Json:"+fecha_solic);
+                System.out.println("fecha_reser Json:"+fecha_reser);
+                /* DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date hora_ini = formatter.parse(hora_inicio);
+                Date hora_fi = formatter.parse(hora_fin);
+                //Date fecha_sol = formatter.parse(fecha_solic);
+                //Date fecha_res = formatter.parse(fecha_reser);
+
+                
+                prestamoEquipo.setNPrestamo(Integer.parseInt(nPrestamo));
+                prestamoEquipo.setHoraInicio(hora_ini);
+                prestamoEquipo.setHoraFin(hora_fi);
+                //prestamoEquipo.setFechaSolicitud(fecha_sol);
+                //prestamoEquipo.setFechaReservacion(fecha_res);
+                
+                */
+                 
                  JSONObject array = new JSONObject(prestamo);
                  JSONArray object = array.getJSONArray("Inventario");
-                 for(int i=0;i<array.length();i++)
+                 for(int i=0;i<=array.length();i++)
                  {
                     JSONObject object2 = object.getJSONObject(i);
                   
@@ -103,8 +141,10 @@ public class TB_PrestamoController {
                     System.out.println("Id Json:"+id);
                    
                 }
+                 
                 
-              
+                
+                //tbPrestamoService.save(prestamoEquipo);
             
 		//tbMovimientoService.save(movi);
 		String message = "Prestamo was successfully added.";
