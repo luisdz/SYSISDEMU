@@ -83,7 +83,7 @@ public class TB_MovimientoController {
         ModelAndView modelAndView = new ModelAndView("home");
         System.out.println("esntra aqui POST movimiento insertar" + movi);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         TbMovimiento mov = new TbMovimiento();
 
         System.out.println("String Json:" + movi);

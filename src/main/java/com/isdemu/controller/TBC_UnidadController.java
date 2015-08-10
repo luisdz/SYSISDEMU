@@ -125,8 +125,6 @@ public class TBC_UnidadController {
 		ModelAndView modelAndView = new ModelAndView("home");
                 
                 unidadActual.setNombreUnidad(unidad.getNombreUnidad());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
                 unidadActual.setDescripcion(unidad.getDescripcion());
                 
 		                

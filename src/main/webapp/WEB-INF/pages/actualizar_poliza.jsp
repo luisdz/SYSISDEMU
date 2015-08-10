@@ -70,25 +70,44 @@
                 <hr>
 
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/Poliza/editPoliza/${poliza.idPoliza}" modelAttribute="poliza" >
+                <form:form method="POST" action="${pageContext.request.contextPath}/Poliza/editPoliza/${poliza.idPoliza}" modelAttribute="poliza" onsubmit="return valida_envio();" id="polizaF" >
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForm">
+
+                                <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                            </div>
+                            <div class="successHandler alert alert-success no-display">
+                                <i class="fa fa-ok"></i> Your form validation is successful!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
 
 
 
 
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Nombre<span id="span_nombre" class="symbol "></span>
+                                </label>
+                                <!--                                                <input type="text" placeholder="Nombre" class="form-control" id="nombre" name="firstname">-->
+                                <form:input path="nombrePoliza" type="text" placeholder="Ingrese el nombre de la poliza" class="form-control" id="nombre" name="nombre" onblur="return validaNombrePoliza(event);"/>
+                                <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un nombre</span>    
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Codigo<span class="symbol"></span>
+                                </label>
+                                <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                <form:input path="codigoPoliza" type="text" placeholder="Ingrese el codigo de la poliza" class="form-control" id="codigo" name="codigo" onblur="return validaCodigoPoliza(event);"/>
+                                <span for="codigo" class="help-block  no-display" id="span_codigoT">Ingrese un codigo</span>    
+                            
+                            </div>
 
-                    <div class="form-group">
-                        <label class="control-label">
-                            Nombre<span class="symbol  "></span>
-                        </label>
-                        <form:input path="nombrePoliza" type="text" placeholder="${poliza.nombrePoliza}" class="form-control" id="lastname" name="lastname"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">
-                            Codigo<span class="symbol  "></span>
-                        </label>
-                        <form:input path="codigoPoliza" type="text" placeholder="${poliza.codigoPoliza}" class="form-control" id="lastname" name="lastname"/>
-                    </div>
-                    <div class="form-group">
+
+
+                            <div class="form-group">
                                 <p>
                                     Fecha Inicio
                                 </p>
@@ -113,27 +132,33 @@
                                 </div>
                             </div>
 
-
-
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <button class="btn btn-yellow btn-block" type="submit">
-                                Actualizar <i class="fa fa-arrow-circle-right"></i>
-                            </button>
                         </div>
+                        <div class="col-md-6">
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <button class="btn btn-yellow btn-block" type="submit"  >
+                                    Actualizar <i class="fa fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                                    </div>
+                            </form:form>
+
+
+                        </div>
+
+
                     </div>
-                </form:form>
-
-
+                </div>
+                <!-- end: FORM VALIDATION 1 PANEL -->
             </div>
-
-
         </div>
-    </div>
-    <!-- end: FORM VALIDATION 1 PANEL -->
-</div>
-</div>
 
-<!-- end: PAGE CONTENT-->
-<%@include file="footer.jsp" %>		
+        <!-- end: PAGE CONTENT-->
+        <%@include file="footer.jsp" %>	
+        
+        <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>

@@ -91,10 +91,55 @@ function validaFechaFnPoliza()
         }
 
     };
+    
+  function validaFechaDescargo()
+    {
+        var x = document.forms["descargoF"]["fechaDescargo"].value;
+        if (x === null || x === "")
+        {
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_fechaFnT').removeClass("no-display");            
+            $('#span_fechaFnT').closest("div").addClass("has-error");            
+             $('#span_fechaFnT').closest("div").removeClass("has-success");
 
+            return false;
+        }
+        else
+        {
+            //$('#span_nombre').to("required");
+            $('#span_fechaFnT').addClass("no-display");
+             $('#span_fechaFnT').closest("div").removeClass("has-error");
+             $('#span_fechaFnT').closest("div").addClass("has-success");
+        }
+
+    };  
+function validaInvDescargo()
+    {
+        var x = document.forms["descargoF"]["dropdown"].value;
+        //alert(x);
+        if (x === "0")
+        {
+            //alert("error");
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_cmbInv').removeClass("no-display");            
+            $('#span_cmbInv').closest("div").addClass("has-error");            
+             $('#span_cmbInv').closest("div").removeClass("has-success");
+
+            return false;
+        }
+        else
+        {
+           // alert("valido");
+            //$('#span_nombre').to("required");
+            $('#span_cmbInv').addClass("no-display");
+             $('#span_cmbInv').closest("div").removeClass("has-error");
+             $('#span_cmbInv').closest("div").addClass("has-success");
+        }
+
+    }; 
 
    
-      
+ //Envio descargo     
  var  flag=true;
 
     function valida_envio()
@@ -128,6 +173,29 @@ function validaFechaFnPoliza()
        return flag;
        
     };
+    function valida_envioDescargo()
+    {
+         
+        flag=true;        
+        
+        
+        if(validaFechaDescargo()===false)
+        {        
+            $('#mensajeErrorForm').removeClass("no-display");
+            flag = false;
+        }
+        if(validaInvDescargo()===false)
+        {
+         $('#mensajeErrorForm').removeClass("no-display");
+             flag =  false;
+        }
+        
+        
+       return flag;
+       
+    };
+    
+    //Envio descargo
 
 
     $(window).click(function ()
