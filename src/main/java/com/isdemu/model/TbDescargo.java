@@ -75,7 +75,7 @@ public class TbDescargo implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name="FECHA", length=23)
     public Date getFecha() {
         return this.fecha;

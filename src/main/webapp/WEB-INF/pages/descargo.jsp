@@ -62,7 +62,7 @@
                     Esta es la seccion de Ingreso de Activos Fijos
                 </p>
                 <hr>
-                <form:form method="POST" action="${pageContext.request.contextPath}/Descargo/insertarDescargo" modelAttribute="descargo" >
+                <form:form method="POST" action="${pageContext.request.contextPath}/Descargo/insertarDescargo" modelAttribute="descargo" id="descargoF" onsubmit="return valida_envioDescargo();" >
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display">
@@ -78,8 +78,9 @@
                                     Fecha 
                                 </p>
                                 <div class="input-group">
-                                    <form:input path="fecha" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                    <form:input id="fechaDescargo" path="fecha" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaDescargo(event);" onblur="return validaFechaDescargo(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                    <span for="fechaInicio" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>  
                                 </div>
                             </div>
 
@@ -92,8 +93,8 @@
                                 <label class="control-label">
                                     Comentario<span class="symbol "></span>
                                 </label>
-                                <form:input path="comentario" type="text" placeholder="Ingrese un comentario" class="form-control" id="lastname" name="lastname"/>
-
+                                <form:input path="comentario" type="text" placeholder="Ingrese un comentario" class="form-control" id="comentario" name="comentario" />
+                                       
                             </div>
                             <br>
 
@@ -102,12 +103,13 @@
                                 <label class="control-label">
                                     Inventario<span class="symbol "></span>
                                 </label>
-                                <form:select path="TbInventario.idInventario"  id="dropdown" name="dropdown" >
+                                <form:select path="TbInventario.idInventario"  id="dropdown" name="dropdown"  onchange="return validaInvDescargo(event);" onblur="return validaInvDescargo(event);" >
                                     <form:option value="0"  label="Seleccione inventario"/>       
                                     <c:forEach var="inv" items="${inventario}">
                                         <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
                                     </c:forEach>
                                 </form:select>
+                                <span for="dropdown" class="help-block  no-display" id="span_cmbInv">Seleccione un item</span> 
                             </div>
 
 
@@ -160,7 +162,7 @@
 
 
 <%@include file="footer.jsp" %>		
-
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
 <script>
     $(document).ready(function () {
 
