@@ -5,6 +5,8 @@
  */
 
 //Validaciones luis
+
+
  function validaNombrePoliza()
     {
         var x = document.forms["polizaF"]["nombre"].value;
@@ -143,5 +145,4 @@ function validaFechaFnPoliza()
         console.log("ready!");
     });
 
-
-
+ 
