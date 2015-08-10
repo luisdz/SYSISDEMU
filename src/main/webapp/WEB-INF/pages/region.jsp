@@ -68,39 +68,40 @@
                             Ingreso del Regiones
                     </p>
                     <hr>
-                    <form:form method="POST" action="${pageContext.request.contextPath}/Region/add" modelAttribute="region" >
+                    <form:form method="POST" action="${pageContext.request.contextPath}/Region/add" onsubmit="return valida_envio();" modelAttribute="region" id="regionF" >
                         <div class="row">
                                 <div class="col-md-12">
-                                        <div class="errorHandler alert alert-danger no-display">
-                                                <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
-                                        </div>
-                                        <div class="successHandler alert alert-success no-display">
-                                                <i class="fa fa-ok"></i> Your form validation is successful!
-                                        </div>
+                                    <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForms">
+
+                                        <i class="fa fa-times-sign"></i> Se encontraron errores, favor verificarlos.
+                                    </div>
+                                    <div class="successHandler alert alert-success no-display">
+                                        <i class="fa fa-ok"></i> Validacion exitosa!
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
     
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Nombre<span class="symbol required"></span>
+                                                        Nombre<span id="span_nombre" class="symbol"></span>
                                                 </label>
-                                        <form:input path="nombreRegion" type="text" placeholder="Nombre" class="form-control" id="nombre" name="nombre"/>
-                                                
+                                        <form:input path="nombreRegion" type="text" placeholder="Nombre" class="form-control" id="nombre" name="nombre" onblur="return validaNombre(event);"/>
+                                         <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un Nombre</span>        
                                     </div>
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Direccion<span class="symbol required"></span>
+                                                        Direccion<span id="span_direccion" class="symbol"></span>
                                                 </label><br/>
-                                                <form:input path="direccion" type="text" placeholder="Direccion" class="form-control" id="direccion" name="direccion"/>
-                                                
+                                                <form:input path="direccion" type="text" placeholder="Direccion" class="form-control" id="direccion" name="direccion" onblur="return validaDireccion(event);"/>
+                                                <span for="direccion" class="help-block  no-display" id="span_direccionT">Ingrese un Nombre</span> 
                                     </div>
                                     
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Descripcion
+                                                        Descripcion<span id="span_descripcion" class="symbol"></span>
                                                 </label>
-                                        <form:input path="descripcion" type="text" placeholder="Descripcion" class="form-control" id="description" name="description"/>
-                                        
+                                        <form:input path="descripcion" type="text" placeholder="Descripcion" class="form-control" id="description" name="description" onblur="return validaDescripcion(event);"/>
+                                        <span for="descripcion" class="help-block  no-display" id="span_descripcionT">Ingrese un Nombre</span> 
                                     </div>
                                     
                                         
@@ -137,3 +138,4 @@
 
 
 <%@include file="footer.jsp" %>	
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesRegion.js"></script>
