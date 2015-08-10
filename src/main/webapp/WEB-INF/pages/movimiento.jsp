@@ -63,10 +63,10 @@
                             Esta es la seccion de Ingreso de Activos Fijos
                     </p>
                     <hr>
-                     <form:form method="POST" action="${pageContext.request.contextPath}/Movimiento/insertarMovimiento" modelAttribute="movimiento" >
+                    <form:form method="POST"  action="${pageContext.request.contextPath}/Movimiento/insertarMovimiento" modelAttribute="movimiento" id="movF" >
                        <div class="row">
                                 <div class="col-md-12">
-                                        <div class="errorHandler alert alert-danger no-display">
+                                        <div class="errorHandler alert alert-danger no-display" id="mensajeErrorFormM"  >
                                                 <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
                                         </div>
                                         <div class="successHandler alert alert-success no-display">
@@ -91,7 +91,7 @@
 
                                         <div class="form-group">
                                                 <label class="control-label">
-                                                        Razon de cambio<span class="symbol required"></span>
+                                                        Razon de cambio<span class="symbol "></span>
                                                 </label>
                                             <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="razon" name="lastname"/>
                 
@@ -127,10 +127,10 @@
                             </div>
                                
                         </div>
-                        <div class="row">
+                        <div class="row  no-display">
                                 <div class="col-md-12">
                                         <div>
-                                                <span class="symbol required no-display"></span>Campos Requeridos
+                                                <span class="symbol required"></span>Campos Requeridos
                                                 <hr>
                                         </div>
                                 </div>
@@ -170,7 +170,7 @@
                                        
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-yellow btn-block" type="button" onclick="enviar();">
+                                    <button class="btn btn-yellow btn-block" type="button" id="btnEnviar" onclick="return enviarMov(event);">
                                                 Guardar1 <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
@@ -192,8 +192,10 @@
                                                 
                                                 
 <%@include file="footer.jsp" %>		
-
+ <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
 <script>
+    
+    
     
     function agregarInventario(){ 
                  
@@ -215,11 +217,15 @@
         var el = document.getElementById(id);
         el.parentNode.removeChild(el);
         return false; 
-        }
+        };
         
-    function enviar()
+    function enviarMov()
     {
-        // alert("enviar");
+         alert("enviar");
+        
+        if($('#tabla_prueba tr').size()>1)
+        {
+        $('#mensajeErrorFormM').addClass("no-display");   
         var fechaM=$("#fecha").val();
         var razonM=$("#razon").val();
        
@@ -262,8 +268,17 @@
            },
            data: jsonArray
        });
-        
-    }
+       }
+       else
+       {
+       
+        $('#mensajeErrorFormM').removeClass("no-display");
+       return false;
+       }
+       
+       };
+       
+    
                     
                     
     $( document ).ready(function() {

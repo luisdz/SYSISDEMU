@@ -122,10 +122,9 @@ public class TB_DescargoController
 		ModelAndView modelAndView = new ModelAndView("home");
                 
                 descargoActual.setIdNumeroDescargo(descarg.getIdNumeroDescargo());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
                 descargoActual.setComentario(descarg.getComentario());
-                
+                descargoActual.setFecha(descarg.getFecha());
+                descargoActual.setTbInventario(descarg.getTbInventario());
 		                
 		tbdescargoService.update(descargoActual);
 

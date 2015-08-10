@@ -103,9 +103,10 @@ public class TBC_UnidadController {
 		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
 		TbcUnidad unidad = (TbcUnidad) tbUnidadService.findByKey(id);
                // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
-                
+                 List regi = tbRegionService.getAll();
                   Map<String, Object> myModel = new HashMap<String, Object>();
-                   //List ClasAct = tbClasActService.getAll();  
+                   //List ClasAct = tbClasActService.getAll();
+                  myModel.put("region",regi);
                    myModel.put("unidad",unidad ); 
                  // myModel.put("clasificacionA",activo );
                   //myModel.put("AllclasificacionA",ClasAct );
@@ -124,8 +125,6 @@ public class TBC_UnidadController {
 		ModelAndView modelAndView = new ModelAndView("home");
                 
                 unidadActual.setNombreUnidad(unidad.getNombreUnidad());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
                 unidadActual.setDescripcion(unidad.getDescripcion());
                 
 		                

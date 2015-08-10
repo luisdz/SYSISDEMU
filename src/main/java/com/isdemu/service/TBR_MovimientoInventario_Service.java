@@ -6,19 +6,15 @@
 package com.isdemu.service;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
  * @author AlejandroPC
  */
-public interface TB_Movimiento_Service {
-    public void save(Object obj);
-     public List getAll();
-     public List getTop();
-     public List getMovInv(Serializable id);
-      public void delete(Serializable id);
+public interface TBR_MovimientoInventario_Service {
+    
+     public void save(Object obj);
+    public void delete(Serializable id);
     public Object findByKey(Serializable id);
-    public void update(Object obj);
-     public List LastIdMovimiento();
+    
 }

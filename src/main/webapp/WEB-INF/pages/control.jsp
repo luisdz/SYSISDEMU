@@ -70,19 +70,75 @@
                             Ingreso del control de salida de ISDEMU
                     </p>
                     <hr>
-              <form:form method="POST" action="${pageContext.request.contextPath}/Control/add" modelAttribute="control" >
+              <form:form method="POST" action="${pageContext.request.contextPath}/Control/add" modelAttribute="control" id="controlE" name="controlE">
                         <div class="row">
                                 <div class="col-md-12">
-                                        <div class="errorHandler alert alert-danger no-display">
-                                                <i class="fa fa-times-sign"></i> Tu tienes algunos errores. Favor verificar antes.
-                                        </div>
-                                        <div class="successHandler alert alert-success no-display">
-                                                <i class="fa fa-ok"></i> Tu formulario esta listo!
-                                        </div>
+                                    <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForm">
+
+                                        <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                                    </div>
+                                    <div class="successHandler alert alert-success no-display">
+                                        <i class="fa fa-ok"></i> Your form validation is successful!
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
     
+                                                                      
                                     <div class="form-group">
+                                                <label class="control-label">
+                                                        Solicitante<span id="span_solicitante" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="solicitante" type="text" class="form-control" id="solicitante" name="solicitante" onblur="return validaSolicitante(event);"/>
+                                                <span for="solicitante" class="help-block  no-display" id="span_solicitanteT">Ingrese un Solicitante</span>                   
+                
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Observacion<span id="span_observacion" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="observacion" type="text" class="form-control" id="observacion" name="observacion" onblur="return validaObservacion(event);"/>
+                                                <span for="observacion" class="help-block  no-display" id="span_observacionT">Ingrese una Observacion</span>                   
+                
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Destino<span id="span_destino" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="destino" type="text" class="form-control" id="destino" name="destino" onblur="return validaDestino(event);" />
+                                                <span for="destino" class="help-block  no-display" id="span_destinoT">Ingrese un Destino</span>                   
+                
+                                    </div>                                            
+                                </div>
+                                <div class="col-md-6">                                    
+                                   
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Salida<span id="span_sal" class="symbol"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaSalida" type="text" id="fecha_sal" name="fecha_sal" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaSalida(event);" onblur="return validaFechaSalida(event);"/>
+                                        <span for="fecha_sal" class="help-block  no-display" id="span_fechaSal">Ingrese una fecha salida</span>    
+
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Tentativo Devolucion<span id="span_ten" class="symbol"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaTentativaDevolucion" type="text" id="fecha_devolucion" name="fecha_devolucion" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaTentativo(event);" onblur="return validaFechaTentativo(event);"/>
+                                        <span for="fecha_ten" class="help-block  no-display" id="span_fechaTen">Ingrese una fecha tentativa devolucion</span>    
+
+                                    </div>
+                                    
+                                   
+                                </div>                                       
+                             </div>
+                            <div class="col-md-12 text-center">            
+                            <div class="form-group">
                                                 <label class="control-label">
                                                         Inventario<span class="symbol required"></span>
                                                 </label>
@@ -92,58 +148,7 @@
                                                            <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
                                                     </c:forEach>
                                                  </form:select>
-                                                
-                                    </div>
-                                  
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        Solicitante<span class="symbol required"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="solicitante" type="text" class="form-control" id="solicitante" name="solicitante"/>
-                
-                                    </div>
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        Observacion<span class="symbol required"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="observacion" type="text" class="form-control" id="observacion" name="observacion"/>
-                
-                                    </div>
-                                                                                
-                                </div>
-                                <div class="col-md-6">                                    
-                                   
-                                    <div class="form-group">
-                                        <label class="control-label">
-                                                Fecha Salida<span class="symbol required"></span>
-                                        </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                        <form:input path="fechaSalida" type="text" id="fecha_sal" name="fecha_sal" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
-
-                                    </div>
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        Destino<span class="symbol required"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="destino" type="text" class="form-control" id="destino" name="destino"/>
-                
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label">
-                                                Fecha Tentativo Devolucion<span class="symbol required"></span>
-                                        </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                        <form:input path="fechaTentativaDevolucion" type="text" id="fecha_devolucion" name="fecha_devolucion" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
-
-                                    </div>
-                                    
-                                   
-                                </div>                                       
-                             </div>
-                            <div class="col-md-12 text-center">
+                             
                                    <button type="button" class="btn btn-default" onclick="myFunction_personal();" >Agregar</button>     
                             </div>
                             <div class="col-md-12 text-center">
@@ -154,7 +159,8 @@
                             <table class="table table-striped table-hover table-bordered" id="tabla_prueba">
                                     <thead>
                                             <tr>                                               
-                                                    <th>Id</th>                                                 
+                                                    <th>Id</th>
+                                                    <th>Numero</th> 
                                                     <th>opcion</th>
                                             </tr>
                                     </thead>
@@ -186,14 +192,14 @@
         </div>
 
 <%@include file="footer.jsp" %>	
-
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesControl.js"></script>
 <script>
     
     function myFunction_personal(){            
 
-                  var telefono_personal = $("#dropdown").val();
-                  var codigo = $('#dropdown option:selected').text();
-                      $('#tabla_prueba').append('<tr id="' + telefono_personal + '"><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ telefono_personal +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                  var id = $("#dropdown").val();
+                  var numero = $('#dropdown option:selected').text();
+                      $('#tabla_prueba').append('<tr id="' + id + '"><td>' + id + '</td><td>' + numero + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ id +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
                 };
 
     function deleteElement(id){
@@ -203,7 +209,11 @@
         }
         
     function enviar()
-    {
+    {        
+        if (valida_envio()){      
+        return 0; 
+         }
+         
         var solicitante=$("#solicitante").val();
         var fecha_sal=$("#fecha_sal").val();
         var observacion=$("#observacion").val();

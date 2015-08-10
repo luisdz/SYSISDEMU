@@ -69,4 +69,9 @@ public class TB_MovimientoServiceImp implements TB_Movimiento_Service {
 		// TODO Auto-generated method stub
 		tbMovimientoDao.update(obj);
 	}
+
+    @Override
+    public List LastIdMovimiento() {
+        return tbMovimientoDao.LastIdMovimiento();
+    }
 }

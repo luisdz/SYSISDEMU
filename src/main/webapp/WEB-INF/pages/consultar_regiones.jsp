@@ -98,8 +98,8 @@
                                                                     <th>Nombre Region</th>
                                                                     <th>Direccion</th>
                                                                     <th>Descripcion</th>
-                                                                    <th>Modificar</th>
                                                                     <th>Eliminar</th>
+                                                                    <th>Modificar</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>

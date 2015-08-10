@@ -8,6 +8,7 @@ package com.isdemu.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +31,7 @@ public class TbrMovimientoInventario {
      
      
  @Id 
-
+@GeneratedValue
     
     @Column(name="ID_MOVIMIENTO_INVENTARIO", unique=true, nullable=false)
     public int getIdMovimientoInventario() {
