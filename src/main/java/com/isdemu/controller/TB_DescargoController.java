@@ -6,6 +6,7 @@
 package com.isdemu.controller;
 
 import com.isdemu.model.TbDescargo;
+import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcUnidad;
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
@@ -71,9 +72,9 @@ public class TB_DescargoController
 		 System.out.println("esntra aquiPOST movimiento"+des);
 
 
-               des.setFecha(new Date());
-                des.setIdNumeroDescargo(2);
-                 des.setComentario("asdfasf");
+               //des.setFecha(new Date());
+                des.setIdNumeroDescargo(1);
+                 //des.setComentario("asdfasf");
                   
                 
               
@@ -99,10 +100,11 @@ public class TB_DescargoController
 		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
 		TbDescargo descargo = (TbDescargo) tbdescargoService.findByKey(id);
                // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
-                
+                List invent = tbInventarioService.getAll();
                   Map<String, Object> myModel = new HashMap<String, Object>();
                    //List ClasAct = tbClasActService.getAll();  
                    myModel.put("descargo",descargo ); 
+                   myModel.put("inventario",invent ); 
                  // myModel.put("clasificacionA",activo );
                   //myModel.put("AllclasificacionA",ClasAct );
                 
@@ -120,10 +122,9 @@ public class TB_DescargoController
 		ModelAndView modelAndView = new ModelAndView("home");
                 
                 descargoActual.setIdNumeroDescargo(descarg.getIdNumeroDescargo());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
                 descargoActual.setComentario(descarg.getComentario());
-                
+                descargoActual.setFecha(descarg.getFecha());
+                descargoActual.setTbInventario(descarg.getTbInventario());
 		                
 		tbdescargoService.update(descargoActual);
 

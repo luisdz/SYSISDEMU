@@ -73,46 +73,49 @@
               <form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/add" modelAttribute="prestamo" id="prestamoE" name="prestamoE">
                         <div class="row">
                                 <div class="col-md-12">
-                                        <div class="errorHandler alert alert-danger no-display">
-                                                <i class="fa fa-times-sign"></i> Tu tienes algunos errores. Favor verificar antes.
-                                        </div>
-                                        <div class="successHandler alert alert-success no-display">
-                                                <i class="fa fa-ok"></i> Tu formulario esta listo!
-                                        </div>
+                                    <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForm">
+
+                                        <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                                    </div>
+                                    <div class="successHandler alert alert-success no-display">
+                                        <i class="fa fa-ok"></i> Your form validation is successful!
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
     
                                    
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        N Prestamo<span class="symbol required"></span>
+                                                        N Prestamo<span id="span_numero" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="NPrestamo" type="text" class="form-control" id="numero" name="numero" onkeypress="return valideKey(event);"/>
-                
+                                                <form:input path="NPrestamo" type="text" class="form-control" id="numero" name="numero" onkeypress="return valideKey(event);" onblur="return validaNumero(event);"/>
+                                                <span for="numero" class="help-block  no-display" id="span_numeroT">Ingrese un Numero</span>                   
                                     </div>
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Tema Impartir<span class="symbol required"></span>
+                                                        Tema Impartir<span id="span_nombre" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="temaImpartir" type="text" placeholder="Tema" class="form-control" id="tema" name="tema"/>
-                
+                                                <form:input path="temaImpartir" type="text" placeholder="Tema" class="form-control" id="tema" name="tema" onblur="return validaTema(event);"/>
+                                                <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un Tema</span> 
                                     </div>
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Persona a Impartir<span class="symbol required"></span>
+                                                        Persona a Impartir<span id="span_persona" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="personaImpartir" type="text" placeholder="persona" class="form-control" id="persona" name="persona"/>
-                
+                                                <form:input path="personaImpartir" type="text" placeholder="persona" class="form-control" id="persona" name="persona" onblur="return validaPersona(event);"/>
+                                                <span for="persona" class="help-block  no-display" id="span_personaT">Ingrese un Persona</span> 
+                        
                                     </div>
                                     <div class="form-group">
                                             <label class="control-label">
-                                                    Destino<span class="symbol required"></span>
+                                                    Destino<span id="span_destino" class="symbol"></span>
                                             </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                            <form:input path="destino" type="text" placeholder="destino" class="form-control" id="destino" name="destino"/>
+                                            <form:input path="destino" type="text" placeholder="destino" class="form-control" id="destino" name="destino" onblur="return validaDestino(event);"/>
+                                            <span for="destino" class="help-block  no-display" id="span_destinoT">Ingrese un Destino</span> 
                 
                                     </div>
                                                                                 
@@ -121,18 +124,20 @@
                                     
                                    <div class="form-group">
                                         <label class="control-label">
-                                                Fecha Solicitud<span class="symbol required"></span>
+                                                Fecha Solicitud<span id="span_sol" class="symbol"></span>
                                         </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                        <form:input path="fechaSolicitud" type="text" id="fecha_sol" name="fecha_sol" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                        <form:input path="fechaSolicitud" type="text" id="fecha_sol" name="fecha_sol" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaSolicitud(event);" onblur="return validaFechaSolicitud(event);"/>
+                                        <span for="fecha_sol" class="help-block  no-display" id="span_fechaSol">Ingrese una fecha solicitud</span>    
 
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">
-                                                Fecha Reservacion<span class="symbol required"></span>
+                                                Fecha Reservacion<span id="span_pres" class="symbol"></span>
                                         </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                        <form:input path="fechaReservacion" type="text" id="fecha_pres" name="fecha_pres" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker"/>
+                                        <form:input path="fechaReservacion" type="text" id="fecha_pres" name="fecha_pres" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaReservacion(event);" onblur="return validaFechaReservacion(event);"/>
+                                        <span for="fecha_pres" class="help-block  no-display" id="span_fechaRes">Ingrese una fecha reservacion</span>    
 
                                     </div>
                                     <div class="form-group">
@@ -179,7 +184,8 @@
                             <table class="table table-striped table-hover table-bordered" id="tabla_prueba">
                                     <thead>
                                             <tr>                                               
-                                                    <th>Id</th>                                                 
+                                                    <th>Id</th>
+                                                    <th>Numero</th>
                                                     <th>opcion</th>
                                             </tr>
                                     </thead>
@@ -212,6 +218,7 @@
         </div>
 
 <%@include file="footer.jsp" %>	
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesPrestamo.js"></script>
 
 <script>
     
@@ -221,9 +228,9 @@
       return 0; 
    	}
 
-                  var telefono_personal = $("#dropdown1").val();
-                  var codigo = $('#dropdown1 option:selected').text();
-                      $('#tabla_prueba').append('<tr id="' + telefono_personal + '"><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ telefono_personal +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                  var id = $("#dropdown1").val();
+                  var numero = $('#dropdown1 option:selected').text();
+                      $('#tabla_prueba').append('<tr id="' + id + '"><td>' + id + '</td><td>' + numero + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ id +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
       
         document.prestamoE.dropdown1.selectedIndex = "0";
     };
@@ -237,26 +244,9 @@
     function enviar()
     {
       
-        if (document.prestamoE.numero.value.length==0){ 
-      alert("Debe ingresar Numero") 
-      document.prestamoE.numero.focus() 
-      return 0; 
-  	}
-        if (document.prestamoE.numero.value<0){ 
-      alert("Debe ingresar Numero mayor a cero") 
-      document.prestamoE.numero.focus() 
-      return 0; 
-  	}
-        if (document.prestamoE.tema.value.length==0){ 
-      alert("Debe ingresar tema a impartir") 
-      document.prestamoE.tema.focus() 
-      return 0; 
-  	}
-        if (document.prestamoE.persona.value.length==0){ 
-      alert("Debe ingresar persona") 
-      document.prestamoE.persona.focus() 
-      return 0; 
-  	}
+      if (valida_envio()){      
+        return 0; 
+         }
         
         var nPrestamo=$("#numero").val();
         var tema=$("#tema").val();
@@ -300,6 +290,7 @@
            contentType: 'application/json',
            success: function (msg) {
                alert("entra");
+               //location.reload();
            },
            data: jsonArray
        });

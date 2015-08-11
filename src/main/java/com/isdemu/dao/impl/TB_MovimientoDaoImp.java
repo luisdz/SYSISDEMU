@@ -121,5 +121,14 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
             System.out.println("ingresa antes de enviar con la sesion el objeto para update");
 		getCurrentSession().update(obj);
 	}
+
+    @Override
+    public List LastIdMovimiento() {
+        DetachedCriteria dc = DetachedCriteria.forClass(TbMovimiento.class,"mov");
+            
+             dc.addOrder(Order.desc("idMovimiento"));
+          
+		return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+    }
         
 }

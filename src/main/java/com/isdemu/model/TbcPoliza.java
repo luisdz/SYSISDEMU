@@ -74,7 +74,7 @@ public class TbcPoliza {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name="FECHA_INICIO", nullable=false, length=23)
     public Date getFechaInicio() {
         return this.fechaInicio;
@@ -85,7 +85,7 @@ public class TbcPoliza {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name="FECHA_FIN", nullable=false, length=23)
     public Date getFechaFin() {
         return this.fechaFin;
