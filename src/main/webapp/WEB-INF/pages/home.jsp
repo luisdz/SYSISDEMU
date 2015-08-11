@@ -164,18 +164,18 @@ int i=0;
                                     <table>  
                                         <thead>  
                                             <tr>
-                                            <th>Codigo</th> &nbsp;
-                                            <th>Marca</th> &nbsp;
-                                            <th>Modelo</th>
+                                            <th>Fecha Movimiento &nbsp;</th> 
+                                            <th>Razon de cambio</th> 
+                                            
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach var="mov" items="${mov}" begin="1" end="4">
+                                            <c:forEach var="mov" items="${mov}" begin="0" end="4">
 
                                                 <tr>
-                                                <td>  ${mov.razonCambio}&nbsp; &nbsp;</td>
-                                                <td>  &nbsp;</td> 
+                                                <td>  ${mov.fechaMovimiento}&nbsp; &nbsp;</td>
+                                               <td>  ${mov.razonCambio}&nbsp; &nbsp;</td>
                                                 <td>  </td> 
                                                 </tr>
                                             </c:forEach>
@@ -214,7 +214,7 @@ int i=0;
                                         </div>
                                 </div>
                                 <div class="padding-10">
-                                        <span class="bold-text">${nmov} </span><span class="text-light"> Activos Descargados </span>
+                                        <span class="bold-text">${ndeg} </span><span class="text-light"> Activos Descargados </span>
                                         <a href="#" class="view-more pull-right text-dark text-bold">
                                                 Ver listado Completo <i class="fa fa-angle-right text-light"></i>
                                         </a>
@@ -252,7 +252,7 @@ int i=0;
                                 </div>
                             </div>
                             <div class="padding-10">
-                                <span class="bold-text">${nmov}</span><span class="text-light"> Descargos </span>
+                                <span class="bold-text">${ndeg}</span><span class="text-light"> Descargos </span>
                                 <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
                                 Ver listado Completo <i class="fa fa-angle-right text-light"></i>
                                 </a>
@@ -281,7 +281,7 @@ int i=0;
                                 </div>
                         </div>
                         <div class="padding-10">
-                                <span class="bold-text">${nmov}</span><span class="text-light"> Activos Ingresados </span>
+                                <span class="bold-text">${ninv}</span><span class="text-light"> Activos Ingresados </span>
                                 <a href="#" class="view-more pull-right text-dark text-bold">
                                         Ver Listado Completo <i class="fa fa-angle-right text-light"></i>
                                 </a>
@@ -298,19 +298,19 @@ int i=0;
                                     <table>  
                                         <thead>  
                                             <tr>
-                                            <th>Codigo</th> &nbsp;
-                                            <th>Marca</th> &nbsp;
-                                            <th>Modelo</th>
+                                            <th>Codigo &nbsp;</th> 
+                                            <th>Marca &nbsp;</th> 
+                                            <th>Valor &nbsp;</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                              <c:forEach var="mov" items="${mov}" begin="1" end="4">
+                                              <c:forEach var="inv" items="${inv}" begin="1" end="4">
 
                                                 <tr>
-                                                <td>  ${mov.razonCambio}&nbsp; &nbsp;</td>
-                                                <td>  &nbsp;</td> 
-                                                <td>  </td> 
+                                                <td>  ${inv.codigoInventario}&nbsp; &nbsp;</td>
+                                                <td>  ${inv.marca}&nbsp; &nbsp;</td>
+                                                <td> $ ${inv.valor}&nbsp; &nbsp;</td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -319,7 +319,7 @@ int i=0;
                                 </div>
                             </div>
                             <div class="padding-10">
-                                <span class="bold-text">${nmov}</span><span class="text-light"> Movimientos </span>
+                                <span class="bold-text">${ninv}</span><span class="text-light"> Movimientos </span>
                                 <a href="${pageContext.request.contextPath}/Movimiento/consultarMov.html" class="view-more pull-right text-dark text-bold">
                                 Ver listado Completo <i class="fa fa-angle-right text-light"></i>
                                 </a>

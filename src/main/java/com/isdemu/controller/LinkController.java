@@ -37,20 +37,20 @@ public class LinkController {
             
             Map<String, Object> myModel = new HashMap<String, Object>();
             List movimiento = tbMovimientoService.getTop();
-          int registros=movimiento.size();
+            int registros=movimiento.size();
 //           
-//            List inventarios = tbInventarioService.getTop();
-//             int registrosInv=inventarios.size();
+           List inventarios = tbInventarioService.getTop();
+             int registrosInv=inventarios.size();
 //             
-////              List descargos = tbDescargoService.getAll();
-////             int registrosDes=descargos.size();
+              List descargos = tbDescargoService.getAll();
+             int registrosDes=descargos.size();
 //             
            myModel.put("mov",movimiento );
            myModel.put("nmov",registros );
-//             myModel.put("inv",inventarios );
-//             myModel.put("ninv",registrosInv );
-//             myModel.put("descargo",descargos );
-//             myModel.put("ndeg",registrosDes );
+            myModel.put("inv",inventarios );
+           myModel.put("ninv",registrosInv );
+            myModel.put("descargo",descargos );
+            myModel.put("ndeg",registrosDes );
             
          //  ModelAndView modelAndView = new ModelAndView("home");
 		//modelAndView.addObject("home", movimiento);

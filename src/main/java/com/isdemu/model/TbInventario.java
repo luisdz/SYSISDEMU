@@ -159,7 +159,7 @@ public class TbInventario implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
- @DateTimeFormat(pattern = "dd-mm-yyyy")
+ @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name="FECHA_ADQUISICION", length=23)
     public Date getFechaAdquisicion() {
         return this.fechaAdquisicion;
@@ -232,7 +232,7 @@ public class TbInventario implements Serializable {
     @Temporal(TemporalType.DATE)
    
     @Column(name="FECHA_INSERT", length=10)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     public Date getFechaInsert() {
         return this.fechaInsert;
     }
@@ -254,7 +254,7 @@ public class TbInventario implements Serializable {
     @Temporal(TemporalType.DATE)
    
     @Column(name="FECHA_UPDATE", length=23)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     public Date getFechaUpdate() {
         return this.fechaUpdate;
     }

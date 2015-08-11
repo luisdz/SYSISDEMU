@@ -13,6 +13,7 @@ import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbrMovimientoInventario;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.FetchMode;
@@ -54,13 +55,21 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
 	public List getTop() {
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbMovimiento.class,"movimiento");
-            dc.setFetchMode("TbrMovimientoInventario", FetchMode.JOIN);
+            //dc.setFetchMode("TbrMovimientoInventario", FetchMode.JOIN);
             
-           Date highestDate = new Date();
+           Date fecha_finalHoy = new Date();
+           Date fecha_inicial = new Date();
            
-            System.out.println("fecha"+highestDate);
+           //restar dias a la fecha
+            Calendar calendar = Calendar.getInstance();	
+            calendar.setTime(fecha_finalHoy);
+            calendar.add(Calendar.DAY_OF_YEAR, -7);  // numero de días a añadir, o restar en caso de días<0
+            fecha_inicial=calendar.getTime();
+            
+           dc.add(Restrictions.between("fechaMovimiento",fecha_inicial, fecha_finalHoy));
+            System.out.println("fecha inicial:"+fecha_inicial+"fecha final:"+fecha_finalHoy);
 
-            dc.add(Restrictions.ge("fechaMovimiento", highestDate));
+           // dc.add(Restrictions.ge("fechaMovimiento", highestDate));
            // dc.add(Restrictions.lt("fechaMovimiento", highestDate));
              
       
