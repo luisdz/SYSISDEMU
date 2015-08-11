@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbrMovimientoInventario;
+import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBR_MovimientoInventario_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service;
@@ -50,15 +51,16 @@ public class TB_MovimientoController {
     private TB_Inventario_Service tbInventarioService;
     @Autowired
     private TBR_MovimientoInventario_Service tbrMovimientoInvService;
-   
+    @Autowired
+    private TBC_Persona_Service tbcPersonaService;
 
     @RequestMapping(value = "/consultarMov")
     public ModelAndView consultarMovimientos() {
         ModelAndView modelAndView = new ModelAndView("consultar_movimiento");
 
         List movimiento = tbMovimientoService.getAll();
+        
         modelAndView.addObject("movimiento", movimiento);
-
         return modelAndView;
     }
 
@@ -69,6 +71,8 @@ public class TB_MovimientoController {
         Map<String, Object> myModel = new HashMap<String, Object>();
 
         List Invent = tbInventarioService.getAll();
+        List persona = tbcPersonaService.getAll();        
+        myModel.put("persona", persona);
 
         myModel.put("movimiento", new TbMovimiento());
 
@@ -112,8 +116,9 @@ public class TB_MovimientoController {
         JSONArray object = array.getJSONArray("Inventario");
         
         
-        for (int i = 0; i < array.length(); i++) 
+        for (int i = 0; i < object.length(); i++) 
         {
+            int len = object.length();
             JSONObject object2 = object.getJSONObject(i);
 
             

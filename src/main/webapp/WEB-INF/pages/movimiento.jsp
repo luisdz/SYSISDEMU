@@ -100,21 +100,27 @@
                                      
                                          <div class="form-group">
                                                 <label class="control-label">
-                                                        Inventario<span class="symbol "></span>
+                                                        Inventario<span class="symbol"></span>
                                                 </label>
-                                               <form:select  multiple="single" path=""  id="dropdown" name="dropdown">
-                                                    <form:option value="0" label="Seleccione inventario"/>  
+                                               <form:select  multiple="single" path=""  cssStyle="width: 100%"  id="dropdown" name="dropdown">
+                                                    <form:option value="0" label="Seleccione inventario" />  
                                                     <form:options items="${inventario}" itemValue="idInventario"  itemLabel="codigoInventario"/>                                                    
                                                  </form:select>
                                              
                                     </div>
                                      
+                                     <div class="form-group">
+                                                <label class="control-label">
+                                                        Nuevo Responsable<span class="symbol"></span>
+                                                </label>
+                                                <form:select  multiple="single" path="" cssStyle="width: 100%" id="dropdown2" name="dropdown2">
+                                                    <form:option value="0" label="Seleccione responsable"/>  
+                                                    <form:options items="${persona}" itemValue="idPersona"  itemLabel="nombrePersona"/>                                                    
+                                                 </form:select>
+                                             
+                                    </div>
+                                     
                                      <br>
-
-                                          
-
-                                      
-                                      
                                        </div>
                             
                             <div class="col-md-6">
@@ -148,7 +154,7 @@
                         <table class="table table-striped table-hover" id="tabla_prueba">
                                 <thead>
                                         <tr>
-                                              
+                                               <th>id</th>
                                                <th>codigo</th>
                                                 
                                                
@@ -208,7 +214,7 @@
                   var codigo = $('#dropdown option:selected').text();
 //                 alert(idInv);
                  var idInv=id.toString();
-                      $('#tabla_prueba').append('<tr  id="' + idInv + '"><td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                      $('#tabla_prueba').append('<tr  id="' + idInv + '">'+'<td>' + idInv + '</td>'+'<td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
                   }
               };
 
@@ -272,7 +278,7 @@
        else
        {
        
-        $('#mensajeErrorFormM').removeClass("no-display");
+        //$('#mensajeErrorFormM').removeClass("no-display");
        return false;
        }
        
@@ -285,7 +291,10 @@
 
 
            $('#dropdown').select2();
+           $('#dropdown2').select2();
 
 
-       });          
+       }); 
+       
+       
 </script>
