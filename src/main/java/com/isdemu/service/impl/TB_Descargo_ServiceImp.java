@@ -35,7 +35,10 @@ public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
 		// TODO Auto-generated method stub
 		return tbDescargoDao.getAll();
 	}
-        
+         @Override
+         public List getTop(){
+         return tbDescargoDao.getTop();
+         }
           @Override
 	public void save(Object obj) {
 		// TODO Auto-generated method stub

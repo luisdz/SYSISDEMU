@@ -9,6 +9,7 @@ import com.isdemu.dao.TB_InventarioDao;
 
 import com.isdemu.model.TbInventario;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
@@ -56,6 +57,20 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
               dc.addOrder(Order.asc("idInventario"));
+              
+              Date fecha_finalHoy = new Date();
+           Date fecha_inicial = new Date();
+           
+           //restar dias a la fecha
+            Calendar calendar = Calendar.getInstance();	
+            calendar.setTime(fecha_finalHoy);
+            calendar.add(Calendar.DAY_OF_YEAR, -7);  // numero de días a añadir, o restar en caso de días<0
+            fecha_inicial=calendar.getTime();
+            
+           dc.add(Restrictions.between("fechaInsert",fecha_inicial, fecha_finalHoy));
+            System.out.println("fecha inicial:"+fecha_inicial+"fecha final:"+fecha_finalHoy);
+
+            
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
