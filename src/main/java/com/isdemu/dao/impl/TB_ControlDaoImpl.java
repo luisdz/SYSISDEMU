@@ -92,5 +92,14 @@ public class TB_ControlDaoImpl implements TB_ControlDao{
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
           
             	}
+        
+        @Override
+        public List LastIdControl() {
+            DetachedCriteria dc = DetachedCriteria.forClass(TbControlSalida.class,"con");
+
+                 dc.addOrder(Order.desc("idControlSalida"));
+
+                    return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+        }
     
 }

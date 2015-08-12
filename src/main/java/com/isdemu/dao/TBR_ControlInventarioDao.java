@@ -9,15 +9,10 @@ import java.io.Serializable;
 import java.util.List;
 /**
  *
- * @author Miranda
+ * @author Walter
  */
-public interface TB_ControlDao {
+public interface TBR_ControlInventarioDao {
     
-    public void save(Object obj); 
-    public List getAll();
-     public void delete(Serializable id);
+    public void save(Object obj);
     public Object findByKey(Serializable id);
-    public void update(Object obj);
-    public List getConInv(Serializable id);
-    public List LastIdControl();
 }

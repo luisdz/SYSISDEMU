@@ -104,6 +104,7 @@ public class TB_PrestamoController {
                 JSONArray object3 = array2.getJSONArray("Prestamo");
                 
                 JSONObject objectNumero = object3.getJSONObject(0);
+                
                 String nPrestamo = objectNumero.getString("nPrestamo");
                 String destino = objectNumero.getString("destino");
                 String hora_inicio = objectNumero.getString("hora_inicio");

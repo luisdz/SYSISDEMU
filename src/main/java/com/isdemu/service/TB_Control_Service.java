@@ -19,4 +19,5 @@ public interface TB_Control_Service {
     public Object findByKey(Serializable id);
     public List getConInv(Serializable id);
     public void update(Object obj);
+     public List LastIdControl();
 }

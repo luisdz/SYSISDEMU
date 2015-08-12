@@ -62,4 +62,9 @@ public class TB_Control_ServiceImpl implements TB_Control_Service {
 		// TODO Auto-generated method stub
 		tbControlDao.update(obj);
 	}
+        
+    @Override
+    public List LastIdControl() {
+        return tbControlDao.LastIdControl();
+    }
 }

@@ -16,9 +16,14 @@ import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbcClaseActivo;
 import com.isdemu.model.TbcUnidad;
 import com.isdemu.model.TbControlSalida;
+import com.isdemu.model.TbrControlSalidaInventario;
+import com.isdemu.service.TBR_ControlInventario_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +54,10 @@ public class TB_ControlController {
     
     @Autowired
         private TB_Control_Service tbControlService;
+    
+    @Autowired
+        private TBR_ControlInventario_Service tbrControlInvService;
+    
     
       
      @RequestMapping(value="/list")
@@ -89,14 +98,59 @@ public class TB_ControlController {
 		//System.out.println("entra aqui POST persona"+control.get(0).getIdControlSalida());
                  System.out.println("String Json:"+control);
                  
-                 JSONObject array = new JSONObject(control);
+                 TbControlSalida controlSalida = new TbControlSalida();
+                 
+                JSONObject array = new JSONObject(control);
+                JSONArray object3 = array.getJSONArray("Control");
+                 
+                JSONObject objectControl = object3.getJSONObject(0);
+                                  
+                String solicitante = objectControl.getString("solicitante");
+                String observacion = objectControl.getString("observacion");
+                String destino = objectControl.getString("destino");
+                String fecha_devolucion = objectControl.getString("fecha_devolucion");
+                String fecha_sal = objectControl.getString("fecha_sal");
+                 
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                
+                Date fecha_sa=new Date();
+                        try {
+                          fecha_sa = formatter.parse(fecha_sal);
+                        } catch (ParseException ex) {
+                   }
+                 Date fecha_de=new Date();
+                        try {
+                          fecha_de = formatter.parse(fecha_devolucion);
+                        } catch (ParseException ex) {
+                   }
+                    controlSalida.setSolicitante(solicitante);
+                    controlSalida.setObservacion(observacion);
+                    controlSalida.setDestino(destino);
+                    controlSalida.setFechaSalida(fecha_sa);
+                    controlSalida.setFechaTentativaDevolucion(fecha_de);
+                        
+                 tbControlService.save(controlSalida);
+                 
+                 TbControlSalida UltControl =(TbControlSalida) tbControlService.LastIdControl().get(0);
+                  
+                 
                  JSONArray object = array.getJSONArray("Inventario");
-                 for(int i=0;i<array.length();i++)
+                 for(int i=0;i<object.length();i++)
                  {
                     JSONObject object2 = object.getJSONObject(i);
                   
                      //JSONArray object = array.getJSONArray("Inventario");
                     String id = object2.getString("idInv");
+                    
+                    
+                    TbrControlSalidaInventario conInv= new TbrControlSalidaInventario();
+                    conInv.setTbControlSalida(UltControl);
+                    
+                    TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
+                    conInv.setTbInventario(tempInv);
+                    
+                    tbrControlInvService.save(conInv);
+                    
                     System.out.println("Id Json:"+id);
                    
                 }
