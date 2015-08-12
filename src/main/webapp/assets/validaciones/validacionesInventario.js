@@ -163,6 +163,28 @@ function validaSerie()
 
     };
     
+    function validaClaseEquipo()
+    {
+        var x = document.forms["inventarioF"]["claseEquipo"].value;
+        if (x === null || x === "")
+        {
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_claseT').removeClass("no-display");            
+            $('#span_claseT').closest("div").addClass("has-error");            
+             $('#span_claseT').closest("div").removeClass("has-success");
+
+            return false;
+        }
+        else
+        {
+            //$('#span_nombre').to("required");
+            $('#span_claseT').addClass("no-display");
+             $('#span_claseT').closest("div").removeClass("has-error");
+             $('#span_claseT').closest("div").addClass("has-success");
+        }
+
+    };
+    
 function validaValor()
     {
         var x = document.forms["inventarioF"]["valor"].value;

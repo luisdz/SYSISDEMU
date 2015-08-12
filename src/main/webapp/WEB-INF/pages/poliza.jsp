@@ -113,10 +113,10 @@
                                 <div class="input-group">
                                     <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onchange="return validaFechaIniPoliza(event);" onblur="return validaFechaIniPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                    <span for="fechaInicio" class="help-block  no-display" id="span_fechaIniT">Ingrese una fecha</span>    
+                                  </div>  <span for="fechaInicio" class="help-block  no-display" id="span_fechaIniT">Ingrese una fecha</span>    
                             
                             
-                                </div>
+                                
                             </div>
 
                             <div class="form-group">
@@ -126,9 +126,9 @@
                                 <div class="input-group">
                                     <form:input path="fechaFin" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" id="fechaFin" class="form-control date-picker" onchange="return validaFechaFnPoliza(event);" onblur="return validaFechaFnPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                    <span for="fechaFin" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>    
+                                 </div>   <span for="fechaFin" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>    
                             
-                                </div>
+                                
                             </div>
 
                         </div>
