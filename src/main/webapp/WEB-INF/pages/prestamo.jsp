@@ -232,7 +232,6 @@
                   var numero = $('#dropdown1 option:selected').text();
                       $('#tabla_prueba').append('<tr id="' + id + '"><td>' + id + '</td><td>' + numero + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ id +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
       
-        document.prestamoE.dropdown1.selectedIndex = "0";
     };
 
     function deleteElement(id){

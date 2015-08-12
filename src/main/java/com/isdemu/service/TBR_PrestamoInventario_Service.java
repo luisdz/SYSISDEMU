@@ -9,14 +9,10 @@ import java.io.Serializable;
 import java.util.List;
 /**
  *
- * @author Miranda
+ * @author Walter
  */
-public interface TB_Prestamo_Service {
+public interface TBR_PrestamoInventario_Service {
+    
     public void save(Object obj);
-    public List getAll();
-    public void delete(Serializable id);
     public Object findByKey(Serializable id);
-    public List getPreInv(Serializable id);
-    public void update(Object obj);
-    public List LastIdPrestamo();
 }

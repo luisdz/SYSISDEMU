@@ -61,4 +61,9 @@ public class TB_Prestamo_ServiceImpl implements TB_Prestamo_Service {
         System.out.println("service impl getconinv");
     return tbPrestamoDao.getPreInv(id);
     }
+    
+    @Override
+    public List LastIdPrestamo() {
+        return tbPrestamoDao.LastIdPrestamo();
+    }
 }

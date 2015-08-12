@@ -7,6 +7,7 @@
 
  function validaTema()
     {
+        
         var x = document.forms["prestamoE"]["tema"].value;
         if (x === null || x === "")
         {

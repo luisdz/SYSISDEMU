@@ -6,6 +6,7 @@
 
   function validaNombre()
     {
+       
         var x = document.forms["regionF"]["nombre"].value;
         if (x === null || x === "")
         {
