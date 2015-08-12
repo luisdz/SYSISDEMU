@@ -117,12 +117,14 @@
                     <table class="table table-striped table-hover" id="sample-table-2">
                         <thead>
                             <tr>
-                                <th>id mov inv</th>
-                                <th>ID movimiento</th>
-                                <th>ID inventario</th>
+                                <th class="no-display">id mov inv</th>
+                                <th class="no-display">ID movimiento</th>
+                                <th class="no-display">ID inventario</th>
 
                                 <th>razon</th>
                                 <th>marca</th>
+                                <th>Clase</th>
+                                <th>Modelo</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -130,12 +132,13 @@
 
                             <c:forEach var="mov" items="${movimientoInv}">
                                 <tr align="center">
-                                    <td>${mov.idMovimientoInventario}</td>
-                                    <td>${mov.tbMovimiento.idMovimiento}</td>
-                                    <td>${mov.tbInventario.idInventario}</td>
-
+                                    <td class="no-display">${mov.idMovimientoInventario}</td>
+                                    <td class="no-display">${mov.tbMovimiento.idMovimiento}</td>
+                                    <td class="no-display">${mov.tbInventario.idInventario}</td>
                                     <td>${mov.tbMovimiento.razonCambio}</td>                                                    
-                                    <td>${mov.tbInventario.marca}</td> 
+                                    <td>${mov.tbInventario.marca}</td>
+                                    <td>${mov.tbInventario.claseEquipo}</td>
+                                    <td>${mov.tbInventario.modelo}</td> 
                                     <td><a href=""> Eliminar</a></td>
 
                                 </tr>
