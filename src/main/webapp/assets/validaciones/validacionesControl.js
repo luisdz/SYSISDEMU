@@ -7,6 +7,7 @@
 
 function validaSolicitante()
     {
+        
         var x = document.forms["controlE"]["solicitante"].value;
         if (x === null || x === "")
         {

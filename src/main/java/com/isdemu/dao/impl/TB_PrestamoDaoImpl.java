@@ -90,5 +90,14 @@ public class TB_PrestamoDaoImpl implements TB_PrestamoDao {
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
           
             }
+        
+        @Override
+    public List LastIdPrestamo() {
+        DetachedCriteria dc = DetachedCriteria.forClass(TbPrestamoEquipo.class,"pre");
+            
+             dc.addOrder(Order.desc("idPrestamoEquipo"));
+          
+		return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+    }
     
 }

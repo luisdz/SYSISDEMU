@@ -7,6 +7,7 @@
 
 function validaUnidad()
     {
+       
         var x = document.forms["personaF"]["dropdown"].value;
         if (x === null || x === "" || x === "0")
         {
