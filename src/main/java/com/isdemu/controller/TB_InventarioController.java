@@ -132,7 +132,7 @@ public class TB_InventarioController {
         
         @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
-              System.out.println("esntra aqui GETTTT");
+             
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();
 		
@@ -163,13 +163,14 @@ public class TB_InventarioController {
 		 System.out.println("esntra aquiPOSTTTT"+inventario);
 
 
-               inventario.setClaseEquipo("asd");
-                inventario.setCodigoInventario("1321");
-                 inventario.setValorLibro(BigDecimal.ZERO);
-                  inventario.setFechaAdquisicion(new Date());
+              
+               
+                inventario.setClaseEquipo("clase");
+                  
                  inventario.setValor(BigDecimal.ZERO);
                 
                    inventario.setValorLibro(BigDecimal.ZERO);
+                   inventario.setFechaInsert(new Date());
           
                    //obtener el codigo de la clase seleccionada para armar el codigo de inventario
                     TbcClaseActivo codigoClaseA = (TbcClaseActivo)tbcClaseActivoService.findByKey(inventario.getTbcClaseActivo().getIdClaseActivo());
