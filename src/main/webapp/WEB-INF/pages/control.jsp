@@ -252,7 +252,8 @@
            dataType: "json",
            contentType: 'application/json',
            success: function (msg) {
-               alert("entra");
+               alert("Almacenado con Exito");
+               location.reload();
            },
            data: jsonArray
        });
