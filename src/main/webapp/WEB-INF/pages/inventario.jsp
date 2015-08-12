@@ -155,7 +155,9 @@
                         <form:input path="modelo" type="text" placeholder="Ingrese el modelo del equipo" class="form-control" id="modelo" name="modelo" onblur="return validaModelo(event);"/>
                         <span for="modelo" class="help-block  no-display" id="span_modeloT">Ingrese un Modelo</span> 
                 </div>
-                
+                </div>  
+<!--     Cierre div izquiero-->
+        <div class="col-md-6">
              <div class="form-group">
                         <label class="control-label">
                                 Serie<span id="span_serie" class="symbol"></span>
@@ -167,9 +169,7 @@
             
 
               
-</div>  
-<!--     Cierre div izquiero-->
-        <div class="col-md-6">
+
 
             
                <div class="form-group">
@@ -226,12 +226,15 @@
         </div>
                 
                 <div class="row">
-                                
+                                <div class="col-md-12">
+                                    <div class="col-md-8">
+                                    </div>
                                 <div class="col-md-4">
                                         <button class="btn btn-yellow btn-block" type="submit">
                                                 Guardar Activo <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
+                                     </div>
   </div>
 </form:form>
 </div>
