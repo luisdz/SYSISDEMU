@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <h2><i class="fa fa-pencil-square"></i> INVENTARIO</h2>
+                <h2><i class="fa fa-pencil-square"></i> POLIZA</h2>
                 <p>
                     Esta es la seccion de Ingreso de Activos Fijos
                 </p>
@@ -103,13 +103,13 @@
                                 <span for="codigo" class="help-block  no-display" id="span_codigoT">Ingrese un codigo</span>    
                             
                             </div>
-
-
+                                </div>
+                                <div class="col-md-6">   
 
                             <div class="form-group">
-                                <p>
-                                    Fecha Inicio
-                                </p>
+                                <label class="control-label">
+                                    Fecha Inicio<span class="symbol"></span>
+                                </label>
                                 <div class="input-group">
                                     <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onchange="return validaFechaIniPoliza(event);" onblur="return validaFechaIniPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
@@ -120,9 +120,9 @@
                             </div>
 
                             <div class="form-group">
-                                <p>
-                                    Fecha Fin
-                                </p>
+                                <label class="control-label">
+                                    Fecha Fin<span class="symbol"></span>
+                                </label>
                                 <div class="input-group">
                                     <form:input path="fechaFin" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" id="fechaFin" class="form-control date-picker" onchange="return validaFechaFnPoliza(event);" onblur="return validaFechaFnPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>

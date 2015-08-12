@@ -75,9 +75,9 @@
                                 </div>
                                 <div class="col-md-6">
                                      <div class="form-group">
-                                        <p>
-                                                Fecha 
-                                        </p>
+                                        <label class="control-label">
+                                                        Fecha<span class="symbol "></span>
+                                                </label>
                                         <div class="input-group">
                                             <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" id="fecha" data-date-viewmode="years" class="form-control date-picker"/>
                                                 <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
@@ -97,7 +97,8 @@
                 
                                         </div>
                                      <br>
-                                     
+                                      </div>
+                                      <div class="col-md-6">
                                          <div class="form-group">
                                                 <label class="control-label">
                                                         Inventario<span class="symbol"></span>
@@ -108,7 +109,7 @@
                                                  </form:select>
                                              
                                     </div>
-                                     
+                                     <br>
                                      <div class="form-group">
                                                 <label class="control-label">
                                                         Nuevo Responsable<span class="symbol"></span>
@@ -149,16 +150,15 @@
                             <div class="col-md-12 text-center">
                                 &nbsp;<br/>
                             </div>  
-                    
+                     <hr>
+                     <h4 class="panel-title"><span class="text-bold">Inventario</span></h4>
+                   
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="tabla_prueba">
                                 <thead>
                                         <tr>
                                                <th>id</th>
-                                               <th>codigo</th>
-                                                
-                                               
-                                                                                             
+                                               <th>codigo</th>                            
                                                 <th>Delete</th>
                                         </tr>
                                 </thead>
@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <button class="btn btn-yellow btn-block" type="button" id="btnEnviar" onclick="return enviarMov(event);">
-                                                Guardar1 <i class="fa fa-arrow-circle-right"></i>
+                                                Guardar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
                         </div>
@@ -185,7 +185,7 @@
 <!--                    validation-->
                    
 <!--                    fin validation-->
-                    
+
 
                 </div>
             </div>
@@ -227,7 +227,7 @@
         
     function enviarMov()
     {
-         alert("enviar");
+         //alert("enviar");
         
         if($('#tabla_prueba tr').size()>1)
         {
@@ -270,7 +270,7 @@
            dataType: "json",
            contentType: 'application/json',
            success: function (msg) {
-               alert("entra");
+               //alert("entra");
            },
            data: jsonArray
        });

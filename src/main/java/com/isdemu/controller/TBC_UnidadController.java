@@ -71,6 +71,8 @@ public class TBC_UnidadController {
                
                 
 		return new ModelAndView("unidad",myModel);
+               
+                
 	}
         
         
@@ -84,7 +86,9 @@ public class TBC_UnidadController {
 		tbUnidadService.save(unidad);
 		String message = "unidad was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+                
+                 return addUnidad();
+		//return modelAndView;
 	}
         
          @RequestMapping(value="/deleteUnidad/{id}", method=RequestMethod.GET)

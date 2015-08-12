@@ -129,7 +129,7 @@
                                     <thead>
                                             <tr>
                                                     
-                                                    <th>id movimiento</th>
+                                                    <th class="no-display">id movimiento</th>
                                                     <th>Fecha</th>
                                                     <th>Razon de cambio</th>
                                                      
@@ -144,7 +144,7 @@
                                         
                                         <c:forEach var="mov" items="${movimiento}">
                                             <tr align="center">
-                                                    <td>${mov.idMovimiento}</td>
+                                                    <td class="no-display">${mov.idMovimiento}</td>
                                                     <td>${mov.fechaMovimiento}</td>
                                                     <td>${mov.razonCambio}</td>
                                                     <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${mov.idMovimiento}"> Editar</a></td>

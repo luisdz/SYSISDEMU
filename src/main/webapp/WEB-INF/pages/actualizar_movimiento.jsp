@@ -72,15 +72,15 @@
 
                 <form:form method="POST" action="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${movimiento.idMovimiento}" modelAttribute="movimiento" >
 
-
+                      <div class="col-md-6">    
                     <div class="form-group">
                         <label class="control-label">
-                            id movimiento<span class="symbol "></span>
+                            Fecha movimiento<span class="symbol "></span>
                         </label>
-                        <form:input path="idMovimiento" type="text" placeholder="${movimiento.idMovimiento}" class="form-control" id="id" name="lastname"/>
+                        <form:input path="idMovimiento" type="text" placeholder="${movimiento.fechaMovimiento}" class="form-control" id="id" name="lastname"/>
                     </div>
 
-
+                       
                     <div class="form-group">
                         <label class="control-label">
                             Razon de cambio<span class="symbol "></span>
@@ -96,13 +96,17 @@
                                                                 </button>
                                                         </div>-->
 
-
+                    </div>
+                      </div>
                         <div class="row">
-
+                            <div class="col-md-12"> 
+                                <div class="col-md-8">
+                                </div>
                             <div class="col-md-4">
                                 <button class="btn btn-yellow btn-block" type="submit">
                                     Actualizar <i class="fa fa-arrow-circle-right"></i>
                                 </button>
+                            </div>
                             </div>
                         </div>
                     </form:form>

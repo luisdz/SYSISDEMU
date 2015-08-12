@@ -104,13 +104,13 @@
                                 <span for="codigo" class="help-block  no-display" id="span_codigoT">Ingrese un codigo</span>    
                             
                             </div>
-
-
+                                 </div>
+                                <div class="col-md-6">
 
                             <div class="form-group">
-                                <p>
-                                    Fecha Inicio
-                                </p>
+                                <label class="control-label">
+                                    Fecha inicio<span class="symbol"></span>
+                                </label>
                                 <div class="input-group">
                                     <form:input path="fechaInicio" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" id="fechaInicio" onchange="return validaFechaIniPoliza(event);" onblur="return validaFechaIniPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
@@ -121,9 +121,9 @@
                             </div>
 
                             <div class="form-group">
-                                <p>
-                                    Fecha Fin
-                                </p>
+                                <label class="control-label">
+                                    Fecha fin<span class="symbol"></span>
+                                </label>
                                 <div class="input-group">
                                     <form:input path="fechaFin" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" id="fechaFin" class="form-control date-picker" onchange="return validaFechaFnPoliza(event);" onblur="return validaFechaFnPoliza(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
@@ -133,18 +133,22 @@
                             </div>
 
                         </div>
-                        <div class="col-md-6">
+                        
 
 
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <button class="btn btn-yellow btn-block" type="submit"  >
-                                    Actualizar <i class="fa fa-arrow-circle-right"></i>
-                                </button>
-                            </div>
-                        </div>
+                       
+                       
+                         <div class="row">
+                                <div class="col-md-8">
+                                       
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-yellow btn-block" type="submit" >
+                                                Actualizar <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                </div>
+                        </div>           
+                                    
                                     </div>
                             </form:form>
 

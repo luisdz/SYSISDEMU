@@ -128,7 +128,7 @@
                             <table class="table table-striped table-hover" id="sample-table-2">
                                     <thead>
                                             <tr>
-                                                   <th>id</th>
+                                                   <th class="no-display">id</th>
                                                     <th>Nombre</th>
                                                     <th>Codigo</th>
                                                     <th>Fecha inicio</th>
@@ -141,7 +141,7 @@
                                         
                                         <c:forEach var="pol" items="${poliza}">
                                             <tr align="center">
-                                                    <td>${pol.idPoliza}</td>
+                                                    <td class="no-display">${pol.idPoliza}</td>
                                                     <td>${pol.nombrePoliza}</td>
                                                     <td>${pol.codigoPoliza}</td>
                                                     <td>${pol.fechaInicio}</td>
