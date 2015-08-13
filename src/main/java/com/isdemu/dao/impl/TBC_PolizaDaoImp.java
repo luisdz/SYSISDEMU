@@ -6,10 +6,10 @@
 package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TBC_PolizaDao;
-import com.isdemu.dao.TBC_UnidadDao;
+
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcPoliza;
-import com.isdemu.model.TbcUnidad;
+
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;

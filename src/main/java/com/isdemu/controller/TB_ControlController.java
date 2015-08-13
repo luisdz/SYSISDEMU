@@ -14,7 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbcClaseActivo;
-import com.isdemu.model.TbcUnidad;
+
 import com.isdemu.model.TbControlSalida;
 import com.isdemu.model.TbrControlSalidaInventario;
 import com.isdemu.service.TBR_ControlInventario_Service;

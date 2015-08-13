@@ -36,13 +36,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class TbcPersona {
     
     
-   private int idPersona;
-     private TbcUnidad tbcUnidad;
+  private int idPersona;
+     private TbcLocalizacion tbcLocalizacion;
+     private int idUnidad;
      private String nombrePersona;
      private String jefatura;
      private String encargadoAfijo;
-//     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
-
+     
     @Id 
     @GeneratedValue
     
@@ -50,19 +50,28 @@ public class TbcPersona {
     public int getIdPersona() {
         return this.idPersona;
     }
-    
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
     }
 
 @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="ID_UNIDAD", nullable=false)
-    public TbcUnidad getTbcUnidad() {
-        return this.tbcUnidad;
+    @JoinColumn(name="ID_LOCALIZACION", nullable=false)
+    public TbcLocalizacion getTbcLocalizacion() {
+        return this.tbcLocalizacion;
     }
     
-    public void setTbcUnidad(TbcUnidad tbcUnidad) {
-        this.tbcUnidad = tbcUnidad;
+    public void setTbcLocalizacion(TbcLocalizacion tbcLocalizacion) {
+        this.tbcLocalizacion = tbcLocalizacion;
+    }
+
+    
+    @Column(name="ID_UNIDAD", nullable=false)
+    public int getIdUnidad() {
+        return this.idUnidad;
+    }
+    
+    public void setIdUnidad(int idUnidad) {
+        this.idUnidad = idUnidad;
     }
 
     
@@ -94,16 +103,6 @@ public class TbcPersona {
     public void setEncargadoAfijo(String encargadoAfijo) {
         this.encargadoAfijo = encargadoAfijo;
     }
-
-//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcPersona")
-//    public Set<TbInventario> getTbInventarios() {
-//        return this.tbInventarios;
-//    }
-//    
-//    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-//        this.tbInventarios = tbInventarios;
-//    }
-
 
 
 

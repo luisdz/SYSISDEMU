@@ -237,7 +237,7 @@ public class TB_MovimientoController {
 
         List<TbInventario> movi = tbInventarioService.getAll();
 
-        System.out.println("lista=" + movi.get(0).getClaseEquipo());
+        //COMENTAREO HECHO POR EDUARDOSystem.out.println("lista=" + movi.get(0).getClaseEquipo());
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
 
@@ -259,7 +259,7 @@ public class TB_MovimientoController {
 
         TbInventario movi = (TbInventario) tbInventarioService.findByKey(13);
 
-        System.out.println("lista=" + movi.getClaseEquipo());
+       // COMETARIO HECHO POR EDUARDO System.out.println("lista=" + movi.getClaseEquipo());
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
 

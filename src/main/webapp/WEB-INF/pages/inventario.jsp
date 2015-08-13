@@ -126,18 +126,7 @@
                                 <span for="clasifi" class="help-block  no-display" id="span_personaT">Seleccione una Persona</span>
                             </div>
 
-                            <div class="form-group">
-                                <label for="form-field-select-3">
-                                    Localizacion<span id="span_local" class="symbol "></span>
-                                </label>
-                                <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown4" name="dropdown" onchange="return validaLocalizacion(event);">
-                                    <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
-                                    <c:forEach var="loca" items="${lozalizacion}">
-                                        <form:option value="${loca.idLocalizacion}"  label="${loca.nombreLocalizacion}"/>
-                                    </c:forEach> 
-                                </form:select>
-                                <span for="clasifi" class="help-block  no-display" id="span_localizacionT">Seleccione una Persona</span>
-                            </div>
+
 
 
                             <div class="form-group">
@@ -166,13 +155,7 @@
                                 <span for="serie" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
                             </div>
 
-                             <div class="form-group">
-                                <label class="control-label">
-                                    Clase Equipo<span id="span_serie" class="symbol"></span>
-                                </label>
-                                <form:input path="claseEquipo" type="text" placeholder="Ingrese la clase de equipo" class="form-control" id="claseEqipo" name="claseEqipo" onblur="return validaClaseEquipo(event);"/>
-                                <span for="claseEquipo" class="help-block  no-display" id="span_claseT">Ingrese la clase de equipo</span> 
-                            </div>       
+                             
 
 
 
@@ -304,39 +287,6 @@
         //alert(conceptName);
 
 
-
-//   $.ajax({ 
-//                url: "${pageContext.request.contextPath}/Inventario/listaClaseA", 
-//                type: 'POST', 
-//                dataType: 'json', 
-//                contentType: 'application/json',
-//                mimeType: 'application/json',
-//                
-//                
-//                data: conceptName, 
-//                
-//               success: function(data) { 
-//                   var html = '';
-//                   var len = data.length;
-//                    //alert("devuelve algo"+data);
-//                            $('#dropdown2').empty();
-//                            html= '<option value="0"  label="Selecciona una clasificacion"/>';
-//                            data.forEach(function(entry) 
-//                            {
-//                                    console.log(entry);
-//                                   // alert("foreach :"+entry.nombreClase );
-//                                   html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
-//                            });
-//                            $('#dropdown2').append(html);
-//                   // alert("devuelve algo: "+data);
-//                },
-//                error:function(data,status,er) { 
-//                    alert("error: "+data+" status: "+status+" er:"+er);
-//                    
-//                    
-//                }
-//            });
-//   
     });
 
     function valideKey(evt)

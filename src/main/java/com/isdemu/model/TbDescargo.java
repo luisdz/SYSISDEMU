@@ -50,11 +50,11 @@ public class TbDescargo implements Serializable {
     public int getIdDescargo() {
         return this.idDescargo;
     }
-     public void setIdDescargo(int idDescargo) {
+      public void setIdDescargo(int idDescargo) {
         this.idDescargo = idDescargo;
     }
 
-    @ManyToOne(fetch=FetchType.EAGER )
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_INVENTARIO", nullable=false)
     public TbInventario getTbInventario() {
         return this.tbInventario;
@@ -75,8 +75,7 @@ public class TbDescargo implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Column(name="FECHA", length=23)
+    @Column(name="FECHA", length=10)
     public Date getFecha() {
         return this.fecha;
     }
@@ -106,7 +105,6 @@ public class TbDescargo implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
- @DateTimeFormat(pattern = "dd-mm-yyyy")
     @Column(name="FECHA_INSERT", length=10)
     public Date getFechaInsert() {
         return this.fechaInsert;
@@ -127,9 +125,7 @@ public class TbDescargo implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-   
     @Column(name="FECHA_UPDATE", length=10)
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
     public Date getFechaUpdate() {
         return this.fechaUpdate;
     }

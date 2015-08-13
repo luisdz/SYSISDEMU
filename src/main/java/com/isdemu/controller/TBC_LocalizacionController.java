@@ -9,15 +9,13 @@ import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
-import com.isdemu.model.TbcRegion;
-import com.isdemu.model.TbcUnidad;
+
 import com.isdemu.model.TbcLocalizacion;
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
-import com.isdemu.service.TBC_Region_Service;
-import com.isdemu.service.TBC_Unidad_Service;
+
 import com.isdemu.service.TB_Inventario_Service;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -43,14 +41,12 @@ public class TBC_LocalizacionController {
      @Autowired
         private TBC_Persona_Service tbcPersonaService;
      
-      @Autowired
-        private TBC_Region_Service tbcRegionService;
+     
       
       @Autowired
         private TBC_Localizacion_Service tbcLocalizacionService;
       
-    @Autowired
-      private TBC_Unidad_Service tbcUnidadService;
+    
       
      @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {

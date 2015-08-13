@@ -13,8 +13,7 @@ import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
-import com.isdemu.model.TbcRegion;
-import com.isdemu.model.TbcUnidad;
+
 import com.isdemu.model.TbPrestamoEquipo;
 import com.isdemu.model.TbControlSalida;
 import com.isdemu.model.TbrPrestamoEquipoInventario;

@@ -15,13 +15,13 @@ import com.isdemu.model.TbcClaseActivo;
 import com.isdemu.model.TbcClasificacionActivo;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
-import com.isdemu.model.TbcRegion;
+
 import com.isdemu.service.TBC_ClaseActivo_Service;
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
-import com.isdemu.service.TBC_Region_Service;
+
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service;
@@ -54,9 +54,7 @@ public class TB_InventarioController {
     
     @Autowired
 	private TB_Inventario_Service tbInventarioService;
-   @Autowired
-        private TB_Movimiento_Service tbMovimientoService;
-    
+ 
     @Autowired
         private TBC_ClasificacionActivo_Service tbClasActService;
     
@@ -69,8 +67,7 @@ public class TB_InventarioController {
       @Autowired
         private TBC_ClaseActivo_Service tbcClaseActivoService;
       
-        @Autowired
-        private TB_Descargo_Service tbDescargoService;
+       
      
      
      
@@ -165,7 +162,7 @@ public class TB_InventarioController {
 
               
                
-                inventario.setClaseEquipo("clase");
+              
                   
                  inventario.setValor(BigDecimal.ZERO);
                 

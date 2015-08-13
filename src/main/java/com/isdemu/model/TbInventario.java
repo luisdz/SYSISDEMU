@@ -35,10 +35,11 @@ public class TbInventario implements Serializable {
     
      private int idInventario;
      private TbcClaseActivo tbcClaseActivo;
-     private TbcLocalizacion tbcLocalizacion;
+     private TbcEstadoInventario tbcEstadoInventario;
      private TbcPersona tbcPersona;
-     private Integer responsableAnterior;
-     private String claseEquipo;
+     private TbcProveedor tbcProveedor;
+     private Integer idPersonaAsignado;
+     private String descripcionEquipo;
      private String codigoInventario;
      private String marca;
      private String modelo;
@@ -49,11 +50,11 @@ public class TbInventario implements Serializable {
      private String financiamiento;
      private String observacion;
      private BigDecimal valorLibro;
+     private Date fechaGarantia;
      private Integer userInsert;
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-//     private Set<TbDescargo> tbDescargos = new HashSet<TbDescargo>(0);
 
     
       @Id 
@@ -63,6 +64,7 @@ public class TbInventario implements Serializable {
     public int getIdInventario() {
         return this.idInventario;
     }
+    
     
     public void setIdInventario(int idInventario) {
         this.idInventario = idInventario;
@@ -78,14 +80,14 @@ public class TbInventario implements Serializable {
         this.tbcClaseActivo = tbcClaseActivo;
     }
 
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="ID_LOCALIZACION", nullable=false)
-    public TbcLocalizacion getTbcLocalizacion() {
-        return this.tbcLocalizacion;
+@ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="ID_ESTADO")
+    public TbcEstadoInventario getTbcEstadoInventario() {
+        return this.tbcEstadoInventario;
     }
     
-    public void setTbcLocalizacion(TbcLocalizacion tbcLocalizacion) {
-        this.tbcLocalizacion = tbcLocalizacion;
+    public void setTbcEstadoInventario(TbcEstadoInventario tbcEstadoInventario) {
+        this.tbcEstadoInventario = tbcEstadoInventario;
     }
 
 @ManyToOne(fetch=FetchType.EAGER)
@@ -98,24 +100,34 @@ public class TbInventario implements Serializable {
         this.tbcPersona = tbcPersona;
     }
 
-    
-    @Column(name="RESPONSABLE_ANTERIOR")
-    public Integer getResponsableAnterior() {
-        return this.responsableAnterior;
+@ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="ID_PROVEEDOR")
+    public TbcProveedor getTbcProveedor() {
+        return this.tbcProveedor;
     }
     
-    public void setResponsableAnterior(Integer responsableAnterior) {
-        this.responsableAnterior = responsableAnterior;
+    public void setTbcProveedor(TbcProveedor tbcProveedor) {
+        this.tbcProveedor = tbcProveedor;
     }
 
     
-    @Column(name="CLASE_EQUIPO", nullable=false, length=1024)
-    public String getClaseEquipo() {
-        return this.claseEquipo;
+    @Column(name="ID_PERSONA_ASIGNADO")
+    public Integer getIdPersonaAsignado() {
+        return this.idPersonaAsignado;
     }
     
-    public void setClaseEquipo(String claseEquipo) {
-        this.claseEquipo = claseEquipo;
+    public void setIdPersonaAsignado(Integer idPersonaAsignado) {
+        this.idPersonaAsignado = idPersonaAsignado;
+    }
+
+    
+    @Column(name="DESCRIPCION_EQUIPO", length=1024)
+    public String getDescripcionEquipo() {
+        return this.descripcionEquipo;
+    }
+    
+    public void setDescripcionEquipo(String descripcionEquipo) {
+        this.descripcionEquipo = descripcionEquipo;
     }
 
     
@@ -159,8 +171,7 @@ public class TbInventario implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
- @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Column(name="FECHA_ADQUISICION", length=23)
+    @Column(name="FECHA_ADQUISICION", length=10)
     public Date getFechaAdquisicion() {
         return this.fechaAdquisicion;
     }
@@ -170,7 +181,7 @@ public class TbInventario implements Serializable {
     }
 
     
-    @Column(name="VALOR", nullable=false, scale=4)
+    @Column(name="VALOR", scale=4)
     public BigDecimal getValor() {
         return this.valor;
     }
@@ -210,13 +221,23 @@ public class TbInventario implements Serializable {
     }
 
     
-    @Column(name="VALOR_LIBRO", nullable=false, scale=4)
+    @Column(name="VALOR_LIBRO", scale=4)
     public BigDecimal getValorLibro() {
         return this.valorLibro;
     }
     
     public void setValorLibro(BigDecimal valorLibro) {
         this.valorLibro = valorLibro;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="FECHA_GARANTIA", length=10)
+    public Date getFechaGarantia() {
+        return this.fechaGarantia;
+    }
+    
+    public void setFechaGarantia(Date fechaGarantia) {
+        this.fechaGarantia = fechaGarantia;
     }
 
     
@@ -230,9 +251,7 @@ public class TbInventario implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-   
     @Column(name="FECHA_INSERT", length=10)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     public Date getFechaInsert() {
         return this.fechaInsert;
     }
@@ -252,9 +271,7 @@ public class TbInventario implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-   
-    @Column(name="FECHA_UPDATE", length=23)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(name="FECHA_UPDATE", length=10)
     public Date getFechaUpdate() {
         return this.fechaUpdate;
     }
@@ -262,16 +279,6 @@ public class TbInventario implements Serializable {
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
     }
-//
-//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbInventario")
-//    public Set<TbDescargo> getTbDescargos() {
-//        return this.tbDescargos;
-//    }
-//    
-//    public void setTbDescargos(Set<TbDescargo> tbDescargos) {
-//        this.tbDescargos = tbDescargos;
-//    }
-
 
 
 

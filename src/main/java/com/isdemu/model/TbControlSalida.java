@@ -48,8 +48,7 @@ public class TbControlSalida {
      private Date fechaInsert;
      private Integer userUpdate;
      private Date fechaUpdate;
-     //private Set<TbrControlSalidaInventario> tbrControlSalidaInventarios = new HashSet<TbrControlSalidaInventario>(0);
-
+    
      
     @Id 
     @GeneratedValue
@@ -62,7 +61,7 @@ public class TbControlSalida {
         this.idControlSalida = idControlSalida;
     }
 
-    
+       
     @Column(name="N_CONTROL_SALIDA", nullable=false)
     public int getNControlSalida() {
         return this.NControlSalida;
@@ -83,7 +82,7 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="FECHA_SALIDA", nullable=false, length=23)
+    @Column(name="FECHA_SALIDA", nullable=false, length=10)
     public Date getFechaSalida() {
         return this.fechaSalida;
     }
@@ -113,7 +112,7 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="FECHA_TENTATIVA_DEVOLUCION", length=23)
+    @Column(name="FECHA_TENTATIVA_DEVOLUCION", length=10)
     public Date getFechaTentativaDevolucion() {
         return this.fechaTentativaDevolucion;
     }
@@ -133,7 +132,7 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="FECHA_INSERT", length=23)
+    @Column(name="FECHA_INSERT", length=10)
     public Date getFechaInsert() {
         return this.fechaInsert;
     }
@@ -153,7 +152,7 @@ public class TbControlSalida {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="FECHA_UPDATE", length=23)
+    @Column(name="FECHA_UPDATE", length=10)
     public Date getFechaUpdate() {
         return this.fechaUpdate;
     }
@@ -161,16 +160,6 @@ public class TbControlSalida {
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
     }
-
-//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbControlSalida")
-//    public Set<TbrControlSalidaInventario> getTbrControlSalidaInventarios() {
-//        return this.tbrControlSalidaInventarios;
-//    }
-//    
-//    public void setTbrControlSalidaInventarios(Set<TbrControlSalidaInventario> tbrControlSalidaInventarios) {
-//        this.tbrControlSalidaInventarios = tbrControlSalidaInventarios;
-//    }
-
 
 
 

@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,10 +36,9 @@ public class TbcClaseActivo {
      private TbcClasificacionActivo tbcClasificacionActivo;
      private String nombreClase;
      private String obervacion;
-//     private Set<TbInventario> tbInventarios = new HashSet<TbInventario>(0);
-@Id 
 
-    
+     @Id 
+      @GeneratedValue
     @Column(name="ID_CLASE_ACTIVO", unique=true, nullable=false)
     public int getIdClaseActivo() {
         return this.idClaseActivo;
@@ -77,15 +77,6 @@ public class TbcClaseActivo {
     public void setObervacion(String obervacion) {
         this.obervacion = obervacion;
     }
-
-//@OneToMany(fetch=FetchType.EAGER, mappedBy="tbcClaseActivo")
-//    public Set<TbInventario> getTbInventarios() {
-//        return this.tbInventarios;
-//    }
-//    
-//    public void setTbInventarios(Set<TbInventario> tbInventarios) {
-//        this.tbInventarios = tbInventarios;
-//    }
 
 
 
