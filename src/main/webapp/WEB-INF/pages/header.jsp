@@ -355,6 +355,24 @@
 							<li>
 								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Catalogo</span><i class="icon-arrow"></i> </a>
 								<ul class="sub-menu">
+                                                                    
+                                                                    
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Clase Activo </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="#"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="#"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
+                                                                        
 									<li>
 										<a href="${pageContext.request.contextPath}/Persona/add">
 											<span class="title"> Personal </span>
