@@ -43,7 +43,8 @@ public class TBC_ClaseActivoDaoImpl implements TBC_ClaseActivoDao{
         @Override
 	public List getAll() {
 		// TODO Auto-generated method stub
-            DetachedCriteria dc = DetachedCriteria.forClass(TbcClaseActivo.class);
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcClaseActivo.class,"clase");
+            dc.createAlias("clase.tbcClasificacionActivo", "clasi");
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
            // dc.addOrder(Order.asc("codigo_inventario"));
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();

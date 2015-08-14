@@ -51,7 +51,7 @@ private int idClasificacionActivo;
     }
 
 @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="ID_POLIZA", nullable=false)
+    @JoinColumn(name="ID_POLIZA")
     public TbcPoliza getTbcPoliza() {
         return this.tbcPoliza;
     }

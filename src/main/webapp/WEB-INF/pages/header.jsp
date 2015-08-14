@@ -364,10 +364,26 @@
                                                                                         
                                                                                 <ul class="sub-menu">
 													<li>
-														<a href="#"><i class="fa fa-times"></i> Ingresar</a>
+														<a href="${pageContext.request.contextPath}/ClaseActivo/insertarClase"><i class="fa fa-times"></i> Ingresar</a>
 													</li>
 													<li>
-														<a href="#"><i class="fa fa-pencil"></i> Consultar</a>
+														<a href="${pageContext.request.contextPath}/ClaseActivo/listaClase"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
+                                                                        
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Clasificacion Activo </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/ClasificacionActivo/insertarClasificacion"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/ClasificacionActivo/listaClasificacion"><i class="fa fa-pencil"></i> Consultar</a>
 													</li>
 													
                                                                                 </ul>

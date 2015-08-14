@@ -35,7 +35,7 @@ public class TbcClaseActivo {
      private int idClaseActivo;
      private TbcClasificacionActivo tbcClasificacionActivo;
      private String nombreClase;
-     private String obervacion;
+     private String codigoClase;
 
      @Id 
       @GeneratedValue
@@ -69,13 +69,13 @@ public class TbcClaseActivo {
     }
 
     
-    @Column(name="OBERVACION", length=1024)
-    public String getObervacion() {
-        return this.obervacion;
+    @Column(name="CODIGO_CLASE", length=1024)
+    public String getCodigoClase() {
+        return this.codigoClase;
     }
     
-    public void setObervacion(String obervacion) {
-        this.obervacion = obervacion;
+    public void setCodigoClase(String codigoClase) {
+        this.codigoClase = codigoClase;
     }
 
 

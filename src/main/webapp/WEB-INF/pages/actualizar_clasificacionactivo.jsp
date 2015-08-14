@@ -58,9 +58,9 @@
                 </div>
             </div>
             <div class="panel-body">
-                <h2><i class="fa fa-pencil-square"></i> CLASE DE ACTIVOS</h2>
+                <h2><i class="fa fa-pencil-square"></i> CLASIFICACION DE ACTIVOS</h2>
                 <p>
-                    Esta es la seccion de Ingreso de Clases de Activos
+                    Esta es la seccion de Ingreso de Clasificaciones de Activos
                 </p>
                 <hr>
 
@@ -70,7 +70,7 @@
 
 
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/ClaseActivo/insertarClase" onsubmit="return valida_envio();" modelAttribute="claseA" id="inventarioF">
+                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionActivo/actualizarClasificacion/${clasificacionA.idClasificacionActivo}" onsubmit="return valida_envio();" modelAttribute="clasificacionA" id="inventarioF">
 
                     <div class="row">
                         <div class="col-md-12">
@@ -86,25 +86,25 @@
                            
                             <div class="form-group">
                                 <label for="form-field-select-3">
-                                    Clasificacion Activo<span id="span_clasi" class="symbol "></span>
+                                    Poliza<span id="span_clasi" class="symbol "></span>
                                 </label>
 
-                                <form:select path="tbcClasificacionActivo.idClasificacionActivo" class="form-control" id="dropdown1" name="dropdown1" onchange="return validaClasificacion(event);">
-                                    <form:option value="0"  label="Selecciona una clasificacion"/>
-                                    <c:forEach var="clasi" items="${clasificacionA}">
-                                        <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
+                                <form:select path="tbcPoliza.idPoliza" class="form-control" id="poliza" name="poliza" onchange="return validaClasificacion(event);">
+                                    <form:option value="0"  label="Selecciona una Poliza"/>
+                                    <c:forEach var="poli" items="${poliza}">
+                                        <form:option value="${poli.idPoliza}"  label="${poli.nombrePoliza}"/>
                                     </c:forEach>
                                 </form:select>
-                                <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
+                                <span for="poliza" class="help-block  no-display" id="span_dropdownT">Seleccione una Poliza</span>
                             </div>
                             
                             
                             <div class="form-group">
                                 <label class="control-label">
-                                    Nombre Clase:<span id="span_marca" class="symbol"></span>
+                                    Nombre Clasificacion:<span id="span_marca" class="symbol"></span>
                                 </label>
-                                <form:input path="nombreClase" type="text" placeholder="Ingrese una Clase de Activo" class="form-control" id="clase" name="clase" onblur="return validaMarca(event);"/>
-                                <span for="clase" class="help-block  no-display" id="span_marcaT">Ingrese una Clase</span> 
+                                <form:input path="nombreClasificacion" type="text" placeholder="Ingrese una Clasificacion de Activo" class="form-control" id="clasificacion" name="clasificacion" onblur="return validaMarca(event);"/>
+                                <span for="clasificacion" class="help-block  no-display" id="span_marcaT">Ingrese una Clase</span> 
                             </div>
                          
 
@@ -116,10 +116,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">
-                                    Codigo Clase:<span id="span_serie" class="symbol"></span>
+                                    Codigo Clasificacion:<span id="span_serie" class="symbol"></span>
                                 </label>
-                                <form:input path="codigoClase" type="text" placeholder="Ingrese el codigo de la clase" class="form-control" id="codigoClase" name="codigoClase" onblur="return validaSerie(event);"/>
-                                <span for="codigoClase" class="help-block  no-display" id="span_serieT">Ingrese el codigo de la clase</span> 
+                                <form:input path="codigoClasificacion" type="text" placeholder="Ingrese el codigo de la clase" class="form-control" id="codigoClasi" name="codigoClasi" onblur="return validaSerie(event);"/>
+                                <span for="codigoClasi" class="help-block  no-display" id="span_serieT">Ingrese el codigo de la clase</span> 
                             </div>
 
                              
@@ -150,5 +150,4 @@
 
 <!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>	
-
 

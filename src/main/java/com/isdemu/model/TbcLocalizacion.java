@@ -33,7 +33,7 @@ public class TbcLocalizacion {
      private int idLocalizacion;
      private TbcClasificacionLocalizacion tbcClasificacionLocalizacion;
      private TbcRiesgo tbcRiesgo;
-     private int idRegion;
+     
      private String nombreLocalizacion;
      
        @Id 
@@ -68,17 +68,7 @@ public class TbcLocalizacion {
         this.tbcRiesgo = tbcRiesgo;
     }
 
-    
-    @Column(name="ID_REGION", nullable=false)
-    public int getIdRegion() {
-        return this.idRegion;
-    }
-    
-    public void setIdRegion(int idRegion) {
-        this.idRegion = idRegion;
-    }
-
-    
+  
     @Column(name="NOMBRE_LOCALIZACION", nullable=false, length=1024)
     public String getNombreLocalizacion() {
         return this.nombreLocalizacion;
