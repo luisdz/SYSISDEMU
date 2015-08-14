@@ -171,7 +171,7 @@ public class TB_InventarioController {
           
                    //obtener el codigo de la clase seleccionada para armar el codigo de inventario
                     TbcClaseActivo codigoClaseA = (TbcClaseActivo)tbcClaseActivoService.findByKey(inventario.getTbcClaseActivo().getIdClaseActivo());
-                    String CodigoClase=codigoClaseA.getObervacion();
+                    String CodigoClase=codigoClaseA.getCodigoClase();
                     
                     //ir a inventario y consultar el ultimo codigo con la clase que se ingreso devolver el codigo, convertilo a int y sumarle uno
                     List<TbInventario> LastInv=tbInventarioService.LastCodInventario(inventario.getTbcClaseActivo().getIdClaseActivo());

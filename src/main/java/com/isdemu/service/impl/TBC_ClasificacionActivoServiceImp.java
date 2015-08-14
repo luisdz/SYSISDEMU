@@ -27,6 +27,13 @@ public class TBC_ClasificacionActivoServiceImp implements TBC_ClasificacionActiv
 	private TbcClasificacionActivoDao tbClasiActDao;
     
     @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		tbClasiActDao.save(obj);
+	}
+        
+    
+    @Override
 	public List getAll() {
              System.out.println("service impl");
 		// TODO Auto-generated method stub
@@ -37,5 +44,28 @@ public class TBC_ClasificacionActivoServiceImp implements TBC_ClasificacionActiv
 	public Object findByKey(Serializable id) {
 		// TODO Auto-generated method stub
 		return tbClasiActDao.findByKey(id);
+	}
+        
+         @Override
+         public List getTop(){
+         return tbClasiActDao.getTop();
+         }
+         
+          @Override
+         public List getAllidClasi(Serializable id){
+         return tbClasiActDao.getAllidClasi(id);
+         }
+        
+        @Override
+	public void delete(Serializable id) {
+		// TODO Auto-generated method stub
+		tbClasiActDao.delete(id);
+	}
+        
+                
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbClasiActDao.update(obj);
 	}
 }
