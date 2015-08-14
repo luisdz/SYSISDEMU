@@ -38,7 +38,6 @@ public class TbcPersona {
     
   private int idPersona;
      private TbcLocalizacion tbcLocalizacion;
-     private int idUnidad;
      private String nombrePersona;
      private String jefatura;
      private String encargadoAfijo;
@@ -63,17 +62,6 @@ public class TbcPersona {
     public void setTbcLocalizacion(TbcLocalizacion tbcLocalizacion) {
         this.tbcLocalizacion = tbcLocalizacion;
     }
-
-    
-    @Column(name="ID_UNIDAD", nullable=false)
-    public int getIdUnidad() {
-        return this.idUnidad;
-    }
-    
-    public void setIdUnidad(int idUnidad) {
-        this.idUnidad = idUnidad;
-    }
-
     
     @Column(name="NOMBRE_PERSONA", nullable=false, length=1024)
     public String getNombrePersona() {
