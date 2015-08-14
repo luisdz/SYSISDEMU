@@ -25,6 +25,14 @@ public class TBC_LocalizacionServiceImp implements  TBC_Localizacion_Service{
     @Autowired
 	private TBC_LocalizacionDao tbcLocalizacionDao;
     
+    
+    @Override
+	public void save(Object obj) {
+             System.out.println("esntra aqui GET service");
+		// TODO Auto-generated method stub
+		tbcLocalizacionDao.save(obj);
+	}
+    
     @Override
 	public List getAll() {
              System.out.println("service impl");

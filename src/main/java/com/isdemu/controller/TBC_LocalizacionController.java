@@ -39,13 +39,11 @@ public class TBC_LocalizacionController {
     
     
      @Autowired
-        private TBC_Persona_Service tbcPersonaService;
-     
-     
+        private TBC_Persona_Service tbcPersonaService;    
       
       @Autowired
         private TBC_Localizacion_Service tbcLocalizacionService;
-      
+
     
       
      @RequestMapping(value="/list")
@@ -55,6 +53,39 @@ public class TBC_LocalizacionController {
 		List localizacion = tbcLocalizacionService.getAll();
 		modelAndView.addObject("localizacion", localizacion);
 
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/add", method=RequestMethod.GET)
+	public ModelAndView addPaisPage() {
+              System.out.println("esntra aqui GET persona");
+		//ModelAndView modelAndView = new ModelAndView("inventario");
+               Map<String, Object> myModel = new HashMap<String, Object>();
+		
+                 
+                 //List ClasAct = tbClasActService.getAll();
+               List localizacion = tbcLocalizacionService.getAll();
+               
+                 //List region=tbcRegionService.getAll();
+                 myModel.put("persona", new TbcPersona());
+             
+                myModel.put("localizacion",localizacion);
+                // myModel.put("clasificacionA",ClasAct );
+                // myModel.put("persona",persona);
+                // myModel.put("region",region);
+                System.out.println("esntra aqui GET persona");
+		return new ModelAndView("persona",myModel);
+	}
+        
+        
+        @RequestMapping(value="/add", method=RequestMethod.POST)
+	public ModelAndView addingPais(@ModelAttribute TbcPersona persona) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		 System.out.println("entra aqui POST persona"+persona);
+                 
+                tbcPersonaService.save(persona);
+		String message = "Persona was successfully added.";
+		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
                     
