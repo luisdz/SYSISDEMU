@@ -433,33 +433,22 @@
 													
                                                                                 </ul>
 									</li>
-                                                                        
-									<li>
-										<a  href="${pageContext.request.contextPath}/Unidad/insertarUnidad.html">
-											<span class="title"> Unidades</span>
-										</a>
-									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Unidad/consultarUni.html">
-											Consultar Unidad <i class="icon-arrow"></i>
+										<a href="javascript:;">
+											<span class="title"> Estado Inventario </span> <i class="icon-arrow"></i>
 										</a>
-										
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/EstadoInventario/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/EstadoInventario/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
-								
-									<li>
-										<a  href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html">
-											<span class="title">Poliza</span>
-									<li>
-										<a href="${pageContext.request.contextPath}/Region/add">
-											<span class="title">Regiones</span>
-										</a>
-									</li>
-                                                                        
-                                                                        <li>
-										<a href="${pageContext.request.contextPath}/Region/list">
-											<span class="title">Consultar Regiones</span>
-										</a>
-									</li>
+                                                                       								
                                                                         <li>
 										<a href="javascript:;">
 											<span class="title"> Poliza </span> <i class="icon-arrow"></i>
