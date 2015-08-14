@@ -404,22 +404,73 @@
 											<span class="title">Regiones</span>
 										</a>
 									</li>
+                                                                        
                                                                         <li>
 										<a href="${pageContext.request.contextPath}/Region/list">
 											<span class="title">Consultar Regiones</span>
 										</a>
 									</li>
-									<li>
-										<a  href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html">
-											<span class="title">Poliza</span>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Poliza </span> <i class="icon-arrow"></i>
 										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Poliza/consultarPoli.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Poliza/consultarPoli.html">
-											Consultar Poliza <i class="icon-arrow"></i>
+										<a href="javascript:;">
+											<span class="title"> Proveedor </span> <i class="icon-arrow"></i>
 										</a>
-										
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Proveedor/insertarProveedor.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Proveedor/consultarProveedor.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Clasificacion de Localizacion </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Poliza/insertarClasLocal.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Poliza/consultarClasLocal.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Riesgo </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Riesgo/insertarRiesgo.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Riesgo/consultarRiesgo.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
+									
 								</ul>
 							</li>
 							

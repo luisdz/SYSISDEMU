@@ -93,20 +93,12 @@ public class TBC_PolizaController {
         
         @RequestMapping(value="/editPoliza/{id}", method=RequestMethod.GET)
 	public ModelAndView editPolizaPage(@PathVariable Integer id) {
-		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+		 
 		TbcPoliza poliza = (TbcPoliza) tbPolizaService.findByKey(id);
-                //TbcClasificacionActivo activo = (TbcClasificacionActivo) tbClasActService.findByKey(poliza.getTbcClasificacionActivos().getIdClasificacionActivo());
-                
-                  Map<String, Object> myModel = new HashMap<String, Object>();
-                   //List ClasAct = tbClasActService.getAll();  
-                   myModel.put("poliza",poliza ); 
-                 // myModel.put("clasificacionA",activo );
-                  //myModel.put("AllclasificacionA",ClasAct );
-                
                   
-                   
-                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
-		//modelAndView.addObject("inventario",inventario);
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                  
+                   myModel.put("poliza",poliza );  
 		return new ModelAndView("actualizar_poliza",myModel);
 	}
 
@@ -119,14 +111,10 @@ public class TBC_PolizaController {
                 polizaActual.setCodigoPoliza(poliza.getCodigoPoliza());
                 polizaActual.setFechaInicio(poliza.getFechaInicio());
                 polizaActual.setFechaFin(poliza.getFechaFin());
-                polizaActual.setNombrePoliza(poliza.getNombrePoliza());
-                
-		                
-		tbPolizaService.update(polizaActual);
-
+                polizaActual.setNombrePoliza(poliza.getNombrePoliza()); 
+		tbPolizaService.update(polizaActual); 
 		String message = "poliza was successfully edited.";
-		modelAndView.addObject("message", message);
-
+		modelAndView.addObject("message", message); 
 		return modelAndView;
 	}
         

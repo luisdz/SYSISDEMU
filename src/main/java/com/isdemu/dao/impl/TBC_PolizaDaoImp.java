@@ -44,11 +44,10 @@ public class TBC_PolizaDaoImp implements TBC_PolizaDao {
         
         @Override
 	public List getAll() {
-		// TODO Auto-generated method stub
+		
              System.out.println("Llega al dao implements");
             DetachedCriteria dc = DetachedCriteria.forClass(TbcPoliza.class);
-           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
-           // dc.addOrder(Order.asc("codigo_inventario"));
+           
             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
