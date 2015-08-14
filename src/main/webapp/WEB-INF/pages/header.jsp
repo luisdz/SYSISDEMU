@@ -417,7 +417,22 @@
 													</li>
 													
                                                                                 </ul>
-									</li>								
+									</li>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Ubicacion </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Ubicacion/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Ubicacion/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
                                                                         
 									<li>
 										<a  href="${pageContext.request.contextPath}/Unidad/insertarUnidad.html">
