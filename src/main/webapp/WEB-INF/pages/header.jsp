@@ -403,13 +403,22 @@
 													
                                                                                 </ul>
 									</li>
-                                                                        
-									
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Localizacion/list">
-											<span class="title"> Consultar Localizacion </span>
+										<a href="javascript:;">
+											<span class="title"> Localizacion </span> <i class="icon-arrow"></i>
 										</a>
-									</li>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Localizacion/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Localizacion/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>								
+                                                                        
 									<li>
 										<a  href="${pageContext.request.contextPath}/Unidad/insertarUnidad.html">
 											<span class="title"> Unidades</span>
