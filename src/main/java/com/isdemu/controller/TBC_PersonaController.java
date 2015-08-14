@@ -48,6 +48,8 @@ public class TBC_PersonaController {
      @Autowired
         private TBC_Persona_Service tbcPersonaService;
    
+     @Autowired
+        private TBC_Localizacion_Service tbcLocalizacionService;
       
      @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
@@ -68,12 +70,12 @@ public class TBC_PersonaController {
 		
                  
                  //List ClasAct = tbClasActService.getAll();
-                /// List poliza = tbPolizaService.getAll();
+               List localizacion = tbcLocalizacionService.getAll();
                
                  //List region=tbcRegionService.getAll();
                  myModel.put("persona", new TbcPersona());
              
-                // myModel.put("poliza",poliza );
+                myModel.put("localizacion",localizacion);
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);

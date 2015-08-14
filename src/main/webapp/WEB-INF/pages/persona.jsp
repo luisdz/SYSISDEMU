@@ -84,15 +84,15 @@
     
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Unidad<span id="span_nombre" class="symbol "></span>
+                                                        Localizacion<span id="span_nombre" class="symbol "></span>
                                                 </label>
-                                               <form:select path="tbcUnidad.idUnidad" class="form-control" id="dropdown" name="dropdown" onchange="return validaUnidad(event);">
-                                                    <form:option value="0"  label="Selecciona unidad"/>       
-                                                    <c:forEach var="uni" items="${unidad}">
-                                                               <form:option value="${uni.idUnidad}"  label="${uni.nombreUnidad}"/>
+                                               <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown" name="dropdown" onchange="return validaUnidad(event);">
+                                                    <form:option value="0"  label="Selecciona localizacion"/>       
+                                                    <c:forEach var="loc" items="${localizacion}">
+                                                               <form:option value="${loc.idLocalizacion}"  label="${loc.nombreLocalizacion}"/>
                                                             </c:forEach>
                                                  </form:select>
-                                                <span for="nombre" class="help-block  no-display" id="span_dropdownT">Ingrese un nombre</span>    
+                                                <span for="nombre" class="help-block  no-display" id="span_dropdownT">Ingrese una localizacion</span>    
                                     </div>
                                     <div class="form-group">
                                                 <label class="control-label">

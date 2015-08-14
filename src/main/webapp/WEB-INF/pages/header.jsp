@@ -388,17 +388,23 @@
 													
                                                                                 </ul>
 									</li>
-                                                                        
-									<li>
-										<a href="${pageContext.request.contextPath}/Persona/add">
-											<span class="title"> Personal </span>
-										</a>
-									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Persona/list">
-											<span class="title"> Consultar Personal </span>
+										<a href="javascript:;">
+											<span class="title"> Persona </span> <i class="icon-arrow"></i>
 										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Persona/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Persona/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
+                                                                        
+									
                                                                         <li>
 										<a href="${pageContext.request.contextPath}/Localizacion/list">
 											<span class="title"> Consultar Localizacion </span>
@@ -415,16 +421,7 @@
 										</a>
 										
 									</li>
-									<li>
-										<a href="${pageContext.request.contextPath}/Region/add">
-											<span class="title">Regiones</span>
-										</a>
-									</li>
-                                                                        <li>
-										<a href="${pageContext.request.contextPath}/Region/list">
-											<span class="title">Consultar Regiones</span>
-										</a>
-									</li>
+								
 									<li>
 										<a  href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html">
 											<span class="title">Poliza</span>
