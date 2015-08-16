@@ -70,7 +70,7 @@
                             Ingreso del Estado Inventario de ISDEMU
                     </p>
                     <hr>
-              <form:form method="POST" action="${pageContext.request.contextPath}/EstadoInventario/add" onsubmit="return valida_envio();" modelAttribute="estadoinventario" id="personaF" >
+              <form:form method="POST" action="${pageContext.request.contextPath}/EstadoInventario/add" onsubmit="return valida_envio();" modelAttribute="estadoinventario" id="estadoF" >
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForms">
@@ -88,8 +88,8 @@
                                                         Nombre Estado<span id="span_nombre" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="nombreEstado" type="text" placeholder="Ingrese nombre estado" class="form-control" id="nombre" name="nombre" onblur="return validaNombrePersona(event);"/>
-                                                <span for="persona" class="help-block  no-display" id="span_nombreT">Ingrese un Nombre</span> 
+                                                <form:input path="nombreEstado" type="text" placeholder="Ingrese nombre estado" class="form-control" id="nombre" name="nombre" onblur="return validaNombreEstado(event);"/>
+                                                <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un Nombre</span> 
                                     </div>                        
                                                                                 
                                 </div>
@@ -97,11 +97,11 @@
                                     
                                    <div class="form-group">
                                                 <label class="control-label">
-                                                        Descripcion<span id="span_jefe" class="symbol"></span>
+                                                        Descripcion<span id="span_desc" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="descripcion" type="text" placeholder="Ingrese descripcion" class="form-control" id="jefe" name="jefe" onblur="return validaJefe(event);"/>
-                                                <span for="jefe" class="help-block  no-display" id="span_jefeT">Ingrese una Descripcion</span> 
+                                                <form:textarea path="descripcion" type="text" placeholder="Ingrese descripcion" class="form-control" id="desc" name="desc" onblur="return validaDesc(event);"></form:textarea>
+                                                <span for="desc" class="help-block  no-display" id="span_descT">Ingrese una Descripcion</span> 
                 
                                     </div> 
                                                                    
@@ -129,4 +129,4 @@
         </div>
 
 <%@include file="footer.jsp" %>	
-<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesPersona.js"></script>
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesEstadoInv.js"></script>
