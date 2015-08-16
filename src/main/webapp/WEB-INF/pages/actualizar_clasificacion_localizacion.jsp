@@ -1,8 +1,9 @@
 <%-- 
-    Document   : clasificacion_localizacion
-    Created on : 13-ago-2015, 16:41:28
-    Author     : Luis
+    Document   : actualizacion_clasificacion_localizacion
+    Created on : 15-ago-2015, 10:57:36
+    Author     : AlejandroPC
 --%>
+
 <%@include file="header.jsp" %>
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -51,7 +52,7 @@
                 </p>
                 <hr>
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionLocal/insertarClasLocal" modelAttribute="claslocal" >
+                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionLocal/editClasLocal/${claslocal.idClasificacionLocalizacion}" modelAttribute="claslocal" >
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display">

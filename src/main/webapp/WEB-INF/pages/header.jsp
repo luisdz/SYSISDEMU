@@ -486,10 +486,10 @@
                                                                                         
                                                                                 <ul class="sub-menu">
 													<li>
-														<a href="${pageContext.request.contextPath}/Poliza/insertarClasLocal.html"><i class="fa fa-times"></i> Ingresar</a>
+														<a href="${pageContext.request.contextPath}/ClasificacionLocal/insertarClasLocal.html"><i class="fa fa-times"></i> Ingresar</a>
 													</li>
 													<li>
-														<a href="${pageContext.request.contextPath}/Poliza/consultarClasLocal.html"><i class="fa fa-pencil"></i> Consultar</a>
+														<a href="${pageContext.request.contextPath}/ClasificacionLocal/consultarClasLocal.html"><i class="fa fa-pencil"></i> Consultar</a>
 													</li>
 													
                                                                                 </ul>

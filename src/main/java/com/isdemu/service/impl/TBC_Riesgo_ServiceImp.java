@@ -37,17 +37,19 @@ public class TBC_Riesgo_ServiceImp implements TBC_Riesgo_Service {
 
     @Override
     public void delete(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         tbcRiesgoDao.delete(id);
     }
 
     @Override
     public Object findByKey(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return tbcRiesgoDao.findByKey(id);
+    
     }
 
     @Override
     public void update(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         tbcRiesgoDao.update(obj);
+    
     }
     
 }

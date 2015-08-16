@@ -1,8 +1,9 @@
 <%-- 
-    Document   : clasificacion_localizacion
-    Created on : 13-ago-2015, 16:41:28
-    Author     : Luis
+    Document   : actualizar_riesgo
+    Created on : 15-ago-2015, 10:28:10
+    Author     : AlejandroPC
 --%>
+
 <%@include file="header.jsp" %>
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -12,7 +13,7 @@
         <!-- start: FORM VALIDATION 1 PANEL -->
         <div class="panel panel-white">
             <div class="panel-heading">
-                <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso</span></h4>
+                <h4 class="panel-title">Formulario de <span class="text-bold">Actualizacion</span></h4>
                 <div class="panel-tools">
                     <div class="dropdown">
                         <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -45,13 +46,13 @@
                 </div>
             </div>
             <div class="panel-body">
-                <h2><i class="fa fa-pencil-square"></i> Clasificacion Localizacion</h2>
+                <h2><i class="fa fa-pencil-square"></i> Riesgo</h2>
                 <p>
-                    Esta es la seccion de Ingreso de Unidades
+                    Esta es la seccion de Ingreso de Riesgos
                 </p>
                 <hr>
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionLocal/insertarClasLocal" modelAttribute="claslocal" >
+                <form:form method="POST" action="${pageContext.request.contextPath}/Riesgo/editRiesgo/${riesgo.idRiesgo}" modelAttribute="riesgo" >
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display">
@@ -68,7 +69,7 @@
                                 <label class="control-label">
                                     Nombre<span class="symbol "></span>
                                 </label>
-                                <form:input path="nombreClasificacion" type="text" placeholder="Ingrese el nombre" class="form-control" id="lastname" name="lastname"/>
+                                <form:input path="nombreRiesgo" type="text" placeholder="Ingrese el nombre" class="form-control" id="lastname" name="lastname"/>
 
                             </div>
 

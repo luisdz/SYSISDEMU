@@ -7,6 +7,7 @@ package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TBC_ClasificacionLocalizacionDao;
 import com.isdemu.model.TbcClasificacionLocalizacion;
+import com.isdemu.model.TbcClasificacionLocalizacion;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
@@ -29,8 +30,8 @@ public class TBC_ClasificacionLocalizacionDaoImp implements TBC_ClasificacionLoc
     }
     @Override
     public void save(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        TbcClasificacionLocalizacion claslocal =(TbcClasificacionLocalizacion)obj;
+	        getCurrentSession().save(claslocal); }
 
     @Override
     public List getAll() {
@@ -42,17 +43,21 @@ public class TBC_ClasificacionLocalizacionDaoImp implements TBC_ClasificacionLoc
 
     @Override
     public void delete(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TbcClasificacionLocalizacion claslocal = (TbcClasificacionLocalizacion) getCurrentSession().get(TbcClasificacionLocalizacion.class, id);
+		if(claslocal!=null)
+			getCurrentSession().delete(claslocal);
     }
 
     @Override
     public Object findByKey(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       TbcClasificacionLocalizacion claslocal = (TbcClasificacionLocalizacion) getCurrentSession().get(TbcClasificacionLocalizacion.class, id);
+		return claslocal;  
+    
     }
 
     @Override
     public void update(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getCurrentSession().update(obj);  
     }
     
 }

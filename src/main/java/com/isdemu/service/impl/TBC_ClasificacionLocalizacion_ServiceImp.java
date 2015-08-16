@@ -27,7 +27,7 @@ public class TBC_ClasificacionLocalizacion_ServiceImp implements TBC_Clasificaci
     
     @Override
     public void save(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tbClasiDao.save(obj);
     }
 
     @Override
@@ -37,17 +37,17 @@ public class TBC_ClasificacionLocalizacion_ServiceImp implements TBC_Clasificaci
 
     @Override
     public void delete(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tbClasiDao.delete(id);
     }
 
     @Override
     public Object findByKey(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tbClasiDao.findByKey(id);
     }
 
     @Override
     public void update(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         tbClasiDao.update(obj);
     }
     
 }

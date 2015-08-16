@@ -45,17 +45,20 @@ public class TBC_RiesgoDaoImp implements TBC_RiesgoDao{
 
     @Override
     public void delete(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         TbcRiesgo riesgo = (TbcRiesgo) getCurrentSession().get(TbcRiesgo.class, id);
+		if(riesgo!=null)
+			getCurrentSession().delete(riesgo);
     }
 
     @Override
     public Object findByKey(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       TbcRiesgo riesgo = (TbcRiesgo) getCurrentSession().get(TbcRiesgo.class, id);
+		return riesgo;
     }
 
     @Override
     public void update(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      getCurrentSession().update(obj);    
     }
     
 }

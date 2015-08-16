@@ -1,6 +1,6 @@
 <%-- 
-    Document   : consultar_riesgo
-    Created on : 13-ago-2015, 16:41:40
+    Document   : consultar_clasificaion_localizacion
+    Created on : 13-ago-2015, 16:53:23
     Author     : Luis
 --%>
 
@@ -29,7 +29,7 @@
         <!-- start: EXPORT DATA TABLE PANEL  -->
         <div class="panel panel-white">
             <div class="panel-heading">
-                    <h4 class="panel-title">Consultar <span class="text-bold">Riesgo</span> </h4>
+                    <h4 class="panel-title">Consultar <span class="text-bold">Clasificacion Localizacion</span> </h4>
                 <div class="panel-tools">
                         <div class="dropdown">
                                 <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -138,13 +138,13 @@
                                     </thead>
                                     <tbody>
                                         
-                                        <c:forEach var="pol" items="${riesgo}">
+                                        <c:forEach var="pol" items="${claslocal}">
                                             <tr align="center">
-                                                    <td class="no-display">${pol.idRiesgo}</td>
-                                                    <td>${pol.nombreRiesgo}</td> 
-                                                    <td><a href="${pageContext.request.contextPath}/Riesgo/editRiesgo/${pol.idRiesgo}">
+                                                    <td class="no-display">${pol.idClasificacionLocalizacion}</td>
+                                                    <td>${pol.nombreClasificacion}</td> 
+                                                    <td><a href="${pageContext.request.contextPath}/ClasificacionLocal/editClasLocal/${pol.idClasificacionLocalizacion}">
 					Actualizar</a></td>
-                                                    <td><a href="${pageContext.request.contextPath}/Riesgo/deleteRiesgo/${pol.idRiesgo}"> Eliminar</a>
+                                                    <td><a href="${pageContext.request.contextPath}/ClasificacionLocal/deleteClasLocal/${pol.idClasificacionLocalizacion}"> Eliminar</a>
                                                     </td>
                                             </tr>
                                         </c:forEach>
