@@ -1,6 +1,5 @@
 <%@include file="header.jsp"%>
 
-
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!-- start: BREADCRUMB -->
 <div class="row">
@@ -144,9 +143,7 @@
                                 <form:input path="modelo" type="text" placeholder="Ingrese el modelo del equipo" class="form-control" id="modelo" name="modelo" onblur="return validaModelo(event);"/>
                                 <span for="modelo" class="help-block  no-display" id="span_modeloT">Ingrese un Modelo</span> 
                             </div>
-                        </div>  
-                        <!--     Cierre div izquiero-->
-                        <div class="col-md-6">
+                                
                             <div class="form-group">
                                 <label class="control-label">
                                     Serie<span id="span_serie" class="symbol"></span>
@@ -154,6 +151,11 @@
                                 <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="serie" name="serie" onblur="return validaSerie(event);"/>
                                 <span for="serie" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
                             </div>
+                                
+                        </div>  
+                        <!--     Cierre div izquiero-->
+                        <div class="col-md-6">
+                            
 
                              
 
@@ -204,8 +206,27 @@
                                 <form:input path="financiamiento" type="text" placeholder="Ingrese el tipo de financiamiento del equipo" class="form-control" id="financiamiento" name="financiamiento" onblur="return validaFinanciamiento(event);"/>
                                 <span for="financiamiento" class="help-block  no-display" id="span_financiamientoT">Ingrese un Financiamiento</span> 
                             </div>
-
-
+                          
+                            <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Tipo de Ingreso<span id="span_persona" class="symbol "></span>
+                                </label>
+                                <form:select path="" class="form-control" id="cmb_tipoingreso" name="dropdown" >
+                                    <form:option value="0"  label="Selecciona el tipo de ingreso "/>       
+                                       <form:option value="1"  label="Por lotes"/>
+                                       <form:option value="2"  label="Por un mismo codigo"/>
+                                         
+                                </form:select>
+                                <span for="clasifi" class="help-block  no-display" id="span_personaT">Seleccione una Persona</span>
+                            </div>
+                                
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Cantidad<span id="span_valor" class="symbol"></span>
+                                </label>
+                                <form:input path="valorLibro" type="text" placeholder="Ingrese la cantidad de activos a ingresar" class="form-control" readonly="readonly" id="cantidadl" name="cantidadl" onkeypress="return valideKey(event);" onblur="return validaValor(event);"/>
+                                <span for="cantidadl" class="help-block  no-display" id="span_valorT">Ingrese Cantidad</span> 
+                            </div>
 
 
 
@@ -214,18 +235,60 @@
 
 
                         </div>
+                                
+                              
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                 </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-yellow btn-block" type="submit">
+                                <div class="col-md-2">
+                                    <button id="btn_guardar" class="btn btn-yellow btn-block" type="submit" >
                                         Guardar Activo <i class="fa fa-arrow-circle-right"></i>
+                                    </button>
+                                </div>
+                                
+                                
+                                
+                                <div class="col-md-2">
+                                    <button id="btn_agregar" class="btn btn-yellow btn-block" type="button" disabled="true" onclick="agregarInventario();">
+                                        Agregar <i class="fa fa-arrow-circle-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="col-md-2">
+                                    <button id="btn_guardaru" class="btn btn-yellow btn-block no-display" type="button" onclick="enviarInventarioU()">
+                                        Guardar <i class="fa fa-arrow-circle-right"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
+                                
+                         <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="tabla_inventario">
+                                <thead>
+                                        <tr>
+                                               <th class="no-display">id</th>
+                                               <th>clasificacion</th>.
+                                                <th>clase</th>
+                                                <th>En custodia de</th>   
+                                                <th>marca</th>
+                                                <th>modelo</th>
+                                                <th>serie</th>
+                                                <th>fecha</th> 
+                                                <th>valor</th>  
+                                              
+                                                <th>Delete</th>
+                                        </tr>
+                                </thead>
+                                <tbody id="tablabody" name="tablabody">
+
+                              	
+                                          
+
+                                </tbody>
+                        </table>
+                        </div>          
                     </form:form>
                 </div>
 
@@ -242,6 +305,9 @@
 <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesInventario.js"></script>
 
 <script>
+    
+  
+    
     $("#dropdown1").change(function () {
         var conceptName = $('#dropdown1 :selected').val(); // define the variable
         // alert(conceptName);
@@ -280,15 +346,126 @@
 
     });
 
+ $("#cmb_tipoingreso").change(function () {
+        var conceptName = $('#cmb_tipoingreso :selected').val(); // define the variable
+       //alert(conceptName);
+       $('#inventarioF').attr('action', '${pageContext.request.contextPath}/Inventario/add/lotes');
+    if(conceptName==2) {  
+       // $('#btn_guardar').attr('disabled','disabled');
+        $('#btn_agregar').removeAttr('disabled');
+        $('#btn_guardar').hide();
+        $('#btn_guardaru').show();
+        
+        
+    }
+    
+   });
+   var i=0;
+    //funcion para agregar los activos a la tabla
+    function agregarInventario(){ 
+                  i++;
+                  var clasificacion = $('#dropdown1 option:selected').text();
+                  var clase = $('#dropdown2 option:selected').text();
+                  var idclase=$('#dropdown2 option:selected').val();
+                  alert(idclase);
+                  var custodiad = $('#dropdown3 option:selected').val();
+                  var marca = $('#marca').val();
+                  var modelo = $('#modelo').val();
+                  var serie = $('#serie').val();
+                  var fecha = $('#fecha_adq').val();
+                  var valor = $('#valor').val();
+                  var factura= $('#factura').val();
+                  var financiamiento=$('#financiamiento').val();
+                  var idInv=i.toString();
+                 
+                  $('#tabla_inventario').append('<tr  id="' + idInv + '">'+'\
+                            <td class=\"no-display\" >' +idInv + '</td>'+'\
+                            <td>' + clasificacion + '</td>\n\\n\
+                            <td>' + clase + '</td>\n\\n\\n\
+                            <td class=\"no-display\">' + idclase + '</td>\n\\n\
+                            <td>' + custodiad + '</td>\n\\n\
+                            <td>' + marca + '</td>\n\\n\
+                            <td>' + modelo + '</td>\n\\n\
+                            <td>' + serie + '</td>\n\\n\
+                            <td>' + fecha + '</td>\n\\n\
+                            <td>' + valor + '</td>\n\\n\
+                            <td>' + factura + '</td>\n\
+                            <td>' + financiamiento + '</td>\n\\n\
+                            <td class="eliminar">\n\
+                              <a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');">\
+                                <span class="glyphicon glyphicon-remove"></span>\n\
+                              </a>\n\
+                            </td>\n\
+                 </tr>');
+                
+              };
+      
+//enviar todo lo que esta en la tabla que se va guardar
+    function enviarInventarioU()
+    {
+       //alert("enviar");
+        
+        if($('#tabla_inventario tr').size()>1)
+        {
+        
+         var jsonArray="{";
+         jsonArray+="\"Inventario\":[";
+         var l=0;
+    
+        $('#tabla_inventario tr').each(function(index, element){
 
-    //AJAX PARA QUE APAREZCA LA REGION EN LA QUE SE VA INGRESAR EL INVENTARIO AL SELECCIONAR LA PERSONA
-    $("#dropdown3").change(function () {
-        var conceptName = $('#dropdown3 :selected').val(); // define the variable
-        //alert(conceptName);
+        var clasificacion = $(element).find("td").eq(1).html();
+        var idclase = $(element).find("td").eq(3).html();
+        var custodiade = $(element).find("td").eq(4).html();
+        var marca = $(element).find("td").eq(5).html();
+        var modelo = $(element).find("td").eq(6).html();
+        var serie = $(element).find("td").eq(7).html();
+        var fechaAd = $(element).find("td").eq(8).html();
+        var valor = $(element).find("td").eq(9).html();
+        var nfactura = $(element).find("td").eq(10).html();
+        var financiamiento = $(element).find("td").eq(11).html();
+      
+        if(l!=0)
+        {
+            jsonArray=jsonArray+"{\"clasi\":"+'"'+clasificacion+'"'+",\"idClase\":"+'"'+idclase+'"'+",\"idCustodiade\":"+'"'+custodiade+'"'+",\"marca\":"+'"'+marca+'"'+",\"modelo\":"+'"'+modelo+'"'+",\"serie\":"+'"'+serie+'"'+",\"fechaA\":"+'"'+fechaAd+'"'+",\"valor\":"+'"'+valor+'"'+",\"factura\":"+'"'+nfactura+'"'+",\"financiamiento\":"+'"'+financiamiento+'"'+"},";
+                    
+          }
 
+        l=1;
 
     });
 
+
+    jsonArray=jsonArray.substring(0,jsonArray.length-1);
+    jsonArray=jsonArray+"]}";
+    //alert(jsonArray);
+    console.log(jsonArray);
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Inventario/add/mismocodigo",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               //alert("entra");
+           },
+           data: jsonArray
+       });
+       }
+       else
+       {
+       
+        //$('#mensajeErrorFormM').removeClass("no-display");
+       return false;
+       } 
+    }
+   
+   function deleteElement(id)
+    {
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false; 
+    };
+        
     function valideKey(evt)
     {
         var code = (evt.which) ? evt.which : evt.keyCode;

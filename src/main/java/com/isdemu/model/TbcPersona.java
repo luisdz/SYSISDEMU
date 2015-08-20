@@ -37,7 +37,7 @@ public class TbcPersona {
     
     
   private int idPersona;
-     private TbcLocalizacion tbcLocalizacion;
+     private TbcUbicacion tbcUbicacion;
      private String nombrePersona;
      private String jefatura;
      private String encargadoAfijo;
@@ -54,13 +54,13 @@ public class TbcPersona {
     }
 
 @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="ID_LOCALIZACION", nullable=false)
-    public TbcLocalizacion getTbcLocalizacion() {
-        return this.tbcLocalizacion;
+    @JoinColumn(name="ID_UBICACION", nullable=false)
+    public TbcUbicacion getTbcUbicacion() {
+        return this.tbcUbicacion;
     }
     
-    public void setTbcLocalizacion(TbcLocalizacion tbcLocalizacion) {
-        this.tbcLocalizacion = tbcLocalizacion;
+    public void setTbcUbicacion(TbcUbicacion tbcUbicacion) {
+        this.tbcUbicacion = tbcUbicacion;
     }
     
     @Column(name="NOMBRE_PERSONA", nullable=false, length=1024)
