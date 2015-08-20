@@ -19,6 +19,7 @@ public interface TB_InventarioDao {
     public List<TbInventario> getAll();
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
+    public List findBycodigo(String code);
     public void update(Object obj);
     public List getTop();
     public List LastCodInventario(Serializable id);

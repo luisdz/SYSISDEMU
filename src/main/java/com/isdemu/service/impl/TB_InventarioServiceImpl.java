@@ -65,4 +65,9 @@ public class TB_InventarioServiceImpl implements TB_Inventario_Service {
 		// TODO Auto-generated method stub
 		tbInventarioDao.update(obj);
 	}
+
+    @Override
+    public List findBycodigo(String code) {
+    return tbInventarioDao.findBycodigo(code);    
+    }
 }

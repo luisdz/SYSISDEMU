@@ -107,4 +107,13 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
             System.out.println("ingresa antes de enviar con la sesion el objeto para update");
 		getCurrentSession().update(obj);
 	}
+
+    @Override
+    public List findBycodigo(String code) {
+        DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class,"inv");
+            //dc.createAlias("inv.tbcClaseActivo", "clase");
+            dc.add(Restrictions.eq("inv.codigoInventario", code));
+             //dc.addOrder(Order.desc("idInventario"));
+             return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+        }
 }

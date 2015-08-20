@@ -20,5 +20,6 @@ public interface TB_Inventario_Service {
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
     public void update(Object obj);
-    public List LastCodInventario(Serializable id);
+    public List LastCodInventario(Serializable id);    
+    public List findBycodigo(String code);
 }
