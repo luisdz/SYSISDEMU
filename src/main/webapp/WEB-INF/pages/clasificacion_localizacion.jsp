@@ -51,7 +51,7 @@
                 </p>
                 <hr>
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionLocal/insertarClasLocal" modelAttribute="claslocal" >
+                <form:form  id="claslocalF" method="POST" action="${pageContext.request.contextPath}/ClasificacionLocal/insertarClasLocal"  onsubmit="return valida_envioClasLocal();" modelAttribute="claslocal" >
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display">
@@ -68,8 +68,9 @@
                                 <label class="control-label">
                                     Nombre<span class="symbol "></span>
                                 </label>
-                                <form:input path="nombreClasificacion" type="text" placeholder="Ingrese el nombre" class="form-control" id="lastname" name="lastname"/>
-
+                                <form:input path="nombreClasificacion" type="text" placeholder="Ingrese el nombre" class="form-control"  onblur="return validaNombreClasLocal(event);" id="nombre" name="nombre"/>
+                                <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un nombre</span>    
+                                
                             </div>
 
                              
@@ -107,3 +108,4 @@
 <!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>	
 
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>

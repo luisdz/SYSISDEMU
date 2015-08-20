@@ -74,14 +74,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>
-                                    Fecha 
-                                </p>
+                                <label class="control-label">
+                                    Fecha <span class="symbol"></span>
+                                </label>
                                 <div class="input-group">
                                     <form:input id="fechaDescargo" path="fecha" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaDescargo(event);" onblur="return validaFechaDescargo(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                    <span for="fechaInicio" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>  
-                                </div>
+                                    </div><span for="fechaInicio" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>  
+                                
                             </div>
 
 

@@ -80,8 +80,10 @@
                                                 </label>
                                         <div class="input-group">
                                             <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" id="fecha" data-date-viewmode="years" class="form-control date-picker"/>
-                                                <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                        </div>
+                                               <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                  </div>  <span for="fecha" class="help-block  no-display" id="span_fechaIniT">Ingrese una fecha</span>    
+                            
+                            
                                    </div>
                          
                                     
@@ -225,11 +227,14 @@
         return false; 
         };
         
+        
+        
+        
     function enviarMov()
     {
          //alert("enviar");
-        
-        if($('#tabla_prueba tr').size()>1)
+        if($('#tabla_prueba tr').size()>1)        
+
         {
         $('#mensajeErrorFormM').addClass("no-display");   
         var fechaM=$("#fecha").val();

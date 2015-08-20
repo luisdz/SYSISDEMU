@@ -69,7 +69,7 @@
 
 
                 <!--                    <form action="#" role="form" id="form">-->
-                <form:form method="POST" action="${pageContext.request.contextPath}/Poliza/insertarPoliza" onsubmit="return valida_envio();" modelAttribute="poliza" id="polizaF"  >
+                <form:form  method="POST" action="${pageContext.request.contextPath}/Poliza/insertarPoliza" onsubmit="return valida_envio();" modelAttribute="poliza" id="polizaF"  >
 
                     <div class="row">
                         <div class="col-md-12">

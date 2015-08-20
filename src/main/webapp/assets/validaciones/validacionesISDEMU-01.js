@@ -5,6 +5,96 @@
  */
 
 //Validaciones luis
+function validaFechaMovimiento()
+    {
+        var x = document.forms["polizaF"]["fechaInicio"].value;
+        if (x === null || x === "")
+        {
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_fechaIniT').removeClass("no-display");            
+            $('#span_fechaIniT').closest("div").addClass("has-error");            
+             $('#span_fechaIniT').closest("div").removeClass("has-success");
+
+            return false;
+        }
+        else
+        {
+            //$('#span_nombre').to("required");
+            $('#span_fechaIniT').addClass("no-display");
+             $('#span_fechaIniT').closest("div").removeClass("has-error");
+             $('#span_fechaIniT').closest("div").addClass("has-success");
+        }
+
+    };
+
+
+
+function validaNombreRiesgo()
+    {
+        var x = document.forms["riesgoF"]["nombre"].value;
+        if (x === null || x === "")
+        {
+             
+            $('#span_nombreT').removeClass("no-display");            
+            $('#span_nombreT').closest("div").addClass("has-error");            
+             $('#span_nombreT').closest("div").removeClass("has-success");
+             
+            return false;
+        }
+        else
+        {
+            
+            $('#span_nombreT').addClass("no-display");
+             $('#span_nombreT').closest("div").removeClass("has-error");
+             $('#span_nombreT').closest("div").addClass("has-success");
+        }
+
+};
+
+
+function validaNombreClasLocal()
+    {
+        var x = document.forms["claslocalF"]["nombre"].value;
+        if (x === null || x === "")
+        {
+             
+            $('#span_nombreT').removeClass("no-display");            
+            $('#span_nombreT').closest("div").addClass("has-error");            
+             $('#span_nombreT').closest("div").removeClass("has-success");
+             
+            return false;
+        }
+        else
+        {
+            
+            $('#span_nombreT').addClass("no-display");
+             $('#span_nombreT').closest("div").removeClass("has-error");
+             $('#span_nombreT').closest("div").addClass("has-success");
+        }
+
+};
+
+function validaNombreProveedor()
+    {
+        var x = document.forms["proveedorF"]["nombre"].value;
+        if (x === null || x === "")
+        {
+             
+            $('#span_nombreT').removeClass("no-display");            
+            $('#span_nombreT').closest("div").addClass("has-error");            
+             $('#span_nombreT').closest("div").removeClass("has-success");
+             
+            return false;
+        }
+        else
+        {
+            
+            $('#span_nombreT').addClass("no-display");
+             $('#span_nombreT').closest("div").removeClass("has-error");
+             $('#span_nombreT').closest("div").addClass("has-success");
+        }
+
+};
 
 
  function validaNombrePoliza()
@@ -197,7 +287,59 @@ function validaInvDescargo()
        
     };
     
-    //Envio descargo
+    function valida_envioProveedor()
+    {
+         
+        flag=true;        
+        
+        
+        if(validaNombreProveedor()===false)
+        {        
+            $('#mensajeErrorForm').removeClass("no-display");
+            flag = false;
+        }
+         
+        
+        
+       return flag;
+       
+    };
+    
+    function valida_envioClasLocal()
+    {
+         
+        flag=true;        
+        
+        
+        if(validaNombreClasLocal()===false)
+        {        
+            $('#mensajeErrorForm').removeClass("no-display");
+            flag = false;
+        }
+         
+        
+        
+       return flag;
+       
+    };
+    
+    function valida_envioRiesgo()
+    {
+         
+        flag=true;        
+        
+        
+        if(validaNombreRiesgo()===false)
+        {        
+            $('#mensajeErrorForm').removeClass("no-display");
+            flag = false;
+        }
+         
+        
+        
+       return flag;
+       
+    };
 
 
     $(window).click(function ()
