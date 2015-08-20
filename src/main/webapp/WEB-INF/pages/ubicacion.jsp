@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Personal
-    Created on : 14-jul-2015, 20:06:09
+    Document   : ubicacion
+    Created on : 13-ago-2015, 22:58:44
     Author     : Walter
 --%>
 
@@ -17,7 +17,7 @@
                                 </a>
                         </li>
                         <li class="active">
-                                Ingreso Personal
+                                Ingreso Ubicacion
                         </li>
                 </ol>
         </div>
@@ -31,7 +31,7 @@
             <!-- start: FORM VALIDATION 1 PANEL -->
             <div class="panel panel-white">
                 <div class="panel-heading">
-                        <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso Personal</span></h4>
+                        <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso Ubicacion</span></h4>
                     <div class="panel-tools">
                             <div class="dropdown">
                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -64,12 +64,12 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <h2><i class="fa fa-pencil-square"></i> Personal</h2>
+                    <h2><i class="fa fa-pencil-square"></i> Ubicacion</h2>
                     <p>
-                            Ingreso del Personal de ISDEMU
+                            Ingreso del Ubicacion de ISDEMU
                     </p>
                     <hr>
-              <form:form method="POST" action="${pageContext.request.contextPath}/Persona/add" onsubmit="return valida_envio();" modelAttribute="persona" id="personaF" >
+              <form:form method="POST" action="${pageContext.request.contextPath}/Ubicacion/add" onsubmit="return valida_envio();" modelAttribute="ubicacion" id="ubiacionF" >
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForms">
@@ -86,45 +86,26 @@
                                                 <label class="control-label">
                                                         Localizacion<span id="span_nombre" class="symbol "></span>
                                                 </label>
-                                               <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown" name="dropdown" onchange="return validaUnidad(event);">
+                                               <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown" name="dropdown" onchange="return validaLocalizacion(event);">
                                                     <form:option value="0"  label="Selecciona localizacion"/>       
                                                     <c:forEach var="loc" items="${localizacion}">
                                                                <form:option value="${loc.idLocalizacion}"  label="${loc.nombreLocalizacion}"/>
                                                             </c:forEach>
                                                  </form:select>
-                                                <span for="nombre" class="help-block  no-display" id="span_dropdownT">Ingrese una localizacion</span>    
-                                    </div>
-                                    <div class="form-group">
-                                                <label class="control-label">
-                                                        Nombre Persona<span id="span_nombre" class="symbol"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="nombrePersona" type="text" placeholder="Ingrese nombre persona" class="form-control" id="nombre" name="nombre" onblur="return validaNombrePersona(event);"/>
-                                                <span for="persona" class="help-block  no-display" id="span_nombreT">Ingrese un Nombre</span> 
-                                    </div>                        
-                                                                                
+                                                <span for="nombre" class="help-block  no-display" id="span_localizacionT">Ingrese una localizacion</span>    
+                                    </div>                                                                                
                                 </div>
                                 <div class="col-md-6">
                                     
                                    <div class="form-group">
                                                 <label class="control-label">
-                                                        Jefe<span id="span_jefe" class="symbol"></span>
+                                                        Nombre Ubicacion<span id="span_jefe" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="jefatura" type="text" class="form-control" id="jefe" name="jefe" onblur="return validaJefe(event);"/>
-                                                <span for="jefe" class="help-block  no-display" id="span_jefeT">Ingrese un Jefe</span> 
+                                                <form:input path="nombreUbicacion" type="text" class="form-control" id="ubicacion" name="ubicacion" onblur="return validaUbicacion(event);"/>
+                                                <span for="jefe" class="help-block  no-display" id="span_ubiacionT">Ingrese un Nombre Ubicacion</span> 
                 
-                                    </div> 
-                                                <div class="form-group">
-                                                <label class="control-label">
-                                                        Encargado<span id="span_encargado" class="symbol"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="encargadoAfijo" type="text" class="form-control" id="encargado" name="encargado" onblur="return validaEncargado(event);"/>
-                                                <span for="encargado" class="help-block  no-display" id="span_encargadoT">Ingrese un Encargado</span> 
-                
-                                    </div> 
-                                    
+                                    </div>                                     
                                    
                                 </div>                                       
                              </div>
@@ -149,4 +130,4 @@
         </div>
 
 <%@include file="footer.jsp" %>	
-<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesPersona.js"></script>
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesUbicacion.js"></script>

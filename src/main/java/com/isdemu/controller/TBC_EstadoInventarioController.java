@@ -5,17 +5,11 @@
  */
 package com.isdemu.controller;
 
-import com.isdemu.model.TbInventario;
-import com.isdemu.model.TbcClasificacionActivo;
-import com.isdemu.model.TbcPersona;
-import com.isdemu.model.TbcPoliza;
 
-import com.isdemu.service.TBC_ClasificacionActivo_Service;
-import com.isdemu.service.TBC_Localizacion_Service;
-import com.isdemu.service.TBC_Persona_Service;
-import com.isdemu.service.TBC_Poliza_Service;
+import com.isdemu.model.TbcEstadoInventario;
 
-import com.isdemu.service.TB_Inventario_Service;
+import com.isdemu.service.TBC_EstadoInventario_Service;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,40 +22,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 /**
  *
  * @author Walter
  */
 @Controller 
- @RequestMapping(value="/Persona")
-public class TBC_PersonaController {
+ @RequestMapping(value="/EstadoInventario")
+public class TBC_EstadoInventarioController {
     
     @Autowired
-	private TB_Inventario_Service tbInventarioService;
-    @Autowired
-        private TBC_Poliza_Service tbPolizaService;
+        private TBC_EstadoInventario_Service tbcEstadoInventarioService;
     
-    @Autowired
-        private TBC_ClasificacionActivo_Service tbClasActService;
     
-     @Autowired
-        private TBC_Persona_Service tbcPersonaService;
-   
-     @Autowired
-        private TBC_Localizacion_Service tbcLocalizacionService;
-      
-     @RequestMapping(value="/list")
+    @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
-		ModelAndView modelAndView = new ModelAndView("consultar_personal");
+		ModelAndView modelAndView = new ModelAndView("consultar_estadoinventario");
 
-		List personal = tbcPersonaService.getAll();
-		modelAndView.addObject("persona", personal);
+		List estadoinventario = tbcEstadoInventarioService.getAll();
+		modelAndView.addObject("estadoinventario", estadoinventario);
 
 		return modelAndView;
 	}
         
-              
         @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
               System.out.println("esntra aqui GET persona");
@@ -69,27 +51,23 @@ public class TBC_PersonaController {
                Map<String, Object> myModel = new HashMap<String, Object>();
 		
                  
-                 //List ClasAct = tbClasActService.getAll();
-               List localizacion = tbcLocalizacionService.getAll();
-               
+                 //List ClasAct = tbClasActService.getAll();               
                  //List region=tbcRegionService.getAll();
-                 myModel.put("persona", new TbcPersona());
-             
-                myModel.put("localizacion",localizacion);
+                myModel.put("estadoinventario", new TbcEstadoInventario());
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);
                 System.out.println("esntra aqui GET persona");
-		return new ModelAndView("persona",myModel);
+		return new ModelAndView("estadoinventario",myModel);
 	}
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbcPersona persona) {
+	public ModelAndView addingPais(@ModelAttribute TbcEstadoInventario estadoinventario) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+persona);
+		 System.out.println("entra aqui POST persona"+estadoinventario);
                  
-                tbcPersonaService.save(persona);
+                tbcEstadoInventarioService.save(estadoinventario);
 		String message = "Persona was successfully added.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
@@ -98,7 +76,7 @@ public class TBC_PersonaController {
         @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public ModelAndView deletePais(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		tbcPersonaService.delete(id);
+		tbcEstadoInventarioService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;

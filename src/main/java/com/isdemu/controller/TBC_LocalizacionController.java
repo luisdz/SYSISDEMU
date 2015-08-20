@@ -5,15 +5,10 @@
  */
 package com.isdemu.controller;
 
-import com.isdemu.model.TbInventario;
-import com.isdemu.model.TbcClasificacionActivo;
-import com.isdemu.model.TbcPersona;
-import com.isdemu.model.TbcPoliza;
-
 import com.isdemu.model.TbcLocalizacion;
-import com.isdemu.service.TBC_ClasificacionActivo_Service;
+import com.isdemu.service.TBC_ClasificacionLocalizacion_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
-import com.isdemu.service.TBC_Persona_Service;
+import com.isdemu.service.TBC_Riesgo_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 
 import com.isdemu.service.TB_Inventario_Service;
@@ -39,13 +34,14 @@ public class TBC_LocalizacionController {
     
     
      @Autowired
-        private TBC_Persona_Service tbcPersonaService;
+        private TBC_Riesgo_Service tbcRiesgoService;  
      
-     
+     @Autowired
+        private TBC_ClasificacionLocalizacion_Service tbcClasLocalizacionService;  
       
       @Autowired
         private TBC_Localizacion_Service tbcLocalizacionService;
-      
+
     
       
      @RequestMapping(value="/list")
@@ -55,6 +51,39 @@ public class TBC_LocalizacionController {
 		List localizacion = tbcLocalizacionService.getAll();
 		modelAndView.addObject("localizacion", localizacion);
 
+		return modelAndView;
+	}
+        
+        @RequestMapping(value="/add", method=RequestMethod.GET)
+	public ModelAndView addPaisPage() {
+              System.out.println("esntra aqui GET persona");
+		//ModelAndView modelAndView = new ModelAndView("inventario");
+               Map<String, Object> myModel = new HashMap<String, Object>();
+		
+                 
+               List clasificacion_localizacion = tbcClasLocalizacionService.getAll();
+               List riesgo = tbcRiesgoService.getAll();
+               
+                 //List region=tbcRegionService.getAll();
+                myModel.put("localizacion", new TbcLocalizacion());
+             
+                myModel.put("riesgo",riesgo);
+                myModel.put("clasificacion_localizacion",clasificacion_localizacion );
+                // myModel.put("persona",persona);
+                // myModel.put("region",region);
+                System.out.println("esntra aqui GET persona");
+		return new ModelAndView("localizacion",myModel);
+	}
+        
+        
+        @RequestMapping(value="/add", method=RequestMethod.POST)
+	public ModelAndView addingPais(@ModelAttribute TbcLocalizacion localizacion) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		 System.out.println("entra aqui POST persona"+localizacion);
+                 
+                tbcLocalizacionService.save(localizacion);
+		String message = "Localizacion was successfully added.";
+		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
                     

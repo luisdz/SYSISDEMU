@@ -10,11 +10,14 @@ import java.util.List;
 
 /**
  *
- * @author Jose Eduardo
+ * @author Luis
  */
-public interface TBC_Localizacion_Service {
-     public void save(Object obj);
-     public List getAll();
-     public void delete(Serializable id);
-     public Object findByKey(Serializable id);
+public interface TBC_Riesgo_Service {
+            public void save(Object obj);
+             public List getAll();
+              public void delete(Serializable id);
+    public Object findByKey(Serializable id);
+    public void update(Object obj);
 }
+    
+

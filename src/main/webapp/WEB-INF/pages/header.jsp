@@ -388,54 +388,128 @@
 													
                                                                                 </ul>
 									</li>
-                                                                        
-									<li>
-										<a href="${pageContext.request.contextPath}/Persona/add">
-											<span class="title"> Personal </span>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Persona </span> <i class="icon-arrow"></i>
 										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Persona/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Persona/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Persona/list">
-											<span class="title"> Consultar Personal </span>
+										<a href="javascript:;">
+											<span class="title"> Localizacion </span> <i class="icon-arrow"></i>
 										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Localizacion/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Localizacion/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Localizacion/list">
-											<span class="title"> Consultar Localizacion </span>
+										<a href="javascript:;">
+											<span class="title"> Ubicacion </span> <i class="icon-arrow"></i>
 										</a>
-									</li>
-									<li>
-										<a  href="${pageContext.request.contextPath}/Unidad/insertarUnidad.html">
-											<span class="title"> Unidades</span>
-										</a>
-									</li>
-                                                                        <li>
-										<a href="${pageContext.request.contextPath}/Unidad/consultarUni.html">
-											Consultar Unidad <i class="icon-arrow"></i>
-										</a>
-										
-									</li>
-									<li>
-										<a href="${pageContext.request.contextPath}/Region/add">
-											<span class="title">Regiones</span>
-										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Ubicacion/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Ubicacion/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Region/list">
-											<span class="title">Consultar Regiones</span>
+										<a href="javascript:;">
+											<span class="title"> Estado Inventario </span> <i class="icon-arrow"></i>
 										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/EstadoInventario/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/EstadoInventario/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
-									<li>
-										<a  href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html">
-											<span class="title">Poliza</span>
+                                                                       								
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Poliza </span> <i class="icon-arrow"></i>
 										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Poliza/consultarPoli.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
                                                                         <li>
-										<a href="${pageContext.request.contextPath}/Poliza/consultarPoli.html">
-											Consultar Poliza <i class="icon-arrow"></i>
+										<a href="javascript:;">
+											<span class="title"> Proveedor </span> <i class="icon-arrow"></i>
 										</a>
-										
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Proveedor/insertarProveedor.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Proveedor/consultarProveedor.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
 									</li>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Clasificacion de Localizacion </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/ClasificacionLocal/insertarClasLocal.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/ClasificacionLocal/consultarClasLocal.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Riesgo </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Riesgo/insertarRiesgo.html"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Riesgo/consultarRiesgo.html"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
+									
 								</ul>
 							</li>
 							

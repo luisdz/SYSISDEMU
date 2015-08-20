@@ -1,9 +1,8 @@
 <%-- 
-    Document   : Personal
-    Created on : 14-jul-2015, 20:06:09
-    Author     : Walter
+    Document   : localizacion
+    Created on : 15-ago-2015, 22:18:09
+    Author     : Miranda
 --%>
-
 <%@include file="header.jsp" %>
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -17,7 +16,7 @@
                                 </a>
                         </li>
                         <li class="active">
-                                Ingreso Personal
+                                Ingreso Localizacion
                         </li>
                 </ol>
         </div>
@@ -31,7 +30,7 @@
             <!-- start: FORM VALIDATION 1 PANEL -->
             <div class="panel panel-white">
                 <div class="panel-heading">
-                        <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso Personal</span></h4>
+                        <h4 class="panel-title">Formulario de <span class="text-bold">Ingreso Localizacion</span></h4>
                     <div class="panel-tools">
                             <div class="dropdown">
                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -64,12 +63,12 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <h2><i class="fa fa-pencil-square"></i> Personal</h2>
+                    <h2><i class="fa fa-pencil-square"></i> Localizacion</h2>
                     <p>
-                            Ingreso del Personal de ISDEMU
+                            Ingreso del Localizacion de ISDEMU
                     </p>
                     <hr>
-              <form:form method="POST" action="${pageContext.request.contextPath}/Persona/add" onsubmit="return valida_envio();" modelAttribute="persona" id="personaF" >
+              <form:form method="POST" action="${pageContext.request.contextPath}/Localizacion/add" onsubmit="return valida_envio();" modelAttribute="localizacion" id="localizacionF" >
                         <div class="row">
                                 <div class="col-md-12">
                                     <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForms">
@@ -84,47 +83,43 @@
     
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Localizacion<span id="span_nombre" class="symbol "></span>
+                                                        Riesgo<span id="span_riesgo" class="symbol "></span>
                                                 </label>
-                                               <form:select path="TbcLocalizacion.idLocalizacion" class="form-control" id="dropdown" name="dropdown" onchange="return validaUnidad(event);">
-                                                    <form:option value="0"  label="Selecciona localizacion"/>       
-                                                    <c:forEach var="loc" items="${localizacion}">
-                                                               <form:option value="${loc.idLocalizacion}"  label="${loc.nombreLocalizacion}"/>
+                                               <form:select path="TbcRiesgo.idRiesgo" class="form-control" id="dropdown" name="dropdown" onchange="return validaRiesgo(event);">
+                                                    <form:option value="0"  label="Selecciona Riesgo"/>       
+                                                    <c:forEach var="rie" items="${riesgo}">
+                                                               <form:option value="${rie.idRiesgo}"  label="${rie.nombreRiesgo}"/>
                                                             </c:forEach>
                                                  </form:select>
-                                                <span for="nombre" class="help-block  no-display" id="span_dropdownT">Ingrese una localizacion</span>    
+                                                <span for="riesgo" class="help-block  no-display" id="span_dropdownT">Ingrese un Riesgo</span>    
                                     </div>
+                                    
                                     <div class="form-group">
                                                 <label class="control-label">
-                                                        Nombre Persona<span id="span_nombre" class="symbol"></span>
+                                                        Clasificacion Localizacion<span id="span_clasificacion" class="symbol "></span>
                                                 </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="nombrePersona" type="text" placeholder="Ingrese nombre persona" class="form-control" id="nombre" name="nombre" onblur="return validaNombrePersona(event);"/>
-                                                <span for="persona" class="help-block  no-display" id="span_nombreT">Ingrese un Nombre</span> 
-                                    </div>                        
+                                               <form:select path="TbcClasificacionLocalizacion.idClasificacionLocalizacion" class="form-control" id="dropdown1" name="dropdown1" onchange="return validaClasificacion(event);">
+                                                    <form:option value="0"  label="Selecciona Clasificacion Loc"/>       
+                                                    <c:forEach var="cla" items="${clasificacion_localizacion}">
+                                                               <form:option value="${cla.idClasificacionLocalizacion}"  label="${cla.nombreClasificacion}"/>
+                                                            </c:forEach>
+                                                 </form:select>
+                                                <span for="clasificacion" class="help-block  no-display" id="span_dropdown1T">Ingrese una Clasificacion Localizacion</span>    
+                                    </div>
+                                                          
                                                                                 
                                 </div>
                                 <div class="col-md-6">
                                     
                                    <div class="form-group">
                                                 <label class="control-label">
-                                                        Jefe<span id="span_jefe" class="symbol"></span>
+                                                        Nombre Localizacion<span id="span_nombre" class="symbol"></span>
                                                 </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="jefatura" type="text" class="form-control" id="jefe" name="jefe" onblur="return validaJefe(event);"/>
-                                                <span for="jefe" class="help-block  no-display" id="span_jefeT">Ingrese un Jefe</span> 
+                                                <form:input path="nombreLocalizacion" type="text" class="form-control" id="localizacion" name="localizacion" onblur="return validaLocalizacion(event);"/>
+                                                <span for="jefe" class="help-block  no-display" id="span_nombreT">Ingrese una Localizacion</span> 
                 
-                                    </div> 
-                                                <div class="form-group">
-                                                <label class="control-label">
-                                                        Encargado<span id="span_encargado" class="symbol"></span>
-                                                </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                                                <form:input path="encargadoAfijo" type="text" class="form-control" id="encargado" name="encargado" onblur="return validaEncargado(event);"/>
-                                                <span for="encargado" class="help-block  no-display" id="span_encargadoT">Ingrese un Encargado</span> 
-                
-                                    </div> 
-                                    
+                                    </div>                                   
                                    
                                 </div>                                       
                              </div>
@@ -149,4 +144,4 @@
         </div>
 
 <%@include file="footer.jsp" %>	
-<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesPersona.js"></script>
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesLocalizacion.js"></script>

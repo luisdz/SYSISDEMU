@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isdemu.dao;
+package com.isdemu.service;
 
 import java.io.Serializable;
 import java.util.List;
-
 /**
  *
- * @author Jose Eduardo
+ * @author Walter
  */
-public interface TBC_LocalizacionDao {
-    public void save(Object obj); 
+public interface TBC_Ubicacion_Service {
+    
+    public void save(Object obj);
     public List getAll();
-     public void delete(Serializable id);
-     public Object findByKey(Serializable id);
+    public void delete(Serializable id);
+    public Object findByKey(Serializable id);    
+    
 }

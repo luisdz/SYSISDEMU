@@ -39,6 +39,14 @@ public class TBC_LocalizacionDaoImpl implements  TBC_LocalizacionDao{
 	}
         
         @Override
+	public void save(Object obj) {
+		// TODO Auto-generated method stub
+		System.out.println("esntra aqui GET dao ");
+		TbcLocalizacion localizacion =(TbcLocalizacion)obj;
+	        getCurrentSession().save(localizacion);
+	}
+        
+        @Override
 	public void delete(Serializable id) {
 		// TODO Auto-generated method stub
 		TbcLocalizacion localizacion = (TbcLocalizacion) getCurrentSession().get(TbcLocalizacion.class, id);

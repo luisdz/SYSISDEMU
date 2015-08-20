@@ -5,17 +5,12 @@
  */
 package com.isdemu.controller;
 
-import com.isdemu.model.TbInventario;
-import com.isdemu.model.TbcClasificacionActivo;
-import com.isdemu.model.TbcPersona;
-import com.isdemu.model.TbcPoliza;
+import com.isdemu.model.TbcLocalizacion;
+import com.isdemu.model.TbcUbicacion;
 
-import com.isdemu.service.TBC_ClasificacionActivo_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
-import com.isdemu.service.TBC_Persona_Service;
-import com.isdemu.service.TBC_Poliza_Service;
+import com.isdemu.service.TBC_Ubicacion_Service;
 
-import com.isdemu.service.TB_Inventario_Service;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,34 +29,25 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Walter
  */
 @Controller 
- @RequestMapping(value="/Persona")
-public class TBC_PersonaController {
+ @RequestMapping(value="/Ubicacion")
+public class TBC_UbicacionController {
     
     @Autowired
-	private TB_Inventario_Service tbInventarioService;
-    @Autowired
-        private TBC_Poliza_Service tbPolizaService;
-    
-    @Autowired
-        private TBC_ClasificacionActivo_Service tbClasActService;
-    
-     @Autowired
-        private TBC_Persona_Service tbcPersonaService;
-   
-     @Autowired
         private TBC_Localizacion_Service tbcLocalizacionService;
-      
-     @RequestMapping(value="/list")
+    
+    @Autowired
+        private TBC_Ubicacion_Service tbcUbicacionService;
+    
+    @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
-		ModelAndView modelAndView = new ModelAndView("consultar_personal");
+		ModelAndView modelAndView = new ModelAndView("consultar_ubicacion");
 
-		List personal = tbcPersonaService.getAll();
-		modelAndView.addObject("persona", personal);
+		List ubicacion = tbcUbicacionService.getAll();
+		modelAndView.addObject("ubicacion", ubicacion);
 
 		return modelAndView;
 	}
         
-              
         @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {
               System.out.println("esntra aqui GET persona");
@@ -73,23 +59,22 @@ public class TBC_PersonaController {
                List localizacion = tbcLocalizacionService.getAll();
                
                  //List region=tbcRegionService.getAll();
-                 myModel.put("persona", new TbcPersona());
-             
+                myModel.put("ubicacion", new TbcUbicacion());             
                 myModel.put("localizacion",localizacion);
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);
                 System.out.println("esntra aqui GET persona");
-		return new ModelAndView("persona",myModel);
+		return new ModelAndView("ubicacion",myModel);
 	}
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbcPersona persona) {
+	public ModelAndView addingPais(@ModelAttribute TbcUbicacion ubicacion) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("entra aqui POST persona"+persona);
+		 System.out.println("entra aqui POST persona"+ubicacion);
                  
-                tbcPersonaService.save(persona);
+                tbcUbicacionService.save(ubicacion);
 		String message = "Persona was successfully added.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
@@ -98,10 +83,9 @@ public class TBC_PersonaController {
         @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public ModelAndView deletePais(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		tbcPersonaService.delete(id);
+		tbcUbicacionService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
-    
 }
