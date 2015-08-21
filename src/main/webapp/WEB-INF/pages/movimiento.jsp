@@ -114,6 +114,13 @@
                                      <br>
                                      <div class="form-group">
                                                 <label class="control-label">
+                                                        Codigo Inventario<span class="symbol "></span>
+                                                </label>
+                                            <form:input path="" type="text" placeholder="Ingrese el codigo" class="form-control" id="codigo" name="lastname"/>
+                
+                                        </div>
+                                     <div class="form-group">
+                                                <label class="control-label">
                                                         Nuevo Responsable<span class="symbol"></span>
                                                 </label>
                                                 <form:select  multiple="single" path="" cssStyle="width: 100%" id="dropdown2" name="dropdown2">
@@ -239,12 +246,13 @@
         $('#mensajeErrorFormM').addClass("no-display");   
         var fechaM=$("#fecha").val();
         var razonM=$("#razon").val();
+        var codigoI=$("#codigo").val()
        
        
        
          var jsonArray="{";
          
-         jsonArray+="\"Movimiento\":[{\"fecha\":\""+fechaM+"\",\"razon\":\" "+razonM+"\""  +"}],";
+         jsonArray+="\"Movimiento\":[{\"fecha\":\""+fechaM+"\",\"razon\":\" "+razonM+"\"" + ",\"codigo\":\" "+codigoI+"\"" +"}],";
          
          jsonArray+="\"Inventario\":[";
         

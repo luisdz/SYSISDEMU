@@ -112,7 +112,13 @@
                                 <span for="dropdown" class="help-block  no-display" id="span_cmbInv">Seleccione un item</span> 
                             </div>
 
-
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Codigo Inventario<span class="symbol "></span>
+                                </label>
+                                <form:input path="codigoI"  type="text" placeholder="Ingrese un codigo" class="form-control" id="codigo" name="codigo" />
+                                       
+                            </div>
 
                         </div>
 
@@ -134,6 +140,12 @@
                             </div>
                         </div>
                     </div>
+                     <div class="col-md-12 text-center">
+                                   <button type="button" class="btn btn-default" onclick="agregarInventarioD();" >Agregar</button>     
+                            </div>
+                            <div class="col-md-12 text-center">
+                                &nbsp;<br/>
+                            </div>                 
                     <div class="row">
                         <div class="col-md-8">
 
@@ -145,7 +157,24 @@
                         </div>
                     </div>
                 </form:form>
+                
+                <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="tabla_prueba">
+                                <thead>
+                                        <tr>
+                                               <th class="no-display">id</th>
+                                               <th>codigo</th>                            
+                                                <th>Delete</th>
+                                        </tr>
+                                </thead>
+                                <tbody id="tablabody" name="tablabody">
 
+                              	
+                                          
+
+                                </tbody>
+                        </table>
+                </div>
                 <!--                    validation-->
 
                 <!--                    fin validation-->
@@ -164,6 +193,34 @@
 <%@include file="footer.jsp" %>		
 <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
 <script>
+    
+    function enviarCode()
+    {
+         //alert("enviar");
+        
+        var codigoI=$("#codigo").val();
+       
+         
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Descargo/agregarInventario",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               //alert("entra");
+           },
+           data: codigoI
+       });
+       }
+       else
+       {
+       
+        //$('#mensajeErrorFormM').removeClass("no-display");
+       return false;
+       }
+       
+       };
+    
     $(document).ready(function () {
 
 

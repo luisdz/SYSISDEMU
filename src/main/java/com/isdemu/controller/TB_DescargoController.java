@@ -7,21 +7,29 @@ package com.isdemu.controller;
 
 import com.isdemu.model.TbDescargo;
 import com.isdemu.model.TbInventario;
+import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbrMovimientoInventario;
 
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
  *
@@ -61,6 +69,8 @@ public class TB_DescargoController
                  myModel.put("descargo", new TbDescargo());
                 
                  myModel.put("inventario",invent );  
+                // String cod="";
+                 //myModel.put("codigoI",cod);
                  
 		return new ModelAndView("descargo",myModel);
 	}
@@ -71,14 +81,10 @@ public class TB_DescargoController
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("esntra aquiPOST movimiento"+des);
 
-
-               //des.setFecha(new Date());
                 des.setIdNumeroDescargo(1);
-                 //des.setComentario("asdfasf");
-                  
-                
-              
             
+                System.out.println("post codigo"+des);
+                
 		tbdescargoService.save(des);
 		String message = "descargo was successfully added.";
 		modelAndView.addObject("message", message);
@@ -105,13 +111,7 @@ public class TB_DescargoController
                    //List ClasAct = tbClasActService.getAll();  
                    myModel.put("descargo",descargo ); 
                    myModel.put("inventario",invent ); 
-                 // myModel.put("clasificacionA",activo );
-                  //myModel.put("AllclasificacionA",ClasAct );
-                
-                  
-                   
-                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
-		//modelAndView.addObject("inventario",inventario);
+                 
 		return new ModelAndView("actualizar_descargo",myModel);
 	}
 
@@ -133,6 +133,16 @@ public class TB_DescargoController
 
 		return modelAndView;
 	}
+        
+         @RequestMapping(value = "/agregarInventario", method = RequestMethod.POST)
+    public @ResponseBody
+    String addingMovimiento(@RequestBody String cod) {
+        ModelAndView modelAndView = new ModelAndView("descargo");
+        System.out.println("esntra aqui POST agregar inv" + cod);
+        
+        
+        return "22";
+    }
         
         
     

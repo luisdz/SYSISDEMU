@@ -106,7 +106,9 @@ public class TB_MovimientoController {
      
         mov.setFechaMovimiento(fecha);
         mov.setNMovimiento(1);
-        mov.setRazonCambio(objectMov.getString("razon"));       
+        mov.setRazonCambio(objectMov.getString("razon"));
+        
+        System.out.println("String codigo inv:" + objectMov.getString("codigo"));
 
         tbMovimientoService.save(mov);
         TbMovimiento UltMov =(TbMovimiento) tbMovimientoService.LastIdMovimiento().get(0);
