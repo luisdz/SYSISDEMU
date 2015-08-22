@@ -37,6 +37,7 @@ public class TB_DescargoDaoImp implements TB_DescargoDao {
         
         @Override
 	public List getAll() {
+             System.out.println("dao impl descargo getall");
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbDescargo.class);
            // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));

@@ -62,26 +62,27 @@
                     Esta es la seccion de Ingreso de Activos Fijos
                 </p>
                 <hr>
+
                 <form:form method="POST" action="${pageContext.request.contextPath}/Descargo/insertarDescargo" modelAttribute="descargo" id="descargoF" onsubmit="return valida_envioDescargo();" >
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="errorHandler alert alert-danger no-display">
+                            <div class="errorHandler alert alert-danger no-display" id="mensajeErrorFormM">
                                 <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
                             </div>
-                            <div class="successHandler alert alert-success no-display">
-                                <i class="fa fa-ok"></i> Your form validation is successful!
+                            <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
+                                <i class="fa fa-ok"></i> Guardado con exito!
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">
-                                    Fecha <span class="symbol"></span>
+                                    Fecha Descargo <span class="symbol"></span>
                                 </label>
                                 <div class="input-group">
                                     <form:input id="fechaDescargo" path="fecha" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaDescargo(event);" onblur="return validaFechaDescargo(event);"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                    </div><span for="fechaInicio" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>  
-                                
+                                </div><span for="fechaInicio" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>  
+
                             </div>
 
 
@@ -94,40 +95,24 @@
                                     Comentario<span class="symbol "></span>
                                 </label>
                                 <form:input path="comentario" type="text" placeholder="Ingrese un comentario" class="form-control" id="comentario" name="comentario" />
-                                       
+
                             </div>
                             <br>
 
 
-                            <div class="form-group" >
-                                <label class="control-label">
-                                    Inventario<span class="symbol "></span>
-                                </label>
-                                <form:select path="TbInventario.idInventario"  id="dropdown" name="dropdown"  onchange="return validaInvDescargo(event);" onblur="return validaInvDescargo(event);" >
-                                    <form:option value="0"  label="Seleccione inventario"/>       
-                                    <c:forEach var="inv" items="${inventario}">
-                                        <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
-                                    </c:forEach>
-                                </form:select>
-                                <span for="dropdown" class="help-block  no-display" id="span_cmbInv">Seleccione un item</span> 
-                            </div>
 
                             <div class="form-group">
                                 <label class="control-label">
                                     Codigo Inventario<span class="symbol "></span>
                                 </label>
-                                <form:input path="codigoI"  type="text" placeholder="Ingrese un codigo" class="form-control" id="codigo" name="codigo" />
-                                       
+                                <form:input path=""  type="text" placeholder="Ingrese un codigo" class="form-control" id="codigo" name="codigo" />
+                                <span for="codigo" class="help-block  no-display" id="span_codigoE">Ingrese un codigo valido</span>    
+
                             </div>
 
                         </div>
 
                         <div class="col-md-6">
-
-
-
-
-
 
                         </div>
 
@@ -140,44 +125,41 @@
                             </div>
                         </div>
                     </div>
-                     <div class="col-md-12 text-center">
-                                   <button type="button" class="btn btn-default" onclick="agregarInventarioD();" >Agregar</button>     
-                            </div>
-                            <div class="col-md-12 text-center">
-                                &nbsp;<br/>
-                            </div>                 
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn btn-default" onclick="enviarCode();" >Agregar</button>     
+                    </div>
+                    <div class="col-md-12 text-center">
+                        &nbsp;<br/>
+                    </div>                 
                     <div class="row">
                         <div class="col-md-8">
 
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-yellow btn-block"   type="submit" value="Submit">
+                            <button class="btn btn-yellow btn-block"   type="button" onclick="return enviarDes(event);" >
                                 Ingresar <i class="fa fa-arrow-circle-right"></i>
                             </button>
                         </div>
                     </div>
                 </form:form>
-                
+
                 <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="tabla_prueba">
-                                <thead>
-                                        <tr>
-                                               <th class="no-display">id</th>
-                                               <th>codigo</th>                            
-                                                <th>Delete</th>
-                                        </tr>
-                                </thead>
-                                <tbody id="tablabody" name="tablabody">
+                    <table class="table table-striped table-hover" id="tabla_prueba">
+                        <thead>
+                            <tr>
+                                <th class="no-display">id</th>
+                                <th>codigo</th>
+                                <th>Descripcion equipo</th>                             
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablabody" name="tablabody">
 
-                              	
-                                          
 
-                                </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                 </div>
-                <!--                    validation-->
 
-                <!--                    fin validation-->
 
 
             </div>
@@ -193,34 +175,156 @@
 <%@include file="footer.jsp" %>		
 <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
 <script>
-    
+    function deleteElement(id)
+    {
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false;
+    }
+    ;
+    function condigoYaAgregado(cod)
+    {
+        var l = 0;
+        var flag = true;
+        $('#tabla_prueba tr').each(function (index, element) {
+            if (l != 0)
+            {
+                if ($(element).find("td").eq(1).html() === cod)
+                {
+                    flag = false;
+                }
+            }
+            l = 1;
+        });
+        return flag;
+    }
+     
     function enviarCode()
     {
-         //alert("enviar");
-        
-        var codigoI=$("#codigo").val();
-       
-         
-         $.ajax({
-           type: "POST",
-           url: "${pageContext.request.contextPath}/Descargo/agregarInventario",
-           dataType: "json",
-           contentType: 'application/json',
-           success: function (msg) {
-               //alert("entra");
-           },
-           data: codigoI
-       });
-       }
-       else
-       {
-       
-        //$('#mensajeErrorFormM').removeClass("no-display");
-       return false;
-       }
-       
-       };
-    
+        var codigoI = $("#codigo").val();
+
+        if (condigoYaAgregado(codigoI) === true)
+        {
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/Descargo/agregarInventario",
+                dataType: "json",
+                contentType: 'application/json',
+                data: codigoI,
+                success: function (listaInv)
+                {
+                    var num = 0;
+                    listaInv.forEach(function (entry1)
+                    {
+                        num++;
+                    });
+                    if (num >= 1)
+                    {
+                        listaInv.forEach(function (entry)
+                        {
+                            //console.log(entry);
+                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' + '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                            $('#span_codigoE').addClass("no-display");
+                            $('#span_codigoE').closest("div").removeClass("has-error");
+                        });
+                        
+                        
+                    }
+                    else
+                    {
+                        $('#span_codigoE').removeClass("no-display");
+                        $('#span_codigoE').closest("div").addClass("has-error");
+                        $('#span_codigoE').closest("div").removeClass("has-success");
+                    }
+                },
+                error: function (data, status, er) {
+                    alert("error: " + data + " status: " + status + " er:" + er);
+                }
+
+            });//Fin .ajax
+        }
+        ;
+    }
+    ;
+
+    function enviarDes()
+    {
+        if ($('#tabla_prueba tr').size() > 1)
+
+        {
+            $('#mensajeErrorFormM').addClass("no-display");
+            var fechaM = $("#fechaDescargo").val();
+            var comentarioM = $("#comentario").val();
+
+
+
+            var jsonArray = "{";
+
+            jsonArray += "\"Descargo\":[{\"fecha\":\"" + fechaM + "\",\"comentario\":\" " + comentarioM + "\"" + "}],";
+
+            jsonArray += "\"Inventario\":[";
+
+
+            var l = 0;
+
+            $('#tabla_prueba tr').each(function (index, element) {
+
+                var id = $(element).find("td").eq(0).html();
+
+                if (l != 0)
+                {
+                    jsonArray = jsonArray + "{\"idInv\":" + '"' + id + '"' + "},";
+
+                }
+
+                l = 1;
+
+            });
+
+
+            jsonArray = jsonArray.substring(0, jsonArray.length - 1);
+            jsonArray = jsonArray + "]}";
+            //alert(jsonArray);
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/Descargo/insertarDescargo",
+                contentType: 'application/json',
+                data: jsonArray,
+                success: function (data)
+                {
+                    alert("entra");
+                    //$("#fechaDescargo").attr('value') = " ";
+                            $('#descargoF').each(function () {
+                        this.reset();
+                        $('.help-block').closest("div").removeClass("has-success");
+                        $('.help-block').closest("div").removeClass("has-error");
+                    }); 
+                    $('#mensajeExitoFormM').removeClass("no-display");
+                    
+                },
+                error: function (data, status, er)
+                {
+                    alert("error: " + data + " status: " + status + " er:" + er);
+                }
+
+            });
+        }
+        else
+        {
+            alert("error envio");
+            $('#mensajeErrorFormM').removeClass("no-display");
+            return false;
+        }
+
+    }
+    ;
+$(window).click(function ()
+    {
+         $('#mensajeExitoFormM').addClass("no-display");  
+         $('#mensajeErrorFormM').addClass("no-display"); 
+    }); 
+
     $(document).ready(function () {
 
 

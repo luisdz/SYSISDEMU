@@ -6,9 +6,7 @@
 package com.isdemu.controller;
 
 import com.isdemu.model.TbDescargo;
-import com.isdemu.model.TbInventario;
-import com.isdemu.model.TbMovimiento;
-import com.isdemu.model.TbrMovimientoInventario;
+import com.isdemu.model.TbInventario; 
 
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
@@ -20,9 +18,7 @@ import java.util.List;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,119 +27,146 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 /**
  *
  * @author AlejandroPC
  */
 
-@Controller 
- @RequestMapping(value="/Descargo")
+@Controller
+@RequestMapping(value = "/Descargo")
 //@Configuration
 //@ComponentScan("com.isdemu.service")
-public class TB_DescargoController 
-{
-    
+public class TB_DescargoController {
+
     @Autowired
-      private TB_Descargo_Service tbdescargoService;
-   @Autowired
-      private TB_Inventario_Service tbInventarioService;
+    private TB_Descargo_Service tbdescargoService;
+    @Autowired
+    private TB_Inventario_Service tbInventarioService;
 //    
-    @RequestMapping(value="/consultarDescargo")
-	public ModelAndView consultarDescargo() {
-		ModelAndView modelAndView = new ModelAndView("consultar_descargo");
 
-		List descargo = tbdescargoService.getAll();
-		modelAndView.addObject("descargo", descargo);
+    @RequestMapping(value = "/consultarDescargo")
+    public ModelAndView consultarDescargo() {
+        ModelAndView modelAndView = new ModelAndView("consultar_descargo");
 
-		return modelAndView;
-	}
-        
-         @RequestMapping(value="/insertarDescargo", method=RequestMethod.GET)
-	public ModelAndView addDescargo() {
-              System.out.println("esntra aqui GETT descargo");
-		//ModelAndView modelAndView = new ModelAndView("inventario");
-               Map<String, Object> myModel = new HashMap<String, Object>();
-                 
-                 List invent = tbInventarioService.getAll();
-                  
-                 myModel.put("descargo", new TbDescargo());
-                
-                 myModel.put("inventario",invent );  
-                // String cod="";
-                 //myModel.put("codigoI",cod);
-                 
-		return new ModelAndView("descargo",myModel);
-	}
-        
-        
-        @RequestMapping(value="/insertarDescargo", method=RequestMethod.POST)
-	public ModelAndView addingDescargo(@ModelAttribute TbDescargo des) {
-		ModelAndView modelAndView = new ModelAndView("home");
-		 System.out.println("esntra aquiPOST movimiento"+des);
+        List descargo = tbdescargoService.getAll();
+        modelAndView.addObject("descargo", descargo);
 
-                des.setIdNumeroDescargo(1);
-            
-                System.out.println("post codigo"+des);
-                
-		tbdescargoService.save(des);
-		String message = "descargo was successfully added.";
-		modelAndView.addObject("message", message);
-		return modelAndView;
-	}
-        
-        @RequestMapping(value="/deleteDescargo/{id}", method=RequestMethod.GET)
-	public ModelAndView deleteDes(@PathVariable Integer id) 
-        {
-		ModelAndView modelAndView = new ModelAndView("home");
-		tbdescargoService.delete(id);
-		String message = "descargo was successfully deleted.";
-		modelAndView.addObject("message", message);
-		return modelAndView;
-	}
-        
-        @RequestMapping(value="/editDescargo/{id}", method=RequestMethod.GET)
-	public ModelAndView editDescargoPage(@PathVariable Integer id) {
-		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
-		TbDescargo descargo = (TbDescargo) tbdescargoService.findByKey(id);
-               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
-                List invent = tbInventarioService.getAll();
-                  Map<String, Object> myModel = new HashMap<String, Object>();
-                   //List ClasAct = tbClasActService.getAll();  
-                   myModel.put("descargo",descargo ); 
-                   myModel.put("inventario",invent ); 
-                 
-		return new ModelAndView("actualizar_descargo",myModel);
-	}
-
-	@RequestMapping(value="/editDescargo/{id}", method=RequestMethod.POST)
-	public ModelAndView edditingUnidad(@ModelAttribute TbDescargo descarg, @PathVariable Integer id) {
-            
-		TbDescargo descargoActual = (TbDescargo) tbdescargoService.findByKey(id);
-		ModelAndView modelAndView = new ModelAndView("home");
-                
-                descargoActual.setIdNumeroDescargo(descarg.getIdNumeroDescargo());
-                descargoActual.setComentario(descarg.getComentario());
-                descargoActual.setFecha(descarg.getFecha());
-                descargoActual.setTbInventario(descarg.getTbInventario());
-		                
-		tbdescargoService.update(descargoActual);
-
-		String message = "descargo was successfully edited.";
-		modelAndView.addObject("message", message);
-
-		return modelAndView;
-	}
-        
-         @RequestMapping(value = "/agregarInventario", method = RequestMethod.POST)
-    public @ResponseBody
-    String addingMovimiento(@RequestBody String cod) {
-        ModelAndView modelAndView = new ModelAndView("descargo");
-        System.out.println("esntra aqui POST agregar inv" + cod);
-        
-        
-        return "22";
+        return modelAndView;
     }
+
+    @RequestMapping(value = "/insertarDescargo", method = RequestMethod.GET)
+    public ModelAndView addDescargo() {
+        System.out.println("esntra aqui GETT descargo");
+        Map<String, Object> myModel = new HashMap<String, Object>();
+        List invent = tbInventarioService.getAll();
+        myModel.put("descargo", new TbDescargo());
+        myModel.put("inventario", invent);
+        return new ModelAndView("descargo", myModel);
+    }
+
+    @RequestMapping(value = "/insertarDescargo", method = RequestMethod.POST)
+    public @ResponseBody String addingDescargo(@RequestBody String desc) {
+       // ModelAndView modelAndView = new ModelAndView("home");
+        System.out.println("esntra aquiPOST movimiento" + desc);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+       // desc.setIdNumeroDescargo(1);
+        TbDescargo descargo = new TbDescargo();
+        System.out.println("post codigo" + desc);
         
+        JSONObject array = new JSONObject(desc);
+
+        JSONArray arrayDes = array.getJSONArray("Descargo");
+        JSONObject objectDes = arrayDes.getJSONObject(0);
         
+        String comentario =  objectDes.getString("comentario");
+
+        String date = (objectDes.getString("fecha"));
+        Date fecha=new Date();
+        try {
+          fecha = formatter.parse(date);
+        } catch (ParseException ex) {
+        }
+         JSONArray objectInv = array.getJSONArray("Inventario");
+         
+        for (int i = 0; i < objectInv.length(); i++) 
+        {
+            int len = objectInv.length();
+            JSONObject object2 = objectInv.getJSONObject(i);
+
+            
+            String id = object2.getString("idInv");
+            
+            TbDescargo des = new TbDescargo();
+            
+            TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
+            des.setTbInventario(tempInv);
+            des.setComentario(comentario);
+            des.setFecha(fecha);
+             
+            tbdescargoService.save(des);
+            
+            System.out.println("Id Json : " + id);
+        }
+        
+        String message = "descargo was successfully added.";
+        //modelAndView.addObject("message", message);
+        return "1h" ;
+    }
     
+    
+    
+
+    @RequestMapping(value = "/deleteDescargo/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteDes(@PathVariable Integer id) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        tbdescargoService.delete(id);
+        String message = "descargo was successfully deleted.";
+        modelAndView.addObject("message", message);
+        return consultarDescargo();
+    }
+
+    @RequestMapping(value = "/editDescargo/{id}", method = RequestMethod.GET)
+    public ModelAndView editDescargoPage(@PathVariable Integer id) {
+        TbDescargo descargo = (TbDescargo) tbdescargoService.findByKey(id);
+        List invent = tbInventarioService.getAll();
+        Map<String, Object> myModel = new HashMap<String, Object>();
+        myModel.put("descargo", descargo);
+        myModel.put("inventario", invent);
+
+        return new ModelAndView("actualizar_descargo", myModel);
+    }
+
+    @RequestMapping(value = "/editDescargo/{id}", method = RequestMethod.POST)
+    public ModelAndView edditingUnidad(@ModelAttribute TbDescargo descarg, @PathVariable Integer id) {
+
+        TbDescargo descargoActual = (TbDescargo) tbdescargoService.findByKey(id);
+        ModelAndView modelAndView = new ModelAndView("home");
+
+        descargoActual.setIdNumeroDescargo(descarg.getIdNumeroDescargo());
+        descargoActual.setComentario(descarg.getComentario());
+        descargoActual.setFecha(descarg.getFecha());
+        descargoActual.setTbInventario(descarg.getTbInventario());
+
+        tbdescargoService.update(descargoActual);
+
+        String message = "descargo was successfully edited.";
+        modelAndView.addObject("message", message);
+
+        return consultarDescargo();
+    }
+
+    @RequestMapping(value = "/agregarInventario", method = RequestMethod.POST)
+    public @ResponseBody
+    List<TbInventario> addingMovimiento(@RequestBody String cod) {
+        //ModelAndView modelAndView = new ModelAndView("descargo");
+        System.out.println("codigo inv " + cod);
+        Map<String, Object> myModel = new HashMap<String, Object>();
+        List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
+        System.out.println("list inv " + list_invent);
+        //return new ModelAndView("descargo", myModel);
+                
+        return list_invent;    
+    }
+
 }

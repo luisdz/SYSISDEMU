@@ -31,7 +31,7 @@ public class TB_Descargo_ServiceImp implements TB_Descargo_Service {
     
         @Override
 	public List getAll() {
-             System.out.println("service impl descargo");
+             System.out.println("service impl descargo getall");
 		// TODO Auto-generated method stub
 		return tbDescargoDao.getAll();
 	}
