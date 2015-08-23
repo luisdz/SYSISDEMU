@@ -72,4 +72,11 @@ public class TBC_LocalizacionDaoImpl implements  TBC_LocalizacionDao{
              
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
         }
+        
+          @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
 }

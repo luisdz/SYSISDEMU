@@ -95,8 +95,8 @@
                                                             <tr>
                                                                     <th>IdLocalizacion</th>
                                                                     <th>Nombre</th>
-                                                                    <th>Edit</th>
-                                                                    <th>Delete</th>
+                                                                    <th>Eliminar</th>
+                                                                    <th>Actualizar</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
