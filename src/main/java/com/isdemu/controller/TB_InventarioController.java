@@ -13,14 +13,18 @@ import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbcClaseActivo;
 import com.isdemu.model.TbcClasificacionActivo;
+import com.isdemu.model.TbcLocalizacion;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
+import com.isdemu.model.TbcUbicacion;
 
 import com.isdemu.service.TBC_ClaseActivo_Service;
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
+import com.isdemu.service.TBC_ClasificacionLocalizacion_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
+import com.isdemu.service.TBC_Ubicacion_Service;
 
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
@@ -70,7 +74,11 @@ public class TB_InventarioController {
       @Autowired
         private TBC_ClaseActivo_Service tbcClaseActivoService;
       
-       
+      @Autowired
+        private TBC_ClasificacionLocalizacion_Service tbcClasificacionLocalizacionService;
+      
+       @Autowired
+        private TBC_Ubicacion_Service tbcUbicacionService; 
      
      
      
@@ -107,7 +115,37 @@ public class TB_InventarioController {
                  
 	}
         
-        //METODO PARA DEVOLVER LA REGION DEL INVENTARIO
+        //llenado de combo de localizacon segun la clasificacion de localizacion o tipo seleccionado
+          @RequestMapping(value="/listaLocalizacion", method=RequestMethod.POST)
+	  public @ResponseBody  List<TbcLocalizacion> LlenarLocalizacion(@RequestBody String clasi) {
+		int idClasi= Integer.parseInt(clasi);
+                List <TbcLocalizacion> lozalizacion=tbcLocalizacionService.getAllidClasi(idClasi);
+                 System.out.println("lista de localizacon"+lozalizacion);    
+                return lozalizacion;
+                 
+	}
+          
+           //llenado de combo de ubicacion segun la  localizacion seleccionado
+          @RequestMapping(value="/listaUbicacion", method=RequestMethod.POST)
+	  public @ResponseBody  List<TbcUbicacion> LlenarUbicacion(@RequestBody String idLocalizacion) {
+		int idLoc= Integer.parseInt(idLocalizacion);
+                List <TbcUbicacion> ubicacion=tbcUbicacionService.getAllidLocalizacion(idLoc);
+                 System.out.println("lista de localizacon"+ubicacion);    
+                return ubicacion;
+                 
+	}
+          
+          //llenado de combo de ubicacion segun la  localizacion seleccionado
+          @RequestMapping(value="/listaPersona", method=RequestMethod.POST)
+	  public @ResponseBody  List<TbcPersona> LlenarPersona(@RequestBody String idUbicacion) {
+		int idUbicacionInt= Integer.parseInt(idUbicacion);
+                List <TbcPersona> persona=tbcPersonaService.getAllidUbicacion(idUbicacionInt);
+                 System.out.println("lista de localizacon"+persona);    
+                return persona;
+                 
+	}
+        
+        //METODO formar codigo de inventario
          @RequestMapping(value="/regionPersona", method=RequestMethod.POST)
 	public @ResponseBody  String regPersona(@RequestBody String idPersona) {
 		int idClasi= Integer.parseInt(idPersona);
@@ -139,7 +177,9 @@ public class TB_InventarioController {
                  
                  List ClasAct = tbClasActService.getAll();
                  List persona=tbcPersonaService.getAll();
-                 List lozalizacion=tbcLocalizacionService.getAll();
+             
+                 List clasiLocalizacion=tbcClasificacionLocalizacionService.getAll();
+                
                  //List ClaseActivo=tbcClaseActivoService.getAll();
                  
                  
@@ -150,7 +190,9 @@ public class TB_InventarioController {
                  myModel.put("clasificacionA",ClasAct );
                  myModel.put("claseActivo",ClaseActivo );
                  myModel.put("persona",persona);
-                 myModel.put("lozalizacion",lozalizacion);
+                
+                 myModel.put("clasiLocalizacion",clasiLocalizacion);
+                
                
                 
 		return new ModelAndView("inventario",myModel);

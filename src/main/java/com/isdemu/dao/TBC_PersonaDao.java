@@ -17,4 +17,5 @@ public interface TBC_PersonaDao {
     public List getAll();
      public void delete(Serializable id);
     public Object findByKey(Serializable id);
+    public List getAllidUbicacion(Serializable id);
 }

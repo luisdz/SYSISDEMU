@@ -64,5 +64,12 @@ public class TBC_EstadoInventarioDaoImpl implements TBC_EstadoInventarioDao {
 		TbcEstadoInventario estadoinventario = (TbcEstadoInventario) getCurrentSession().get(TbcEstadoInventario.class, id);
 		return estadoinventario;
 	}
+        
+        @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
     
 }

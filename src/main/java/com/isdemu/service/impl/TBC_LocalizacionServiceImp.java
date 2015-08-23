@@ -51,4 +51,15 @@ public class TBC_LocalizacionServiceImp implements  TBC_Localizacion_Service{
 		// TODO Auto-generated method stub
 		return tbcLocalizacionDao.findByKey(id);
 	}
+        
+           @Override
+         public List getAllidClasi(Serializable id){
+         return tbcLocalizacionDao.getAllidClasi(id);
+         }
+         
+         @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbcLocalizacionDao.update(obj);
+	}
 }

@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -65,4 +66,15 @@ public class TBC_PersonaDaoImpl implements TBC_PersonaDao{
 		TbcPersona persona = (TbcPersona) getCurrentSession().get(TbcPersona.class, id);
 		return persona;
 	}
+        
+          @Override
+        public List getAllidUbicacion(Serializable id){
+        	
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcPersona.class,"persona");            
+            
+            dc.createAlias("persona.tbcUbicacion", "ubicacion");
+            dc.add(Restrictions.eq("ubicacion.idUbicacion",id));         
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+        }
 }
