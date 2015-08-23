@@ -108,6 +108,44 @@
                                 <span for="clasifi" class="help-block  no-display" id="span_dropdown2T">Seleccione una Clase de Activo</span>
                             </div>
 
+                                                       
+                              <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Tipo Localizacion<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="tipoClasificacion" name="tipoClasificacion" >
+                                    <form:option value="0"  label="Seleccione un Tipo de Localizacion"/>
+                                    <c:forEach var="clasiL" items="${clasiLocalizacion}">
+                                        <form:option value="${clasiL.idClasificacionLocalizacion}"  label="${clasiL.nombreClasificacion}"/>
+                                    </c:forEach>
+                                </form:select>
+                                <span for="clasiL" class="help-block  no-display" id="span_dropdownT">Seleccione un Tipo de Localizacion</span>
+                            </div>
+                            
+                              <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Localizacion<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="localizacion" name="localizacion" >
+                                    <form:option value="0"  label="Selecciona una localizacion"/>
+                                    
+                                </form:select>
+                                <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
+                            </div>
+                            
+                               <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Ubicacion<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion" >
+                                    <form:option value="0"  label="Selecciona una Ubicacion"/>
+                                   
+                                </form:select>
+                                <span for="ubicacion" class="help-block  no-display" id="span_dropdownT">Seleccione una Ubicacion</span>
+                            </div>
 
 
 
@@ -116,11 +154,9 @@
                                 <label for="form-field-select-3">
                                     En custodia de<span id="span_persona" class="symbol "></span>
                                 </label>
-                                <form:select path="tbcPersona.idPersona" class="form-control" id="dropdown3" name="dropdown" onchange="return validaCustodia(event);">
+                                <form:select path="tbcPersona.idPersona" class="form-control" id="persona" name="persona" onchange="return validaCustodia(event);">
                                     <form:option value="0"  label="Selecciona la persona encargada del Activo"/>       
-                                    <c:forEach var="pers" items="${persona}">
-                                        <form:option value="${pers.idPersona}"  label="${pers.nombrePersona}"/>
-                                    </c:forEach> 
+                                    
                                 </form:select>
                                 <span for="clasifi" class="help-block  no-display" id="span_personaT">Seleccione una Persona</span>
                             </div>
@@ -136,7 +172,7 @@
                                 <span for="marca" class="help-block  no-display" id="span_marcaT">Ingrese una Marca</span> 
                             </div>
 
-                            <div class="form-group">
+                              <div class="form-group">
                                 <label class="control-label">
                                     Modelo<span id="span_modelo" class="symbol"></span>
                                 </label>
@@ -144,6 +180,12 @@
                                 <span for="modelo" class="help-block  no-display" id="span_modeloT">Ingrese un Modelo</span> 
                             </div>
                                 
+                                
+                        </div>  
+                        <!--     Cierre div izquiero-->
+                        <div class="col-md-6">
+                            
+
                             <div class="form-group">
                                 <label class="control-label">
                                     Serie<span id="span_serie" class="symbol"></span>
@@ -151,13 +193,6 @@
                                 <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="serie" name="serie" onblur="return validaSerie(event);"/>
                                 <span for="serie" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
                             </div>
-                                
-                        </div>  
-                        <!--     Cierre div izquiero-->
-                        <div class="col-md-6">
-                            
-
-                             
 
 
 
@@ -334,6 +369,127 @@
                     html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
                 });
                 $('#dropdown2').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+
+            }
+        });
+
+
+    });
+    
+    
+    //index change de tipo de clasificacion de localizacion para cargar localizacion
+    
+     $("#tipoClasificacion").change(function () {
+        var idTipoClasificacion = $('#tipoClasificacion :selected').val(); // define the variable
+      // alert(idTipoClasificacion);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaLocalizacion",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: idTipoClasificacion,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#localizacion').empty();
+                html = '<option value="0"  label="Selecciona una localizacion"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idLocalizacion + '">' + entry.nombreLocalizacion + '</option>';
+                });
+                $('#localizacion').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+
+            }
+        });
+
+
+    });
+    
+    //index change de localizacion para cargar ubicacion
+    
+     $("#localizacion").change(function () {
+        var idLocalizacion = $('#localizacion :selected').val(); // define the variable
+      // alert(idLocalizacion);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaUbicacion",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: idLocalizacion,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#ubicacion').empty();
+                html = '<option value="0"  label="Selecciona una localizacion"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idUbicacion + '">' + entry.nombreUbicacion + '</option>';
+                });
+                $('#ubicacion').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+
+            }
+        });
+
+
+    });
+
+//index change de ubicacion para cargar persona
+    
+     $("#ubicacion").change(function () {
+        var idLocalizacion = $('#ubicacion :selected').val(); // define the variable
+       //alert(idLocalizacion);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaPersona",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: idLocalizacion,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#persona').empty();
+                html = '<option value="0"  label="Selecciona una persona"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idPersona + '">' + entry.nombrePersona + '</option>';
+                });
+                $('#persona').append(html);
                 // alert("devuelve algo: "+data);
             },
             error: function (data, status, er) {

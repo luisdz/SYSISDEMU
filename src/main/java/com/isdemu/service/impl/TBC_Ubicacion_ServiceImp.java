@@ -48,5 +48,10 @@ public class TBC_Ubicacion_ServiceImp implements TBC_Ubicacion_Service{
            // TODO Auto-generated method stub
            return tbUbicacionDao.findByKey(id);
    }
+   
+     @Override
+         public List getAllidLocalizacion(Serializable id){
+         return tbUbicacionDao.getAllidLocalizacion(id);
+         }
     
 }

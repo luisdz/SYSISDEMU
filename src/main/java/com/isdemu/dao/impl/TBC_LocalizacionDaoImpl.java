@@ -61,4 +61,15 @@ public class TBC_LocalizacionDaoImpl implements  TBC_LocalizacionDao{
 		TbcLocalizacion clasA = (TbcLocalizacion) getCurrentSession().get(TbcLocalizacion.class, id);
 		return clasA;
 	}
+        
+        @Override
+        public List getAllidClasi(Serializable id){
+        	
+            DetachedCriteria dc = DetachedCriteria.forClass(TbcLocalizacion.class,"localizacion");            
+            
+            dc.createAlias("localizacion.tbcClasificacionLocalizacion", "clasi");
+            dc.add(Restrictions.eq("clasi.idClasificacionLocalizacion", id));         
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+        }
 }

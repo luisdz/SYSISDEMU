@@ -48,4 +48,10 @@ public class TBC_Persona_ServiceImp implements TBC_Persona_Service{
            // TODO Auto-generated method stub
            return tbPersonaDao.findByKey(id);
    }
+   
+    @Override
+         public List getAllidUbicacion(Serializable id){
+         return tbPersonaDao.getAllidUbicacion(id);
+         }
+    
 }
