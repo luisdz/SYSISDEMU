@@ -220,7 +220,7 @@
                {
                   var id = $("#dropdown").val();
                   
-                  var codigo = $('#dropdown option:selected').text();
+                 var codigo = $('#dropdown option:selected').text();
 //                 alert(idInv);
                  var idInv=id.toString();
                       $('#tabla_prueba').append('<tr  id="' + idInv + '">'+'<td class=\"no-display\" >' + idInv + '</td>'+'<td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
