@@ -7,6 +7,8 @@ package com.isdemu.controller;
 
 import com.isdemu.model.TbDescargo;
 import com.isdemu.model.TbInventario; 
+import com.isdemu.model.TbcEstadoInventario;
+import com.isdemu.service.TBC_EstadoInventario_Service;
 
 import com.isdemu.service.TB_Descargo_Service;
 import com.isdemu.service.TB_Inventario_Service;
@@ -43,6 +45,8 @@ public class TB_DescargoController {
     private TB_Descargo_Service tbdescargoService;
     @Autowired
     private TB_Inventario_Service tbInventarioService;
+     @Autowired
+    private TBC_EstadoInventario_Service tbcEstdoService;
 //    
 
     @RequestMapping(value = "/consultarDescargo")
@@ -56,7 +60,8 @@ public class TB_DescargoController {
     }
 
     @RequestMapping(value = "/insertarDescargo", method = RequestMethod.GET)
-    public ModelAndView addDescargo() {
+    public ModelAndView addDescargo() 
+    {
         System.out.println("esntra aqui GETT descargo");
         Map<String, Object> myModel = new HashMap<String, Object>();
         List invent = tbInventarioService.getAll();
@@ -91,21 +96,16 @@ public class TB_DescargoController {
          
         for (int i = 0; i < objectInv.length(); i++) 
         {
-            int len = objectInv.length();
-            JSONObject object2 = objectInv.getJSONObject(i);
-
-            
-            String id = object2.getString("idInv");
-            
-            TbDescargo des = new TbDescargo();
-            
-            TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
+            JSONObject object2 = objectInv.getJSONObject(i);            
+            String id = object2.getString("idInv");            
+            TbDescargo des = new TbDescargo();            
+            TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id)); 
+            tempInv.setTbcEstadoInventario((TbcEstadoInventario)tbcEstdoService.findByKey(2));            
             des.setTbInventario(tempInv);
             des.setComentario(comentario);
-            des.setFecha(fecha);
-             
+            des.setFecha(fecha);             
             tbdescargoService.save(des);
-            
+            tbInventarioService.update(tempInv);            
             System.out.println("Id Json : " + id);
         }
         
@@ -158,7 +158,7 @@ public class TB_DescargoController {
 
     @RequestMapping(value = "/agregarInventario", method = RequestMethod.POST)
     public @ResponseBody
-    List<TbInventario> addingMovimiento(@RequestBody String cod) {
+    List<TbInventario> addingInvMovimiento(@RequestBody String cod) {
         //ModelAndView modelAndView = new ModelAndView("descargo");
         System.out.println("codigo inv " + cod);
         Map<String, Object> myModel = new HashMap<String, Object>();

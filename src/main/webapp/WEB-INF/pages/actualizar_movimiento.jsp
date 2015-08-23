@@ -121,8 +121,9 @@
                                 <th class="no-display">ID movimiento</th>
                                 <th class="no-display">ID inventario</th>
 
-                                <th>razon</th>
+                               
                                 <th>marca</th>
+                                <th>Descripcion</th>
                                 <th>Clase</th>
                                 <th>Modelo</th>
                                 <th>Delete</th>
@@ -135,9 +136,10 @@
                                     <td class="no-display">${mov.idMovimientoInventario}</td>
                                     <td class="no-display">${mov.tbMovimiento.idMovimiento}</td>
                                     <td class="no-display">${mov.tbInventario.idInventario}</td>
-                                    <td>${mov.tbMovimiento.razonCambio}</td>                                                    
+                                                                                      
                                     <td>${mov.tbInventario.marca}</td>
-                                    <td>${mov.tbInventario.claseEquipo}</td>
+                                    <td>${mov.tbInventario.descripcionEquipo}</td>
+                                    <td>${mov.tbInventario.tbcClaseActivo.nombreClase}</td>
                                     <td>${mov.tbInventario.modelo}</td> 
                                     <td><a href=""> Eliminar</a></td>
 

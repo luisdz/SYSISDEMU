@@ -106,8 +106,7 @@
                                     Codigo Inventario<span class="symbol "></span>
                                 </label>
                                 <form:input path=""  type="text" placeholder="Ingrese un codigo" class="form-control" id="codigo" name="codigo" />
-                                <span for="codigo" class="help-block  no-display" id="span_codigoE">Ingrese un codigo valido</span>    
-
+                                <span for="codigo" class="help-block  no-display" id="span_codigoE">El codigo es invalido o ya esta agreagado</span>  
                             </div>
 
                         </div>
@@ -126,7 +125,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <button type="button" class="btn btn-default" onclick="enviarCode();" >Agregar</button>     
+                        <button type="button" class="btn btn-default" onclick="enviarCodeD();" >Agregar</button>     
                     </div>
                     <div class="col-md-12 text-center">
                         &nbsp;<br/>
@@ -136,7 +135,7 @@
 
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-yellow btn-block"   type="button" onclick="return enviarDes(event);" >
+                            <button class="btn btn-yellow btn-block" id="ingresar"   type="button" onclick="return enviarDes(event);" value="0" >
                                 Ingresar <i class="fa fa-arrow-circle-right"></i>
                             </button>
                         </div>
@@ -149,7 +148,8 @@
                             <tr>
                                 <th class="no-display">id</th>
                                 <th>codigo</th>
-                                <th>Descripcion equipo</th>                             
+                                <th>Clase</th>
+                                 <th>Descripcion</th>  
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
@@ -180,29 +180,11 @@
         var el = document.getElementById(id);
         el.parentNode.removeChild(el);
         return false;
-    }
-    ;
-    function condigoYaAgregado(cod)
+    };  
+    
+     function enviarCodeD()
     {
-        var l = 0;
-        var flag = true;
-        $('#tabla_prueba tr').each(function (index, element) {
-            if (l != 0)
-            {
-                if ($(element).find("td").eq(1).html() === cod)
-                {
-                    flag = false;
-                }
-            }
-            l = 1;
-        });
-        return flag;
-    }
-     
-    function enviarCode()
-    {
-        var codigoI = $("#codigo").val();
-
+        var codigoI = $("#codigo").val(); 
         if (condigoYaAgregado(codigoI) === true)
         {
 
@@ -224,7 +206,7 @@
                         listaInv.forEach(function (entry)
                         {
                             //console.log(entry);
-                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' + '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' +'</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>'+ '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
                             $('#span_codigoE').addClass("no-display");
                             $('#span_codigoE').closest("div").removeClass("has-error");
                         });
@@ -244,19 +226,28 @@
 
             });//Fin .ajax
         }
-        ;
-    }
-    ;
+        else
+                    {
+                        $('#span_codigoE').removeClass("no-display");
+                        $('#span_codigoE').closest("div").addClass("has-error");
+                        $('#span_codigoE').closest("div").removeClass("has-success");
+                    }
+        
+    };
+    
 
     function enviarDes()
     {
-        if ($('#tabla_prueba tr').size() > 1)
-
+        $("#ingresar").val(1);
+        // alert($("#ingresar").val());
+        
+        validaFechaDescargo();
+        if ($('#tabla_prueba tr').size() > 1  && validaFechaDescargo()!==false)        
         {
-            $('#mensajeErrorFormM').addClass("no-display");
+           
+            //$('#mensajeErrorFormM').addClass("no-display");
             var fechaM = $("#fechaDescargo").val();
             var comentarioM = $("#comentario").val();
-
 
 
             var jsonArray = "{";
@@ -264,7 +255,6 @@
             jsonArray += "\"Descargo\":[{\"fecha\":\"" + fechaM + "\",\"comentario\":\" " + comentarioM + "\"" + "}],";
 
             jsonArray += "\"Inventario\":[";
-
 
             var l = 0;
 
@@ -275,25 +265,22 @@
                 if (l != 0)
                 {
                     jsonArray = jsonArray + "{\"idInv\":" + '"' + id + '"' + "},";
-
                 }
-
                 l = 1;
-
             });
-
 
             jsonArray = jsonArray.substring(0, jsonArray.length - 1);
             jsonArray = jsonArray + "]}";
             //alert(jsonArray);
             $.ajax({
+                
                 type: "POST",
                 url: "${pageContext.request.contextPath}/Descargo/insertarDescargo",
                 contentType: 'application/json',
                 data: jsonArray,
                 success: function (data)
                 {
-                    alert("entra");
+                    //alert("entra");
                     //$("#fechaDescargo").attr('value') = " ";
                             $('#descargoF').each(function () {
                         this.reset();
@@ -301,7 +288,7 @@
                         $('.help-block').closest("div").removeClass("has-error");
                     }); 
                     $('#mensajeExitoFormM').removeClass("no-display");
-                    
+                    $('#tablabody').empty();
                 },
                 error: function (data, status, er)
                 {
@@ -312,24 +299,16 @@
         }
         else
         {
-            alert("error envio");
             $('#mensajeErrorFormM').removeClass("no-display");
-            return false;
+            
         }
 
-    }
-    ;
-$(window).click(function ()
-    {
-         $('#mensajeExitoFormM').addClass("no-display");  
-         $('#mensajeErrorFormM').addClass("no-display"); 
-    }); 
+    };
+
 
     $(document).ready(function () {
 
-
         $('#dropdown').select2();
-
 
     });
 </script>
