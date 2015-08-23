@@ -11,7 +11,7 @@ import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
-import com.isdemu.service.TBC_Localizacion_Service;
+import com.isdemu.service.TBC_Ubicacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 
@@ -49,7 +49,7 @@ public class TBC_PersonaController {
         private TBC_Persona_Service tbcPersonaService;
    
      @Autowired
-        private TBC_Localizacion_Service tbcLocalizacionService;
+        private TBC_Ubicacion_Service tbcUbicacionService;
       
      @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
@@ -70,12 +70,12 @@ public class TBC_PersonaController {
 		
                  
                  //List ClasAct = tbClasActService.getAll();
-               List localizacion = tbcLocalizacionService.getAll();
+               List ubicacion = tbcUbicacionService.getAll();
                
                  //List region=tbcRegionService.getAll();
                  myModel.put("persona", new TbcPersona());
              
-                myModel.put("localizacion",localizacion);
+                myModel.put("ubicacion",ubicacion);
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);

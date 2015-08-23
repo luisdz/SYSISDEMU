@@ -81,5 +81,30 @@ public class TBC_EstadoInventarioController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editingEstado(@PathVariable Integer id) {
+		 
+		TbcEstadoInventario estadoinventario = (TbcEstadoInventario) tbcEstadoInventarioService.findByKey(id);
+                  
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                  
+                   myModel.put("estadoinventario",estadoinventario );  
+		return new ModelAndView("actualizar_estadoinventario",myModel);
+	}
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingEstado(@ModelAttribute TbcEstadoInventario estadoinventario, @PathVariable Integer id) {
+                System.out.println("ID ACTAULIZA"+id);
+		TbcEstadoInventario estadoInventario = (TbcEstadoInventario) tbcEstadoInventarioService.findByKey(id);
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+                estadoInventario.setNombreEstado(estadoinventario.getNombreEstado());
+                estadoInventario.setDescripcion(estadoinventario.getDescripcion());
+		tbcEstadoInventarioService.update(estadoInventario); 
+		String message = "Estado Inventario was successfully edited.";
+		modelAndView.addObject("message", message); 
+		return modelAndView;
+	}
     
 }

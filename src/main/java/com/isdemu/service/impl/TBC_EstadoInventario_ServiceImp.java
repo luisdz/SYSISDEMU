@@ -48,6 +48,12 @@ public class TBC_EstadoInventario_ServiceImp implements TBC_EstadoInventario_Ser
            // TODO Auto-generated method stub
            return tbEstadoInventarioDao.findByKey(id);
    }
+   
+      @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbEstadoInventarioDao.update(obj);
+	}
     
     
 }

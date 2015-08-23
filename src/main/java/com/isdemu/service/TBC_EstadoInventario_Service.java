@@ -16,6 +16,7 @@ public interface TBC_EstadoInventario_Service {
      public void save(Object obj);
     public List getAll();
     public void delete(Serializable id);
-    public Object findByKey(Serializable id); 
+    public Object findByKey(Serializable id);
+    public void update(Object obj);
     
 }
