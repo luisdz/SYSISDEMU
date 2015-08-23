@@ -53,5 +53,11 @@ public class TBC_Ubicacion_ServiceImp implements TBC_Ubicacion_Service{
          public List getAllidLocalizacion(Serializable id){
          return tbUbicacionDao.getAllidLocalizacion(id);
          }
+         
+     @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbUbicacionDao.update(obj);
+	}
     
 }

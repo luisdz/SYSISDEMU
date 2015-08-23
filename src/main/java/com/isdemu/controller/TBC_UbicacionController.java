@@ -88,4 +88,31 @@ public class TBC_UbicacionController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+        
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editPaisPage(@PathVariable Integer id) {
+
+            TbcUbicacion ubicacion = (TbcUbicacion) tbcUbicacionService.findByKey(id);
+
+             Map<String, Object> myModel = new HashMap<String, Object>();
+             List localizacion = tbcLocalizacionService.getAll();  
+             myModel.put("ubicacion",ubicacion ); 
+             myModel.put("localizacion",localizacion);            
+             return new ModelAndView("actualizar_ubicacion",myModel);
+	}
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingPais(@ModelAttribute TbcUbicacion ubicacion, @PathVariable Integer id) {
+            TbcUbicacion Ubicacion = (TbcUbicacion) tbcUbicacionService.findByKey(id);
+           ModelAndView modelAndView = new ModelAndView("home");
+
+           Ubicacion.setNombreUbicacion(ubicacion.getNombreUbicacion());           
+           Ubicacion.setTbcLocalizacion(ubicacion.getTbcLocalizacion());
+           tbcUbicacionService.update(Ubicacion);
+           String message = "Ubicacion was successfully edited.";
+           modelAndView.addObject("message", message);
+
+           return modelAndView;
+	}
 }
