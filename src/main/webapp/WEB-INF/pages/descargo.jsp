@@ -14,10 +14,7 @@
   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 -->
 
-
 <!-- jQuery Form Validation code -->
-
-
 
 <div class="row">
     <div class="col-md-12">
@@ -107,6 +104,8 @@
                                 </label>
                                 <form:input path=""  type="text" placeholder="Ingrese un codigo" class="form-control" id="codigo" name="codigo" />
                                 <span for="codigo" class="help-block  no-display" id="span_codigoE">El codigo es invalido o ya esta agreagado</span>  
+                                <span for="codigo" class="help-block  no-display" id="span_codigoE2">El inventario con ese codigo esta descargado</span>  
+                            
                             </div>
 
                         </div>
@@ -206,11 +205,23 @@
                         listaInv.forEach(function (entry)
                         {
                             //console.log(entry);
+                            //alert(entry.tbcEstadoInventario.idEstado);
+                            if(entry.tbcEstadoInventario.idEstado === 2)
+                            {
+                                
+                            } 
+                            else
+                            {
                             $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' +'</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>'+ '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
                             $('#span_codigoE').addClass("no-display");
                             $('#span_codigoE').closest("div").removeClass("has-error");
+                            }
                         });
-                        
+                     if ($('#tabla_prueba tr').size() <= 1)
+                     {
+                         $('#span_codigoE2').delay(0).fadeIn(1000).fadeOut(5000);
+                          //$('#span_codigoE').addClass("no-display");
+                     }
                         
                     }
                     else
@@ -294,7 +305,6 @@
                 {
                     alert("error: " + data + " status: " + status + " er:" + er);
                 }
-
             });
         }
         else

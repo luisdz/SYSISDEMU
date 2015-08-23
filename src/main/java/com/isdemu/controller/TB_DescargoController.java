@@ -120,7 +120,13 @@ public class TB_DescargoController {
     @RequestMapping(value = "/deleteDescargo/{id}", method = RequestMethod.GET)
     public ModelAndView deleteDes(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
+        
+        TbDescargo des=(TbDescargo)tbdescargoService.findByKey(id);
+        TbInventario inv= (TbInventario)tbInventarioService.findByKey(des.getTbInventario().getIdInventario());
+        inv.setTbcEstadoInventario((TbcEstadoInventario)tbcEstdoService.findByKey(1));
+        tbInventarioService.update(inv);
         tbdescargoService.delete(id);
+        System.out.println("descargo eliminado ");
         String message = "descargo was successfully deleted.";
         modelAndView.addObject("message", message);
         return consultarDescargo();
