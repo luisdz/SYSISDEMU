@@ -46,8 +46,7 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
 	public List<TbInventario> getAll() {
 		// TODO Auto-generated method stub
             DetachedCriteria dc = DetachedCriteria.forClass(TbInventario.class);
-           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
-           // dc.addOrder(Order.asc("codigo_inventario"));
+           
             List<TbInventario> inventario = dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
             return inventario;
 	}

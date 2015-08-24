@@ -172,10 +172,8 @@ public class TB_InventarioController {
 	public ModelAndView addPaisPage() {
              
 		//ModelAndView modelAndView = new ModelAndView("inventario");
-               Map<String, Object> myModel = new HashMap<String, Object>();
-		
-                 
-                 List ClasAct = tbClasActService.getAll();
+                 Map<String, Object> myModel = new HashMap<String, Object>();
+		 List ClasAct = tbClasActService.getAll();
                  List persona=tbcPersonaService.getAll();
              
                  List clasiLocalizacion=tbcClasificacionLocalizacionService.getAll();
@@ -202,7 +200,7 @@ public class TB_InventarioController {
         @RequestMapping(value="/add", method=RequestMethod.POST)
 	public ModelAndView addingPais(@ModelAttribute TbInventario inventario) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		inventario.setValor(BigDecimal.ZERO);
+		
                 inventario.setValorLibro(BigDecimal.ZERO);
                 inventario.setFechaInsert(new Date());
                 //obtener el codigo de la clase seleccionada para armar el codigo de inventario
@@ -220,12 +218,19 @@ public class TB_InventarioController {
                     int CodIncrementInt=Integer.parseInt(CodIncrement);
                     int Increment=CodIncrementInt+1;
                     System.out.println("YA INCREMENTADO;"+Increment);
-                    if(Increment<99)
+                    if(Increment<=99)
                     {
-                       Correlativo="00"+Increment;
+                       
+                        if(Increment<=9){
+                        Correlativo="00"+Increment;
+                        }
+                        else
+                            Correlativo="0"+Increment;
                     }
-                    else
-                       Correlativo=String.valueOf(Increment);
+                    else{
+                       
+                        Correlativo=String.valueOf(Increment);
+                    }
                     
                 }
                 else{
@@ -246,8 +251,7 @@ public class TB_InventarioController {
         @RequestMapping(value="/add/lotes", method=RequestMethod.POST)
 	public ModelAndView InsertandoPorLotes(@ModelAttribute TbInventario inventario) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		inventario.setValor(BigDecimal.ZERO);
-                //uso valor libro para obtener temporalmente la cantidad de elementos a ingresar por lotes
+		//uso valor libro para obtener temporalmente la cantidad de elementos a ingresar por lotes
                 int cantidadlotes= Integer.parseInt(inventario.getValorLibro().toString());
                 //inventario.setValorLibro(BigDecimal.ZERO);
                 inventario.setFechaInsert(new Date());
@@ -266,13 +270,19 @@ public class TB_InventarioController {
                     int CodIncrementInt=Integer.parseInt(CodIncrement);
                     int Increment=CodIncrementInt+1;
               
-                    if(Increment<99)
+                    if(Increment<=99)
                     {
-                       Correlativo="00"+Increment;
+                       
+                        if(Increment<=9){
+                        Correlativo="00"+Increment;
+                        }
+                        else
+                            Correlativo="0"+Increment;
                     }
-                    else
-                       Correlativo=String.valueOf(Increment);
-                    
+                    else{
+                       
+                        Correlativo=String.valueOf(Increment);
+                    }
                 }
                 else{
                      Correlativo="001";
@@ -384,6 +394,10 @@ public class TB_InventarioController {
                     String financiamiento=ObjInv.getString("financiamiento");
                     inv.setFinanciamiento(financiamiento);
                     
+                    String descripcion=ObjInv.getString("descripcion");
+                    inv.setDescripcionEquipo(descripcion);
+                    
+                    
                     String idAsignado=ObjInv.getString("idCustodiade");
                     int idAsignadoInt=Integer.parseInt(idAsignado);
                     inv.setIdPersonaAsignado(idAsignadoInt);
@@ -446,12 +460,14 @@ public class TB_InventarioController {
                 
                   Map<String, Object> myModel = new HashMap<String, Object>();
                    List ClasAct = tbClasActService.getAll();  
+                   List persona=tbcPersonaService.getAll();
+                   List clasiLocalizacion=tbcClasificacionLocalizacionService.getAll();
                    myModel.put("inventario",inventario ); 
-                 // myModel.put("clasificacionA",activo );
+            
+                   myModel.put("persona",persona);
+                  myModel.put("clasiLocalizacion",clasiLocalizacion);
                   myModel.put("AllclasificacionA",ClasAct );
                 
-                  
-                   
                 //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
 		//modelAndView.addObject("inventario",inventario);
 		return new ModelAndView("actualizar_inventario",myModel);
@@ -462,7 +478,12 @@ public class TB_InventarioController {
 		TbInventario ActivoActual = (TbInventario) tbInventarioService.findByKey(id);
 		ModelAndView modelAndView = new ModelAndView("home");
                 ActivoActual.setMarca(inventario.getMarca());
-		
+		ActivoActual.setDescripcionEquipo(inventario.getDescripcionEquipo());
+                ActivoActual.setFechaAdquisicion(inventario.getFechaAdquisicion());
+                ActivoActual.setModelo(inventario.getModelo());
+                ActivoActual.setNFactura(inventario.getNFactura());
+                ActivoActual.setSerie(inventario.getSerie());
+                ActivoActual.setIdPersonaAsignado(inventario.getTbcPersona().getIdPersona());
                 
 		tbInventarioService.update(ActivoActual);
 

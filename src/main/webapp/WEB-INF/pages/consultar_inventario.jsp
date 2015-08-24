@@ -125,9 +125,17 @@
                         <thead>
                             <tr>
                                 <th class="no-display">ID inventario</th>
+                                <th>Clase Equipo</th>
+                                <th>En custodia de</th>
+                                <th>descripcionEquipo</th>
+                                <th>codigoInventario</th>
                                 <th>Marca</th>
                                 <th>Modelo</th>
-                                <th>Clase</th> 
+                                <th>serie</th> 
+                                <th>fechaAdquisicion</th>
+                                <th>valor</th>
+                                <th>NFactura</th> 
+                                
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -137,9 +145,17 @@
                             <c:forEach var="inv" items="${inventario}">
                                 <tr >
                                     <td class="no-display">${inv.idInventario}</td>
+                                    <td>${inv.tbcClaseActivo.nombreClase}</td>
+                                    <td>${inv.tbcPersona.nombrePersona}</td>
+                                    <td>${inv.descripcionEquipo}</td>
+                                    <td>${inv.codigoInventario}</td>
                                     <td>${inv.marca}</td>
                                     <td>${inv.modelo}</td>
-                                    <td>${inv.claseEquipo}</td>
+                                    <td>${inv.serie}</td>
+                                    <td>${inv.fechaAdquisicion}</td>
+                                    <td>${inv.valor}</td>
+                                    <td>${inv.NFactura}</td>
+                                    
                                     <td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">
                                             Editar</a></td>
                                     <td><a href="${pageContext.request.contextPath}/Inventario/delete/${inv.idInventario}">

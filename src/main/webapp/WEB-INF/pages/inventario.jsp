@@ -193,9 +193,14 @@
                                 <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="serie" name="serie" onblur="return validaSerie(event);"/>
                                 <span for="serie" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
                             </div>
-
-
-
+                                
+                             <div class="form-group">
+                                <label class="control-label">
+                                    Descripcion<span id="span_serie" class="symbol"></span>
+                                </label>
+                                <form:input path="descripcionEquipo" type="text" placeholder="Ingrese una descripcion del equipo" class="form-control" id="descripcionEquipo" name="descripcionEquipo" />
+                                <span for="descripcionEquipo" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
+                            </div>
 
 
                             <div class="form-group">
@@ -523,8 +528,9 @@
                   var clasificacion = $('#dropdown1 option:selected').text();
                   var clase = $('#dropdown2 option:selected').text();
                   var idclase=$('#dropdown2 option:selected').val();
-                  alert(idclase);
-                  var custodiad = $('#dropdown3 option:selected').val();
+                  var descripcion = $('#descripcionEquipo').val();
+                  var custodiad = $('#persona option:selected').text();
+                  var idcustodiad = $('#persona option:selected').val();
                   var marca = $('#marca').val();
                   var modelo = $('#modelo').val();
                   var serie = $('#serie').val();
@@ -538,8 +544,10 @@
                             <td class=\"no-display\" >' +idInv + '</td>'+'\
                             <td>' + clasificacion + '</td>\n\\n\
                             <td>' + clase + '</td>\n\\n\\n\
-                            <td class=\"no-display\">' + idclase + '</td>\n\\n\
-                            <td>' + custodiad + '</td>\n\\n\
+                            <td class=\"no-display\">' + idclase + '</td>\n\\n\\n\
+                            <td>' + descripcion + '</td>\n\\n\
+                            <td>' + custodiad + '</td>\n\\n\\n\
+                            <td class=\"no-display\">' + idcustodiad + '</td>\n\\n\\n\
                             <td>' + marca + '</td>\n\\n\
                             <td>' + modelo + '</td>\n\\n\
                             <td>' + serie + '</td>\n\\n\
@@ -572,18 +580,19 @@
 
         var clasificacion = $(element).find("td").eq(1).html();
         var idclase = $(element).find("td").eq(3).html();
-        var custodiade = $(element).find("td").eq(4).html();
-        var marca = $(element).find("td").eq(5).html();
-        var modelo = $(element).find("td").eq(6).html();
-        var serie = $(element).find("td").eq(7).html();
-        var fechaAd = $(element).find("td").eq(8).html();
-        var valor = $(element).find("td").eq(9).html();
-        var nfactura = $(element).find("td").eq(10).html();
-        var financiamiento = $(element).find("td").eq(11).html();
+        var descripcion = $(element).find("td").eq(4).html();
+        var custodiade = $(element).find("td").eq(6).html();
+        var marca = $(element).find("td").eq(7).html();
+        var modelo = $(element).find("td").eq(8).html();
+        var serie = $(element).find("td").eq(9).html();
+        var fechaAd = $(element).find("td").eq(10).html();
+        var valor = $(element).find("td").eq(11).html();
+        var nfactura = $(element).find("td").eq(12).html();
+        var financiamiento = $(element).find("td").eq(13).html();
       
         if(l!=0)
         {
-            jsonArray=jsonArray+"{\"clasi\":"+'"'+clasificacion+'"'+",\"idClase\":"+'"'+idclase+'"'+",\"idCustodiade\":"+'"'+custodiade+'"'+",\"marca\":"+'"'+marca+'"'+",\"modelo\":"+'"'+modelo+'"'+",\"serie\":"+'"'+serie+'"'+",\"fechaA\":"+'"'+fechaAd+'"'+",\"valor\":"+'"'+valor+'"'+",\"factura\":"+'"'+nfactura+'"'+",\"financiamiento\":"+'"'+financiamiento+'"'+"},";
+            jsonArray=jsonArray+"{\"clasi\":"+'"'+clasificacion+'"'+",\"idClase\":"+'"'+idclase+'"'+",\"descripcion\":"+'"'+descripcion+'"'+",\"idCustodiade\":"+'"'+custodiade+'"'+",\"marca\":"+'"'+marca+'"'+",\"modelo\":"+'"'+modelo+'"'+",\"serie\":"+'"'+serie+'"'+",\"fechaA\":"+'"'+fechaAd+'"'+",\"valor\":"+'"'+valor+'"'+",\"factura\":"+'"'+nfactura+'"'+",\"financiamiento\":"+'"'+financiamiento+'"'+"},";
                     
           }
 
