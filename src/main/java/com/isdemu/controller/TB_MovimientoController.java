@@ -9,8 +9,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
+import com.isdemu.model.TbcPersona;
+import com.isdemu.model.TbhMovimiento;
 import com.isdemu.model.TbrMovimientoInventario;
 import com.isdemu.service.TBC_Persona_Service;
+import com.isdemu.service.TBH_Movimiento_Service;
 import com.isdemu.service.TBR_MovimientoInventario_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service;
@@ -53,6 +56,9 @@ public class TB_MovimientoController {
     private TBR_MovimientoInventario_Service tbrMovimientoInvService;
     @Autowired
     private TBC_Persona_Service tbcPersonaService;
+    @Autowired
+    private TBH_Movimiento_Service tbhMovimientoService;
+    
 
     @RequestMapping(value = "/consultarMov")
     public ModelAndView consultarMovimientos() {
@@ -121,22 +127,31 @@ public class TB_MovimientoController {
         for (int i = 0; i < object.length(); i++) 
         {
             int len = object.length();
-            JSONObject object2 = object.getJSONObject(i);
-
-            
-            String id = object2.getString("idInv");
-            
+            JSONObject object2 = object.getJSONObject(i);            
+            String id = object2.getString("idInv");            
             TbrMovimientoInventario MovInv= new TbrMovimientoInventario();
             
-            MovInv.setTbMovimiento(UltMov);
             
+            MovInv.setTbMovimiento(UltMov);            
             TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
-            MovInv.setTbInventario(tempInv);
-            
-            tbrMovimientoInvService.save(MovInv);
-            
-            
+            MovInv.setTbInventario(tempInv);            
+            tbrMovimientoInvService.save(MovInv);            
             System.out.println("Id Json:" + id);
+            //historial
+            TbhMovimiento TbhMov = new TbhMovimiento();
+            TbhMov.setCodigoInventario(tempInv.getCodigoInventario());
+            TbhMov.setFechaMovimiento(fecha);
+            TbhMov.setIdMovimientoh(idMov);
+            TbhMov.setPersonaActual(objectMov.getString("persona"));
+            TbhMov.setPersonaAnterior(tempInv.getTbcPersona().getNombrePersona());
+            tbhMovimientoService.save(TbhMov);
+            //historial
+            System.out.println("Id persona:" + objectMov.getString("idpersona"));
+            
+            TbcPersona tbcpersona = (TbcPersona)tbcPersonaService.findByKey(Integer.parseInt(objectMov.getString("idpersona")));
+            System.out.println("tbc persona:" + tbcpersona);
+            tempInv.setTbcPersona(tbcpersona);
+            tbInventarioService.update(tempInv);
         }
 
         //tbMovimientoService.save(movi);
@@ -145,6 +160,8 @@ public class TB_MovimientoController {
         return "22";
     }
 
+    
+    
     @RequestMapping(value = "/deleteMovimiento/{id}", method = RequestMethod.GET)
     public ModelAndView deleteMov(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
@@ -230,48 +247,20 @@ public class TB_MovimientoController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/detalleInventarios", method = RequestMethod.POST)
+    
+
+    
+    @RequestMapping(value = "/agregarInventarioM", method = RequestMethod.POST)
     public @ResponseBody
-    List<TbInventario> detalleInv(@RequestBody String clasi) {
-
-        System.out.println("INGRESA CONTROLLER detalle inv");
-        System.out.println(clasi.toString());
-
-        List<TbInventario> movi = tbInventarioService.getAll();
-
-        //COMENTAREO HECHO POR EDUARDOSystem.out.println("lista=" + movi.get(0).getClaseEquipo());
-
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
-
-        //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
-        String var = gson.toJson(movi.get(0).getFechaAdquisicion());
-
-        //ModelAndView modelAndView = new ModelAndView("home");
-        // System.out.println("return String:"+inventarioString);
-        return movi;
-
-    }
-
-    @RequestMapping(value = "/agregarInvMov", method = RequestMethod.POST)
-    public @ResponseBody
-    TbInventario agreagrInvM(@RequestBody String clasi) {
-
-        System.out.println("INGRESA CONTROLLER detalle inv");
-        System.out.println(clasi.toString());
-
-        TbInventario movi = (TbInventario) tbInventarioService.findByKey(13);
-
-       // COMETARIO HECHO POR EDUARDO System.out.println("lista=" + movi.getClaseEquipo());
-
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
-
-        //String invenConvert= new Gson().toJson(inventario.get(0),TbInventario.class);
-        String var = gson.toJson(movi.getFechaAdquisicion());
-
-        //ModelAndView modelAndView = new ModelAndView("home");
-        // System.out.println("return String:"+inventarioString);
-        return movi;
-
+    List<TbInventario> addingInvDescargo(@RequestBody String cod) {
+        //ModelAndView modelAndView = new ModelAndView("descargo");
+        System.out.println("codigo inv " + cod);
+        Map<String, Object> myModel = new HashMap<String, Object>();
+        List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
+        System.out.println("list inv " + list_invent);
+        //return new ModelAndView("descargo", myModel);
+                
+        return list_invent;    
     }
 
 }

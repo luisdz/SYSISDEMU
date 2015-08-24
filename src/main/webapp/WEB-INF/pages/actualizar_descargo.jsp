@@ -109,19 +109,7 @@
                             <br>
 
 
-                            <div class="form-group" >
-                                <label class="control-label">
-                                    Inventario<span class="symbol "></span>
-                                </label>
-                                <form:select path="TbInventario.idInventario"  id="dropdown" name="dropdown"  onchange="return validaInvDescargo(event);" onblur="return validaInvDescargo(event);" >
-                                    <form:option value="0"  label="Seleccione inventario"/>       
-                                    <c:forEach var="inv" items="${inventario}">
-                                        <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
-                                    </c:forEach>
-                                </form:select>
-                                <span for="dropdown" class="help-block  no-display" id="span_cmbInv">Seleccione un item</span> 
-                            </div>
-
+                           
 
 
                         </div>

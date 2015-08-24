@@ -6,6 +6,7 @@
 package com.isdemu.controller;
 
 import com.isdemu.model.TbcLocalizacion;
+
 import com.isdemu.service.TBC_ClasificacionLocalizacion_Service;
 import com.isdemu.service.TBC_Localizacion_Service;
 import com.isdemu.service.TBC_Riesgo_Service;
@@ -95,4 +96,35 @@ public class TBC_LocalizacionController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
+        
+          @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editPaisPage(@PathVariable Integer id) {
+		
+                TbcLocalizacion localizacion = (TbcLocalizacion) tbcLocalizacionService.findByKey(id);
+
+                 Map<String, Object> myModel = new HashMap<String, Object>();
+                 List clasificacion_localizacion = tbcClasLocalizacionService.getAll();
+                 List riesgo = tbcRiesgoService.getAll();  
+                 myModel.put("localizacion",localizacion ); 
+                 myModel.put("riesgo",riesgo);
+                myModel.put("clasificacion_localizacion",clasificacion_localizacion );
+                 return new ModelAndView("actualizar_localizacion",myModel);
+	}
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingPais(@ModelAttribute TbcLocalizacion localizacion, @PathVariable Integer id) {
+		 TbcLocalizacion Localizacion = (TbcLocalizacion) tbcLocalizacionService.findByKey(id);
+		ModelAndView modelAndView = new ModelAndView("home");
+   
+                Localizacion.setNombreLocalizacion(localizacion.getNombreLocalizacion());
+                Localizacion.setTbcClasificacionLocalizacion(localizacion.getTbcClasificacionLocalizacion());
+                Localizacion.setTbcRiesgo(localizacion.getTbcRiesgo());
+		tbcLocalizacionService.update(Localizacion);
+                String message = "Localuizacion was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
+        
+        
 }

@@ -53,5 +53,11 @@ public class TBC_Persona_ServiceImp implements TBC_Persona_Service{
          public List getAllidUbicacion(Serializable id){
          return tbPersonaDao.getAllidUbicacion(id);
          }
+         
+    @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+		tbPersonaDao.update(obj);
+	}
     
 }

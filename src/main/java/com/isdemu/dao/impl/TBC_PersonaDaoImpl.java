@@ -77,4 +77,11 @@ public class TBC_PersonaDaoImpl implements TBC_PersonaDao{
              
            return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
         }
+        
+         @Override
+	public void update(Object obj) {
+		// TODO Auto-generated method stub
+            System.out.println("ingresa antes de enviar con la sesion el objeto para update");
+		getCurrentSession().update(obj);
+	}
 }

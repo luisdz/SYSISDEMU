@@ -18,4 +18,5 @@ public interface TBC_Persona_Service {
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
     public List getAllidUbicacion(Serializable id);
+     public void update(Object obj);
 }

@@ -7,16 +7,16 @@ package com.isdemu.service;
 
 import java.io.Serializable;
 import java.util.List;
+
 /**
  *
- * @author Walter
+ * @author AlejandroPC
  */
-public interface TBC_EstadoInventario_Service {
+public interface TBH_Movimiento_Service {
     
-     public void save(Object obj);
-    public List getAll();
-    public void delete(Serializable id);
-    public Object findByKey(Serializable id);
-    public void update(Object obj);
-    
+    public void save(Object obj);
+     public List getAll();  
+    public void delete(Serializable id); 
+             public Object findByKey(Serializable id);
+             public void update(Object obj);
 }

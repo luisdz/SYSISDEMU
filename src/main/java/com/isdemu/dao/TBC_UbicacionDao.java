@@ -18,5 +18,5 @@ public interface TBC_UbicacionDao {
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
     public List getAllidLocalizacion(Serializable id);
-    
+    public void update(Object obj);
 }

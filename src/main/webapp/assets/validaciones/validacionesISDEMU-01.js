@@ -5,27 +5,7 @@
  */
 
 //Validaciones luis
-function validaFechaMovimiento()
-    {
-        var x = document.forms["polizaF"]["fechaInicio"].value;
-        if (x === null || x === "")
-        {
-            //$('#span_nombre').addClass("symbol required");
-            $('#span_fechaIniT').removeClass("no-display");            
-            $('#span_fechaIniT').closest("div").addClass("has-error");            
-             $('#span_fechaIniT').closest("div").removeClass("has-success");
 
-            return false;
-        }
-        else
-        {
-            //$('#span_nombre').to("required");
-            $('#span_fechaIniT').addClass("no-display");
-             $('#span_fechaIniT').closest("div").removeClass("has-error");
-             $('#span_fechaIniT').closest("div").addClass("has-success");
-        }
-
-    };
 
 
 
@@ -203,7 +183,7 @@ function validaFechaFnPoliza()
              $('#span_fechaFnT').closest("div").removeClass("has-error");
              $('#span_fechaFnT').closest("div").addClass("has-success");
         }
-
+            
     };  
 function validaInvDescargo()
     {
@@ -342,11 +322,7 @@ function validaInvDescargo()
     };
 
 
-    $(window).click(function ()
-    {
-         $('#mensajeErrorForm').addClass("no-display");       
-    });  
-    
+  
 
 
 
@@ -354,5 +330,107 @@ function validaInvDescargo()
     {        
         console.log("ready!");
     });
-
+    
+$(window).click(function ()
+    {
+      
+     $('#mensajeExitoFormM').addClass("no-display");
+     var b = $("#ingresar").val();      
+     if(b==="0") {   
+         $('#mensajeErrorFormM').addClass("no-display"); 
+     };     
+     $("#ingresar").val(0);
+    }); 
  
+//Fuciones Descargo
+function condigoYaAgregado(cod)
+    {
+        var l = 0;
+        var flag = true;
+        $('#tabla_prueba tr').each(function (index, element) {
+            if (l != 0)
+            {
+                if ($(element).find("td").eq(1).html() === cod)
+                {
+                    flag = false;
+                }
+            }
+            l = 1;
+        });
+        return flag;
+    };
+
+//Fin funciones descargo
+
+//Validaciones movimiento
+//?
+function validaFechaMovimiento()
+    {
+        var x = document.forms["polizaF"]["fechaInicio"].value;
+        if (x === null || x === "")
+        {
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_fechaIniT').removeClass("no-display");            
+            $('#span_fechaIniT').closest("div").addClass("has-error");            
+             $('#span_fechaIniT').closest("div").removeClass("has-success");
+
+            return false;
+        }
+        else
+        {
+            //$('#span_nombre').to("required");
+            $('#span_fechaIniT').addClass("no-display");
+             $('#span_fechaIniT').closest("div").removeClass("has-error");
+             $('#span_fechaIniT').closest("div").addClass("has-success");
+        }
+
+    };
+function validaFechaMov()
+    {
+        var x = document.forms["movF"]["fechaMov"].value;
+        if (x === null || x === "")
+        {
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_fecha').removeClass("no-display");            
+            $('#span_fecha').closest("div").addClass("has-error");            
+             $('#span_fecha').closest("div").removeClass("has-success");
+
+            return false;
+        }
+        else
+        {
+            //$('#span_nombre').to("required");
+            $('#span_fecha').addClass("no-display");
+             $('#span_fecha').closest("div").removeClass("has-error");
+             $('#span_fecha').closest("div").addClass("has-success");
+             return true;
+        }
+            
+    }; 
+    
+    function validaRespMov()
+    {
+        var x = document.forms["movF"]["responsable"].value;
+        //alert(x);
+        if (x === "0")
+        {
+            //alert("error");
+            //$('#span_nombre').addClass("symbol required");
+            $('#span_resp').removeClass("no-display");            
+            $('#span_resp').closest("div").addClass("has-error");            
+             $('#span_resp').closest("div").removeClass("has-success");
+
+            return false;
+        }
+        else
+        {
+           // alert("valido");
+            //$('#span_nombre').to("required");
+            $('#span_resp').addClass("no-display");
+             $('#span_resp').closest("div").removeClass("has-error");
+             $('#span_resp').closest("div").addClass("has-success");
+              return true;
+        }
+
+    }; 
+//Fin funciones movimiento

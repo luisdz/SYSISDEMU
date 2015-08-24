@@ -7,16 +7,15 @@ package com.isdemu.dao;
 
 import java.io.Serializable;
 import java.util.List;
+
 /**
  *
- * @author Walter
+ * @author AlejandroPC
  */
-public interface TBC_EstadoInventarioDao {
-    
-    public void save(Object obj); 
-    public List getAll();
-    public void delete(Serializable id);
-    public Object findByKey(Serializable id);
-    public void update(Object obj);
-    
+public interface TBH_MovimientoDao {
+    public void save(Object obj);
+     public List getAll();  
+    public void delete(Serializable id); 
+             public Object findByKey(Serializable id);
+             public void update(Object obj);
 }

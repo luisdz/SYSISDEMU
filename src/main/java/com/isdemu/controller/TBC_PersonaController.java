@@ -11,7 +11,7 @@ import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
 
 import com.isdemu.service.TBC_ClasificacionActivo_Service;
-import com.isdemu.service.TBC_Localizacion_Service;
+import com.isdemu.service.TBC_Ubicacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBC_Poliza_Service;
 
@@ -49,7 +49,7 @@ public class TBC_PersonaController {
         private TBC_Persona_Service tbcPersonaService;
    
      @Autowired
-        private TBC_Localizacion_Service tbcLocalizacionService;
+        private TBC_Ubicacion_Service tbcUbicacionService;
       
      @RequestMapping(value="/list")
 	public ModelAndView listOfPaises() {
@@ -70,12 +70,12 @@ public class TBC_PersonaController {
 		
                  
                  //List ClasAct = tbClasActService.getAll();
-               List localizacion = tbcLocalizacionService.getAll();
+               List ubicacion = tbcUbicacionService.getAll();
                
                  //List region=tbcRegionService.getAll();
                  myModel.put("persona", new TbcPersona());
              
-                myModel.put("localizacion",localizacion);
+                myModel.put("ubicacion",ubicacion);
                 // myModel.put("clasificacionA",ClasAct );
                 // myModel.put("persona",persona);
                 // myModel.put("region",region);
@@ -102,6 +102,36 @@ public class TBC_PersonaController {
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
+	}   
+        
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editPaisPage(@PathVariable Integer id) {
+
+            TbcPersona persona = (TbcPersona) tbcPersonaService.findByKey(id);
+
+             Map<String, Object> myModel = new HashMap<String, Object>();
+             List ubicacion = tbcUbicacionService.getAll();
+             myModel.put("ubicacion",ubicacion ); 
+             myModel.put("persona",persona);            
+             return new ModelAndView("actualizar_persona",myModel);
+	}
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingPais(@ModelAttribute TbcPersona persona, @PathVariable Integer id) {
+            TbcPersona Persona = (TbcPersona) tbcPersonaService.findByKey(id);
+           ModelAndView modelAndView = new ModelAndView("home");
+
+           Persona.setNombrePersona(persona.getNombrePersona());           
+           Persona.setJefatura(persona.getJefatura());
+           Persona.setEncargadoAfijo(persona.getEncargadoAfijo());
+           Persona.setTbcUbicacion(persona.getTbcUbicacion());
+           
+           tbcPersonaService.update(Persona);
+           String message = "Persona was successfully edited.";
+           modelAndView.addObject("message", message);
+
+           return modelAndView;
 	}
     
 }

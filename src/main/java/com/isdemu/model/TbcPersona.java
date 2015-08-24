@@ -53,7 +53,7 @@ public class TbcPersona {
         this.idPersona = idPersona;
     }
 
-@ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="ID_UBICACION", nullable=false)
     public TbcUbicacion getTbcUbicacion() {
         return this.tbcUbicacion;
@@ -73,7 +73,7 @@ public class TbcPersona {
     }
 
     
-    @Column(name="JEFATURA", length=10)
+    @Column(name="JEFATURA", length=100)
     public String getJefatura() {
         return this.jefatura;
     }
@@ -83,7 +83,7 @@ public class TbcPersona {
     }
 
     
-    @Column(name="ENCARGADO_AFIJO", length=10)
+    @Column(name="ENCARGADO_AFIJO", length=100)
     public String getEncargadoAfijo() {
         return this.encargadoAfijo;
     }
