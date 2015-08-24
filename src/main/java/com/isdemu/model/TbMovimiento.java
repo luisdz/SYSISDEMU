@@ -42,6 +42,8 @@ public class TbMovimiento {
      private Date fechaInsert;
      private int userUpdate;
      private Date fechaUpdate;
+       private Integer idPersonaNueva;
+     private Integer idPersonaAnterior;
      //private Set<TbrMovimientoInventario> tbrMovimientoInventarios = new HashSet<TbrMovimientoInventario>(0);
 
      
@@ -128,6 +130,25 @@ public class TbMovimiento {
     
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
+    }
+    
+      @Column(name="ID_PERSONA_NUEVA")
+    public Integer getIdPersonaNueva() {
+        return this.idPersonaNueva;
+    }
+    
+    public void setIdPersonaNueva(Integer idPersonaNueva) {
+        this.idPersonaNueva = idPersonaNueva;
+    }
+
+    
+    @Column(name="ID_PERSONA_ANTERIOR")
+    public Integer getIdPersonaAnterior() {
+        return this.idPersonaAnterior;
+    }
+    
+    public void setIdPersonaAnterior(Integer idPersonaAnterior) {
+        this.idPersonaAnterior = idPersonaAnterior;
     }
 
 //@OneToMany(fetch=FetchType.EAGER, mappedBy="tbMovimiento")
