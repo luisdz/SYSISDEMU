@@ -102,6 +102,36 @@ public class TBC_PersonaController {
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;
+	}   
+        
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public ModelAndView editPaisPage(@PathVariable Integer id) {
+
+            TbcPersona persona = (TbcPersona) tbcPersonaService.findByKey(id);
+
+             Map<String, Object> myModel = new HashMap<String, Object>();
+             List ubicacion = tbcUbicacionService.getAll();
+             myModel.put("ubicacion",ubicacion ); 
+             myModel.put("persona",persona);            
+             return new ModelAndView("actualizar_persona",myModel);
+	}
+        
+        @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+	public ModelAndView edditingPais(@ModelAttribute TbcPersona persona, @PathVariable Integer id) {
+            TbcPersona Persona = (TbcPersona) tbcPersonaService.findByKey(id);
+           ModelAndView modelAndView = new ModelAndView("home");
+
+           Persona.setNombrePersona(persona.getNombrePersona());           
+           Persona.setJefatura(persona.getJefatura());
+           Persona.setEncargadoAfijo(persona.getEncargadoAfijo());
+           Persona.setTbcUbicacion(persona.getTbcUbicacion());
+           
+           tbcPersonaService.update(Persona);
+           String message = "Persona was successfully edited.";
+           modelAndView.addObject("message", message);
+
+           return modelAndView;
 	}
     
 }
