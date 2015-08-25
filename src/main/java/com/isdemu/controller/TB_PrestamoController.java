@@ -110,6 +110,8 @@ public class TB_PrestamoController {
                 String hora_fin = objectNumero.getString("hora_fin");
                 String fecha_solic = objectNumero.getString("fecha_solic");
                 String fecha_reser = objectNumero.getString("fecha_reser");
+                String tema = objectNumero.getString("tema");
+                String persona = objectNumero.getString("persona");
                
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 System.out.println("nPrestamo Json:"+nPrestamo);
@@ -147,6 +149,8 @@ public class TB_PrestamoController {
                 prestamoEquipo.setHoraFin(hora_F);
                 prestamoEquipo.setFechaSolicitud(fecha_sol);
                 prestamoEquipo.setFechaReservacion(fecha_res);
+                prestamoEquipo.setTemaImpartir(tema);
+                prestamoEquipo.setPersonaImpartir(persona);
                 
                 tbPrestamoService.save(prestamoEquipo);
                 
@@ -207,7 +211,7 @@ public class TB_PrestamoController {
                 System.out.println("Entra actualiza2");
                   Map<String, Object> myModel = new HashMap<String, Object>();
                    //List ClasAct = tbClasActService.getAll();  
-                   myModel.put("prestamoInv",pre ); 
+                    myModel.put("prestamoInv",pre); 
                    myModel.put("prestamo",pres);
                  // myModel.put("clasificacionA",activo );
                   //myModel.put("AllclasificacionA",ClasAct );
@@ -220,25 +224,115 @@ public class TB_PrestamoController {
 	}
         
         
-        @RequestMapping(value="/editPrestamo2/{id}", method=RequestMethod.POST)
-	public ModelAndView edditingControlInventario(@ModelAttribute TbControlSalida con, @PathVariable Integer id) {
-            
-		TbPrestamoEquipo preActual = (TbPrestamoEquipo) tbPrestamoService.findByKey(id);
-                
+        @RequestMapping(value="/editPrestamo2/{id1}", method=RequestMethod.POST)
+	public @ResponseBody String updatePais(@RequestBody String prestamo, @PathVariable Integer id1) throws ParseException {
 		ModelAndView modelAndView = new ModelAndView("home");
+		 System.out.println("String Json:"+prestamo);
+                 System.out.println("id Json:"+id1);
                 
-                //conActual.setRazonCambio(con.getRazonCambio());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
-                //conActual.setNControl(con.getNMovimiento());
+                TbPrestamoEquipo prestamoEquipo = (TbPrestamoEquipo) tbPrestamoService.findByKey(id1);
                 
-		                
-		tbPrestamoService.update(preActual);
-
-		String message = "prestamo was successfully edited.";
+                JSONObject array2 = new JSONObject(prestamo);
+                JSONArray object3 = array2.getJSONArray("Prestamo");
+                
+                JSONObject objectNumero = object3.getJSONObject(0);
+                
+                String nPrestamo = objectNumero.getString("nPrestamo");
+                String destino = objectNumero.getString("destino");
+                String hora_inicio = objectNumero.getString("hora_inicio");
+                String hora_fin = objectNumero.getString("hora_fin");
+                String fecha_solic = objectNumero.getString("fecha_solic");
+                String fecha_reser = objectNumero.getString("fecha_reser");
+                String tema = objectNumero.getString("tema");
+                String persona = objectNumero.getString("persona");
+                
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println("nPrestamo Json:"+nPrestamo);
+                System.out.println("Numero Json:"+destino);
+                System.out.println("hora_inicio Json:"+hora_inicio);
+                System.out.println("hora_fin Json:"+hora_fin);
+                System.out.println("fecha_solic Json:"+fecha_solic);
+                System.out.println("fecha_reser Json:"+fecha_reser);
+               
+                Date hora_F=new Date();
+                        try {
+                          hora_F = formatter.parse(hora_fin);
+                        } catch (ParseException ex) {
+                   }
+                 Date fecha_sol=new Date();
+                        try {
+                          fecha_sol = formatter.parse(fecha_solic);
+                        } catch (ParseException ex) {
+                   }
+                        
+                 Date fecha_res=new Date();
+                        try {
+                          fecha_res = formatter.parse(fecha_reser);
+                        } catch (ParseException ex) {
+                   }
+                        
+                 Date hora_I=new Date();
+                        try {
+                          hora_I = formatter.parse(hora_inicio);
+                        } catch (ParseException ex) {
+                   }
+                               
+                prestamoEquipo.setNPrestamo(Integer.parseInt(nPrestamo));
+                prestamoEquipo.setHoraInicio(hora_I);
+                prestamoEquipo.setHoraFin(hora_F);
+                prestamoEquipo.setFechaSolicitud(fecha_sol);
+                prestamoEquipo.setFechaReservacion(fecha_res);
+                prestamoEquipo.setTemaImpartir(tema);
+                prestamoEquipo.setPersonaImpartir(persona);
+                prestamoEquipo.setDestino(destino);
+                
+                tbPrestamoService.update(prestamoEquipo);
+                
+               /* TbPrestamoEquipo UltPres =(TbPrestamoEquipo) tbPrestamoService.LastIdPrestamo().get(0);
+                
+                 
+                // JSONObject array = new JSONObject(prestamo);
+                 JSONArray object = array2.getJSONArray("Inventario");
+                 for(int i=0;i<object.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
+                  
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
+                    
+                    TbrPrestamoEquipoInventario preInv= new TbrPrestamoEquipoInventario();
+                    preInv.setTbPrestamoEquipo(UltPres);
+                    
+                    TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
+                    preInv.setTbInventario(tempInv);
+                    
+                    tbrPrestamoInvService.save(preInv);
+                    
+                    System.out.println("Id Json:"+id);
+                   
+                }
+                 
+                
+                */
+                
+            
+		//tbMovimientoService.save(movi);
+		String message = "Prestamo was successfully added.";
 		modelAndView.addObject("message", message);
-
-		return modelAndView;
+		return "22";
 	}
+        
+        @RequestMapping(value = "/agregarInventarioM", method = RequestMethod.POST)
+        public @ResponseBody
+        List<TbInventario> addingInvDescargo(@RequestBody String cod) {
+            //ModelAndView modelAndView = new ModelAndView("descargo");
+            System.out.println("codigo inv " + cod);
+            Map<String, Object> myModel = new HashMap<String, Object>();
+            List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
+            System.out.println("list inv " + list_invent);
+            //return new ModelAndView("descargo", myModel);
+
+            return list_invent;    
+        }
     
 }

@@ -69,41 +69,82 @@
                         <hr>
 
 
-<form:form method="POST" action="${pageContext.request.contextPath}/Control/editControl1/${control.idControlSalida}" modelAttribute="control" >
+<form:form method="POST" action="${pageContext.request.contextPath}/Control/editControl1/${control.idControlSalida}" modelAttribute="control" id="controlE" name="controlE">
     
        
-                <div class="form-group">
-                        <label class="control-label">
-                                id control salida<span class="symbol required"></span>
-                        </label>
-                        <form:input path="idControlSalida" type="text" placeholder="${control.idControlSalida}" class="form-control" id="id" name="lastname"/>
-                </div>
-    
-               <div class="form-group">
-                            <label class="control-label">
-                                    Observacion<span class="symbol required"></span>
-                            </label>
-<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                            <form:input path="observacion" type="text" placeholder="${control.observacion}" class="form-control" id="observacion" name="observacion"/>
+               <div class="row">
+                                <div class="col-md-12">
+                                    <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForm">
 
-                </div> 
+                                        <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                                    </div>
+                                    <div class="successHandler alert alert-success no-display">
+                                        <i class="fa fa-ok"></i> Your form validation is successful!
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+    
+                                                                      
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Solicitante<span id="span_solicitante" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="solicitante" type="text" class="form-control" id="solicitante" name="solicitante" onblur="return validaSolicitante(event);"/>
+                                                <span for="solicitante" class="help-block  no-display" id="span_solicitanteT">Ingrese un Solicitante</span>                   
                 
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Observacion<span id="span_observacion" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="observacion" type="text" class="form-control" id="observacion" name="observacion" onblur="return validaObservacion(event);"/>
+                                                <span for="observacion" class="help-block  no-display" id="span_observacionT">Ingrese una Observacion</span>                   
                 
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Destino<span id="span_destino" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="destino" type="text" class="form-control" id="destino" name="destino" onblur="return validaDestino(event);" />
+                                                <span for="destino" class="help-block  no-display" id="span_destinoT">Ingrese un Destino</span>                   
+                
+                                    </div>                                            
+                                </div>
+                                <div class="col-md-6">                                    
+                                   
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Salida<span id="span_sal" class="symbol"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaSalida" type="text" id="fecha_sal" name="fecha_sal" data-date-format="yyyy-mm-dd" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaSalida(event);" onblur="return validaFechaSalida(event);"/>
+                                        <span for="fecha_sal" class="help-block  no-display" id="span_fechaSal">Ingrese una fecha salida</span>    
+
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Tentativo Devolucion<span id="span_ten" class="symbol"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaTentativaDevolucion" type="text" id="fecha_devolucion" name="fecha_devolucion" data-date-format="yyyy-mm-dd" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaTentativo(event);" onblur="return validaFechaTentativo(event);"/>
+                                        <span for="fecha_ten" class="help-block  no-display" id="span_fechaTen">Ingrese una fecha tentativa devolucion</span>    
+
+                                    </div>
+                                    
+                                   
+                                </div>                                       
+                             </div>
                 
                <div class="row">
-      
-                                
-<!--                                <div class="col-md-4">
-                                    <button class="btn btn-yellow btn-block" id="btnDetalle" type="button">
-                                                Detalle inventario <i class="fa fa-arrow-circle-right"></i>
-                                        </button>
-                                </div>-->
-                        
-                        
+
                             <div class="row">
                                 
                                 <div class="col-md-4">
-                                        <button class="btn btn-yellow btn-block" type="submit">
+                                        <button class="btn btn-yellow btn-block" type="button" onclick="enviar();">
                                                 Actualizar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
@@ -112,25 +153,21 @@
                   </form:form>
 
                        <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="sample-table-2">
+                        <table class="table table-striped table-hover" id="tabla_prueba">
                                 <thead>
                                         <tr>
                                              <th>id control inv</th>
                                                <th>ID control</th>
-                                                <th>ID inventario</th>
-                                                <th>marca</th>
                                                 <th>Delete</th>
                                         </tr>
                                 </thead>
                                 <tbody id="tablabody" name="tablabody">
 
                                 <c:forEach var="con" items="${controlInv}">
-                                            <tr align="center">
+                                            <tr id="${con.idControlSalidaInventario}">
                                                 <td>${con.idControlSalidaInventario}</td>
-                                                <td>${con.tbControlSalida.idControlSalida}</td>
-                                                <td>${con.tbInventario.idInventario}</td>                                                  
-                                                <td>${con.tbInventario.marca}</td> 
-                                                <td><a href=""> Eliminar</a></td>
+                                                <td>${con.tbControlSalida.idControlSalida}</td>                                               
+                                                <td><a href="" onclick="return deleteElement('${con.idControlSalidaInventario}');"> Eliminar</a></td>
 
                                             </tr>
                                         </c:forEach>	
@@ -141,78 +178,148 @@
                 </div>
 
  
-</div>
-								</div>
-								<!-- end: FORM VALIDATION 1 PANEL -->
-							</div>
-						</div>
-						
-						<!-- end: PAGE CONTENT-->
-				<%@include file="footer.jsp" %>		
-                                
-                                
-                                <script>
-$("#btnDetalle").click(function () {
-   var conceptName = $("#id").val(); // define the variable
-    //var conceptName = 1;
-    alert(conceptName);
-    
-    
-    
-   $.ajax({ 
-                url: "${pageContext.request.contextPath}/Movimiento/detalleInventarios", 
-                type: 'POST', 
-                dataType: 'json', 
-                contentType: 'application/json',
-                mimeType: 'application/json',
-                
-                
-                data: "{id:" + conceptName + "}", 
-                
-               success: function(data) 
-            { 
-                   var html = '';
-                   var len = data.length;
-                    //alert("devuelve algo"+data);
-//                            $('#dropdown2').empty();
-//                            data.forEach(function(entry) 
-//                            {
-//                                    console.log(entry);
-//                                   // alert("foreach :"+entry.nombreClase );
-//                                   html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
-//                            });
-//                            $('#dropdown2').append(html);
-                    alert("devuelve algo: "+data);
-                                       
-                    //var tblBody = document.createElement("tbody");
+            </div>
+                            </div>
+                            <!-- end: FORM VALIDATION 1 PANEL -->
+                    </div>
+            </div>
+
+                <!-- end: PAGE CONTENT-->
+<%@include file="footer.jsp" %>		
  
-  // Crea las celdas
-                        $('#tablabody').empty();
-                        data.forEach(function(entry) 
-                            {
-                                 console.log(entry);
-                                 html = '';
-                                 html+="<tr>";
-                                 html+="<td>"+entry.idInventario+"</td>";
-                                 html+="<td>"+entry.marca+"</td>";
-                                 html+="<td>"+entry.modelo+"</td>";
-                                 html+="</tr>";
-                                 
-                                
-                                 $('#tablabody').append(html);
-                                //tblBody.appendChild(hilera);
-                                
-                            });
-                            
-                         },    
-                error:function(data,status,er) 
-                { 
-                    alert("error: "+data+" status: "+status+" er:"+er);
-                    
-                    
-                }
-            });
-   
        
+            
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesControl.js"></script>
+<script>                             
+
+    function deleteElement(id){
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false;
+        }
+        
+function enviar()
+    {        
+        if (valida_envio()){      
+        return 0; 
+         }
+         
+        var solicitante=$("#solicitante").val();
+        var fecha_sal=$("#fecha_sal").val();
+        var observacion=$("#observacion").val();
+        var destino=$("#destino").val();
+        var fecha_devolucion=$("#fecha_devolucion").val();
+        
+        var jsonArray="{"
+        
+      
+        jsonArray+="\"Control\":[{\"solicitante\":\""+solicitante+"\",\"observacion\":\""+observacion+"\",\"destino\":\""+destino+"\",\"fecha_devolucion\":\""+fecha_devolucion+"\",\"fecha_sal\":\" "+fecha_sal+"\""+"}],";
+         
+         jsonArray+="\"Inventario\":[";
+        
+        var l=0;
+    
+        $('#tabla_prueba tr').each(function(index, element){
+
+        var id = $(element).find("td").eq(0).html();
+      
+        if(l!=0){
+            jsonArray=jsonArray+"{\"idInv\":"+'"'+id+'"'+"},";
+
+          }
+
+        l=1;
+
     });
+
+
+    jsonArray=jsonArray.substring(0,jsonArray.length-1);
+    jsonArray=jsonArray+"]}";
+    //alert(jsonArray);
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Control/editControl1/${control.idControlSalida}",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               alert("Almacenado con Exito");
+               location.reload();
+           },
+           data: jsonArray
+       });
+        
+    };
+    
+    function enviarCodeM()
+    {
+        var codigoI = $("#codigo").val(); 
+        if (condigoYaAgregado(codigoI) === true)
+        {
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/Control/agregarInventarioM",
+                dataType: "json",
+                contentType: 'application/json',
+                data: codigoI,
+                success: function (listaInv)
+                {
+                    
+                    var num = 0;
+                    listaInv.forEach(function (entry1)
+                    {
+                        num++;
+                    });
+                    if (num >= 1)
+                    {
+                        
+                        listaInv.forEach(function (entry)
+                        {
+                             if(false)
+                            {
+                              
+                            } 
+                            else
+                            {
+                               
+                            //console.log(entry);
+                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' + '</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>' + '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                            $('#span_codigoE').addClass("no-display");
+                            $('#span_codigoE').closest("div").removeClass("has-error");
+                        }
+                        });
+                            
+                      if ($('#tabla_prueba tr').size() <= 1)
+                     {
+                         $('#span_codigoE2').delay(0).fadeIn(1000).fadeOut(5000);
+                          //$('#span_codigoE').addClass("no-display");
+                     }  
+
+                    }
+                    else
+                    {
+                        $('#span_codigoE').removeClass("no-display");
+                        $('#span_codigoE').closest("div").addClass("has-error");
+                        $('#span_codigoE').closest("div").removeClass("has-success");
+                    }
+                },
+                error: function (data, status, er) {
+                    alert("error: " + data + " status: " + status + " er:" + er);
+                }
+
+            });//Fin .ajax
+        }
+        else
+        {
+            $('#span_codigoE').removeClass("no-display");
+            $('#span_codigoE').closest("div").addClass("has-error");
+            $('#span_codigoE').closest("div").removeClass("has-success");
+        }
+
+    }
+    ;
+                 
+
+
+
  </script>
