@@ -220,6 +220,17 @@ public class TB_ControlController {
 		return modelAndView;
 	}
         
-        
+        @RequestMapping(value = "/agregarInventarioM", method = RequestMethod.POST)
+        public @ResponseBody
+        List<TbInventario> addingInvDescargo(@RequestBody String cod) {
+            //ModelAndView modelAndView = new ModelAndView("descargo");
+            System.out.println("codigo inv " + cod);
+            Map<String, Object> myModel = new HashMap<String, Object>();
+            List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
+            System.out.println("list inv " + list_invent);
+            //return new ModelAndView("descargo", myModel);
+
+            return list_invent;    
+        }
     
 }
