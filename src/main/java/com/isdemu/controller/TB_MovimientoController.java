@@ -5,29 +5,24 @@
  */
 package com.isdemu.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbhMovimiento;
 import com.isdemu.model.TbrMovimientoInventario;
+import com.isdemu.service.TBC_ClasificacionLocalizacion_Service;
 import com.isdemu.service.TBC_Persona_Service;
 import com.isdemu.service.TBH_Movimiento_Service;
 import com.isdemu.service.TBR_MovimientoInventario_Service;
 import com.isdemu.service.TB_Inventario_Service;
-import com.isdemu.service.TB_Movimiento_Service;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import com.isdemu.service.TB_Movimiento_Service; 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat; 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import static javassist.CtMethod.ConstParameter.string;
+import java.util.List; 
+import java.util.Map; 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,14 +53,14 @@ public class TB_MovimientoController {
     private TBC_Persona_Service tbcPersonaService;
     @Autowired
     private TBH_Movimiento_Service tbhMovimientoService;
-    
+    @Autowired
+        private TBC_ClasificacionLocalizacion_Service tbcClasificacionLocalizacionService;
 
     @RequestMapping(value = "/consultarMov")
     public ModelAndView consultarMovimientos() {
         ModelAndView modelAndView = new ModelAndView("consultar_movimiento");
 
         List movimiento = tbMovimientoService.getAll();
-        
         modelAndView.addObject("movimiento", movimiento);
         return modelAndView;
     }
@@ -73,17 +68,14 @@ public class TB_MovimientoController {
     @RequestMapping(value = "/insertarMovimiento", method = RequestMethod.GET)
     public ModelAndView addMovimiento() {
         System.out.println("esntra aqui GETT movimiento");
-        //ModelAndView modelAndView = new ModelAndView("inventario");
         Map<String, Object> myModel = new HashMap<String, Object>();
-
         List Invent = tbInventarioService.getAll();
         List persona = tbcPersonaService.getAll();        
+        List clasiLocalizacion=tbcClasificacionLocalizacionService.getAll();
         myModel.put("persona", persona);
-
         myModel.put("movimiento", new TbMovimiento());
-
-        myModel.put("inventario", Invent);
-
+        myModel.put("inventario", Invent);        
+        myModel.put("clasiLocalizacion",clasiLocalizacion);
         return new ModelAndView("movimiento", myModel);
     }
 
@@ -166,6 +158,16 @@ public class TB_MovimientoController {
     public ModelAndView deleteMov(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("home");
         tbMovimientoService.delete(id);
+        String message = "movimiento was successfully deleted.";
+        modelAndView.addObject("message", message);
+        return modelAndView;
+    }
+    
+    
+    @RequestMapping(value = "/deleteInvMovimiento/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteIMov(@PathVariable Integer id) {
+        ModelAndView modelAndView = new ModelAndView("home");
+        tbrMovimientoInvService.delete(id);
         String message = "movimiento was successfully deleted.";
         modelAndView.addObject("message", message);
         return modelAndView;

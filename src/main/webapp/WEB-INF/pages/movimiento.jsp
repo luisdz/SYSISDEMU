@@ -67,13 +67,65 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display" id="mensajeErrorFormM"  >
-                                <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                                <i class="fa fa-times-sign"></i> No se puede realizar la accion, existen errores en la informacion.
                             </div>
-                            <div class="successHandler alert alert-success no-display">
+                            <div id="mensajeExitoFormM" class="successHandler alert alert-success no-display">
                                 <i class="fa fa-ok"></i> Your form validation is successful!
                             </div>
                         </div>
                         <div class="col-md-6">
+                            
+                                <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Tipo Localizacion<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="tipoClasificacion" name="tipoClasificacion" >
+                                    <form:option value="0"  label="Seleccione un Tipo de Localizacion"/>
+                                    <c:forEach var="clasiL" items="${clasiLocalizacion}">
+                                        <form:option value="${clasiL.idClasificacionLocalizacion}"  label="${clasiL.nombreClasificacion}"/>
+                                    </c:forEach>
+                                </form:select>
+                                <span for="clasiL" class="help-block  no-display" id="span_dropdownT">Seleccione un Tipo de Localizacion</span>
+                            </div>
+                            
+                              <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Localizacion<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="localizacion" name="localizacion" >
+                                    <form:option value="0"  label="Selecciona una localizacion"/>
+                                    
+                                </form:select>
+                                <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
+                            </div>
+                            
+                               <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Ubicacion<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion" >
+                                    <form:option value="0"  label="Selecciona una Ubicacion"/>
+                                   
+                                </form:select>
+                                <span for="ubicacion" class="help-block  no-display" id="span_dropdownT">Seleccione una Ubicacion</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Nuevo Responsable<span class="symbol"></span>
+                                </label>
+                                <form:select  multiple="single" path="" cssStyle="width: 100%" id="responsable" name="dropdown2" onchange="return validaRespMov(event);" onblur="return validaRespMov(event);">
+                                    <form:option value="0" label="Seleccione responsable"/>                                                   
+                                </form:select>
+                                <span for="responsable" class="help-block  no-display" id="span_resp">Seleccione El nuevo responsable</span>  
+                            
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+
                             <div class="form-group">
                                 <label class="control-label">
                                     Fecha<span class="symbol "></span>
@@ -82,11 +134,8 @@
                                     <form:input path="fechaMovimiento" type="text" data-date-format="dd-mm-yyyy" id="fechaMov" data-date-viewmode="years" onchange="return validaFechaMov(event);" onblur="return validaFechaMov(event);" class="form-control date-picker"/>
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                 </div>  <span for="fechaMov" class="help-block  no-display" id="span_fecha">Ingrese una fecha</span>    
-
-
-                            </div>
-
- 
+                   
+                            </div> 
                             <div class="form-group">
                                 <label class="control-label">
                                     Razon de cambio<span class="symbol "></span>
@@ -94,11 +143,6 @@
                                 <form:input path="razonCambio" type="text" placeholder="Ingrese el nombre" class="form-control" id="razon" name="lastname"/>
 
                             </div>
-                            <br>
-                        </div>
-                        <div class="col-md-6">
-
-                            
                             <div class="form-group">
                                 <label class="control-label">
                                     Codigo Inventario<span class="symbol "></span>
@@ -108,17 +152,8 @@
                                 <span for="codigo" class="help-block  no-display" id="span_codigoE2">El inventario con ese codigo esta descargado</span>  
                             
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Nuevo Responsable<span class="symbol"></span>
-                                </label>
-                                <form:select  multiple="single" path="" cssStyle="width: 100%" id="responsable" name="dropdown2" onchange="return validaRespMov(event);" onblur="return validaRespMov(event);">
-                                    <form:option value="0" label="Seleccione responsable"/>  
-                                    <form:options items="${persona}" itemValue="idPersona"  itemLabel="nombrePersona"/>                                                    
-                                </form:select>
-                                <span for="responsable" class="help-block  no-display" id="span_resp">Seleccione El nuevo responsable</span>  
+                                
                             
-                            </div>
 
                             <br>
                         </div>
@@ -269,6 +304,13 @@
                 contentType: 'application/json',
                 success: function (msg) {
                     //alert("entra");
+                    $('#movF').each(function () {
+                        this.reset();
+                        $('.help-block').closest("div").removeClass("has-success");
+                        $('.help-block').closest("div").removeClass("has-error");
+                    }); 
+                    $('#mensajeExitoFormM').removeClass("no-display");
+                    $('#tablabody').empty();
                 },
                 data: jsonArray
             });
@@ -359,6 +401,164 @@
 
 
     });
+
+//Combos dependientes
+
+$("#dropdown1").change(function () {
+        var conceptName = $('#dropdown1 :selected').val(); // define the variable
+        // alert(conceptName);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaClaseA",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: conceptName,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#dropdown2').empty();
+                html = '<option value="0"  label="Selecciona una clasificacion"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
+                });
+                $('#dropdown2').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+
+            }
+        });
+
+
+    });
+    
+    
+    //index change de tipo de clasificacion de localizacion para cargar localizacion
+    
+     $("#tipoClasificacion").change(function () {
+        var idTipoClasificacion = $('#tipoClasificacion :selected').val(); // define the variable
+      // alert(idTipoClasificacion);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaLocalizacion",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: idTipoClasificacion,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#localizacion').empty();
+                html = '<option value="0"  label="Selecciona una localizacion"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idLocalizacion + '">' + entry.nombreLocalizacion + '</option>';
+                });
+                $('#localizacion').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+
+            }
+        });
+
+
+    });
+    
+    //index change de localizacion para cargar ubicacion
+    
+     $("#localizacion").change(function () {
+        var idLocalizacion = $('#localizacion :selected').val(); // define the variable
+      // alert(idLocalizacion);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaUbicacion",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: idLocalizacion,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#ubicacion').empty();
+                html = '<option value="0"  label="Selecciona una localizacion"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idUbicacion + '">' + entry.nombreUbicacion + '</option>';
+                });
+                $('#ubicacion').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+
+            }
+        });
+
+
+    });
+    $("#ubicacion").change(function () {
+        var idLocalizacion = $('#ubicacion :selected').val(); // define the variable
+       //alert(idLocalizacion);
+
+
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/Inventario/listaPersona",
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            data: idLocalizacion,
+            success: function (data) {
+                var html = '';
+                var len = data.length;
+                //alert("devuelve algo"+data);
+                $('#responsable').empty();
+                html = '<option value="0"  label="Selecciona una persona"/>';
+                data.forEach(function (entry)
+                {
+                    console.log(entry);
+                    // alert("foreach :"+entry.nombreClase );
+                    html += '<option value="' + entry.idPersona + '">' + entry.nombrePersona + '</option>';
+                });
+                $('#responsable').append(html);
+                // alert("devuelve algo: "+data);
+            },
+            error: function (data, status, er) {
+                alert("error: " + data + " status: " + status + " er:" + er);
+
+            }
+        });
+
+
+    });
+
 
 
 </script>

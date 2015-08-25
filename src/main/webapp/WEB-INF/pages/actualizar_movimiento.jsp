@@ -141,7 +141,7 @@
                                     <td>${mov.tbInventario.descripcionEquipo}</td>
                                     <td>${mov.tbInventario.tbcClaseActivo.nombreClase}</td>
                                     <td>${mov.tbInventario.modelo}</td> 
-                                    <td><a href=""> Eliminar</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/Movimiento/deleteInvMovimiento/${mov.idMovimientoInventario}"> Eliminar</a></td>
 
                                 </tr>
                             </c:forEach>	

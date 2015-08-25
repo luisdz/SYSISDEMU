@@ -199,16 +199,18 @@
                     listaInv.forEach(function (entry1)
                     {
                         num++;
-                    });
+                    }); 
                     if (num >= 1)
                     {
+                         
                         listaInv.forEach(function (entry)
                         {
                             //console.log(entry);
                             //alert(entry.tbcEstadoInventario.idEstado);
+                             
                             if(entry.tbcEstadoInventario.idEstado === 2)
                             {
-                                
+                              
                             } 
                             else
                             {
@@ -216,9 +218,10 @@
                             $('#span_codigoE').addClass("no-display");
                             $('#span_codigoE').closest("div").removeClass("has-error");
                             }
-                        });
+                        }); 
                      if ($('#tabla_prueba tr').size() <= 1)
                      {
+                          
                          $('#span_codigoE2').delay(0).fadeIn(1000).fadeOut(5000);
                           //$('#span_codigoE').addClass("no-display");
                      }
@@ -250,17 +253,13 @@
     function enviarDes()
     {
         $("#ingresar").val(1);
-        // alert($("#ingresar").val());
-        
+                
         validaFechaDescargo();
         if ($('#tabla_prueba tr').size() > 1  && validaFechaDescargo()!==false)        
         {
            
-            //$('#mensajeErrorFormM').addClass("no-display");
             var fechaM = $("#fechaDescargo").val();
             var comentarioM = $("#comentario").val();
-
-
             var jsonArray = "{";
 
             jsonArray += "\"Descargo\":[{\"fecha\":\"" + fechaM + "\",\"comentario\":\" " + comentarioM + "\"" + "}],";
