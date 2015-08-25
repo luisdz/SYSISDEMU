@@ -39,6 +39,7 @@ public class TbInventario implements Serializable {
      private TbcPersona tbcPersona;
      private TbcProveedor tbcProveedor;
      private Integer idPersonaAsignado;
+     private Integer idLocalizacion;
      private String descripcionEquipo;
      private String codigoInventario;
      private String marca;
@@ -120,6 +121,14 @@ public class TbInventario implements Serializable {
         this.idPersonaAsignado = idPersonaAsignado;
     }
 
+    @Column(name="ID_LOCALIZACION")  
+    public Integer getIdLocalizacion() {
+        return idLocalizacion;
+    }
+
+    public void setIdLocalizacion(Integer idLocalizacion) {
+        this.idLocalizacion = idLocalizacion;
+    }
     
     @Column(name="DESCRIPCION_EQUIPO", length=1024)
     public String getDescripcionEquipo() {
@@ -283,6 +292,8 @@ public class TbInventario implements Serializable {
     public void setFechaUpdate(Date fechaUpdate) {
         this.fechaUpdate = fechaUpdate;
     }
+    
+  
 
 
 

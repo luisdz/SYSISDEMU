@@ -23,8 +23,9 @@ import javax.persistence.Table;
 public class TbtVerificarInventario {
     
     private int idTverificarInventario;
-     private String codigoInventario;
-     private int idLocalizacion;
+    private String codigoInventario;
+    private int idLocalizacion;
+    private int idInventario;
      
      
         @Id 
@@ -57,6 +58,15 @@ public class TbtVerificarInventario {
     
     public void setIdLocalizacion(int idLocalizacion) {
         this.idLocalizacion = idLocalizacion;
+    }
+    
+    @Column(name="ID_INVENTARIO", nullable=false)
+    public int getIdInventario() {
+        return idInventario;
+    }
+
+    public void setIdInventario(int idInventario) {
+        this.idInventario = idInventario;
     }
 
 

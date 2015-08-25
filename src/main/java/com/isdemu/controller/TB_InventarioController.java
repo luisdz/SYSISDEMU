@@ -13,6 +13,7 @@ import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbcClaseActivo;
 import com.isdemu.model.TbcClasificacionActivo;
+import com.isdemu.model.TbcEstadoInventario;
 import com.isdemu.model.TbcLocalizacion;
 import com.isdemu.model.TbcPersona;
 import com.isdemu.model.TbcPoliza;
@@ -245,6 +246,12 @@ public class TB_InventarioController {
                 String CodigoInventario=CodigoClasificacion+CodigoClase+Correlativo;
                 System.out.println("codigo inventario a ingresar:"+CodigoInventario);
                 inventario.setCodigoInventario(CodigoInventario);
+                
+                 //crear obj estado para set el id estado
+                    TbcEstadoInventario estado=new TbcEstadoInventario();
+                    estado.setIdEstado(1);
+                    inventario.setTbcEstadoInventario(estado);
+                    
                 tbInventarioService.save(inventario);
                 String message = "Pais was successfully added.";
                 modelAndView.addObject("message", message);
@@ -315,6 +322,12 @@ public class TB_InventarioController {
                     
                     CodigoInventario=CodigoClasificacion+CodigoClase+Correlativo;
                     inventario.setCodigoInventario(CodigoInventario);
+                    
+                      //crear obj estado para set el id estado
+                    TbcEstadoInventario estado=new TbcEstadoInventario();
+                    estado.setIdEstado(1);
+                    inventario.setTbcEstadoInventario(estado);
+                    
                     tbInventarioService.save(inventario);
                 }
                
@@ -402,6 +415,15 @@ public class TB_InventarioController {
                    
                     String financiamiento=ObjInv.getString("financiamiento");
                     inv.setFinanciamiento(financiamiento);
+                    
+                    String idLocalizacion=ObjInv.getString("idLocalizacion");
+                    int idLocalizacionInt=Integer.parseInt(idLocalizacion);
+                    inv.setIdLocalizacion(idLocalizacionInt);
+                    
+                     //crear obj estado para set el id estado
+                    TbcEstadoInventario estado=new TbcEstadoInventario();
+                    estado.setIdEstado(1);
+                    inv.setTbcEstadoInventario(estado);
                     
                     String descripcion=ObjInv.getString("descripcion");
                     inv.setDescripcionEquipo(descripcion);

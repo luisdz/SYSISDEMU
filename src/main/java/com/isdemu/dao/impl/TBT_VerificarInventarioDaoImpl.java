@@ -57,7 +57,7 @@ public class TBT_VerificarInventarioDaoImpl implements TBT_VerificarInventarioDa
 	}
         
           @Override
-	public List<TbtVerificarInventario> getInventarioSobrante() {
+	public List<TbtVerificarInventario> getInventarioSobrante(Serializable id) {
 		// TODO Auto-generated method stub
             System.out.println("ingresa al inventario sobrante");
             Session session = null;
@@ -69,12 +69,13 @@ public class TBT_VerificarInventarioDaoImpl implements TBT_VerificarInventarioDa
 	}
         
            @Override
-	public List<TbtVerificarInventario> getInventarioFaltante() {
+	public List<TbtVerificarInventario> getInventarioFaltante(Serializable id) {
 		// TODO Auto-generated method stub
                System.out.println("ingresa al inventario faltante");
             Session session = null;
             session = sessionFactory.getCurrentSession();
-            SQLQuery query = session.createSQLQuery("SELECT TB_INVENTARIO.CODIGO_INVENTARIO FROM TB_INVENTARIO EXCEPT SELECT TBT_VERIFICAR_INVENTARIO.CODIGO_INVENTARIO FROM TBT_VERIFICAR_INVENTARIO");
+            SQLQuery query = session.createSQLQuery("SELECT TB_INVENTARIO.ID_INVENTARIO,TB_INVENTARIO.CODIGO_INVENTARIO FROM TB_INVENTARIO WHERE ID_LOCALIZACION='"+id+"'EXCEPT SELECT TBT_VERIFICAR_INVENTARIO.ID_INVENTARIO, TBT_VERIFICAR_INVENTARIO.CODIGO_INVENTARIO FROM TBT_VERIFICAR_INVENTARIO");
+            System.out.println("la query"+query);
             List<TbtVerificarInventario> Vinventario = query.list();
             
             return Vinventario;

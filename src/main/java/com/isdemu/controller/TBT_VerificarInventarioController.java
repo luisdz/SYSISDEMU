@@ -79,13 +79,17 @@ public class TBT_VerificarInventarioController {
                                    
                     String codigoStr=ObjInv.getString("codigo");
                      Vinv.setCodigoInventario(codigoStr);
+                    
+                     String idInv=ObjInv.getString("idInv");
+                     int idInvInteger=Integer.parseInt(idInv);
+                     Vinv.setIdInventario(idInvInteger);
                      
                     Vinv.setIdLocalizacion(idLocalizacionInt);
                     tbcVerificarInventarioService.save(Vinv);
                 }
                 
-               List<TbtVerificarInventario> InventarioFaltante= tbcVerificarInventarioService.getInventarioFaltante();
-               List<TbtVerificarInventario> InventarioSobrante= tbcVerificarInventarioService.getInventarioSobrante();
+               List<TbtVerificarInventario> InventarioFaltante= tbcVerificarInventarioService.getInventarioFaltante(idLocalizacionInt);
+               List<TbtVerificarInventario> InventarioSobrante= tbcVerificarInventarioService.getInventarioSobrante(idLocalizacionInt);
                tbcVerificarInventarioService.delete(1);
                // tbInventarioService.save(inventario);
                 String message = "Pais was successfully added.";

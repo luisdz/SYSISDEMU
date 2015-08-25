@@ -346,14 +346,14 @@
           data[0].forEach(function (entry)
                         {
                             //alert("for each");
-                            $('#InventarioFaltante').append('<tr  id="' + entry + '">' + '<td>' + entry + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Editar</a></td></tr>');
+                            $('#InventarioFaltante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Ver Detalle</a></td></tr>');
                        //  alert("cadacodigo:"+entry);
                            
                         });
             data[1].forEach(function (entry)
                         {
                             //alert("for each");
-                            $('#InventarioSobrante').append('<tr  id="' + entry + '">' + '<td>' + entry + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Editar</a></td></tr>');
+                            $('#InventarioSobrante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Ver Detalle</a></td></tr>');
                        //  alert("cadacodigo:"+entry);
                            
                         });

@@ -128,7 +128,7 @@
                                     Localizacion<span id="span_clasi" class="symbol "></span>
                                 </label>
 
-                                <form:select path="" class="form-control" id="localizacion" name="localizacion" >
+                                <form:select path="idLocalizacion" class="form-control" id="localizacion" name="localizacion" >
                                     <form:option value="0"  label="Selecciona una localizacion"/>
                                     
                                 </form:select>
@@ -528,6 +528,7 @@
                   var clasificacion = $('#dropdown1 option:selected').text();
                   var clase = $('#dropdown2 option:selected').text();
                   var idclase=$('#dropdown2 option:selected').val();
+                  var idLocalizacion=$('#localizacion').val();
                   var descripcion = $('#descripcionEquipo').val();
                   var custodiad = $('#persona option:selected').text();
                   var idcustodiad = $('#persona option:selected').val();
@@ -554,7 +555,8 @@
                             <td>' + fecha + '</td>\n\\n\
                             <td>' + valor + '</td>\n\\n\
                             <td>' + factura + '</td>\n\
-                            <td>' + financiamiento + '</td>\n\\n\
+                            <td>' + financiamiento + '</td>\n\\n\\n\
+                            <td>' + idLocalizacion + '</td>\n\\n\
                             <td class="eliminar">\n\
                               <a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');">\
                                 <span class="glyphicon glyphicon-remove"></span>\n\
@@ -589,10 +591,11 @@
         var valor = $(element).find("td").eq(11).html();
         var nfactura = $(element).find("td").eq(12).html();
         var financiamiento = $(element).find("td").eq(13).html();
+        var idLocalizacion = $(element).find("td").eq(14).html();
       
         if(l!=0)
         {
-            jsonArray=jsonArray+"{\"clasi\":"+'"'+clasificacion+'"'+",\"idClase\":"+'"'+idclase+'"'+",\"descripcion\":"+'"'+descripcion+'"'+",\"idCustodiade\":"+'"'+custodiade+'"'+",\"marca\":"+'"'+marca+'"'+",\"modelo\":"+'"'+modelo+'"'+",\"serie\":"+'"'+serie+'"'+",\"fechaA\":"+'"'+fechaAd+'"'+",\"valor\":"+'"'+valor+'"'+",\"factura\":"+'"'+nfactura+'"'+",\"financiamiento\":"+'"'+financiamiento+'"'+"},";
+            jsonArray=jsonArray+"{\"clasi\":"+'"'+clasificacion+'"'+",\"idClase\":"+'"'+idclase+'"'+",\"descripcion\":"+'"'+descripcion+'"'+",\"idCustodiade\":"+'"'+custodiade+'"'+",\"marca\":"+'"'+marca+'"'+",\"modelo\":"+'"'+modelo+'"'+",\"serie\":"+'"'+serie+'"'+",\"fechaA\":"+'"'+fechaAd+'"'+",\"valor\":"+'"'+valor+'"'+",\"factura\":"+'"'+nfactura+'"'+",\"financiamiento\":"+'"'+financiamiento+'"'+",\"idLocalizacion\":"+'"'+idLocalizacion+'"'+"},";
                     
           }
 
