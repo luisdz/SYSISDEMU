@@ -147,8 +147,8 @@
                                                     <td class="no-display">${mov.idMovimientoInventario}</td>
                                                     <td>${mov.tbInventario.idInventario}</td>
                                                     <td>${mov.tbMovimiento.idMovimiento}</td>
-                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${mov.idMovimiento}"> Editar</a></td>
-                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${mov.idMovimiento}"> Eliminar</a>
+                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${mov.idMovimientoInventario}"> Editar</a></td>
+                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${mov.idMovimientoInventario}"> Eliminar</a>
                                                     </td>
 
                                             </tr>

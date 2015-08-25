@@ -49,5 +49,8 @@ public class TBR_MovimientoInventario_ServiceImp implements TBR_MovimientoInvent
         return tbrMovimientoInventarioDao.findByKey(id);
     }
     
-    
+    @Override
+    public List findByInv(Serializable id) {
+        return tbrMovimientoInventarioDao.findByInv(id);
+    }
 }

@@ -17,5 +17,6 @@ public interface TBR_MovimientoInventario_Service {
      public void save(Object obj);
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
+    public List findByInv(Serializable id); 
     
 }

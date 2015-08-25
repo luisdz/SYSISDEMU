@@ -13,6 +13,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +45,16 @@ public class TBR_MovimientoInventarioDaoImp implements TBR_MovimientoInventarioD
         TbrMovimientoInventario movimiento = (TbrMovimientoInventario) getCurrentSession().get(TbrMovimientoInventario.class, id);
 		if(movimiento!=null)
 			getCurrentSession().delete(movimiento);
+    }
+    
+    @Override
+    public List findByInv(Serializable id) {
+        DetachedCriteria dc = DetachedCriteria.forClass(TbrMovimientoInventario.class,"movimientoInventario");            
+            
+            dc.createAlias("movimientoInventario.tbInventario", "inv");
+            dc.add(Restrictions.eq("inv.idInventario", id));       
+             
+           return  dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
     }
 
     @Override

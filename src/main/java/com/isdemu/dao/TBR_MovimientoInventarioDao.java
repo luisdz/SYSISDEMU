@@ -16,5 +16,6 @@ public interface TBR_MovimientoInventarioDao {
     public List getAll();
     public void save(Object obj);
     public void delete(Serializable id);
+    public List findByInv(Serializable id);    
     public Object findByKey(Serializable id);
 }
