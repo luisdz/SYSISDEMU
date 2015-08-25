@@ -77,8 +77,8 @@
 
                                 <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
                             </div>
-                            <div class="successHandler alert alert-success no-display">
-                                <i class="fa fa-ok"></i> Your form validation is successful!
+                            <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
+                                <i class="fa fa-ok"></i> Guardado con exito!
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -145,6 +145,8 @@
                             </div>
                         </div>
                                     </div>
+                                     <form:input class="no-display" path="" type="text" value="${message}"  id="msje"  />
+                     
                     </form:form>
                 
 
@@ -161,4 +163,16 @@
 
 <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
  
- 
+ <script>
+   $(document).ready(function () 
+   {       
+          
+        if (document.forms["polizaF"]["msje"].value==="1")
+        {
+             
+           $('#mensajeExitoFormM').removeClass("no-display"); 
+           document.forms["polizaF"]["msje"].value==="0";
+        }
+
+    }); 
+</script>

@@ -6,10 +6,13 @@
 package com.isdemu.dao.impl;
 
 import com.isdemu.dao.TBR_MovimientoInventarioDao;
+import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbrMovimientoInventario;
 import java.io.Serializable;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -51,5 +54,14 @@ public class TBR_MovimientoInventarioDaoImp implements TBR_MovimientoInventarioD
 		return movimiento;
         
     }
+    
+    @Override
+	public List getAll() {
+		// TODO Auto-generated method stub
+            DetachedCriteria dc = DetachedCriteria.forClass(TbrMovimientoInventario.class);
+           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
+           // dc.addOrder(Order.asc("codigo_inventario"));
+            return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
+	}
     
 }

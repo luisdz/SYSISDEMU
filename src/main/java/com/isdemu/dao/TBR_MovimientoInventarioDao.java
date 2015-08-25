@@ -6,13 +6,14 @@
 package com.isdemu.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author AlejandroPC
  */
 public interface TBR_MovimientoInventarioDao {
-    
+    public List getAll();
     public void save(Object obj);
     public void delete(Serializable id);
     public Object findByKey(Serializable id);

@@ -122,11 +122,10 @@
                                 <th class="no-display">ID inventario</th>
 
                                
-                                <th>marca</th>
+                                
                                 <th>Descripcion</th>
                                 <th>Clase</th>
                                 <th>Modelo</th>
-                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody id="tablabody" name="tablabody">
@@ -137,11 +136,11 @@
                                     <td class="no-display">${mov.tbMovimiento.idMovimiento}</td>
                                     <td class="no-display">${mov.tbInventario.idInventario}</td>
                                                                                       
-                                    <td>${mov.tbInventario.marca}</td>
+                                    
                                     <td>${mov.tbInventario.descripcionEquipo}</td>
                                     <td>${mov.tbInventario.tbcClaseActivo.nombreClase}</td>
                                     <td>${mov.tbInventario.modelo}</td> 
-                                    <td><a href="${pageContext.request.contextPath}/Movimiento/deleteInvMovimiento/${mov.idMovimientoInventario}"> Eliminar</a></td>
+                                    <td class="no-display"><a href="${pageContext.request.contextPath}/Movimiento/deleteInvMovimiento/${mov.idMovimientoInventario}"> Eliminar</a></td>
 
                                 </tr>
                             </c:forEach>	

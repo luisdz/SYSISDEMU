@@ -70,7 +70,7 @@
                                 <i class="fa fa-times-sign"></i> No se puede realizar la accion, existen errores en la informacion.
                             </div>
                             <div id="mensajeExitoFormM" class="successHandler alert alert-success no-display">
-                                <i class="fa fa-ok"></i> Your form validation is successful!
+                                <i class="fa fa-ok"></i> Guardado con Exito!
                             </div>
                         </div>
                         <div class="col-md-6">

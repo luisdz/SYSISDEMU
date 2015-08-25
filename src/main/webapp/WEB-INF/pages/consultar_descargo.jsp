@@ -136,9 +136,8 @@
                                 <th>comentario</th>
                                 <th>Codigo Inventario</th>
                                 <th>Clase</th>
-                                <th>Marca</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
+                                <th>Marca</th> 
+                                <th>Anular</th>
 
                             </tr>
                         </thead>
@@ -151,11 +150,8 @@
 
                                     <td>${des.tbInventario.codigoInventario}</td>
                                     <td>${des.tbInventario.tbcClaseActivo.nombreClase}</td>
-                                    <td>${des.tbInventario.marca}</td>
-
-                                    <td><a href="${pageContext.request.contextPath}/Descargo/editDescargo/${des.idDescargo}"> Editar</a>
-                                    </td>
-                                    <td><a href="${pageContext.request.contextPath}/Descargo/deleteDescargo/${des.idDescargo}"> Eliminar</a>
+                                    <td>${des.tbInventario.descripcionEquipo}</td> 
+                                    <td><a href="${pageContext.request.contextPath}/Descargo/deleteDescargo/${des.idDescargo}"> Anular</a>
                                     </td>
 
                                 </tr>

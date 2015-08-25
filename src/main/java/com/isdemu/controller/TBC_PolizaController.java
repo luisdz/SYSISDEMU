@@ -55,11 +55,12 @@ public class TBC_PolizaController {
         
      //*************Insertar**************
         @RequestMapping(value="/insertarPoliza", method=RequestMethod.GET)
-	public ModelAndView addPoliza() {
+	public ModelAndView addPoliza(String b) {
               System.out.println("esntra aqui GET poliza");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();
-		
+		String message = b;
+                 myModel.put("message", message); 
                
                  myModel.put("poliza", new TbcPoliza());
                
@@ -72,13 +73,11 @@ public class TBC_PolizaController {
 	public ModelAndView addingPoliza(@ModelAttribute TbcPoliza poliza) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST poliza"+poliza);
-
-
-    
+ 
 		tbPolizaService.save(poliza);
 		String message = "Poliza was successfully added.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return addPoliza("1");
 	}
         
         @RequestMapping(value="/deletePoliza/{id}", method=RequestMethod.GET)

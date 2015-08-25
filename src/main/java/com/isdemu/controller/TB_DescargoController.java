@@ -170,8 +170,7 @@ public class TB_DescargoController {
         Map<String, Object> myModel = new HashMap<String, Object>();
         List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
         System.out.println("list inv " + list_invent);
-        //return new ModelAndView("descargo", myModel);
-                
+        //return new ModelAndView("descargo", myModel);                
         return list_invent;    
     }
 

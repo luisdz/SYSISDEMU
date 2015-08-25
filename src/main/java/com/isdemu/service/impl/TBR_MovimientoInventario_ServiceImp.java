@@ -9,6 +9,7 @@ import com.isdemu.dao.TBR_MovimientoInventarioDao;
 import com.isdemu.dao.TB_MovimientoDao;
 import com.isdemu.service.TBR_MovimientoInventario_Service;
 import java.io.Serializable;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,14 @@ public class TBR_MovimientoInventario_ServiceImp implements TBR_MovimientoInvent
     
      @Autowired
 	private TBR_MovimientoInventarioDao tbrMovimientoInventarioDao;
+     
+     
+     @Override
+	public List getAll() {
+             System.out.println("service impl");
+		// TODO Auto-generated method stub
+		return tbrMovimientoInventarioDao.getAll();
+	}
 
     @Override
     public void save(Object obj) {

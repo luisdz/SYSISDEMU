@@ -30,12 +30,13 @@ public class TBC_ClasificacionLocalController
      @Autowired
 	private TBC_ClasificacionLocalizacion_Service tbcClasLocalService;
      @RequestMapping(value="/insertarClasLocal", method=RequestMethod.GET)
-	public ModelAndView addClasLocal() 
+	public ModelAndView addClasLocal(String b) 
         {
               System.out.println("esntra aqui GET claslocal");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();		
-               
+                String message = b;
+                 myModel.put("message", message); 
                  myModel.put("claslocal", new TbcClasificacionLocalizacion());               
                 
 		return new ModelAndView("clasificacion_localizacion",myModel);
@@ -47,12 +48,10 @@ public class TBC_ClasificacionLocalController
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST poliza"+claslocal);
 
-
-    
 		tbcClasLocalService.save(claslocal);
 		String message = "proveedr was successfully added.";
 		modelAndView.addObject("message", message);
-		return addClasLocal();
+		return addClasLocal("1");
 	}
         
         //************consultar*********************

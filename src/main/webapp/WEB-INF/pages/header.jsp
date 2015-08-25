@@ -303,6 +303,12 @@
 										</a>
 										
 									</li>
+                                                                        <li>
+										<a href="${pageContext.request.contextPath}/Movimiento/consultarHistorialMov.html">
+											Historial Movimiento <i class="icon-arrow"></i>
+										</a>
+										
+									</li>
 									
 								</ul>
 							</li>

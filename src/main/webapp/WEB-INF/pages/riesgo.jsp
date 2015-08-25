@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <h2><i class="fa fa-pencil-square"></i> Region</h2>
+                <h2><i class="fa fa-pencil-square"></i> Riesgo</h2>
                 <p>
                     Esta es la seccion de Ingreso de Unidades
                 </p>
@@ -54,11 +54,11 @@
                 <form:form id="riesgoF" method="POST" action="${pageContext.request.contextPath}/Riesgo/insertarRiesgo" onsubmit="return valida_envioRiesgo();" modelAttribute="riesgo" >
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="errorHandler alert alert-danger no-display">
+                            <div id="mensajeErrorForm" class="errorHandler alert alert-danger no-display">
                                 <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
                             </div>
-                            <div class="successHandler alert alert-success no-display">
-                                <i class="fa fa-ok"></i> Your form validation is successful!
+                            <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
+                                <i class="fa fa-ok"></i> Guardado con exito!
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -98,13 +98,29 @@
                             </button>
                         </div>
                     </div>
+                                
+                     <form:input class="no-display" path="" type="text" value="${message}" placeholder="Ingrese el nombre" id="msje"  />
+                                          
                 </form:form>
             </div>
         </div>
         <!-- end: FORM VALIDATION 1 PANEL -->
     </div>
 </div>
-
+ 
 <!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>	
 <script src="${pageContext.request.contextPath}/assets/validaciones/validacionesISDEMU-01.js"></script>
+<script>
+   $(document).ready(function () 
+   {       
+         
+        if (document.forms["riesgoF"]["msje"].value==="1")
+        {
+            
+           $('#mensajeExitoFormM').removeClass("no-display"); 
+           document.forms["riesgoF"]["msje"].value==="0";
+        }
+
+    }); 
+</script>

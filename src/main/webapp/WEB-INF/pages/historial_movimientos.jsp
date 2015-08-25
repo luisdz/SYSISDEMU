@@ -1,8 +1,9 @@
 <%-- 
-    Document   : consultar_movimiento
-    Created on : 12-jul-2015, 15:06:25
-    Author     : Luis Diaz
+    Document   : historial_movimientos
+    Created on : 25-ago-2015, 9:11:52
+    Author     : Luis
 --%>
+
 <%@include file="header.jsp"%>
 
 <div class="row">
@@ -14,7 +15,7 @@
                             </a>
                     </li>
                     <li class="active">
-                            Consultar
+                            Historial
                     </li>
             </ol>
     </div>
@@ -130,13 +131,10 @@
                                             <tr>
                                                     
                                                     <th class="no-display">id movimiento</th>
-                                                    <th>Fecha</th>
-                                                    <th>Razon de cambio</th>
-                                                     
-                                                    
-                                                    <th>Editar</th>
-                                                    
-                                                    <th>Eliminar</th>
+                                                    <th>Codigo</th>
+                                                    <th>Responsable Anterior</th>
+                                                    <th>Nuevo Responsabl</th>
+                                                    <th>Fecha de Movimiento</th>
                                             </tr>
                                     </thead>
                                     <tbody>
@@ -144,12 +142,12 @@
                                         
                                         <c:forEach var="mov" items="${movimiento}">
                                             <tr align="center">
-                                                    <td class="no-display">${mov.idMovimientoInventario}</td>
-                                                    <td>${mov.tbInventario.idInventario}</td>
-                                                    <td>${mov.tbMovimiento.idMovimiento}</td>
-                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${mov.idMovimiento}"> Editar</a></td>
-                                                    <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${mov.idMovimiento}"> Eliminar</a>
-                                                    </td>
+                                                    <td class="no-display">${mov.idMovimiento}</td>
+                                                    <td>${mov.codigoInventario}</td>
+                                                    <td>${mov.personaAnterior}</td>
+                                                    <td>${mov.personaActual}</td>
+                                                    <td>${mov.fechaMovimiento}</td>
+                                                    
 
                                             </tr>
                                         </c:forEach>	

@@ -31,14 +31,15 @@ public class TBC_RiesgoController {
 	private TBC_Riesgo_Service tbcRiesgoService;
     
     @RequestMapping(value="/insertarRiesgo", method=RequestMethod.GET)
-	public ModelAndView addProveedor() 
+	public ModelAndView addProveedor(String b) 
         {
               System.out.println("esntra aqui GET riesgo");
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                Map<String, Object> myModel = new HashMap<String, Object>();		
                
-                 myModel.put("riesgo", new TbcRiesgo());               
-                
+                 myModel.put("riesgo", new TbcRiesgo());                 
+		String message = b;
+                 myModel.put("message", message);                
 		return new ModelAndView("riesgo",myModel);
 	}
         
@@ -53,7 +54,7 @@ public class TBC_RiesgoController {
 		tbcRiesgoService.save(riesgo);
 		String message = "proveedr was successfully added.";
 		modelAndView.addObject("message", message);
-		return addProveedor();
+		return addProveedor("1");
 	}
         
         //************consultar*********************

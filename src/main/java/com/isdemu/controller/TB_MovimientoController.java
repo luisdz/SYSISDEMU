@@ -5,7 +5,6 @@
  */
 package com.isdemu.controller;
 
-
 import com.isdemu.model.TbInventario;
 import com.isdemu.model.TbMovimiento;
 import com.isdemu.model.TbcPersona;
@@ -56,11 +55,23 @@ public class TB_MovimientoController {
     @Autowired
         private TBC_ClasificacionLocalizacion_Service tbcClasificacionLocalizacionService;
 
+    
     @RequestMapping(value = "/consultarMov")
     public ModelAndView consultarMovimientos() {
         ModelAndView modelAndView = new ModelAndView("consultar_movimiento");
+        
+        List movimiento = tbrMovimientoInvService.getAll();        
+        //List movimiento = tbMovimientoService.getAll();
+        modelAndView.addObject("movimiento", movimiento);
+        return modelAndView;
+    }
+    
+    
+    @RequestMapping(value = "/consultarHistorialMov")
+    public ModelAndView consultarHistorialMov() {
+        ModelAndView modelAndView = new ModelAndView("historial_movimientos");
 
-        List movimiento = tbMovimientoService.getAll();
+        List movimiento = tbhMovimientoService.getAll();
         modelAndView.addObject("movimiento", movimiento);
         return modelAndView;
     }
@@ -87,14 +98,10 @@ public class TB_MovimientoController {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         TbMovimiento mov = new TbMovimiento();
-
         System.out.println("String Json:" + movi);
-
         JSONObject array = new JSONObject(movi);
-
         JSONArray arrayMov = array.getJSONArray("Movimiento");
         JSONObject objectMov = arrayMov.getJSONObject(0);
-
         String date = (objectMov.getString("fecha"));
         Date fecha=new Date();
         try {
@@ -105,6 +112,7 @@ public class TB_MovimientoController {
         mov.setFechaMovimiento(fecha);
         mov.setNMovimiento(1);
         mov.setRazonCambio(objectMov.getString("razon"));
+        mov.setIdPersonaNueva(Integer.parseInt(objectMov.getString("idpersona")));
         
         System.out.println("String codigo inv:" + objectMov.getString("codigo"));
 
@@ -121,8 +129,7 @@ public class TB_MovimientoController {
             int len = object.length();
             JSONObject object2 = object.getJSONObject(i);            
             String id = object2.getString("idInv");            
-            TbrMovimientoInventario MovInv= new TbrMovimientoInventario();
-            
+            TbrMovimientoInventario MovInv= new TbrMovimientoInventario();            
             
             MovInv.setTbMovimiento(UltMov);            
             TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
@@ -175,18 +182,10 @@ public class TB_MovimientoController {
 
     @RequestMapping(value = "/editMovimiento/{id}", method = RequestMethod.GET)
     public ModelAndView editMovimientoPage(@PathVariable Integer id) {
-        //ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
         TbMovimiento mov = (TbMovimiento) tbMovimientoService.findByKey(id);
-        // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
 
         Map<String, Object> myModel = new HashMap<String, Object>();
-        //List ClasAct = tbClasActService.getAll();  
         myModel.put("movimiento", mov);
-                 // myModel.put("clasificacionA",activo );
-        //myModel.put("AllclasificacionA",ClasAct );
-
-        //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
-        //modelAndView.addObject("inventario",inventario);
         return new ModelAndView("actualizar_movimiento", myModel);
     }
 
