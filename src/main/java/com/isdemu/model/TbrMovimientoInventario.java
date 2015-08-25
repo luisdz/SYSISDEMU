@@ -28,7 +28,8 @@ public class TbrMovimientoInventario {
     private int idMovimientoInventario;
      private TbMovimiento tbMovimiento;
      private TbInventario tbInventario;
-     
+     private Integer idPersonaNueva;
+     private Integer idPersonaAnterior;
      
  @Id 
 @GeneratedValue
@@ -63,7 +64,24 @@ public class TbrMovimientoInventario {
         this.tbInventario = tbInventario;
     }
 
+     @Column(name="ID_PERSONA_NUEVA")
+    public Integer getIdPersonaNueva() {
+        return this.idPersonaNueva;
+    }
+    
+    public void setIdPersonaNueva(Integer idPersonaNueva) {
+        this.idPersonaNueva = idPersonaNueva;
+    }
 
+    
+    @Column(name="ID_PERSONA_ANTERIOR")
+    public Integer getIdPersonaAnterior() {
+        return this.idPersonaAnterior;
+    }
+    
+    public void setIdPersonaAnterior(Integer idPersonaAnterior) {
+        this.idPersonaAnterior = idPersonaAnterior;
+    }
 
 
 }

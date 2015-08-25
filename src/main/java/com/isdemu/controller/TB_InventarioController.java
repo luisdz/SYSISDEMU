@@ -296,9 +296,13 @@ public class TB_InventarioController {
                              
                 for(int i=0;i<cantidadlotes;i++){
                     Icorrelativo=Icorrelativo+1;
-                     if(Icorrelativo<99)
+                     if(Icorrelativo<=99)
                     {
-                       Correlativo="00"+Icorrelativo;
+                        if(Icorrelativo<=9){
+                        Correlativo="00"+Icorrelativo;
+                        }
+                        else
+                            Correlativo="0"+Icorrelativo;
                     }
                     else
                        Correlativo=String.valueOf(Icorrelativo);
