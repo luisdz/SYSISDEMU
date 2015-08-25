@@ -160,36 +160,34 @@
                                    
                                 </div>                                       
                              </div>
-                         <div class="col-md-12 text-center">
-                             <div class="form-group">
-                                                <label class="control-label">
-                                                        Inventario<span class="symbol required"></span>
-                                                </label>
-                                               <form:select path=""  id="dropdown1" name="dropdown1">
-                                                    <form:option value=""  label="Seleccione inventario"/>       
-                                                    <c:forEach var="inv" items="${inventario}">
-                                                           <form:option value="${inv.idInventario}"  label="${inv.codigoInventario}"/>
-                                                    </c:forEach>
-                                                 </form:select>
-                                                
-                                    </div>
-                             
-                                   <button type="button" class="btn btn-default" onclick="myFunction_personal();" >Agregar</button>     
+                         <div class="col-md-12 text-center">            
+                                <div class="form-group" align="center">
+                                    <label class="control-label">
+                                        Codigo Inventario<span class="symbol "></span>
+                                    </label>
+                                    <form:input path=""  type="text" placeholder="Ingrese un codigo" class="form-control" id="codigo" name="codigo" style="width:50%" />
+                                    <span for="codigo" class="help-block  no-display" id="span_codigoE">El codigo es invalido o ya esta agreagado</span>  
+                                    <span for="codigo" class="help-block  no-display" id="span_codigoE2">El inventario con ese codigo esta descargado</span>  
+
+                                 </div> 
                             </div>
                             <div class="col-md-12 text-center">
-                                &nbsp;<br/>
+                                <button type="button" class="btn btn-default" onclick="enviarCodeM();" >Agregar</button>  
+                                &nbsp;<br/><br/>
                             </div>      
                         
                        <div class="table-responsive">
                             <table class="table table-striped table-hover table-bordered" id="tabla_prueba">
                                     <thead>
-                                            <tr>                                               
-                                                    <th>Id</th>
-                                                    <th>Numero</th>
-                                                    <th>opcion</th>
+                                            <tr>
+                                                <th class="no-display">id</th>
+                                                <th>codigo</th>
+                                                <th>Clase</th>
+                                                <th>Descripcion</th>  
+                                                <th>Eliminar</th>
                                             </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tablabody" name="tablabody">
                                         
                                         
                                     </tbody>
@@ -197,7 +195,7 @@
                                         
                                         
                             </table>
-                        </div>                
+                        </div>        
                         
                         <div class="row">
                                 <div class="col-md-8">
@@ -296,15 +294,7 @@
         
     }
                     
-                    
-    $( document ).ready(function() {
-
-
-           $('#dropdown1').select2();
-
-
-       });
-       
+    
        function valideKey(evt)
 		    {
 		        var code = (evt.which) ? evt.which : evt.keyCode;
@@ -323,4 +313,84 @@
 		                return false;
 		            }
 		    };
+                    
+                    
+       function enviarCodeM()
+    {
+        var codigoI = $("#codigo").val(); 
+        if (condigoYaAgregado(codigoI) === true)
+        {
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/Control/agregarInventarioM",
+                dataType: "json",
+                contentType: 'application/json',
+                data: codigoI,
+                success: function (listaInv)
+                {
+                    
+                    var num = 0;
+                    listaInv.forEach(function (entry1)
+                    {
+                        num++;
+                    });
+                    if (num >= 1)
+                    {
+                        
+                        listaInv.forEach(function (entry)
+                        {
+                             if(false)
+                            {
+                              
+                            } 
+                            else
+                            {
+                               
+                            //console.log(entry);
+                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' + '</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>' + '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                            $('#span_codigoE').addClass("no-display");
+                            $('#span_codigoE').closest("div").removeClass("has-error");
+                        }
+                        });
+                            
+                      if ($('#tabla_prueba tr').size() <= 1)
+                     {
+                         $('#span_codigoE2').delay(0).fadeIn(1000).fadeOut(5000);
+                          //$('#span_codigoE').addClass("no-display");
+                     }  
+
+                    }
+                    else
+                    {
+                        $('#span_codigoE').removeClass("no-display");
+                        $('#span_codigoE').closest("div").addClass("has-error");
+                        $('#span_codigoE').closest("div").removeClass("has-success");
+                    }
+                },
+                error: function (data, status, er) {
+                    alert("error: " + data + " status: " + status + " er:" + er);
+                }
+
+            });//Fin .ajax
+        }
+        else
+        {
+            $('#span_codigoE').removeClass("no-display");
+            $('#span_codigoE').closest("div").addClass("has-error");
+            $('#span_codigoE').closest("div").removeClass("has-success");
+        }
+
+    }
+    ;              
+                    
+    $( document ).ready(function() {
+
+
+           $('#dropdown1').select2();
+
+
+       });
+            
+
 </script>

@@ -4,6 +4,22 @@
  * and open the template in the editor.
  */
 
+function condigoYaAgregado(cod)
+    {
+        var l = 0;
+        var flag = true;
+        $('#tabla_prueba tr').each(function (index, element) {
+            if (l != 0)
+            {
+                if ($(element).find("td").eq(1).html() === cod)
+                {
+                    flag = false;
+                }
+            }
+            l = 1;
+        });
+        return flag;
+    };
 
 function validaSolicitante()
     {

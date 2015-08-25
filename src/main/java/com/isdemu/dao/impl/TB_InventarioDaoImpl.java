@@ -27,7 +27,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TB_InventarioDaoImpl implements TB_InventarioDao {
     
-     @Autowired
+        @Autowired
 	private SessionFactory sessionFactory;
 
 	private Session getCurrentSession() {

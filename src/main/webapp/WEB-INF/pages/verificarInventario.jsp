@@ -70,16 +70,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Fecha Verificacion <span class="symbol"></span>
-                                </label>
-                                <div class="input-group">
-                                    <form:input id="fechaDescargo" path="" type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaDescargo(event);" onblur="return validaFechaDescargo(event);"/>
-                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                </div><span for="fechaInicio" class="help-block  no-display" id="span_fechaFnT">Ingrese una fecha</span>  
-
-                            </div>
+                            
 
                              <div class="form-group">
                                 <label for="form-field-select-3">
@@ -113,13 +104,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Comentario<span class="symbol "></span>
-                                </label>
-                                <form:input path="" type="text" placeholder="Ingrese un comentario" class="form-control" id="comentario" name="comentario" />
-
-                            </div>
+                           
                     
 
                             <div class="form-group">
@@ -154,14 +139,14 @@
                         </div>
                         <div class="col-md-4">
                             <button class="btn btn-yellow btn-block" id="ingresar"   type="button" onclick="return enviarDes(event);" value="0" >
-                                Ingresar <i class="fa fa-arrow-circle-right"></i>
+                                Verificar Inventario <i class="fa fa-arrow-circle-right"></i>
                             </button>
                         </div>
                     </div>
                 </form:form>
 
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="tabla_prueba">
+                    <table class="table table-striped table-hover" id="VerificarInv">
                         <thead>
                             <tr>
                                 <th class="no-display">id</th>
@@ -177,8 +162,44 @@
                         </tbody>
                     </table>
                 </div>
+                
+                <div class="col-md-6">
+                    ACTIVOS FALTANTES
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="InventarioFaltante">
+                        <thead>
+                            <tr>
+                                
+                                <th>codigo</th>
+                                <th>Ver Detalle</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody id="tablabody" name="tablabody">
 
 
+                        </tbody>
+                    </table>
+                </div>
+               </div>   
+                <div class="col-md-6">
+                    ACTIVOS SOBRANTES
+                    <table class="table table-striped table-hover" id="InventarioSobrante">
+                        <thead>
+                            <tr>
+                                
+                                <th>codigo</th>
+                                <th>Ver Detalle</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody id="tablabody" name="tablabody">
+
+
+                        </tbody>
+                    </table>
+                </div>
+                
 
             </div>
         </div>
@@ -203,7 +224,7 @@
      function enviarCodeD()
     {
         var codigoI = $("#codigo").val();
-       
+        var localizacion=$("#localizacion").val();
         if (condigoYaAgregado(codigoI) === true)
         {
 
@@ -225,8 +246,8 @@
                     {
                         listaInv.forEach(function (entry)
                         {
-                            alert("for each");
-                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' +'</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>'+ '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                            //alert("for each");
+                            $('#VerificarInv').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' +'</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>'+'<td class=\"no-display\">' + localizacion + '</td>'+'<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
                             $('#span_codigoE').addClass("no-display");
                             $('#span_codigoE').closest("div").removeClass("has-error");
                            
@@ -261,7 +282,7 @@
     {
         var l = 0;
         var flag = true;
-        $('#tabla_prueba tr').each(function (index, element) {
+        $('#VerificarInv tr').each(function (index, element) {
             if (l != 0)
             {
                 if ($(element).find("td").eq(1).html() === cod)
@@ -274,35 +295,30 @@
         return flag;
     };
     
+    //BOTON VERIFICAR INVENTARIO
     function enviarDes()
     {
         $("#ingresar").val(1);
-        // alert($("#ingresar").val());
+       alert($("#ingresar").val());
         
-        validaFechaDescargo();
-        if ($('#tabla_prueba tr').size() > 1  && validaFechaDescargo()!==false)        
+       
+        if ($('#VerificarInv tr').size() > 1)        
         {
-           
-            //$('#mensajeErrorFormM').addClass("no-display");
-            var fechaM = $("#fechaDescargo").val();
-            var comentarioM = $("#comentario").val();
-
-
-            var jsonArray = "{";
-
-            jsonArray += "\"Descargo\":[{\"fecha\":\"" + fechaM + "\",\"comentario\":\" " + comentarioM + "\"" + "}],";
-
+            
+            var jsonArray="{";
             jsonArray += "\"Inventario\":[";
 
             var l = 0;
 
-            $('#tabla_prueba tr').each(function (index, element) {
+            $('#VerificarInv tr').each(function (index, element) {
 
                 var id = $(element).find("td").eq(0).html();
+                var codigo = $(element).find("td").eq(1).html();
+                var idlocalizacion = $(element).find("td").eq(3).html();
 
                 if (l != 0)
                 {
-                    jsonArray = jsonArray + "{\"idInv\":" + '"' + id + '"' + "},";
+                    jsonArray = jsonArray + "{\"idInv\":" + '"' + id + '"'+",\"codigo\":"+'"'+codigo+'"'+",\"idlocalizacion\":"+'"'+idlocalizacion+'"'+"},";
                 }
                 l = 1;
             });
@@ -310,23 +326,46 @@
             jsonArray = jsonArray.substring(0, jsonArray.length - 1);
             jsonArray = jsonArray + "]}";
             //alert(jsonArray);
+           
+            //AQUI DEVULEVE LAS DOS LISTAS CON EL INVENTARIO FALTANTE Y EL SOBRANTE
             $.ajax({
                 
                 type: "POST",
-                url: "${pageContext.request.contextPath}/Descargo/insertarDescargo",
+                url: "${pageContext.request.contextPath}/VerificarInventario/add/agregarTBTemporal",
                 contentType: 'application/json',
+                dataType: "json",
                 data: jsonArray,
                 success: function (data)
                 {
-                    //alert("entra");
+                    alert("entra:"+data[1]);
                     //$("#fechaDescargo").attr('value') = " ";
-                            $('#descargoF').each(function () {
+                   
+        
+        
+        //AQUI SE VA LLENAR LAS TABLAS CON LAS LISTAS DE LOS INVENTARIOS
+          data[0].forEach(function (entry)
+                        {
+                            //alert("for each");
+                            $('#InventarioFaltante').append('<tr  id="' + entry + '">' + '<td>' + entry + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Editar</a></td></tr>');
+                       //  alert("cadacodigo:"+entry);
+                           
+                        });
+            data[1].forEach(function (entry)
+                        {
+                            //alert("for each");
+                            $('#InventarioSobrante').append('<tr  id="' + entry + '">' + '<td>' + entry + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Editar</a></td></tr>');
+                       //  alert("cadacodigo:"+entry);
+                           
+                        });
+                        
+                        
+                    $('#descargoF').each(function () {
                         this.reset();
                         $('.help-block').closest("div").removeClass("has-success");
                         $('.help-block').closest("div").removeClass("has-error");
                     }); 
                     $('#mensajeExitoFormM').removeClass("no-display");
-                    $('#tablabody').empty();
+                   // $('#tablabody').empty();
                 },
                 error: function (data, status, er)
                 {
@@ -349,8 +388,6 @@
      $("#tipoClasificacion").change(function () {
         var idTipoClasificacion = $('#tipoClasificacion :selected').val(); // define the variable
       // alert(idTipoClasificacion);
-
-
 
         $.ajax({
             url: "${pageContext.request.contextPath}/Inventario/listaLocalizacion",
