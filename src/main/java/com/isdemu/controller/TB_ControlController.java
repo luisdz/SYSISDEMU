@@ -199,25 +199,77 @@ public class TB_ControlController {
 	}
         
         
-        @RequestMapping(value="/editControl1/{id}", method=RequestMethod.POST)
-	public ModelAndView edditingControlInventario(@ModelAttribute TbControlSalida con, @PathVariable Integer id) {
-            
-		TbControlSalida conActual = (TbControlSalida) tbControlService.findByKey(id);
-                
+        @RequestMapping(value="/editControl1/{id1}", method=RequestMethod.POST)	
+	public @ResponseBody String updateingPais(@RequestBody String control, @PathVariable Integer id1) {
 		ModelAndView modelAndView = new ModelAndView("home");
+//                JSONObject jsonObj = new JSONObject(control);
+		//System.out.println("entra aqui POST persona"+control.get(0).getIdControlSalida());
+                 System.out.println("String Json:"+control);
+                 System.out.println("id Json:"+id1);
+                TbControlSalida controlSalida = (TbControlSalida) tbControlService.findByKey(id1);
+        
+                 
+                JSONObject array = new JSONObject(control);
+                JSONArray object3 = array.getJSONArray("Control");
+                 
+                JSONObject objectControl = object3.getJSONObject(0);
+                                  
+                String solicitante = objectControl.getString("solicitante");
+                String observacion = objectControl.getString("observacion");
+                String destino = objectControl.getString("destino");
+                String fecha_devolucion = objectControl.getString("fecha_devolucion");
+                String fecha_sal = objectControl.getString("fecha_sal");
+                 
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 
-                //conActual.setRazonCambio(con.getRazonCambio());
-//                polizaActual.setFechaInicio(poliza.getFechaInicio());
-//                polizaActual.setFechaFin(poliza.getFechaFin());
-                //conActual.setNControl(con.getNMovimiento());
+                Date fecha_sa=new Date();
+                        try {
+                          fecha_sa = formatter.parse(fecha_sal);
+                        } catch (ParseException ex) {
+                   }
+                 Date fecha_de=new Date();
+                        try {
+                          fecha_de = formatter.parse(fecha_devolucion);
+                        } catch (ParseException ex) {
+                   }
+                    controlSalida.setSolicitante(solicitante);
+                    controlSalida.setObservacion(observacion);
+                    controlSalida.setDestino(destino);
+                    controlSalida.setFechaSalida(fecha_sa);
+                    controlSalida.setFechaTentativaDevolucion(fecha_de);
+                        
+                 tbControlService.update(controlSalida);
+                 
+                 /*TbControlSalida UltControl =(TbControlSalida) tbControlService.LastIdControl().get(0);
+                  
+                 
+                 JSONArray object = array.getJSONArray("Inventario");
+                 for(int i=0;i<object.length();i++)
+                 {
+                    JSONObject object2 = object.getJSONObject(i);
+                  
+                     //JSONArray object = array.getJSONArray("Inventario");
+                    String id = object2.getString("idInv");
+                    
+                    
+                    TbrControlSalidaInventario conInv= new TbrControlSalidaInventario();
+                    conInv.setTbControlSalida(UltControl);
+                    
+                    TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
+                    conInv.setTbInventario(tempInv);
+                    
+                    tbrControlInvService.save(conInv);
+                    
+                    System.out.println("Id Json:"+id);
+                   
+                }
                 
-		                
-		tbControlService.update(conActual);
-
-		String message = "unidad was successfully edited.";
+              */
+            
+		//tbMovimientoService.save(movi);
+		String message = "Constrol was successfully added.";
 		modelAndView.addObject("message", message);
-
-		return modelAndView;
+		return "22";
 	}
         
         @RequestMapping(value = "/agregarInventarioM", method = RequestMethod.POST)

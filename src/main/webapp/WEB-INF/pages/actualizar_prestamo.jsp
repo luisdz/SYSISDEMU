@@ -14,11 +14,11 @@
                 <ol class="breadcrumb">
                         <li>
                                 <a href="#">
-                                        Control Salida
+                                        Prestamo
                                 </a>
                         </li>
                         <li class="active">
-                                Etidar Control Salida
+                                Etidar Prestamo Equipo
                         </li>
                 </ol>
         </div>
@@ -69,41 +69,91 @@
                         <hr>
 
 
-<form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/editPrestamo2/${prestamo.idPrestamoEquipo}" modelAttribute="prestamo" >
+<form:form method="POST" action="${pageContext.request.contextPath}/Prestamo/editPrestamo2/${prestamo.idPrestamoEquipo}" modelAttribute="prestamo" id="prestamoE" name="prestamoE">
     
-       
-                <div class="form-group">
-                        <label class="control-label">
-                                id Prestamo Equipo<span class="symbol required"></span>
-                        </label>
-                        <form:input path="idPrestamoEquipo" type="text" placeholder="${prestamo.idPrestamoEquipo}" class="form-control" id="id" name="lastname"/>
-                </div>
+        <div class="col-md-6">
     
-               <div class="form-group">
-                            <label class="control-label">
-                                    Fecha Solicitud<span class="symbol required"></span>
-                            </label>
+                                   
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        N Prestamo<span id="span_numero" class="symbol"></span>
+                                                </label>
 <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
-                            <form:input path="fechaSolicitud" type="text" placeholder="${prestamo.fechaSolicitud}" class="form-control" id="fecha_sol" name="fecha_sol"/>
+                                                <form:input path="NPrestamo" type="text" class="form-control" id="numero" name="numero" onkeypress="return valideKey(event);" onblur="return validaNumero(event);"/>
+                                                <span for="numero" class="help-block  no-display" id="span_numeroT">Ingrese un Numero</span>                   
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Tema Impartir<span id="span_nombre" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="temaImpartir" type="text" placeholder="Tema" class="form-control" id="tema" name="tema" onblur="return validaTema(event);"/>
+                                                <span for="nombre" class="help-block  no-display" id="span_nombreT">Ingrese un Tema</span> 
+                                    </div>
+                                    <div class="form-group">
+                                                <label class="control-label">
+                                                        Persona a Impartir<span id="span_persona" class="symbol"></span>
+                                                </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                                <form:input path="personaImpartir" type="text" placeholder="persona" class="form-control" id="persona" name="persona" onblur="return validaPersona(event);"/>
+                                                <span for="persona" class="help-block  no-display" id="span_personaT">Ingrese un Persona</span> 
+                        
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="control-label">
+                                                    Destino<span id="span_destino" class="symbol"></span>
+                                            </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                            <form:input path="destino" type="text" placeholder="destino" class="form-control" id="destino" name="destino" onblur="return validaDestino(event);"/>
+                                            <span for="destino" class="help-block  no-display" id="span_destinoT">Ingrese un Destino</span> 
+                
+                                    </div>
+                                                                                
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                   <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Solicitud<span id="span_sol" class="symbol"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaSolicitud" type="text" id="fecha_sol" name="fecha_sol" data-date-format="yyyy-mm-dd" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaSolicitud(event);" onblur="return validaFechaSolicitud(event);"/>
+                                        <span for="fecha_sol" class="help-block  no-display" id="span_fechaSol">Ingrese una fecha solicitud</span>    
 
-                </div> 
-                
-                
-                
-               <div class="row">
-      
-                                
-<!--                                <div class="col-md-4">
-                                    <button class="btn btn-yellow btn-block" id="btnDetalle" type="button">
-                                                Detalle inventario <i class="fa fa-arrow-circle-right"></i>
-                                        </button>
-                                </div>-->
-                        
-                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Fecha Reservacion<span id="span_pres" class="symbol"></span>
+                                        </label>
+<!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="fechaReservacion" type="text" id="fecha_pres" name="fecha_pres" data-date-format="yyyy-mm-dd" data-date-viewmode="years" class="form-control date-picker" onchange="return validaFechaReservacion(event);" onblur="return validaFechaReservacion(event);"/>
+                                        <span for="fecha_pres" class="help-block  no-display" id="span_fechaRes">Ingrese una fecha reservacion</span>    
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Hora Inicio<span class="symbol required"></span>
+                                        </label>
+    <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="horaInicio" type="text" id="hora_inicio" name="hora_inicio" data-date-format="yyyy-mm-dd" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                                Hora Fin<span class="symbol required"></span>
+                                        </label>
+    <!--                                                <input type="text" placeholder="Codigo" class="form-control" id="codigo" name="firstname">-->
+                                        <form:input path="horaFin" type="text" id="hora_fin" name="hora_fin" data-date-format="yyyy-mm-dd" data-date-viewmode="years" class="form-control date-picker"/>
+
+                                    </div> 
+                                    
+                              </div>   
+                        <div class="row">
+
                             <div class="row">
                                 
                                 <div class="col-md-4">
-                                        <button class="btn btn-yellow btn-block" type="submit">
+                                        <button class="btn btn-yellow btn-block" type="button" onclick="enviar();">
                                                 Actualizar <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                 </div>
@@ -112,28 +162,24 @@
                   </form:form>
 
                        <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="sample-table-2">
+                        <table class="table table-striped table-hover" id="tabla_prueba">
                                 <thead>
                                         <tr>
-                                             <th>id control inv</th>
-                                               <th>ID control</th>
-                                                <th>ID inventario</th>
-                                                <th>marca</th>
+                                             <th>id prestamo inv</th>
+                                               <th>ID Prestamo</th>
                                                 <th>Delete</th>
                                         </tr>
                                 </thead>
                                 <tbody id="tablabody" name="tablabody">
 
                                 <c:forEach var="pre" items="${prestamoInv}">
-                                            <tr align="center">
+                                            <tr id="${pre.idPrestamoEquipoInventario}">
                                                 <td>${pre.idPrestamoEquipoInventario}</td>
-                                                <td>${pre.tbPrestamoEquipo.idPrestamoEquipo}</td>
-                                                <td>${pre.tbInventario.idInventario}</td>                                                  
-                                                <td>${pre.tbInventario.marca}</td> 
-                                                <td><a href=""> Eliminar</a></td>
+                                                <td>${pre.tbPrestamoEquipo.idPrestamoEquipo}</td>                                               
+                                                <td><a href="" onclick="return deleteElement('${pre.idPrestamoEquipoInventario}');"> Eliminar</a></td>
 
                                             </tr>
-                                        </c:forEach>	
+                                </c:forEach>	
                                           
 
                                 </tbody>
@@ -141,78 +187,148 @@
                 </div>
 
  
-</div>
-								</div>
-								<!-- end: FORM VALIDATION 1 PANEL -->
-							</div>
-						</div>
-						
-						<!-- end: PAGE CONTENT-->
-				<%@include file="footer.jsp" %>		
+            </div>
+                                </div>
+                                <!-- end: FORM VALIDATION 1 PANEL -->
+                        </div>
+                </div>
+
+                <!-- end: PAGE CONTENT-->
+<%@include file="footer.jsp" %>			
                                 
-                                
-                                <script>
-$("#btnDetalle").click(function () {
-   var conceptName = $("#id").val(); // define the variable
-    //var conceptName = 1;
-    alert(conceptName);
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesPrestamo.js"></script>                            
+<script>
+
+    function deleteElement(id){
+        var el = document.getElementById(id);
+        el.parentNode.removeChild(el);
+        return false;
+        }
+        
+function enviar()
+    {
+      
+      if (valida_envio()){      
+        return 0; 
+         }
+        
+        var nPrestamo=$("#numero").val();
+        var tema=$("#tema").val();
+        var persona=$("#persona").val();
+        var destino=$("#destino").val();
+        var fecha_solic=$("#fecha_sol").val();
+        var fecha_reser=$("#fecha_pres").val();
+        var hora_inicio=$("#hora_inicio").val();
+        var hora_fin=$("#hora_fin").val();
+        
+        var jsonArray="{"
+        
+      
+        jsonArray+="\"Prestamo\":[{\"nPrestamo\":\""+nPrestamo+"\",\"destino\":\""+destino+"\",\"hora_inicio\":\""+hora_inicio+"\",\"hora_fin\":\""+hora_fin+"\",\"tema\":\""+tema+"\",\"persona\":\""+persona+"\",\"fecha_solic\":\""+fecha_solic+"\",\"fecha_reser\":\" "+fecha_reser+"\""+"}],";
+         
+         jsonArray+="\"Inventario\":[";
+        
+        var l=0;
     
-    
-    
-   $.ajax({ 
-                url: "${pageContext.request.contextPath}/Movimiento/detalleInventarios", 
-                type: 'POST', 
-                dataType: 'json', 
-                contentType: 'application/json',
-                mimeType: 'application/json',
-                
-                
-                data: "{id:" + conceptName + "}", 
-                
-               success: function(data) 
-            { 
-                   var html = '';
-                   var len = data.length;
-                    //alert("devuelve algo"+data);
-//                            $('#dropdown2').empty();
-//                            data.forEach(function(entry) 
-//                            {
-//                                    console.log(entry);
-//                                   // alert("foreach :"+entry.nombreClase );
-//                                   html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
-//                            });
-//                            $('#dropdown2').append(html);
-                    alert("devuelve algo: "+data);
-                                       
-                    //var tblBody = document.createElement("tbody");
- 
-  // Crea las celdas
-                        $('#tablabody').empty();
-                        data.forEach(function(entry) 
-                            {
-                                 console.log(entry);
-                                 html = '';
-                                 html+="<tr>";
-                                 html+="<td>"+entry.idInventario+"</td>";
-                                 html+="<td>"+entry.marca+"</td>";
-                                 html+="<td>"+entry.modelo+"</td>";
-                                 html+="</tr>";
-                                 
-                                
-                                 $('#tablabody').append(html);
-                                //tblBody.appendChild(hilera);
-                                
-                            });
-                            
-                         },    
-                error:function(data,status,er) 
-                { 
-                    alert("error: "+data+" status: "+status+" er:"+er);
-                    
-                    
-                }
-            });
-   
-       
+        $('#tabla_prueba tr').each(function(index, element){
+
+        var id = $(element).find("td").eq(0).html();
+      
+        if(l!=0){
+            jsonArray=jsonArray+"{\"idInv\":"+'"'+id+'"'+"},";
+
+          }
+
+        l=1;
+
     });
+
+
+    jsonArray=jsonArray.substring(0,jsonArray.length-1);
+    jsonArray=jsonArray+"]}";
+    //alert(jsonArray);
+         $.ajax({
+           type: "POST",
+           url: "${pageContext.request.contextPath}/Prestamo/editPrestamo2/${prestamo.idPrestamoEquipo}",
+           dataType: "json",
+           contentType: 'application/json',
+           success: function (msg) {
+               alert("Almacenado con Exito");
+               location.reload();
+           },
+           data: jsonArray
+       });
+        
+    }
+    
+    function enviarCodeM()
+    {
+        var codigoI = $("#codigo").val(); 
+        if (condigoYaAgregado(codigoI) === true)
+        {
+
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/Control/agregarInventarioM",
+                dataType: "json",
+                contentType: 'application/json',
+                data: codigoI,
+                success: function (listaInv)
+                {
+                    
+                    var num = 0;
+                    listaInv.forEach(function (entry1)
+                    {
+                        num++;
+                    });
+                    if (num >= 1)
+                    {
+                        
+                        listaInv.forEach(function (entry)
+                        {
+                             if(false)
+                            {
+                              
+                            } 
+                            else
+                            {
+                               
+                            //console.log(entry);
+                            $('#tabla_prueba').append('<tr  id="' + entry.idInventario + '">' + '<td class=\"no-display\" >' + entry.idInventario + '</td>' + '<td>' + entry.codigoInventario + '</td>' + '</td>' + '<td>' + entry.tbcClaseActivo.nombreClase + '</td>' + '<td>' + entry.descripcionEquipo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + entry.idInventario + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
+                            $('#span_codigoE').addClass("no-display");
+                            $('#span_codigoE').closest("div").removeClass("has-error");
+                        }
+                        });
+                            
+                      if ($('#tabla_prueba tr').size() <= 1)
+                     {
+                         $('#span_codigoE2').delay(0).fadeIn(1000).fadeOut(5000);
+                          //$('#span_codigoE').addClass("no-display");
+                     }  
+
+                    }
+                    else
+                    {
+                        $('#span_codigoE').removeClass("no-display");
+                        $('#span_codigoE').closest("div").addClass("has-error");
+                        $('#span_codigoE').closest("div").removeClass("has-success");
+                    }
+                },
+                error: function (data, status, er) {
+                    alert("error: " + data + " status: " + status + " er:" + er);
+                }
+
+            });//Fin .ajax
+        }
+        else
+        {
+            $('#span_codigoE').removeClass("no-display");
+            $('#span_codigoE').closest("div").addClass("has-error");
+            $('#span_codigoE').closest("div").removeClass("has-success");
+        }
+
+    }
+    ;
+                 
+
  </script>
