@@ -239,11 +239,7 @@
 										</a>
 										
 									</li>
-									<li>
-										<a href="#">
-											Pre Carga de Inventario
-										</a>
-									</li>
+									
 								</ul>
 							</li>
 
@@ -254,7 +250,7 @@
 								</a>
 								<ul class="sub-menu">
 									<li>
-										<a href="javascript:;">
+										<a href="${pageContext.request.contextPath}/VerificarInventario/add.html">
 											Verificar Inventario <i class="icon-arrow"></i>
 										</a>
 										

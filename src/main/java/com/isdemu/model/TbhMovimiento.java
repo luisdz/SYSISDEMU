@@ -30,6 +30,7 @@ public class TbhMovimiento {
      private String personaAnterior;
      private String personaActual;
      private Date fechaMovimiento;
+      private Integer idMovimiento;
      
      
      @Id 
@@ -84,5 +85,12 @@ public class TbhMovimiento {
         this.fechaMovimiento = fechaMovimiento;
     }
 
+        @Column(name="ID_MOVIMIENTO")
+    public Integer getIdMovimiento() {
+        return this.idMovimiento;
+    }
     
+    public void setIdMovimiento(Integer idMovimiento) {
+        this.idMovimiento = idMovimiento;
+    }
 }
