@@ -261,7 +261,7 @@ function enviar()
            dataType: "json",
            contentType: 'application/json',
            success: function (msg) {
-               alert("Almacenado con Exito");
+               alert("Actualizado con Exito");
                location.reload();
            },
            data: jsonArray
