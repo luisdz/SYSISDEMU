@@ -181,12 +181,12 @@ public class TB_ControlController {
             
                 TbControlSalida cont = (TbControlSalida) tbControlService.findByKey(id);
                 System.out.println("Entra actualiza5");
-		List con = tbControlService.getConInv(id);
+		List con = tbControlService.getInvControl(id);
                // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
                 System.out.println("Entra actualiza2");
                   Map<String, Object> myModel = new HashMap<String, Object>();
                    //List ClasAct = tbClasActService.getAll();  
-                   myModel.put("controlInv",con ); 
+                   myModel.put("controlInv",con); 
                    myModel.put("control",cont);
                  // myModel.put("clasificacionA",activo );
                   //myModel.put("AllclasificacionA",ClasAct );
@@ -240,7 +240,10 @@ public class TB_ControlController {
                         
                  tbControlService.update(controlSalida);
                  
-                 /*TbControlSalida UltControl =(TbControlSalida) tbControlService.LastIdControl().get(0);
+                 tbrControlInvService.delete(id1);
+                 
+                 
+                 TbControlSalida UltControl =(TbControlSalida) tbControlService.findByKey(id1);
                   
                  
                  JSONArray object = array.getJSONArray("Inventario");
@@ -264,7 +267,7 @@ public class TB_ControlController {
                    
                 }
                 
-              */
+              
             
 		//tbMovimientoService.save(movi);
 		String message = "Constrol was successfully added.";
