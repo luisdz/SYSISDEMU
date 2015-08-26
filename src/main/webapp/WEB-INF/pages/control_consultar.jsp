@@ -94,7 +94,6 @@
                                                     <thead>
                                                             <tr>
                                                                     <th>idControl</th>
-                                                                    <th>Ncontol</th>
                                                                     <th>solicitante</th>
                                                                     <th>fecha</th>
                                                                     <th>Eliminar</th>
@@ -105,7 +104,6 @@
                                                      <c:forEach var="con" items="${control}">
                                                             <tr >
                                                                     <td>${con.idControlSalida}</td>
-                                                                    <td>${con.NControlSalida}</td>
                                                                     <td>${con.solicitante}</td>
                                                                     <td>${con.fechaSalida}</td>
                                                                     <td><a href="${pageContext.request.contextPath}/Control/delete/${con.idControlSalida}">Eliminar</a></td>
