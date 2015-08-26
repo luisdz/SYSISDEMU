@@ -130,12 +130,12 @@
                                             <tr>
                                                     
                                                     <th class="no-display">id movimiento</th>
-                                                    <th>Fecha</th>
-                                                    <th>Razon de cambio</th>
-                                                     
-                                                    
-                                                    <th>Editar</th>
-                                                    
+                                                    <th>id inv</th>
+                                                    <th>id mov</th>
+                                                    <th>Codigo</th>  
+                                                    <th>clase</th>
+                                                    <th>descripcion</th> 
+                                                    <th>Editar</th>                                                    
                                                     <th>Eliminar</th>
                                             </tr>
                                     </thead>
@@ -147,6 +147,9 @@
                                                     <td class="no-display">${mov.idMovimientoInventario}</td>
                                                     <td>${mov.tbInventario.idInventario}</td>
                                                     <td>${mov.tbMovimiento.idMovimiento}</td>
+                                                    <td>${mov.tbInventario.codigoInventario}</td>
+                                                    <td>${mov.tbInventario.tbcClaseActivo.nombreClase}</td>
+                                                    <td>${mov.tbInventario.descripcionEquipo}</td>
                                                     <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${mov.idMovimientoInventario}"> Editar</a></td>
                                                     <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${mov.idMovimientoInventario}"> Eliminar</a>
                                                     </td>

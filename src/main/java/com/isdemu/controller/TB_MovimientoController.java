@@ -58,10 +58,8 @@ public class TB_MovimientoController {
     
     @RequestMapping(value = "/consultarMov")
     public ModelAndView consultarMovimientos() {
-        ModelAndView modelAndView = new ModelAndView("consultar_movimiento");
-        
-        List movimiento = tbrMovimientoInvService.getAll();        
-        //List movimiento = tbMovimientoService.getAll();
+        ModelAndView modelAndView = new ModelAndView("consultar_movimiento");        
+        List movimiento = tbrMovimientoInvService.getAll(); 
         modelAndView.addObject("movimiento", movimiento);
         return modelAndView;
     }
@@ -72,10 +70,15 @@ public class TB_MovimientoController {
         ModelAndView modelAndView = new ModelAndView("historial_movimientos");
 
         List movimiento = tbhMovimientoService.getAll();
+        
+        //movimiento.
+        
         modelAndView.addObject("movimiento", movimiento);
         return modelAndView;
     }
 
+    
+    
     @RequestMapping(value = "/insertarMovimiento", method = RequestMethod.GET)
     public ModelAndView addMovimiento() {
         System.out.println("esntra aqui GETT movimiento");
@@ -133,7 +136,19 @@ public class TB_MovimientoController {
             
             MovInv.setTbMovimiento(UltMov);            
             TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
-            MovInv.setTbInventario(tempInv);            
+            MovInv.setTbInventario(tempInv);  
+            MovInv.setIdPersonaAnterior(tempInv.getTbcPersona().getIdPersona());
+            MovInv.setIdPersonaNueva(Integer.parseInt(objectMov.getString("idpersona")));
+             
+            
+            List<TbrMovimientoInventario> tbrMov =  tbrMovimientoInvService.findByInv(tempInv.getIdInventario());
+            
+            //Eliminar anteriores
+            for (TbrMovimientoInventario tbrMov1 : tbrMov) 
+            {
+            tbrMovimientoInvService.delete(tbrMov1.getIdMovimientoInventario());
+            }
+            //-------------------
             tbrMovimientoInvService.save(MovInv);            
             System.out.println("Id Json:" + id);
             //historial
@@ -145,8 +160,7 @@ public class TB_MovimientoController {
             TbhMov.setPersonaAnterior(tempInv.getTbcPersona().getNombrePersona());
             tbhMovimientoService.save(TbhMov);
             //historial
-            System.out.println("Id persona:" + objectMov.getString("idpersona"));
-            
+            System.out.println("Id persona:" + objectMov.getString("idpersona"));            
             TbcPersona tbcpersona = (TbcPersona)tbcPersonaService.findByKey(Integer.parseInt(objectMov.getString("idpersona")));
             System.out.println("tbc persona:" + tbcpersona);
             tempInv.setTbcPersona(tbcpersona);
@@ -162,9 +176,19 @@ public class TB_MovimientoController {
     
     
     @RequestMapping(value = "/deleteMovimiento/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteMov(@PathVariable Integer id) {
+    public ModelAndView deleteMov(@PathVariable Integer id) 
+    {
+        
         ModelAndView modelAndView = new ModelAndView("home");
-        tbMovimientoService.delete(id);
+        TbrMovimientoInventario tbmov=(TbrMovimientoInventario) tbrMovimientoInvService.findByKey(id);
+        
+        TbInventario inv=(TbInventario) tbInventarioService.findByKey(tbmov.getTbInventario().getIdInventario());        
+        TbcPersona pers=(TbcPersona) tbcPersonaService.findByKey(tbmov.getIdPersonaAnterior());
+        inv.setTbcPersona(pers);
+        tbInventarioService.update(inv);
+        
+        tbrMovimientoInvService.delete(id);
+        
         String message = "movimiento was successfully deleted.";
         modelAndView.addObject("message", message);
         return modelAndView;
@@ -172,7 +196,8 @@ public class TB_MovimientoController {
     
     
     @RequestMapping(value = "/deleteInvMovimiento/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteIMov(@PathVariable Integer id) {
+    public ModelAndView deleteIMov(@PathVariable Integer id) 
+    {
         ModelAndView modelAndView = new ModelAndView("home");
         tbrMovimientoInvService.delete(id);
         String message = "movimiento was successfully deleted.";
@@ -220,11 +245,6 @@ public class TB_MovimientoController {
         //List ClasAct = tbClasActService.getAll();  
         myModel.put("movimientoInv", mov);
         myModel.put("movimiento", movi);
-                 // myModel.put("clasificacionA",activo );
-        //myModel.put("AllclasificacionA",ClasAct );
-
-        //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
-        //modelAndView.addObject("inventario",inventario);
         return new ModelAndView("actualizar_movimiento", myModel);
     }
 
