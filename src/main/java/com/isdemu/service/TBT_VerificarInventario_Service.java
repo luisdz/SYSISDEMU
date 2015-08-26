@@ -18,6 +18,6 @@ public interface TBT_VerificarInventario_Service {
       public void save(Object obj);
       public List<TbtVerificarInventario> getAll();
       public void delete(Serializable id);
-      public List<TbtVerificarInventario> getInventarioFaltante();
-      public List<TbtVerificarInventario> getInventarioSobrante();
+      public List<TbtVerificarInventario> getInventarioFaltante(Serializable id);
+      public List<TbtVerificarInventario> getInventarioSobrante(Serializable id);
 }
