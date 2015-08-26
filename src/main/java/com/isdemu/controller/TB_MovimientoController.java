@@ -185,8 +185,7 @@ public class TB_MovimientoController {
         TbInventario inv=(TbInventario) tbInventarioService.findByKey(tbmov.getTbInventario().getIdInventario());        
         TbcPersona pers=(TbcPersona) tbcPersonaService.findByKey(tbmov.getIdPersonaAnterior());
         inv.setTbcPersona(pers);
-        tbInventarioService.update(inv);
-        
+        tbInventarioService.update(inv);        
         tbrMovimientoInvService.delete(id);
         
         String message = "movimiento was successfully deleted.";
