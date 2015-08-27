@@ -98,6 +98,7 @@
                                                                     <th>fecha</th>
                                                                     <th>Eliminar</th>
                                                                     <th>Actualizar</th>
+                                                                    <th>Boleta</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
@@ -108,7 +109,7 @@
                                                                     <td>${con.fechaSalida}</td>
                                                                     <td><a href="${pageContext.request.contextPath}/Control/delete/${con.idControlSalida}">Eliminar</a></td>
                                                                     <td><a href="${pageContext.request.contextPath}/Control/editControl1/${con.idControlSalida}">Actualizar</a></td>
-                                                                    
+                                                                    <td><a href="${pageContext.request.contextPath}/Reporte/ReporteControl/${con.idControlSalida}">Imprimir</a></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
