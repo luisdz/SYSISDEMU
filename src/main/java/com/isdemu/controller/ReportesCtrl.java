@@ -105,7 +105,7 @@ public class ReportesCtrl {
     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
     Connection conn = DriverManager.getConnection(url, userName, password);
       
-    InputStream jasperxml =  this.getClass().getResourceAsStream("/ireportPrueba04.jrxml"); 
+    InputStream jasperxml =  this.getClass().getResourceAsStream("/ireportPrueba03.jrxml"); 
     //jasperxml = JasperCompileManager.compileReportToStream(jasperxml );
     
     JasperReport jasperReport = JasperCompileManager.compileReport(jasperxml);
@@ -113,8 +113,8 @@ public class ReportesCtrl {
     //InputStream jasperStream = this.getClass().getResourceAsStream("/ireportPrueba03.jrxml");    
     //System.out.println("report2 :" + jasperStream);
     Map<String,Object> params = new HashMap<>();
-   // int b = 1;
-   // params.put("idMov", b);
+    int b = 1;
+    params.put("idMov", b);
     //JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
     System.out.println("report3 :" + jasperReport);
     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params,conn);
