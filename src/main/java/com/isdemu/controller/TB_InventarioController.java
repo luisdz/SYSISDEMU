@@ -175,7 +175,7 @@ public class TB_InventarioController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.GET)
-	public ModelAndView addPaisPage() {
+	public ModelAndView insertarInventario(String b) {
              
 		//ModelAndView modelAndView = new ModelAndView("inventario");
                  Map<String, Object> myModel = new HashMap<String, Object>();
@@ -186,7 +186,9 @@ public class TB_InventarioController {
                 
                  //List ClaseActivo=tbcClaseActivoService.getAll();
                  
-                 
+                  String message = b;
+                  myModel.put("message", message); 
+                  
                  List ClaseActivo=tbcClaseActivoService.getTop();
                  
                  myModel.put("inventario", new TbInventario());
@@ -204,7 +206,7 @@ public class TB_InventarioController {
         
         
         @RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPais(@ModelAttribute TbInventario inventario) {
+	public ModelAndView insertandoInventario(@ModelAttribute TbInventario inventario) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		
                 inventario.setValorLibro(BigDecimal.ZERO);
@@ -255,7 +257,7 @@ public class TB_InventarioController {
                 tbInventarioService.save(inventario);
                 String message = "Pais was successfully added.";
                 modelAndView.addObject("message", message);
-                return modelAndView;
+                return insertarInventario("1");
 	}
         
         
@@ -333,7 +335,7 @@ public class TB_InventarioController {
                
                 String message = "Pais was successfully added.";
                 modelAndView.addObject("message", message);
-                return modelAndView;
+                return insertarInventario("1");
 	}
         
         //Agregar varios activos que pertenecesn al mismo codigo

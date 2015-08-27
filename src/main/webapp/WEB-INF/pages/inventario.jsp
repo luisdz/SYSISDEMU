@@ -77,8 +77,8 @@
 
                                 <i class="fa fa-times-sign"></i> Se encontraron errores, favor verificarlos.
                             </div>
-                            <div class="successHandler alert alert-success no-display">
-                                <i class="fa fa-ok"></i> Validacion exitosa!
+                            <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
+                                <i class="fa fa-ok"></i> Guardado con exito!
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -328,7 +328,11 @@
 
                                 </tbody>
                         </table>
-                        </div>          
+                        </div>  
+                          <form:input class="no-display" path="" type="text" value="${message}"  id="msje"  />
+                        
+                                
+                                
                     </form:form>
                 </div>
 
@@ -507,6 +511,7 @@
 
     });
 
+//para cambiar el tipo de ingreso
  $("#cmb_tipoingreso").change(function () {
         var conceptName = $('#cmb_tipoingreso :selected').val(); // define the variable
        //alert(conceptName);
@@ -614,7 +619,13 @@
            dataType: "json",
            contentType: 'application/json',
            success: function (msg) {
-               //alert("entra");
+                   $('#inventarioF').each(function () {
+                        this.reset();
+                        $('.help-block').closest("div").removeClass("has-success");
+                        $('.help-block').closest("div").removeClass("has-error");
+                    }); 
+                    $('#mensajeExitoFormM').removeClass("no-display");
+                    $('#tablabody').empty();
            },
            data: jsonArray
        });
@@ -629,6 +640,8 @@
    
    function deleteElement(id)
     {
+        
+        
         var el = document.getElementById(id);
         el.parentNode.removeChild(el);
         return false; 
@@ -653,4 +666,18 @@
         }
     }
     ;
+    
+ 
+   $(document).ready(function () 
+   {       
+          
+        if (document.forms["inventarioF"]["msje"].value==="1")
+        {
+             
+           $('#mensajeExitoFormM').removeClass("no-display"); 
+           document.forms["inventarioF"]["msje"].value==="0";
+        }
+
+    }); 
+
 </script>

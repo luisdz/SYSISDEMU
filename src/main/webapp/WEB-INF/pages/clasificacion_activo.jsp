@@ -70,7 +70,7 @@
 
 
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionActivo/insertarClasificacion" onsubmit="return valida_envio();" modelAttribute="clasificacionA" id="inventarioF">
+                <form:form method="POST" action="${pageContext.request.contextPath}/ClasificacionActivo/insertarClasificacion" onsubmit="return valida_envio();" modelAttribute="clasificacionA" id="clasificacionAF">
 
                     <div class="row">
                         <div class="col-md-12">
@@ -78,8 +78,8 @@
 
                                 <i class="fa fa-times-sign"></i> Se encontraron errores, favor verificarlos.
                             </div>
-                            <div class="successHandler alert alert-success no-display">
-                                <i class="fa fa-ok"></i> Validacion exitosa!
+                            <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
+                                <i class="fa fa-ok"></i> Guardado con exito!
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -138,6 +138,9 @@
                                 </div>
                             </div>
                         </div>
+                                
+                                 <form:input class="no-display" path="" type="text" value="${message}"  id="msje"  />
+                                 <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form:form>
                 </div>
 
@@ -150,3 +153,16 @@
 
 <!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>	
+ <script>
+   $(document).ready(function () 
+   {       
+          
+        if (document.forms["clasificacionAF"]["msje"].value==="1")
+        {
+             
+           $('#mensajeExitoFormM').removeClass("no-display"); 
+           document.forms["clasificacionAF"]["msje"].value==="0";
+        }
+
+    }); 
+</script>

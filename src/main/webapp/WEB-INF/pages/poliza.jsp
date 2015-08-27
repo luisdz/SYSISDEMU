@@ -146,6 +146,7 @@
                         </div>
                                     </div>
                                      <form:input class="no-display" path="" type="text" value="${message}"  id="msje"  />
+                                      <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}" />
                      
                     </form:form>
                 

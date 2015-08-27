@@ -36,13 +36,14 @@ public class TBC_ClaseActivoController {
       private TBC_ClaseActivo_Service tbcClaseAService;
      
       @RequestMapping(value="/insertarClase", method=RequestMethod.GET)
-      public ModelAndView IngresarClase() {
+      public ModelAndView IngresarClase(String b) {
         
             Map<String, Object> myModel = new HashMap<String, Object>();
             List ClasificacionAct = tbcClasificacionAService.getAll();
             myModel.put("claseA", new TbcClaseActivo());
             myModel.put("clasificacionA",ClasificacionAct );
-        
+                 String message = b;
+                 myModel.put("message", message); 
               return new ModelAndView("clase_activo",myModel);
         }
       
@@ -54,7 +55,7 @@ public class TBC_ClaseActivoController {
             
             tbcClaseAService.save(ClaseActivo);
         
-              return  modelAndView;
+              return  IngresarClase("1");
         }
       
       
