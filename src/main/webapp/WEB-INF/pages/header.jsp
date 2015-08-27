@@ -458,7 +458,7 @@
                                                                                         
                                                                                 <ul class="sub-menu">
 													<li>
-														<a href="${pageContext.request.contextPath}/Poliza/insertarPoliza.html"><i class="fa fa-times"></i> Ingresar</a>
+														<a href="${pageContext.request.contextPath}/Reports/reportePrueba.html"><i class="fa fa-times"></i> Ingresar</a>
 													</li>
 													<li>
 														<a href="${pageContext.request.contextPath}/Poliza/consultarPoli.html"><i class="fa fa-pencil"></i> Consultar</a>
