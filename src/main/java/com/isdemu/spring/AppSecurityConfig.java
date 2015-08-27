@@ -33,7 +33,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	  http.authorizeRequests()
                 
 		.antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/Inventario/**").access("hasRole('ROLE_SUPERADMIN')")
+               // .antMatchers("/Inventario/**").access("hasRole('ROLE_SUPERADMIN')")
 		.antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
 		.and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
@@ -43,7 +43,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
                .usernameParameter("username").passwordParameter("password")
                .and()
                  .logout().logoutSuccessUrl("/login?logout") 
-              .and().csrf()
+              .and().csrf().disable()
                   ;
                         
           
