@@ -11,6 +11,9 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import static javax.servlet.SessionTrackingMode.URL;
@@ -85,7 +88,7 @@ public class ReportesCtrl {
      @RequestMapping(value = "reportePrueba", method = RequestMethod.GET)
   @ResponseBody
      
-  public void getRpt1(HttpServletResponse response) throws JRException, IOException 
+  public void getRpt1(HttpServletResponse response) throws JRException, IOException, SQLException, ClassNotFoundException 
   {
    // JasperCompileManager.compileReportToFile(this.getClass().getResource("/ireportPrueba03.jrxml").getPath(),"/ireportPrueba03.jasper"); 
     
@@ -93,6 +96,15 @@ public class ReportesCtrl {
    // JasperCompileManager.compileReportToFile("/ireportPrueba03.jrxml", "/ireportPrueba03.jasper");
      //this.getClass().getResource("/ireportPrueba03.jrxml");
    // this.getClass().getResource("/ireportPrueba03.jrxml").toURI();
+     
+    String userName = "sa";
+    String password = "admin123";
+
+    String url = "jdbc:sqlserver://DESKTOP-78K7A51:1433;databaseName=ActivosFijosISDEMU";
+
+    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+    Connection conn = DriverManager.getConnection(url, userName, password);
+      
     InputStream jasperxml =  this.getClass().getResourceAsStream("/ireportPrueba04.jrxml"); 
     //jasperxml = JasperCompileManager.compileReportToStream(jasperxml );
     
@@ -105,7 +117,7 @@ public class ReportesCtrl {
    // params.put("idMov", b);
     //JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
     System.out.println("report3 :" + jasperReport);
-    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params);
+    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params,conn);
     System.out.println("report4 :");
     response.setContentType("application/x-pdf");
     response.setHeader("Content-disposition", "inline; filename=helloWorldReport.pdf");
