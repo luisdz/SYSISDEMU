@@ -299,7 +299,7 @@
     function enviarDes()
     {
         $("#ingresar").val(1);
-       alert($("#ingresar").val());
+       //alert($("#ingresar").val());
         
        
         if ($('#VerificarInv tr').size() > 1)        
@@ -337,7 +337,7 @@
                 data: jsonArray,
                 success: function (data)
                 {
-                    alert("entra:"+data[1]);
+                   // alert("entra:"+data[1]);
                     //$("#fechaDescargo").attr('value') = " ";
                    
         
@@ -345,15 +345,16 @@
         //AQUI SE VA LLENAR LAS TABLAS CON LAS LISTAS DE LOS INVENTARIOS
           data[0].forEach(function (entry)
                         {
+                            
                             //alert("for each");
-                            $('#InventarioFaltante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Ver Detalle</a></td></tr>');
+                            $('#InventarioFaltante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/VerificarInventario/consultar/'+entry[0]+'">Ver Detalle</a></td></tr>');
                        //  alert("cadacodigo:"+entry);
                            
                         });
             data[1].forEach(function (entry)
                         {
                             //alert("for each");
-                            $('#InventarioSobrante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/Inventario/edit/${inv.idInventario}">Ver Detalle</a></td></tr>');
+                            $('#InventarioSobrante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/VerificarInventario/consultar/'+entry[0]+'">Ver Detalle</a></td></tr>');
                        //  alert("cadacodigo:"+entry);
                            
                         });
