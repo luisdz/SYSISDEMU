@@ -69,7 +69,7 @@
 
 
 
-                <form:form method="POST" action="${pageContext.request.contextPath}/Inventario/add" onsubmit="return valida_envio();" modelAttribute="inventario" id="inventarioF">
+                <form:form method="POST" action="${pageContext.request.contextPath}/Inventario/add" modelAttribute="inventario" id="inventarioF" name="inventarioF">
 
                     <div class="row">
                         <div class="col-md-12">
@@ -114,13 +114,13 @@
                                     Tipo Localizacion<span id="span_clasi" class="symbol "></span>
                                 </label>
 
-                                <form:select path="" class="form-control" id="tipoClasificacion" name="tipoClasificacion" >
+                                <form:select path="" class="form-control" id="tipoClasificacion" name="tipoClasificacion" onchange="return validatipoLocalizacion(event);">
                                     <form:option value="0"  label="Seleccione un Tipo de Localizacion"/>
                                     <c:forEach var="clasiL" items="${clasiLocalizacion}">
                                         <form:option value="${clasiL.idClasificacionLocalizacion}"  label="${clasiL.nombreClasificacion}"/>
                                     </c:forEach>
                                 </form:select>
-                                <span for="clasiL" class="help-block  no-display" id="span_dropdownT">Seleccione un Tipo de Localizacion</span>
+                                <span for="clasiL" class="help-block  no-display" id="span_localizaciontipoT">Seleccione un Tipo de Localizacion</span>
                             </div>
                             
                               <div class="form-group">
@@ -128,27 +128,23 @@
                                     Localizacion<span id="span_clasi" class="symbol "></span>
                                 </label>
 
-                                <form:select path="idLocalizacion" class="form-control" id="localizacion" name="localizacion" >
+                                <form:select path="idLocalizacion" class="form-control" id="localizacion" name="localizacion" onchange="return validaLocalizacion(event);">
                                     <form:option value="0"  label="Selecciona una localizacion"/>
                                     
                                 </form:select>
-                                <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
+                                <span for="clasifi" class="help-block  no-display" id="span_localizacionT">Seleccione una Localizacion</span>
                             </div>
                             
                                <div class="form-group">
                                 <label for="form-field-select-3">
                                     Ubicacion<span id="span_clasi" class="symbol "></span>
                                 </label>
-
-                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion" >
+                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion" onchange="return validaUbicacion(event);">
                                     <form:option value="0"  label="Selecciona una Ubicacion"/>
                                    
                                 </form:select>
-                                <span for="ubicacion" class="help-block  no-display" id="span_dropdownT">Seleccione una Ubicacion</span>
+                                <span for="ubicacion" class="help-block  no-display" id="span_ubicacionT">Seleccione una Ubicacion</span>
                             </div>
-
-
-
 
                             <div class="form-group">
                                 <label for="form-field-select-3">
@@ -168,7 +164,7 @@
                                 <label class="control-label">
                                     Marca<span id="span_marca" class="symbol"></span>
                                 </label>
-                                <form:input path="marca" type="text" placeholder="Ingrese la marca del equipo" class="form-control" id="marca" name="marca" onblur="return validaMarca(event);"/>
+                                <form:input path="marca" type="text" placeholder="Ingrese la marca del equipo" class="form-control" id="marca" name="marca"/>
                                 <span for="marca" class="help-block  no-display" id="span_marcaT">Ingrese una Marca</span> 
                             </div>
 
@@ -176,7 +172,7 @@
                                 <label class="control-label">
                                     Modelo<span id="span_modelo" class="symbol"></span>
                                 </label>
-                                <form:input path="modelo" type="text" placeholder="Ingrese el modelo del equipo" class="form-control" id="modelo" name="modelo" onblur="return validaModelo(event);"/>
+                                <form:input path="modelo" type="text" placeholder="Ingrese el modelo del equipo" class="form-control" id="modelo" name="modelo" />
                                 <span for="modelo" class="help-block  no-display" id="span_modeloT">Ingrese un Modelo</span> 
                             </div>
                                 
@@ -190,7 +186,7 @@
                                 <label class="control-label">
                                     Serie<span id="span_serie" class="symbol"></span>
                                 </label>
-                                <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="serie" name="serie" onblur="return validaSerie(event);"/>
+                                <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="serie" name="serie" />
                                 <span for="serie" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
                             </div>
                                 
@@ -223,7 +219,7 @@
                                 <label class="control-label">
                                     Valor<span id="span_valor" class="symbol"></span>
                                 </label>
-                                <form:input path="valor" type="text" placeholder="Ingrese el valor en $ del equipo" class="form-control" id="valor" name="valor" onkeypress="return valideKey(event);" onblur="return validaValor(event);"/>
+                                <form:input path="valor" type="text" placeholder="Ingrese el valor en $ del equipo" class="form-control" id="valor" name="valor" onkeypress="return valideKey(event);"/>
                                 <span for="valor" class="help-block  no-display" id="span_valorT">Ingrese Valor</span> 
                             </div>
 
@@ -233,7 +229,7 @@
                                 <label class="control-label">
                                     N Factura<span id="span_factura" class="symbol"></span>
                                 </label>
-                                <form:input path="NFactura" type="text" placeholder="Ingrese el numero de factura" class="form-control" id="factura" name="factura" onblur="return validaFactura(event);"/>
+                                <form:input path="NFactura" type="text" placeholder="Ingrese el numero de factura" class="form-control" id="factura" name="factura"/>
                                 <span for="factura" class="help-block  no-display" id="span_facturaT">Ingrese numero factura</span> 
                             </div>
 
@@ -243,7 +239,7 @@
                                 <label class="control-label">
                                     Financiamiento<span id="span_finan" class="symbol"></span>
                                 </label>
-                                <form:input path="financiamiento" type="text" placeholder="Ingrese el tipo de financiamiento del equipo" class="form-control" id="financiamiento" name="financiamiento" onblur="return validaFinanciamiento(event);"/>
+                                <form:input path="financiamiento" type="text" placeholder="Ingrese el tipo de financiamiento del equipo" class="form-control" id="financiamiento" name="financiamiento" />
                                 <span for="financiamiento" class="help-block  no-display" id="span_financiamientoT">Ingrese un Financiamiento</span> 
                             </div>
                           
@@ -265,19 +261,12 @@
                                     Cantidad<span id="span_valor" class="symbol"></span>
                                 </label>
                                 <form:input path="valorLibro" type="text" placeholder="Ingrese la cantidad de activos a ingresar" class="form-control" readonly="readonly" id="cantidadl" name="cantidadl" onkeypress="return valideKey(event);" onblur="return validaValor(event);"/>
-                                <span for="cantidadl" class="help-block  no-display" id="span_valorT">Ingrese Cantidad</span> 
+                                <span for="cantidadl" class="help-block  no-display" id="span_valorCT">Ingrese Cantidad</span> 
                             </div>
 
 
-
-
-
-
-
                         </div>
-                                
-                              
-
+                          
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
@@ -529,6 +518,12 @@
    var i=0;
     //funcion para agregar los activos a la tabla
     function agregarInventario(){ 
+        
+        if (valida_envio()){      
+        return 0; 
+         }
+        
+        
                   i++;
                   var clasificacion = $('#dropdown1 option:selected').text();
                   var clase = $('#dropdown2 option:selected').text();
@@ -634,7 +629,7 @@
        {
        
         //$('#mensajeErrorFormM').removeClass("no-display");
-       return false;
+       alert("Debe ingresar al menos un elemento a la tabla");
        } 
     }
    
