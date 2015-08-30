@@ -170,8 +170,9 @@
                         <thead>
                             <tr>
                                 
-                                <th>codigo</th>
-                                <th>Ver Detalle</th>
+                                <th>Codigo</th>
+                                <th>Descripcion</th>
+                                <th>Valor</th>
                               
                             </tr>
                         </thead>
@@ -189,7 +190,8 @@
                             <tr>
                                 
                                 <th>codigo</th>
-                                <th>Ver Detalle</th>
+                                <th>Descripcion</th>
+                                <th>Valor</th>
                               
                             </tr>
                         </thead>
@@ -347,14 +349,14 @@
                         {
                             
                             //alert("for each");
-                            $('#InventarioFaltante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/VerificarInventario/consultar/'+entry[0]+'">Ver Detalle</a></td></tr>');
+                            $('#InventarioFaltante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+'<td>' + entry[2] + '</td>'+ '<td>' + entry[3] + '</td></tr>');
                        //  alert("cadacodigo:"+entry);
                            
                         });
             data[1].forEach(function (entry)
                         {
                             //alert("for each");
-                            $('#InventarioSobrante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+ '<td><a href="${pageContext.request.contextPath}/VerificarInventario/consultar/'+entry[0]+'">Ver Detalle</a></td></tr>');
+                            $('#InventarioSobrante').append('<tr  id="' + entry[0] + '">' + '<td>' + entry[1] + '</td>'+'<td>' + entry[2] + '</td>'+ '<td>' + entry[3] + '</td></tr>');
                        //  alert("cadacodigo:"+entry);
                            
                         });
