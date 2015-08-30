@@ -89,7 +89,7 @@
                                     Poliza<span id="span_clasi" class="symbol "></span>
                                 </label>
 
-                                <form:select path="tbcPoliza.idPoliza" class="form-control" id="poliza" name="poliza" onchange="return validaClasificacion(event);">
+                                <form:select path="tbcPoliza.idPoliza" class="form-control" id="poliza" name="poliza">
                                     <form:option value="0"  label="Selecciona una Poliza"/>
                                     <c:forEach var="poli" items="${poliza}">
                                         <form:option value="${poli.idPoliza}"  label="${poli.nombrePoliza}"/>
@@ -103,8 +103,8 @@
                                 <label class="control-label">
                                     Nombre Clasificacion:<span id="span_marca" class="symbol"></span>
                                 </label>
-                                <form:input path="nombreClasificacion" type="text" placeholder="Ingrese una Clasificacion de Activo" class="form-control" id="clasificacion" name="clasificacion" onblur="return validaMarca(event);"/>
-                                <span for="clasificacion" class="help-block  no-display" id="span_marcaT">Ingrese una Clase</span> 
+                                <form:input path="nombreClasificacion" type="text" placeholder="Ingrese una Clasificacion de Activo" class="form-control" id="clasificacion" name="clasificacion" onblur="return validaNombre(event);"/>
+                                <span for="clasificacion" class="help-block  no-display" id="span_nombreT">Ingrese Nombre Clasificacion</span> 
                             </div>
                          
 
@@ -118,8 +118,8 @@
                                 <label class="control-label">
                                     Codigo Clasificacion:<span id="span_serie" class="symbol"></span>
                                 </label>
-                                <form:input path="codigoClasificacion" type="text" placeholder="Ingrese el codigo de la clase" class="form-control" id="codigoClasi" name="codigoClasi" onblur="return validaSerie(event);"/>
-                                <span for="codigoClasi" class="help-block  no-display" id="span_serieT">Ingrese el codigo de la clase</span> 
+                                <form:input path="codigoClasificacion" type="text" placeholder="Ingrese el codigo de la clase" class="form-control" id="codigoClasi" name="codigoClasi" onblur="return validaCodigo(event);"/>
+                                <span for="codigoClasi" class="help-block  no-display" id="span_codigoT">Ingrese el Codigo Clasificacion</span> 
                             </div>
 
                              
@@ -153,6 +153,8 @@
 
 <!-- end: PAGE CONTENT-->
 <%@include file="footer.jsp" %>	
+<script src="${pageContext.request.contextPath}/assets/validaciones/validacionesClasiActivo.js"></script>
+
  <script>
    $(document).ready(function () 
    {       
