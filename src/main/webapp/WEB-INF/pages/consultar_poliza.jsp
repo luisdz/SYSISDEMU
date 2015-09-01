@@ -124,6 +124,15 @@
                                     </div>
                             </div>
                     </div>
+                 <div class="col-md-12">
+                            <div class="errorHandler alert alert-danger no-display" id="mensajeErrorForm">
+
+                                <i class="fa fa-times-sign"></i> You have some form errors. Please check below.
+                            </div>
+                            <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
+                                <i class="fa fa-ok"></i> Eliminado con exito!
+                            </div>
+                        </div>
                     <div class="table-responsive">
                             <table class="table table-striped table-hover" id="sample-table-2">
                                     <thead>
@@ -225,6 +234,25 @@
             </div>
         </div>
         <!-- end: EXPORT DATA TABLE PANEL -->
+        <form:form>
+        <form:input path="" type="hidden" id="msj" value="0">            
+        </form:input>
+        </form:form>
     </div>
     </div>
 <%@include file="footer.jsp"%>
+
+<script>
+   $(document).ready(function () 
+   {      // document.forms["polizaF"]["msje"].value
+          //$("#msj").val()==="1"
+          alert("value :" $("#msj").val());
+        if ($("#msj").val()==="1")
+        {
+             
+           $('#mensajeExitoFormM').removeClass("no-display"); 
+           $("#msj").val(0);
+        }
+
+    }); 
+</script>
