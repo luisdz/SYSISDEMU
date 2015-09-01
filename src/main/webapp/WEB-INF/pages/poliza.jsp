@@ -150,11 +150,7 @@
                      
                     </form:form>
                 
-<div class="col-md-4">
-       <button class="btn btn-yellow btn-block" type="button" onclick=""  >
-                                    Report <i class="fa fa-arrow-circle-right"></i>
-                                </button>
-                            </div>
+ 
 
             </div>
         </div>
