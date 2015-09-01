@@ -77,7 +77,7 @@ public class TBC_ClaseActivoController {
 		tbcClaseAService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return ConsultarClase();
 	}
         
         
@@ -105,6 +105,6 @@ public class TBC_ClaseActivoController {
                 String message = "Pais was successfully edited.";
 		modelAndView.addObject("message", message);
 
-		return modelAndView;
+		return ConsultarClase();
 	}
   }

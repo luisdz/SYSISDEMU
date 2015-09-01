@@ -492,7 +492,7 @@ public class TB_InventarioController {
 		tbInventarioService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return listOfPaises();
 	}
         
         

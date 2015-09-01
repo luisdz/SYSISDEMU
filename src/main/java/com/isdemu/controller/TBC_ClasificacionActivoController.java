@@ -75,7 +75,7 @@ public class TBC_ClasificacionActivoController {
 		tbcClasificacionAService.delete(id);
 		String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
-		return modelAndView;
+		return ConsultarClase();
 	}
         
          @RequestMapping(value="/actualizarClasificacion/{id}", method=RequestMethod.GET)
@@ -101,6 +101,6 @@ public class TBC_ClasificacionActivoController {
                 String message = "Pais was successfully edited.";
 		modelAndView.addObject("message", message);
 
-		return modelAndView;
+		return ConsultarClase();
 	}
 }

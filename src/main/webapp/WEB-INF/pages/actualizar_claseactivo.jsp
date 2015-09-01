@@ -89,7 +89,7 @@
 
                                 <form:select path="tbcClasificacionActivo.idClasificacionActivo" class="form-control" id="dropdown1" name="dropdown1" onchange="return validaClasificacion(event);">
                                     <form:option value="0"  label="Selecciona una clasificacion"/>
-                                    <c:forEach var="clasi" items="${clasificacionA}">
+                                    <c:forEach var="clasi" items="${AllclasificacionA}">
                                         <form:option value="${clasi.idClasificacionActivo}"  label="${clasi.nombreClasificacion}"/>
                                     </c:forEach>
                                 </form:select>
