@@ -281,7 +281,7 @@ public class TB_MovimientoController {
         List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
         System.out.println("list inv " + list_invent);
         //return new ModelAndView("descargo", myModel);
-                
+        //prueba        
         return list_invent;    
     }
 
