@@ -73,7 +73,8 @@ public class TB_MovimientoController {
 
     
     @RequestMapping(value = "/consultarMov")
-    public ModelAndView consultarMovimientos() {
+    public ModelAndView consultarMovimientos() 
+    {
         ModelAndView modelAndView = new ModelAndView("consultar_movimiento");        
         List movimientoR = tbrMovimientoInvService.getAll(); 
          List movimiento = tbMovimientoService.getAll();
@@ -83,6 +84,8 @@ public class TB_MovimientoController {
         modelAndView.addObject("movimiento", movimientoI);
         return modelAndView;
     }
+    
+    
     
     
     @RequestMapping(value = "/consultarHistorialMov")

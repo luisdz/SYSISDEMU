@@ -242,6 +242,23 @@
 									
 								</ul>
 							</li>
+                                                        
+                                                        <li>
+								<a href="javascript:;" class="active">
+									<i class="fa fa-folder"></i> <span class="title"> Depreciacion </span> <i class="icon-arrow"></i>
+								</a>
+								<ul class="sub-menu">
+									<li>
+										<a href="${pageContext.request.contextPath}/Depreciacion/consultarDepreciacion.html">
+											Consultar Depreciacion <i class="icon-arrow"></i>
+										</a>
+										
+									</li>
+									 
+									
+								</ul>
+							</li>
+                                                        
 
 
 						<li>
