@@ -532,6 +532,49 @@
 								</ul>
 							</li>
 							
+                                                        <li>
+								<a href="javascript:;">
+									<i class="fa fa-folder-open"></i> <span class="title"> Reportes </span><i class="icon-arrow"></i> <span class="arrow "></span>
+								</a>
+								<ul class="sub-menu">
+									<li>
+										<a href=" ">
+											Reporte de activos por ubicacion <i class="icon-arrow"></i>
+										</a>
+										
+									</li>
+									 <li>
+										<a href=" ">
+											Reporte de activos por clase <i class="icon-arrow"></i>
+										</a>
+										
+									</li><li>
+										<a href=" ">
+											Reporte de activos por financiamiento <i class="icon-arrow"></i>
+										</a>
+										
+									</li>
+									<li>
+										<a href=" ">
+											Reporte de activos por numero de factura <i class="icon-arrow"></i>
+										</a>
+										
+									</li>
+                                                                        <li>
+										<a href=" ">
+											Reporte de activos por Custodia<i class="icon-arrow"></i>
+										</a>
+										
+									</li>
+                                                                        <li>
+										<a href="${pageContext.request.contextPath}/Reportes/reporteAsignadoa.html">
+											Reporte de activos por Asignado <i class="icon-arrow"></i>
+										</a>
+										
+									</li>
+                                                                        </ul>
+							</li>
+                                                        
 							<li>
 								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Login</span><i class="icon-arrow"></i> </a>
 								<ul class="sub-menu">
@@ -606,92 +649,8 @@
 									<ul class="nav navbar-right">
 										<!-- start: TO-DO DROPDOWN -->
 										
-										<li class="dropdown">
-											<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-												<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> MENSAJES
-											</a>
-											<ul class="dropdown-menu dropdown-light dropdown-messages">
-												<li>
-													<span class="dropdown-header"> You have 9 messages</span>
-												</li>
-												<li>
-													<div class="drop-down-wrapper ps-container">
-														<ul>
-															<li class="unread">
-																<a href="javascript:;" class="unread">
-																	<div class="clearfix">
-																		<div class="thread-image">
-																			<img src="./assets/images/avatar-2.jpg" alt="">
-																		</div>
-																		<div class="thread-content">
-																			<span class="author">Nicole Bell</span>
-																			<span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula...</span>
-																			<span class="time"> Just Now</span>
-																		</div>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="javascript:;" class="unread">
-																	<div class="clearfix">
-																		<div class="thread-image">
-																			<img src="./assets/images/avatar-3.jpg" alt="">
-																		</div>
-																		<div class="thread-content">
-																			<span class="author">Steven Thompson</span>
-																			<span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula...</span>
-																			<span class="time">8 hrs</span>
-																		</div>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="javascript:;">
-																	<div class="clearfix">
-																		<div class="thread-image">
-																			<img src="./assets/images/avatar-5.jpg" alt="">
-																		</div>
-																		<div class="thread-content">
-																			<span class="author">Kenneth Ross</span>
-																			<span class="preview">Duis mollis, est non commodo luctus, nisi erat porttitor ligula...</span>
-																			<span class="time">14 hrs</span>
-																		</div>
-																	</div>
-																</a>
-															</li>
-														</ul>
-													</div>
-												</li>
-												<li class="view-all">
-													<a href="pages_messages.html">
-														See All
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="menu-search">
-											<a href="#">
-												<i class="fa fa-search"></i> BUSCAR
-											</a>
-											<!-- start: SEARCH POPOVER -->
-											<div class="popover bottom search-box transition-all">
-												<div class="arrow"></div>
-												<div class="popover-content">
-													<!-- start: SEARCH FORM -->
-													<form class="" id="searchform" action="#">
-														<div class="input-group">
-															<input type="text" class="form-control" placeholder="Search">
-															<span class="input-group-btn">
-																<button class="btn btn-main-color btn-squared" type="button">
-																	<i class="fa fa-search"></i>
-																</button> </span>
-														</div>
-													</form>
-													<!-- end: SEARCH FORM -->
-												</div>
-											</div>
-											<!-- end: SEARCH POPOVER -->
-										</li>
+										 
+										 
 									</ul>
 									<!-- end: TOP NAVIGATION MENU -->
 								</div>

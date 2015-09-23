@@ -78,8 +78,7 @@ public class TB_MovimientoController {
         ModelAndView modelAndView = new ModelAndView("consultar_movimiento");        
         List movimientoR = tbrMovimientoInvService.getAll(); 
          List movimiento = tbMovimientoService.getAll();
-         List movimientoI = tbMovimientoService.getAllInvPer();
-         
+         List movimientoI = tbMovimientoService.getAllInvPer();        
                   
         modelAndView.addObject("movimiento", movimientoI);
         return modelAndView;
