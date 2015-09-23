@@ -16,12 +16,28 @@ import com.isdemu.service.TBH_Movimiento_Service;
 import com.isdemu.service.TBR_MovimientoInventario_Service;
 import com.isdemu.service.TB_Inventario_Service;
 import com.isdemu.service.TB_Movimiento_Service; 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat; 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List; 
 import java.util.Map; 
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +79,7 @@ public class TB_MovimientoController {
          List movimiento = tbMovimientoService.getAll();
          List movimientoI = tbMovimientoService.getAllInvPer();
          
-         int a = 0;
-         int b = a +2;
-         
+                  
         modelAndView.addObject("movimiento", movimientoI);
         return modelAndView;
     }
@@ -97,7 +111,8 @@ public class TB_MovimientoController {
 
     @RequestMapping(value = "/insertarMovimiento", method = RequestMethod.POST)
     public @ResponseBody
-    String addingMovimiento(@RequestBody String movi) {
+    int addingMovimiento(@RequestBody String movi) 
+    {
         ModelAndView modelAndView = new ModelAndView("home");
         System.out.println("esntra aqui POST movimiento insertar" + movi);
 
@@ -171,10 +186,10 @@ public class TB_MovimientoController {
 
         //tbMovimientoService.save(movi);
         String message = "Movimiento was successfully added.";
-        modelAndView.addObject("message", message);
-        return "22";
+        modelAndView.addObject("message", message);        
+       List <TbMovimiento> movis=tbMovimientoService.LastIdMovimiento();       
+        return movis.get(0).getIdMovimiento();
     }
-
     
     
     @RequestMapping(value = "/deleteMovimiento/{id}", method = RequestMethod.GET)
@@ -188,11 +203,10 @@ public class TB_MovimientoController {
         TbcPersona pers=(TbcPersona) tbcPersonaService.findByKey(tbmov.getIdPersonaAnterior());
         inv.setTbcPersona(pers);
         tbInventarioService.update(inv);        
-        tbrMovimientoInvService.delete(id);
-        
+        tbrMovimientoInvService.delete(id);  
         String message = "movimiento was successfully deleted.";
         modelAndView.addObject("message", message);
-        return modelAndView;
+        return editMovimientoInventarioPage(tbmov.getTbMovimiento().getIdMovimiento());
     }
     
     
@@ -225,9 +239,7 @@ public class TB_MovimientoController {
 //                polizaActual.setFechaInicio(poliza.getFechaInicio());
 //                polizaActual.setFechaFin(poliza.getFechaFin());
         movActual.setNMovimiento(mov.getNMovimiento());
-
         tbMovimientoService.update(movActual);
-
         String message = "unidad was successfully edited.";
         modelAndView.addObject("message", message);
 
@@ -269,7 +281,87 @@ public class TB_MovimientoController {
         return modelAndView;
     }
 
-    
+    @RequestMapping(value = "/updateMov", method = RequestMethod.POST)
+    public @ResponseBody
+    String editingMovimiento2(@RequestBody String movi) { 
+        System.out.println("esntra aqui POST movimiento update" + movi);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        TbMovimiento mov = new TbMovimiento();
+        System.out.println("String Json:" + movi);
+        JSONObject array = new JSONObject(movi);
+        JSONArray arrayMov = array.getJSONArray("Movimiento");
+        JSONObject objectMov = arrayMov.getJSONObject(0);
+        String date = (objectMov.getString("fecha"));
+        
+        int idm=Integer.parseInt(objectMov.getString("id"));
+        
+        Date fecha=new Date();
+        try {
+          fecha = formatter.parse(date);
+        } catch (ParseException ex) {
+        }
+        mov=(TbMovimiento) tbMovimientoService.findByKey(idm);
+        mov.setFechaMovimiento(fecha);
+        mov.setNMovimiento(1);
+        mov.setRazonCambio(objectMov.getString("razon"));
+        //mov.setIdPersonaNueva(Integer.parseInt(objectMov.getString("idpersona")));
+        
+        System.out.println("String razon inv:" + mov.getRazonCambio());
+        tbMovimientoService.update(mov);
+        //TbMovimiento UltMov =(TbMovimiento) tbMovimientoService.LastIdMovimiento().get(0);
+        int idMov = idm;
+               
+
+        JSONArray object = array.getJSONArray("Inventario");
+        
+        
+        for (int i = 0; i < object.length(); i++) 
+        {
+            int len = object.length();
+            JSONObject object2 = object.getJSONObject(i);            
+            String id = object2.getString("idInv");            
+            TbrMovimientoInventario MovInv= new TbrMovimientoInventario();            
+            
+            MovInv.setTbMovimiento(mov);            
+            TbInventario tempInv =(TbInventario)tbInventarioService.findByKey(Integer.parseInt(id));
+            MovInv.setTbInventario(tempInv);  
+            MovInv.setIdPersonaAnterior(tempInv.getTbcPersona().getIdPersona());
+            MovInv.setIdPersonaNueva(mov.getIdPersonaNueva());             
+            
+            List<TbrMovimientoInventario> tbrMov =  tbrMovimientoInvService.findByInv(tempInv.getIdInventario());
+            TbcPersona persactual =(TbcPersona) tbcPersonaService.findByKey(mov.getIdPersonaNueva());
+            String nompersactual = persactual.getNombrePersona();
+            
+            //Eliminar anteriores
+            for (TbrMovimientoInventario tbrMov1 : tbrMov) 
+            {
+            tbrMovimientoInvService.delete(tbrMov1.getIdMovimientoInventario());
+            }
+            //-------------------
+            tbrMovimientoInvService.save(MovInv);            
+            System.out.println("Id Json:" + id);
+            //historial
+            TbhMovimiento TbhMov = new TbhMovimiento();
+            TbhMov.setCodigoInventario(tempInv.getCodigoInventario());
+            TbhMov.setFechaMovimiento(fecha);
+            TbhMov.setIdMovimientoh(idMov);
+            TbhMov.setPersonaActual(nompersactual);
+            TbhMov.setPersonaAnterior(tempInv.getTbcPersona().getNombrePersona());
+            tbhMovimientoService.save(TbhMov);
+            //historial
+            //System.out.println("Id persona:" + objectMov.getString("idpersona"));            
+            TbcPersona tbcpersona = (TbcPersona)tbcPersonaService.findByKey(mov.getIdPersonaNueva());
+            System.out.println("tbc persona:" + tbcpersona);
+            tempInv.setTbcPersona(tbcpersona);
+            tbInventarioService.update(tempInv);
+        }
+
+        //tbMovimientoService.save(movi);
+        String message = "Movimiento was successfully added.";
+        //modelAndView.addObject("message", message);
+        return "22";
+    }
 
     
     @RequestMapping(value = "/agregarInventarioM", method = RequestMethod.POST)
@@ -280,9 +372,67 @@ public class TB_MovimientoController {
         Map<String, Object> myModel = new HashMap<String, Object>();
         List<TbInventario> list_invent= tbInventarioService.findBycodigo(cod);        
         System.out.println("list inv " + list_invent);
-        //return new ModelAndView("descargo", myModel);
-        //prueba        
+               
         return list_invent;    
     }
+    
+    
+    //---------------Reportes-------------------
+    
+    @RequestMapping(value = "/ReporteMovimiento/{id}", method = RequestMethod.GET)
+        @ResponseBody
+     
+  public void getRptMov(HttpServletResponse response, @PathVariable Integer id) throws JRException, IOException, SQLException, ClassNotFoundException 
+  {      
+    String userName = "sa";
+    String password = "admin123";
+
+    String url = "jdbc:sqlserver://DESKTOP-78K7A51:1433;databaseName=ActivosFijosISDEMU";
+
+    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+    Connection conn = DriverManager.getConnection(url, userName, password);
+      
+    InputStream jasperxml =  this.getClass().getResourceAsStream("/formatoMov.jrxml"); 
+    //jasperxml = JasperCompileManager.compileReportToStream(jasperxml );
+    
+    JasperReport jasperReport = JasperCompileManager.compileReport(jasperxml);
+    //System.out.println("report entra url:"+this.getClass().getResource("/ireportPrueba04.jrxml"));      
+    //InputStream jasperStream = this.getClass().getResourceAsStream("/ireportPrueba03.jrxml");    
+    //System.out.println("report2 :" + jasperStream);
+    Map<String,Object> params = new HashMap<>();
+    
+    TbMovimiento movi =(TbMovimiento) tbMovimientoService.findByKey(id);
+    
+    Date fecha=movi.getFechaMovimiento(); 
+    
+    String razon = movi.getRazonCambio();
+    int b = id;
+    params.put("fecha", fecha);
+    params.put("razon", razon);
+    params.put("idmov", b);
+     
+    
+    //JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+    System.out.println("report3 :" + jasperReport);
+    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params,conn);
+    //System.out.println("report4 :");
+    //response.setContentType("application/x-pdf");
+    response.setContentType("application/vnd.ms-excel");
+     
+   response.setHeader("Content-disposition", "inline; filename=movimiento.xlsx");
+
+   final OutputStream outStream = response.getOutputStream();
+    //JasperExportManager.(jasperPrint, outStream);
+            //exportReportToPdfStream(jasperPrint, outStream);
+     
+       JRXlsxExporter exporter = new JRXlsxExporter();
+    
+       exporter.setParameter(JRXlsExporterParameter.JASPER_PRINT, jasperPrint);
+       //exporter.setParameter(JRXlsExporterParameter.OUTPUT_FILE_NAME,  "C:\\Rpt01.xls"); 
+      exporter.setParameter(JRExporterParameter.OUTPUT_STREAM,outStream);
+       
+       exporter.exportReport();
+ }
+    
 
 }

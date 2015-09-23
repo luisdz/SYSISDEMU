@@ -135,12 +135,12 @@ public class TB_MovimientoDaoImp implements TB_MovimientoDao {
 
     @Override
     public List getAllInvPer() 
-        {
-        
+        {        
             System.out.println("ingresa al getAllInvPer");
             Session session = null; 
             session = sessionFactory.getCurrentSession();
-            SQLQuery query = session.createSQLQuery("select TB_MOVIMIENTO.ID_MOVIMIENTO,TB_MOVIMIENTO.FECHA_MOVIMIENTO,TB_MOVIMIENTO.RAZON_CAMBIO,TBC_PERSONA.NOMBRE_PERSONA  from TB_MOVIMIENTO inner join TBC_PERSONA on  TB_MOVIMIENTO.ID_PERSONA_NUEVA=TBC_PERSONA.ID_PERSONA");
+            SQLQuery query = session.createSQLQuery("  \n" +
+"  select TB_MOVIMIENTO.ID_MOVIMIENTO,TB_MOVIMIENTO.FECHA_MOVIMIENTO,TB_MOVIMIENTO.RAZON_CAMBIO,TBC_PERSONA.NOMBRE_PERSONA  from TB_MOVIMIENTO inner join TBC_PERSONA on  TB_MOVIMIENTO.ID_PERSONA_NUEVA=TBC_PERSONA.ID_PERSONA where [ID_MOVIMIENTO] in (select b.ID_MOVIMIENTO from [dbo].[TBR_MOVIMIENTO_INVENTARIO] as b )");
             List mov = query.list();
             return mov;
          }

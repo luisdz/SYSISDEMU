@@ -237,20 +237,6 @@
 
 
 
-    function agregarInventario() {
-
-        // alert("entra "+ $("#dropdown").inv.marca);               
-        if ($("#dropdown").val() != 0)
-        {
-            var id = $("#dropdown").val();
-            var codigo = $('#dropdown option:selected').text();
-            var idInv = id.toString();
-            $('#tabla_prueba').append('<tr  id="' + idInv + '">' + '<td class=\"no-display\" >' + idInv + '</td>' + '<td>' + codigo + '</td><td class="eliminar"><a href="" onclick="return deleteElement(' + "'" + idInv + "'" + ');"><span class="glyphicon glyphicon-remove"></span></a></td></tr>');
-        }
-    }
-    ;
-
-
 
     function deleteElement(id)
     {
@@ -300,17 +286,20 @@
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/Movimiento/insertarMovimiento",
-                dataType: "json",
                 contentType: 'application/json',
                 success: function (msg) {
                     //alert("entra");
-                    $('#movF').each(function () {
+                    $('#movF').each(function () 
+                    {
                         this.reset();
                         $('.help-block').closest("div").removeClass("has-success");
                         $('.help-block').closest("div").removeClass("has-error");
                     }); 
                     $('#mensajeExitoFormM').removeClass("no-display");
                     $('#tablabody').empty();
+                    
+                    window.location.href='./editMovimientoI/'+msg;                   
+                    
                 },
                 data: jsonArray
             });
@@ -349,9 +338,11 @@
                        
                         listaInv.forEach(function (entry)
                         {
+                            alert(" estado " + entry.tbcEstadoInventario.idEstado);
+                            
                              if(entry.tbcEstadoInventario.idEstado === 2)
                             {
-                                
+                                alert("entra");
                             } 
                             else
                             {
@@ -549,6 +540,8 @@ $("#dropdown1").change(function () {
                 });
                 $('#responsable').append(html);
                 // alert("devuelve algo: "+data);
+                
+                
             },
             error: function (data, status, er) {
                 alert("error: " + data + " status: " + status + " er:" + er);

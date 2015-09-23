@@ -133,7 +133,7 @@
                                                     <th>Razon</th>
                                                     <th>Nuevo responsable</th> 
                                                     <th>Editar</th>                                                    
-                                                    <th>Eliminar</th>
+                                                    <th class="no-display">Eliminar</th>
                                             </tr>
                                     </thead>
                                     <tbody>
@@ -146,7 +146,7 @@
                                                 </c:forEach>
                                                 <c:forEach var="col" begin="0" end="0"  items="${mov}">
                                                      <td><a href="${pageContext.request.contextPath}/Movimiento/editMovimientoI/${col}"> Detalle</a></td>
-                                                     <td><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${col}"> Eliminar</a>
+                                                     <td class="no-display"><a href="${pageContext.request.contextPath}/Movimiento/deleteMovimiento/${col}"> Eliminar</a>
                                                     </td>
                                                 </c:forEach> 
                                                     
