@@ -51,8 +51,37 @@ public class TBC_ClaseActivoController {
       @RequestMapping(value="/insertarClase", method=RequestMethod.POST)
       public ModelAndView IngresandoClase(@ModelAttribute TbcClaseActivo ClaseActivo) {
         
+          int idClasificacion=ClaseActivo.getTbcClasificacionActivo().getIdClasificacionActivo();
+          //obtener el ultimo codigo de clase segun el idclasificacion para poder generar el nuevo codigo de clase
+          List<TbcClaseActivo> LastCod=tbcClaseAService.LastCodClase(idClasificacion);
+            String Correlativo=""; 
+           if(LastCod.size()!=0){
+          String LastCodClase=LastCod.get(0).getCodigoClase();
+          int LastCodClaseInt=Integer.parseInt(LastCodClase);
+          System.out.println("codigo entero"+LastCodClaseInt);
+          int Increment=LastCodClaseInt+1;
+        
+          if(Increment<=99)
+                    {
+                       
+                        if(Increment<=9){
+                        Correlativo="0"+Increment;
+                        }
+                        else
+                            Correlativo=String.valueOf(Increment);
+                    }
+            else{
+                       
+                        Correlativo=String.valueOf(Increment);
+                    }
+           }
+            else{
+                     Correlativo="01";
+                }
+           System.out.println("COdigo de la clase:"+Correlativo);
             ModelAndView modelAndView = new ModelAndView("home");
             
+            ClaseActivo.setCodigoClase(Correlativo);
             tbcClaseAService.save(ClaseActivo);
         
               return  IngresarClase("1");

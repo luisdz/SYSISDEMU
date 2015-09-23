@@ -78,7 +78,7 @@
                                 <i class="fa fa-times-sign"></i> Se encontraron errores, favor verificarlos.
                             </div>
                             <div class="successHandler alert alert-success no-display" id="mensajeExitoFormM">
-                                <i class="fa fa-ok"></i> Guardado con exito!
+                                <i class="fa fa-ok"></i> Guardado con exito! Activo con Codigo ${codigoIngresado}
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -175,21 +175,15 @@
                                 <form:input path="modelo" type="text" placeholder="Ingrese el modelo del equipo" class="form-control" id="modelo" name="modelo" />
                                 <span for="modelo" class="help-block  no-display" id="span_modeloT">Ingrese un Modelo</span> 
                             </div>
-                                
-                                
-                        </div>  
-                        <!--     Cierre div izquiero-->
-                        <div class="col-md-6">
-                            
-
-                            <div class="form-group">
+                                <div class="form-group">
                                 <label class="control-label">
                                     Serie<span id="span_serie" class="symbol"></span>
                                 </label>
                                 <form:input path="serie" type="text" placeholder="Ingrese el numero de serie" class="form-control" id="serie" name="serie" />
                                 <span for="serie" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
-                            </div>
+                            </div> 
                                 
+                                     
                              <div class="form-group">
                                 <label class="control-label">
                                     Descripcion<span id="span_serie" class="symbol"></span>
@@ -197,8 +191,11 @@
                                 <form:input path="descripcionEquipo" type="text" placeholder="Ingrese una descripcion del equipo" class="form-control" id="descripcionEquipo" name="descripcionEquipo" />
                                 <span for="descripcionEquipo" class="help-block  no-display" id="span_serieT">Ingrese el numero de Serie</span> 
                             </div>
-
-
+                                
+                        </div>  
+                        <!--     Cierre div izquiero-->
+                        <div class="col-md-6">
+                           
                             <div class="form-group">
                                 <label class="control-label">
                                     Fecha Adquisicion<span id="span_adq" class="symbol"></span>
@@ -210,7 +207,19 @@
                                 
                             </div>
 
+                              <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Proveedor<span id="span_clasi" class="symbol "></span>
+                                </label>
 
+                                <form:select path="tbcProveedor.idProveedor" class="form-control" id="proveedor" name="proveedor">
+                                    <form:option value="0"  label="Seleccion un proveedor"/>
+                                    <c:forEach var="proveedor" items="${proveedor}">
+                                        <form:option value="${proveedor.idProveedor}"  label="${proveedor.nombreProveedor}"/>
+                                    </c:forEach>
+                                </form:select>
+                                <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione un Proveedor</span>
+                            </div>
 
 
 
@@ -232,16 +241,23 @@
                                 <form:input path="NFactura" type="text" placeholder="Ingrese el numero de factura" class="form-control" id="factura" name="factura"/>
                                 <span for="factura" class="help-block  no-display" id="span_facturaT">Ingrese numero factura</span> 
                             </div>
-
-
-
-                            <div class="form-group">
+                        <div class="form-group">
                                 <label class="control-label">
                                     Financiamiento<span id="span_finan" class="symbol"></span>
                                 </label>
                                 <form:input path="financiamiento" type="text" placeholder="Ingrese el tipo de financiamiento del equipo" class="form-control" id="financiamiento" name="financiamiento" />
                                 <span for="financiamiento" class="help-block  no-display" id="span_financiamientoT">Ingrese un Financiamiento</span> 
                             </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Observacion<span id="span_finan" class="symbol"></span>
+                                </label>
+                                <form:textarea path="observacion" type="text"  placeholder="Ingrese Una Observacion" class="form-control" id="observacion" name="observacion" />
+                                <span for="observacion" class="help-block  no-display" id="span_financiamientoT">Ingrese una Observacion</span> 
+                            </div>
+                                
                           
                             <div class="form-group">
                                 <label for="form-field-select-3">
@@ -260,7 +276,7 @@
                                 <label class="control-label">
                                     Cantidad<span id="span_valor" class="symbol"></span>
                                 </label>
-                                <form:input path="valorLibro" type="text" placeholder="Ingrese la cantidad de activos a ingresar" class="form-control" readonly="readonly" id="cantidadl" name="cantidadl" onkeypress="return valideKey(event);" onblur="return validaValor(event);"/>
+                                <form:input path="valorLibro" type="text" placeholder="Ingrese la cantidad de activos a ingresar" class="form-control" readonly="true" id="cantidadl" name="cantidadl" onkeypress="return valideKey(event);" onblur="return validaValor(event);"/>
                                 <span for="cantidadl" class="help-block  no-display" id="span_valorCT">Ingrese Cantidad</span> 
                             </div>
 
@@ -300,12 +316,16 @@
                                                <th class="no-display">id</th>
                                                <th>clasificacion</th>.
                                                 <th>clase</th>
+                                                 <th>Descripcion</th>
                                                 <th>En custodia de</th>   
                                                 <th>marca</th>
                                                 <th>modelo</th>
                                                 <th>serie</th>
                                                 <th>fecha</th> 
                                                 <th>valor</th>  
+                                                <th>Factura</th>  
+                                                <th>Financiamiento</th>  
+                                                <th>Ubicacion</th> 
                                               
                                                 <th>Delete</th>
                                         </tr>
@@ -363,8 +383,9 @@
                 data.forEach(function (entry)
                 {
                     console.log(entry);
+                   // alert(entry);
                     // alert("foreach :"+entry.nombreClase );
-                    html += '<option value="' + entry.idClaseActivo + '">' + entry.nombreClase + '</option>';
+                    html += '<option value="' + entry.idClaseActivo + '">'+entry.codigoClase+'-'+ entry.nombreClase + '</option>';
                 });
                 $('#dropdown2').append(html);
                 // alert("devuelve algo: "+data);
@@ -505,8 +526,23 @@
         var conceptName = $('#cmb_tipoingreso :selected').val(); // define the variable
        //alert(conceptName);
        $('#inventarioF').attr('action', '${pageContext.request.contextPath}/Inventario/add/lotes');
+    
+    if(conceptName==0)
+    { 
+     $('#cantidadl').attr("readonly", true);
+     $('#btn_guardar').show();
+     $('#btn_guardaru').hide();
+     $('#btn_agregar').attr('disabled','disabled');
+    }
+    if(conceptName==1)
+    { 
+        $('#cantidadl').attr("readonly", false);
+     $('#btn_guardar').show();
+        $('#btn_guardaru').hide();
+    }
     if(conceptName==2) {  
        // $('#btn_guardar').attr('disabled','disabled');
+       $('#cantidadl').attr("readonly", true);
         $('#btn_agregar').removeAttr('disabled');
         $('#btn_guardar').hide();
         $('#btn_guardaru').show();
@@ -518,8 +554,10 @@
    var i=0;
     //funcion para agregar los activos a la tabla
     function agregarInventario(){ 
-        
+         //alert("valida");
         if (valida_envio()){      
+           
+            
         return 0; 
          }
         
@@ -529,6 +567,7 @@
                   var clase = $('#dropdown2 option:selected').text();
                   var idclase=$('#dropdown2 option:selected').val();
                   var idLocalizacion=$('#localizacion').val();
+                   var ubicacion=$('#ubicacion option:selected').text();
                   var descripcion = $('#descripcionEquipo').val();
                   var custodiad = $('#persona option:selected').text();
                   var idcustodiad = $('#persona option:selected').val();
@@ -555,8 +594,9 @@
                             <td>' + fecha + '</td>\n\\n\
                             <td>' + valor + '</td>\n\\n\
                             <td>' + factura + '</td>\n\
-                            <td>' + financiamiento + '</td>\n\\n\\n\
-                            <td>' + idLocalizacion + '</td>\n\\n\
+                            <td>' + financiamiento + '</td>\n\\n\\n\\n\
+                            <td class=\"no-display\">' + idLocalizacion + '</td>\n\\n\\n\
+                            <td>' + ubicacion + '</td>\n\\n\
                             <td class="eliminar">\n\
                               <a href="" onclick="return deleteElement('+"'"+ idInv +"'"+ ');">\
                                 <span class="glyphicon glyphicon-remove"></span>\n\
@@ -665,7 +705,7 @@
  
    $(document).ready(function () 
    {       
-          
+         // alert(document.forms["inventarioF"]["msje"].value);
         if (document.forms["inventarioF"]["msje"].value==="1")
         {
              

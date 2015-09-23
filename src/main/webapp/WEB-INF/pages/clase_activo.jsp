@@ -98,14 +98,7 @@
                                 <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
                             </div>
                             
-                            
-                            <div class="form-group">
-                                <label class="control-label">
-                                    Nombre Clase:<span id="span_marca" class="symbol"></span>
-                                </label>
-                                <form:input path="nombreClase" type="text" placeholder="Ingrese una Clase de Activo" class="form-control" id="clase" name="clase" onblur="return validaClase(event);"/>
-                                <span for="clase" class="help-block  no-display" id="span_claseT">Ingrese una Clase</span> 
-                            </div>
+                           
                          
 
 
@@ -114,17 +107,15 @@
                         </div>  
                         <!--     Cierre div izquiero-->
                         <div class="col-md-6">
+                             
                             <div class="form-group">
                                 <label class="control-label">
-                                    Codigo Clase:<span id="span_serie" class="symbol"></span>
+                                    Nombre Clase:<span id="span_marca" class="symbol"></span>
                                 </label>
-                                <form:input path="codigoClase" type="text" placeholder="Ingrese el codigo de la clase" class="form-control" id="codigoClase" name="codigoClase" onkeypress="return valideKey(event);" onblur="return validaCodigo(event);"/>
-                                <span for="codigoClase" class="help-block  no-display" id="span_codigoT">Ingrese el codigo de la clase</span> 
+                                <form:input path="nombreClase" type="text" placeholder="Ingrese una Clase de Activo" class="form-control" id="clase" name="clase" onblur="return validaClase(event);"/>
+                                <span for="clase" class="help-block  no-display" id="span_claseT">Ingrese una Clase</span> 
                             </div>
-
-                             
-
-
+                            
                         </div>
 
                         <div class="row">
