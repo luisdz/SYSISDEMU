@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface DepreciacionDao 
 {
-    public List getAll(); 
+    public List getAll();
+    public void aplicarDepreciacion();
 }

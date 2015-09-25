@@ -434,6 +434,10 @@ public class TB_MovimientoController {
       exporter.setParameter(JRExporterParameter.OUTPUT_STREAM,outStream);
        
        exporter.exportReport();
+       
+       
+       
+       
  }
     
 

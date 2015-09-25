@@ -23,7 +23,7 @@
         <!-- start: EXPORT DATA TABLE PANEL  -->
         <div class="panel panel-white">
             <div class="panel-heading">
-                <h4 class="panel-title">Consultar <span class="text-bold">Inventario</span> Activos Fijos</h4>
+                <h4 class="panel-title">Consultar <span class="text-bold">Depreciacion</span> Activos Fijos</h4>
                 <div class="panel-tools">
                     <div class="dropdown">
                         <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -58,10 +58,11 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12 space20">
-                        <button class="btn btn-orange add-row">
-                            Add New <i class="fa fa-plus"></i>
-                        </button>
+                         <button data-toggle="dropdown" class="btn btn-orange" onclick="return aplicarDepre(event);" >
+                                Actualizar depreciacion
+                            </button>
                         <div class="btn-group pull-right">
+                            
                             <button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
                                 Export <i class="fa fa-angle-down"></i>
                             </button>
@@ -161,3 +162,12 @@
 
 
 <%@include file="footer.jsp"%>
+
+<script>
+function aplicarDepre ()
+    {
+     window.location.href='${pageContext.request.contextPath}/Depreciacion/aplicarDepreciacion' ;
+    };
+        
+    
+</script>

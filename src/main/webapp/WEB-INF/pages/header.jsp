@@ -75,65 +75,7 @@
 	<!-- start: BODY -->
 	<body>
 		<!-- start: SLIDING BAR (SB) -->
-		<div id="slidingbar-area">
-			<div id="slidingbar">
-				<div class="row">
-					<!-- start: SLIDING BAR FIRST COLUMN -->
-					<div class="col-md-4 col-sm-4">
-						<h2>My Options</h2>
-						<div class="row">
-							
-							<div class="col-xs-6 col-lg-3">
-								<button class="btn btn-icon btn-block space10">
-									<i class="fa fa-calendar-o"></i>
-									Usuarios <span class="badge badge-info partition-blue"> 5 </span>
-								</button>
-							</div>
-							<div class="col-xs-6 col-lg-3">
-								<button class="btn btn-icon btn-block space10">
-									<i class="fa fa-bell-o"></i>
-									Notificaciones <span class="badge badge-info partition-red"> 9 </span>
-								</button>
-							</div>
-						</div>
-					</div>
-					<!-- end: SLIDING BAR FIRST COLUMN -->
-					<!-- start: SLIDING BAR SECOND COLUMN -->
-					<div class="col-md-4 col-sm-4">
-						<h2></h2>
-						
-					</div>
-					<!-- end: SLIDING BAR SECOND COLUMN -->
-					<!-- start: SLIDING BAR THIRD COLUMN -->
-					<div class="col-md-4 col-sm-4">
-						<h2>Mi Informacion</h2>
-						<address class="margin-bottom-40">
-							Usuario 
-							<br>
-							12345 Street Name, City Name, United States
-							<br>
-							P: (641)-734-4763
-							<br>
-							Email:
-							<a href="#">
-								peter.clark@example.com
-							</a>
-						</address>
-						<a class="btn btn-transparent-white" href="#">
-							<i class="fa fa-pencil"></i> Editar
-						</a>
-					</div>
-					<!-- end: SLIDING BAR THIRD COLUMN -->
-				</div>
-				<div class="row">
-					<!-- start: SLIDING BAR TOGGLE BUTTON -->
-					<div class="col-md-12 text-center">
-						<a href="#" class="sb_toggle"><i class="fa fa-chevron-up"></i></a>
-					</div>
-					<!-- end: SLIDING BAR TOGGLE BUTTON -->
-				</div>
-			</div>
-		</div>
+		
 		<!-- end: SLIDING BAR -->
 		<div class="main-wrapper">
 			<!-- start: TOPBAR -->
@@ -210,15 +152,13 @@
 							<div class="inline-block">
 								<h5 class="no-margin"> Bienvenido</h5>
 								<h4 class="no-margin"> Usuario  </h4>
-								<a class="btn user-options sb_toggle">
-									<i class="fa fa-cog"></i>
-								</a>
+								 
 							</div>
 						</div>
 						<!-- start: MAIN NAVIGATION MENU -->
 						<ul class="main-navigation-menu">
 							<li class="active open">
-								<a href="index.html"><i class="fa fa-home"></i> <span class="title"> Principal </span><span class="label label-default pull-right ">Accesos</span> </a>
+								<a href="index.html"><i class="fa fa-home"></i> <span class="title"> Principal </span></a>
 							</li>
 					
 							

@@ -33,5 +33,13 @@ public class DepreciacionDaoImp implements DepreciacionDao
             List lista = query.list();
             return lista;
     }
+
+    @Override
+    public void aplicarDepreciacion() {
+        Session session = null; 
+            session = sessionFactory.getCurrentSession();
+            SQLQuery query = session.createSQLQuery("EXEC sp_valorEnLibros");
+            query.executeUpdate();
+    }
     
 }

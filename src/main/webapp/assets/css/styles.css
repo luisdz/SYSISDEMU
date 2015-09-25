@@ -87,9 +87,9 @@ body.bg_style_5 {
 }
 
 ::selection {
-  background: #5f8295;
+  background: rgba(204, 154, 14, 0.71);
   text-shadow: none;
-  color: white;
+  color: #E29112;
 }
 
 a, a:focus, a:hover, a:active {

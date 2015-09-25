@@ -26,5 +26,11 @@ public class Depreciacion_ServiceImp implements Depreciacion_Service {
     public List getAll() {
         return depreciaciondao.getAll();
     }
+
+    @Override
+    public void aplicarDepreciacion() {
+        System.out.println("aplicardepre service imp");  
+       depreciaciondao.aplicarDepreciacion();
+    }
     
 }

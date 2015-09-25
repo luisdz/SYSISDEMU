@@ -22,7 +22,7 @@
         <!-- start: FORM VALIDATION 1 PANEL -->
         <div class="panel panel-white">
             <div class="panel-heading">
-                <h4 class="panel-title">Seleccion de  <span class="text-bold">Persona</span></h4>
+                <h4 class="panel-title">Reportes  <span class="text-bold">Activos fijos</span></h4>
                 <div class="panel-tools">
                     <div class="dropdown">
                         <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -57,7 +57,7 @@
             <div class="panel-body">
                 <h2><i class="fa fa-pencil-square"></i> Reportes</h2>
                 <p>
-                    Esta es la seccion de Reportes de Activos Fijos
+                    Esta es la seccion de Reportes de Activos Fijos segun personal asignado
                 </p>
                 <hr>
                 
@@ -65,7 +65,7 @@
                 
                  
  
-                              <form:form method="POST"  action="${pageContext.request.contextPath}/Movimiento/insertarMovimiento" modelAttribute="movimiento" id="movF" >
+                              <form:form method="POST"    modelAttribute="movimiento" id="repAsign" >
                     <div class="row">
                         <div class="col-md-12">
                             <div class="errorHandler alert alert-danger no-display" id="mensajeErrorFormM"  >
@@ -103,24 +103,25 @@
                                 <span for="clasifi" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
                             </div>
                             
-                               
-                            <br>
-                        </div>
-                         
-
-                        <div class="col-md-6">
-
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label for="form-field-select-3">
                                     Ubicacion<span id="span_clasi" class="symbol "></span>
                                 </label>
 
-                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion" >
+                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion"  >
                                     <form:option value="0"  label="Selecciona una Ubicacion"/>
                                    
                                 </form:select>
                                 <span for="ubicacion" class="help-block  no-display" id="span_dropdownT">Seleccione una Ubicacion</span>
-                            </div>
+                            </div>  
+                            <br>
+                        </div>
+                        
+                         
+
+                        <div class="col-md-6">
+
+                           
                             <div class="form-group">
                                 <label class="control-label">
                                     Asignado<span class="symbol"></span>
@@ -130,6 +131,17 @@
                                 </form:select>
                                 <span for="responsable" class="help-block  no-display" id="span_resp">Seleccione una persona</span>  
                             
+                            </div>
+                            <div class="form-group">
+                                <label for="form-field-select-3">
+                                    Mayor o menor de 600<span id="span_clasi" class="symbol "></span>
+                                </label>
+
+                                <form:select path="" class="form-control" id="mayor" name="mayor" >
+                                    <form:option value="0"  label="Menor de 600"/>
+                                    <form:option value="1"  label="Mayor de 600"/>
+                                </form:select>
+                                <span for="mayor" class="help-block  no-display" id="span_dropdownT">Seleccione una Clasificacion</span>
                             </div>
 
 
@@ -159,8 +171,8 @@
 
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-yellow btn-block" type="button" id="ingresar" onclick="return enviarReporte(event);" value="0" >
-                            Guardar <i class="fa fa-arrow-circle-right"></i>
+                        <button class="btn btn-yellow btn-block" type="button" id="ingresar" onclick="return enviarReporte2(event);" value="0" >
+                            Guardar excel<i class="fa fa-arrow-circle-right"></i>
                         </button>
                     </div>
                     </div>
@@ -187,40 +199,9 @@
  
  <script>
  
-    function enviarReporte()
+    
+    $(document).ready(function () 
     {
-            alert("entra");             
-           
-           
-            var personaM = $('#responsable option:selected').text();
-            var idpersonaM  = $('#responsable option:selected').val();
-
-            var jsonArray = "{";
-            jsonArray += "\"Persona\":[{\"id\":\"" + idpersonaM + "\"}],";
-            jsonArray += "\"Inventario\":[{\"para01\":\"" + "1" + "\"},";   
-
-            jsonArray = jsonArray.substring(0, jsonArray.length - 1);
-            jsonArray = jsonArray + "]}";
-            //alert(jsonArray);
-            $.ajax({
-                type: "POST",
-                url: "${pageContext.request.contextPath}/Reportes/reporteAsignadoa",
-                contentType: 'application/json',
-                data: jsonArray,
-                success: function (msg) {
-                    //alert("entra");
-                                      
-                    
-                }
-                
-            });
-        
-
-    }; 
- 
-
-
-    $(document).ready(function () {
 
 
         $('#dropdown').select2();
@@ -388,6 +369,16 @@ $("#dropdown1").change(function () {
 
     });
 
+    function enviarReporte2 ()
+    {
+     validaRespRepAsign();
+     if(validaRespRepAsign()==true)
+     {
+     window.location.href='${pageContext.request.contextPath}/Reportes/getReporteAsignado/'+ $('#responsable option:selected').val() + '/'+$('#mayor option:selected').val() ;
     
-
+        };
+        
+     };
+        
+    
 </script>

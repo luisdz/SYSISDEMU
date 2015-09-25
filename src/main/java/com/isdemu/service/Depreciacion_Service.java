@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface Depreciacion_Service {
     public List getAll(); 
+    public void aplicarDepreciacion();
     
 }
