@@ -536,6 +536,17 @@ public class TB_InventarioController {
 		return listActivos();
 	}
         
+        //para hacer el ETL de base intranet a base local
+           @RequestMapping(value="/ETLInv/{id}", method=RequestMethod.GET)
+	public ModelAndView ETLInventario(@PathVariable Integer id) {
+		ModelAndView modelAndView = new ModelAndView("home");
+                
+               tbInventarioService.ETLInv();
+               String message = "Pais was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return listActivos();
+	}
+        
         
         @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public ModelAndView editPaisPage(@PathVariable Integer id) {

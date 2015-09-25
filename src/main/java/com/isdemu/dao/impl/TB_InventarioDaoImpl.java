@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -115,4 +116,12 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
              //dc.addOrder(Order.desc("idInventario"));
              return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
         }
+    
+     @Override
+    public void ETLInv(){
+    Session session = null;
+            session = sessionFactory.getCurrentSession();
+            SQLQuery query = session.createSQLQuery("INSERT [ActivosFijosISDEMU].[dbo].[TBH_MOVIMIENTO] SELECT *FROM [DESKTOP-78K7A51].[ActivosFijosISDEMU].[dbo].[TBH_MOVIMIENTO]");
+           query.executeUpdate();
+    }
 }

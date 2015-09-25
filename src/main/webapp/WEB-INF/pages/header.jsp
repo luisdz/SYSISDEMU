@@ -514,7 +514,16 @@
 									
 								</ul>
 							</li>
-							
+							 
+                                                        <li>
+								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">ETL Inventario</span><i class="icon-arrow"></i> </a>
+								<ul class="sub-menu">
+									<li>
+										<a href="${pageContext.request.contextPath}/Inventario/ETLInv/1"><i class="fa fa-times"></i> Realizar Proceso</a>
+									</li>
+									
+								</ul>
+							</li>
 							<li>
 								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Login</span><i class="icon-arrow"></i> </a>
 								<ul class="sub-menu">
@@ -540,6 +549,8 @@
 									</li>
 								</ul>
 							</li>
+                                                        
+                                                       
 						
 						
 							
