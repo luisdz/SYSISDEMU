@@ -185,7 +185,7 @@ public class TB_InventarioController {
                  Map<String, Object> myModel = new HashMap<String, Object>();
 		 List ClasAct = tbClasActService.getAll();
                  List persona=tbcPersonaService.getAll();
-             
+             System.out.println("antesss");
                  List clasiLocalizacion=tbcClasificacionLocalizacionService.getAll();
                  //List ClaseActivo=tbcClaseActivoService.getAll();
                  String message = "0";
@@ -536,15 +536,27 @@ public class TB_InventarioController {
 		return listActivos();
 	}
         
+        
+        //CARGAR LA VISTA PARA EL BOTON DE ETL
+        @RequestMapping(value="/ETLVISTA")
+	public ModelAndView ETLVISTA() {
+		ModelAndView modelAndView = new ModelAndView("ETLExito");
+
+		//List inventario = tbInventarioService.getAll();
+		//modelAndView.addObject("inventario", inventario);
+
+		return modelAndView;
+	}
+        
         //para hacer el ETL de base intranet a base local
            @RequestMapping(value="/ETLInv/{id}", method=RequestMethod.GET)
 	public ModelAndView ETLInventario(@PathVariable Integer id) {
-		ModelAndView modelAndView = new ModelAndView("home");
-                
+		ModelAndView modelAndView = new ModelAndView("ETLExito");
+                System.out.println("ingresacontroller");
                tbInventarioService.ETLInv();
                String message = "Pais was successfully deleted.";
 		modelAndView.addObject("message", message);
-		return listActivos();
+	 return ETLVISTA();
 	}
         
         

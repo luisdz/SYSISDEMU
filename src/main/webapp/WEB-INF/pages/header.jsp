@@ -145,7 +145,7 @@
 							<i class="fa fa-bars"></i>
 						</a>
 						<!-- start: LOGO -->
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="${pageContext.request.contextPath}/index">
 							<img src="${pageContext.request.contextPath}/assets/images/logo.png" alt="Rapido"/>
 						</a>
 						<!-- end: LOGO -->
@@ -218,7 +218,7 @@
 						<!-- start: MAIN NAVIGATION MENU -->
 						<ul class="main-navigation-menu">
 							<li class="active open">
-								<a href="index.html"><i class="fa fa-home"></i> <span class="title"> Principal </span><span class="label label-default pull-right ">Accesos</span> </a>
+								<a href="${pageContext.request.contextPath}/index"><i class="fa fa-home"></i> <span class="title"> Principal </span><span class="label label-default pull-right ">Accesos</span> </a>
 							</li>
 					
 							
@@ -519,7 +519,7 @@
 								<a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">ETL Inventario</span><i class="icon-arrow"></i> </a>
 								<ul class="sub-menu">
 									<li>
-										<a href="${pageContext.request.contextPath}/Inventario/ETLInv/1"><i class="fa fa-times"></i> Realizar Proceso</a>
+										<a href="${pageContext.request.contextPath}/Inventario/ETLVISTA"><i class="fa fa-times"></i> Realizar Proceso</a>
 									</li>
 									
 								</ul>
