@@ -1,17 +1,12 @@
-<%-- 
-    Document   : consultar_descargo
-    Created on : 07-27-2015, 11:09:57 PM
-    Author     : Zero
---%>
 <%@include file="header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!-- start: BREADCRUMB -->
 <div class="row">
     <div class="col-md-12">
         <ol class="breadcrumb">
             <li>
                 <a href="#">
-                    Inventario
+                    Depreciacion
                 </a>
             </li>
             <li class="active">
@@ -28,7 +23,7 @@
         <!-- start: EXPORT DATA TABLE PANEL  -->
         <div class="panel panel-white">
             <div class="panel-heading">
-                <h4 class="panel-title">Consultar <span class="text-bold">Descargo</span> </h4>
+                <h4 class="panel-title">Consultar <span class="text-bold">Depreciacion</span> Activos Fijos</h4>
                 <div class="panel-tools">
                     <div class="dropdown">
                         <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -63,59 +58,62 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12 space20">
-                         
+                         <button data-toggle="dropdown" class="btn btn-orange" onclick="return aplicarDepre(event);" >
+                                Actualizar depreciacion
+                            </button>
                         <div class="btn-group pull-right">
+                            
                             <button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
                                 Export <i class="fa fa-angle-down"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-light pull-right">
                                 <li>
-                                    <a href="#" class="export-pdf" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-pdf" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as PDF
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-png" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-png" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as PNG
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-csv" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-csv" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as CSV
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-txt" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-txt" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as TXT
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-xml" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-xml" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as XML
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-sql" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-sql" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as SQL
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Save as JSON
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-excel" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-excel" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Export to Excel
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Export to Word
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="export-powerpoint" data-table="#sample-table-2" data-ignoreColumn ="5">
+                                    <a href="#" class="export-powerpoint" data-table="#sample-table-2" data-ignoreColumn =" ">
                                         Export to PowerPoint
                                     </a>
                                 </li>
@@ -127,33 +125,30 @@
                     <table class="table table-striped table-hover" id="sample-table-2">
                         <thead>
                             <tr>
-
-                                <!--                                                <th class="no-display" >Id descargo</th>
-                                                                                    <th class="no-display" >Id inventario</th>  -->
-                                <th>fecha</th>
-                                <th>comentario</th>
-                                <th>Codigo Inventario</th>
+                                <th class="no-display">ID inventario</th>
+                                <th>Codigo</th>
+                                <th>Descripcion</th>
                                 <th>Clase</th>
-                                <th>Marca</th> 
-                                <th>Anular</th>
-
+                                <th>Fecha Adquisicion</th>
+                                <th class="">Valor de Adquisicion</th>
+                                <th>Valor en Libros</th>
+                                 
                             </tr>
                         </thead>
                         <tbody>
 
-                            <c:forEach var="des" items="${descargo}">
-                                <tr align="center">
-                                    <td>${des.fecha}</td>
-                                    <td>${des.comentario}</td>
+                             <c:forEach var="con" items="${activos}">
+                                            <tr id="${con[0]}">
+                                                <td class="no-display">${con[0]}</td>
+                                                <td>${con[1]}</td>
+                                                <td>${con[2]}</td>
+                                                <td>${con[3]}</td>
+                                                <td>${con[4]}</td>
+                                                <td>$ ${con[5]}</td>
+                                                <td>$ ${con[6]}</td>
+                                             </tr>
+                                        </c:forEach>	
 
-                                    <td>${des.tbInventario.codigoInventario}</td>
-                                    <td>${des.tbInventario.tbcClaseActivo.nombreClase}</td>
-                                    <td>${des.tbInventario.descripcionEquipo}</td> 
-                                    <td><a class="ask"  onclick="return confirmar('¿Está seguro que desea eliminar el registro?')" href="${pageContext.request.contextPath}/Descargo/deleteDescargo/${des.idDescargo}"> Anular</a>
-                                    </td>
-
-                                </tr>
-                            </c:forEach>	
 
                         </tbody>
                     </table>
@@ -163,11 +158,16 @@
         <!-- end: EXPORT DATA TABLE PANEL -->
     </div>
 </div>
+<!-- end: PAGE CONTENT-->
+
+
 <%@include file="footer.jsp"%>
 
-<script  language="JavaScript">
-    function confirmar( mensaje ) 
-    { 
-        return confirm(mensaje); 
-    } 
+<script>
+function aplicarDepre ()
+    {
+     window.location.href='${pageContext.request.contextPath}/Depreciacion/aplicarDepreciacion' ;
+    };
+        
+    
 </script>

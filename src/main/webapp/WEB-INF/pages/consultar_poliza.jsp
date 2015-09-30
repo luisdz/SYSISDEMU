@@ -157,7 +157,7 @@
                                                     <td>${pol.fechaFin}</td>
                                                     <td><a href="${pageContext.request.contextPath}/Poliza/editPoliza/${pol.idPoliza}">
 					Actualizar</a></td>
-                                                    <td><a href="${pageContext.request.contextPath}/Poliza/deletePoliza/${pol.idPoliza}"> Eliminar</a>
+                                                    <td><a onclick="return confirmar('¿Está seguro que desea eliminar el registro?')" href="${pageContext.request.contextPath}/Poliza/deletePoliza/${pol.idPoliza}"> Eliminar</a>
                                                     </td>
                                             </tr>
                                         </c:forEach>
@@ -234,25 +234,14 @@
             </div>
         </div>
         <!-- end: EXPORT DATA TABLE PANEL -->
-        <form:form>
-        <form:input path="" type="hidden" id="msj" value="0">            
-        </form:input>
-        </form:form>
+         
     </div>
     </div>
 <%@include file="footer.jsp"%>
 
-<script>
-   $(document).ready(function () 
-   {      // document.forms["polizaF"]["msje"].value
-          //$("#msj").val()==="1"
-          alert("value :" $("#msj").val());
-        if ($("#msj").val()==="1")
-        {
-             
-           $('#mensajeExitoFormM').removeClass("no-display"); 
-           $("#msj").val(0);
-        }
-
-    }); 
+ <script  language="JavaScript">
+    function confirmar( mensaje ) 
+    { 
+        return confirm(mensaje); 
+    } 
 </script>
