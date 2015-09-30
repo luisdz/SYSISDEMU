@@ -1,7 +1,7 @@
 <%-- 
-    Document   : control
-    Created on : 26-jul-2015, 17:59:48
-    Author     : Miranda
+    Document   : consultar_usuario
+    Created on : 21-sep-2015, 23:02:45
+    Author     : Walter
 --%>
 
 <%@include file="header.jsp"%>
@@ -11,11 +11,11 @@
                 <ol class="breadcrumb">
                         <li>
                                 <a href="#">
-                                        Catalogos
+                                        Seguridad
                                 </a>
                         </li>
                         <li class="active">
-                                Consultar Personal
+                                Consultar Usuario
                         </li>
                 </ol>
         </div>
@@ -28,7 +28,7 @@
                     <!-- start: EXPORT BASIC TABLE PANEL -->
                     <div class="panel panel-white">
                             <div class="panel-heading">
-                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Personal</h4>
+                                    <h4 class="panel-title"> <span class="text-bold">Consultar</span> Usuario</h4>
                                     <div class="panel-tools">
                                             <div class="dropdown">
                                                     <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -89,29 +89,32 @@
                                                     </div>
                                             </div>
                                     </div>
+                                
+                                <a href="${pageContext.request.contextPath}/Usuario/codigo_barra">Generar</a>
+                                
+                                
                                     <div class="table-responsive">
                                             <table class="table table-hover" id="sample-table-2">
                                                     <thead>
-                                                            <tr>
-                                                                   
-                                                                    <th>Solicitante</th>
-                                                                    <th>Fecha</th>
-                                                                    <th>Detalle Control</th>
+                                                            <tr>                                                                  
+                                                                    <th>Nombre</th>
+                                                                    <th>Apellidos</th>
+                                                                    <th>Usuario</th>
                                                                     <th>Eliminar</th>
                                                                     <th>Actualizar</th>
-                                                                    <th>Boleta</th>
                                                             </tr>
                                                     </thead>
                                                     <tbody>
-                                                     <c:forEach var="con" items="${control}">
+                                                     <c:forEach var="usu" items="${usuario}">
                                                             <tr >
-                                                               
-                                                                    <td>${con.solicitante}</td>
-                                                                    <td>${con.fechaSalida}</td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Control/detalle/${con.idControlSalida}">Detalle</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Control/delete/${con.idControlSalida}">Eliminar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Control/editControl1/${con.idControlSalida}">Actualizar</a></td>
-                                                                    <td><a href="${pageContext.request.contextPath}/Reporte/ReporteControl/${con.idControlSalida}">Imprimir</a></td>
+                                                                    <td>${usu.nombreUsuario}</td>
+                                                                    <td>${usu.apellidoUsuario}</td>
+                                                                    <td>${usu.usuario}</td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Usuario/delete/${usu.idUsuario}">
+                                                                    Eliminar</a></td>
+                                                                    <td><a href="${pageContext.request.contextPath}/Usuario/edit/${usu.idUsuario}">
+                                                                    Actualizar</a></td>
+                                                                    
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>

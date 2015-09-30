@@ -511,6 +511,21 @@
 													
                                                                                 </ul>
 									</li>
+                                                                        <li>
+										<a href="javascript:;">
+											<span class="title"> Usuarios </span> <i class="icon-arrow"></i>
+										</a>
+                                                                                        
+                                                                                <ul class="sub-menu">
+													<li>
+														<a href="${pageContext.request.contextPath}/Usuario/add"><i class="fa fa-times"></i> Ingresar</a>
+													</li>
+													<li>
+														<a href="${pageContext.request.contextPath}/Usuario/list"><i class="fa fa-pencil"></i> Consultar</a>
+													</li>
+													
+                                                                                </ul>
+									</li>
 									
 								</ul>
 							</li>
