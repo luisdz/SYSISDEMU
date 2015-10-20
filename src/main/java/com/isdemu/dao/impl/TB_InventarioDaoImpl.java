@@ -123,6 +123,7 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
     Session session = null;
             session = sessionFactory.getCurrentSession();
             SQLQuery query = session.createSQLQuery("DELETE FROM ActivosFijosISDEMU.dbo.tb_descargo\n" +
+"DELETE FROM ActivosFijosISDEMU.dbo.TBC_CLASIFICACION_LOCALIZACION\n" +
 "DELETE FROM ActivosFijosISDEMU.dbo.tb_inventario\n" +
 "DELETE FROM ActivosFijosISDEMU.dbo.tbc_clase_activo\n" +
 "DELETE FROM ActivosFijosISDEMU.dbo.tbc_clasificacion_activo\n" +
@@ -134,6 +135,7 @@ public class TB_InventarioDaoImpl implements TB_InventarioDao {
 "DELETE FROM ActivosFijosISDEMU.dbo.tbc_proveedor\n" +
 "DELETE FROM ActivosFijosISDEMU.dbo.tbc_estado_inventario\n" +
 "\n" +
+ "INSERT [ActivosFijosISDEMU].[dbo].TBC_CLASIFICACION_LOCALIZACION SELECT *FROM [DESKTOP-78K7A51].[ActivosFijosISDEMU].[dbo].TBC_CLASIFICACION_LOCALIZACION\n" +
 "INSERT [ActivosFijosISDEMU].[dbo].tbc_poliza SELECT *FROM [DESKTOP-78K7A51].[ActivosFijosISDEMU].[dbo].tbc_poliza\n" +
 "\n" +
 "\n" +
