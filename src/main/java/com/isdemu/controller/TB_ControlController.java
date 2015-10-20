@@ -160,7 +160,7 @@ public class TB_ControlController {
 		//tbMovimientoService.save(movi);
 		String message = "Constrol was successfully added.";
 		modelAndView.addObject("message", message);
-		return "22";
+		return Integer.toString(UltControl.getIdControlSalida());
 	}
         
       @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
@@ -272,7 +272,7 @@ public class TB_ControlController {
 		//tbMovimientoService.save(movi);
 		String message = "Constrol was successfully added.";
 		modelAndView.addObject("message", message);
-		return "22";
+		return "2";
 	}
         
         @RequestMapping(value = "/agregarInventarioM", method = RequestMethod.POST)
@@ -287,5 +287,30 @@ public class TB_ControlController {
 
             return list_invent;    
         }
+        
+        @RequestMapping(value="/detalle/{id}", method=RequestMethod.GET)
+	public ModelAndView detalleControlInventarioPage(@PathVariable Integer id) 
+        {
+                System.out.println("Entra actualiza1");
+		//ModelAndView modelAndView = new ModelAndView("actualizar_inventario");
+            
+                TbControlSalida cont = (TbControlSalida) tbControlService.findByKey(id);
+                System.out.println("Entra actualiza5");
+		List con = tbControlService.getInvControl(id);
+               // TbcRegion activo = (TbcRegion) tbRegionService.findByKey(unidad.getTbcRegion().getIdRegion());
+                System.out.println("Entra actualiza2");
+                  Map<String, Object> myModel = new HashMap<String, Object>();
+                   //List ClasAct = tbClasActService.getAll();  
+                   myModel.put("controlInv",con); 
+                   myModel.put("control",cont);
+                 // myModel.put("clasificacionA",activo );
+                  //myModel.put("AllclasificacionA",ClasAct );
+                
+                  
+                   System.out.println("Entra actualiza");
+                //System.out.println("A ver el combo:"+inventario.getTbcClasificacionActivo().getIdClasificacionActivo()+activo.getNombreClasificacion());
+		//modelAndView.addObject("inventario",inventario);
+		return new ModelAndView("detalle_control",myModel);
+	}
     
 }

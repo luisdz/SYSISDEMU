@@ -259,7 +259,7 @@ function enviar()
            type: "POST",
            url: "${pageContext.request.contextPath}/Control/editControl1/${control.idControlSalida}",
            dataType: "json",
-           contentType: 'application/json',
+           contentType: 'application/json; charset=utf-8',
            success: function (msg) {
                alert("Actualizado con Exito");
                location.reload();
