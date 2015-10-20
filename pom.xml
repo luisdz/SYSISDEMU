@@ -219,12 +219,7 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.4.4</version>
-        </dependency> 
-        <dependency>
-            <groupId>jbarcodebean</groupId>
-            <artifactId>jbarcodebean</artifactId>
-            <version>1.2.0</version>
-         </dependency>
+        </dependency>
      <!--jasper report -->  
         
     </dependencies>
