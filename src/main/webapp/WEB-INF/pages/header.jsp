@@ -1,3 +1,4 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -156,7 +157,7 @@
 							<!-- start: USER DROPDOWN -->
 							<li class="dropdown current-user">
 								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-									<img src="${pageContext.request.contextPath}/assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs">Usuario </span> <i class="fa fa-caret-down "></i>
+									<img src="${pageContext.request.contextPath}/assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs"><%=SecurityContextHolder.getContext().getAuthentication().getName()%> </span> <i class="fa fa-caret-down "></i>
 								</a>
 								<ul class="dropdown-menu dropdown-dark">
 									<li>
@@ -180,9 +181,8 @@
 										</a>
 									</li>
 									<li>
-										<a href="login_login.html">
-											Log Out
-										</a>
+										<a href="<c:url value='j_spring_security_logout' />" > Logout</a>
+										
 									</li>
 								</ul>
 							</li>
@@ -209,7 +209,7 @@
 							</div>
 							<div class="inline-block">
 								<h5 class="no-margin"> Bienvenido</h5>
-								<h4 class="no-margin"> Usuario  </h4>
+                                                                <h4 class="no-margin"> <%=SecurityContextHolder.getContext().getAuthentication().getName()%> </h4>
 								<a class="btn user-options sb_toggle">
 									<i class="fa fa-cog"></i>
 								</a>
