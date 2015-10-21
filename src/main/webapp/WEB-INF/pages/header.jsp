@@ -123,7 +123,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="<c:url value='j_spring_security_logout' />" > Logout</a>
+										<a href="<c:url value="/logout" />" > Logout</a>
 										
 									</li>
 								</ul>
