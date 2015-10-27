@@ -66,6 +66,32 @@ public class TBS_UsuarioDaoImpl implements TBS_UsuarioDao {
 		return usuario;
 	}
         
+        @Override
+	public String getPassword(String usuario) {
+		// TODO Auto-generated method stub
+		//TbsUsuario usuario = (TbsUsuario) getCurrentSession().get(TbsUsuario.class, usuario);
+                
+                DetachedCriteria dc = DetachedCriteria.forClass(TbsUsuario.class);
+                dc.add(Restrictions.eq("usuario", usuario));
+           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
+           // dc.addOrder(Order.asc("codigo_inventario"));
+            return ( (TbsUsuario)((dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list()).get(0)) ).getClave();
+		//return usuario;
+	}
+        
+        @Override
+	public String getRol(String usuario) {
+		// TODO Auto-generated method stub
+		//TbsUsuario usuario = (TbsUsuario) getCurrentSession().get(TbsUsuario.class, usuario);
+                
+                DetachedCriteria dc = DetachedCriteria.forClass(TbsUsuario.class);
+                dc.add(Restrictions.eq("usuario", usuario));
+           // System.out.println("criteria="+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list().get(0));
+           // dc.addOrder(Order.asc("codigo_inventario"));
+            return ( (TbsUsuario)((dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list()).get(0)) ).getTbsRol().getNombreRol();
+		//return usuario;
+	}
+        
                
          @Override
 	public void update(Object obj) {

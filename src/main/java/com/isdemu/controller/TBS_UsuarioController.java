@@ -6,12 +6,10 @@
 package com.isdemu.controller;
 
 
-import com.isdemu.model.TbsRol;
 import com.isdemu.model.TbsUsuario;
 
 import com.isdemu.service.TBS_Usuario_Service;
 import com.isdemu.service.TBS_Rol_Service;
-import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -23,12 +21,9 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.Barcode128;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,6 +56,24 @@ public class TBS_UsuarioController {
 
 		return modelAndView;
 	}
+        @RequestMapping(value="/consultarPass/{usuario}", method=RequestMethod.GET)
+	public ModelAndView consultarPassword(@PathVariable String usuario) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		String clave=tbsUsuarioService.getPassword(usuario);
+		String message = "Pais was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
+	} 
+        
+         @RequestMapping(value="/consultarRol/{usuario}", method=RequestMethod.GET)
+	public ModelAndView consultarRol(@PathVariable String usuario) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		String Rol=tbsUsuarioService.getRol(usuario);
+		String message = "Pais was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
+	}  
+      
         
     @RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPaisPage() {

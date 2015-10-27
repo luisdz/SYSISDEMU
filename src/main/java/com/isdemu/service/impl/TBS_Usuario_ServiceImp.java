@@ -49,6 +49,18 @@ public class TBS_Usuario_ServiceImp implements TBS_Usuario_Service {
            return tbUsuarioDao.findByKey(id);
    }
    
+   @Override
+   public String getPassword(String usuario) {
+           // TODO Auto-generated method stub
+           return tbUsuarioDao.getPassword(usuario);
+   }
+   
+   @Override
+   public String getRol(String usuario) {
+           // TODO Auto-generated method stub
+           return tbUsuarioDao.getRol(usuario);
+   }
+   
          
     @Override
 	public void update(Object obj) {

@@ -17,6 +17,8 @@ public interface TBS_UsuarioDao {
     public List getAll();
     public void delete(Serializable id);
     public Object findByKey(Serializable id);
+    public String getPassword(String usuario);
+    public String getRol(String usuario);
     public void update(Object obj);
     
 }
