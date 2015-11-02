@@ -6,11 +6,13 @@
 package com.isdemu.service.impl;
 
 import com.isdemu.dao.TBS_UsuarioDao;
+import com.isdemu.model.TbsUsuario;
 import com.isdemu.service.TBS_Usuario_Service;
 import java.util.List;
 import java.io.Serializable;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 /**
  *
@@ -47,6 +49,12 @@ public class TBS_Usuario_ServiceImp implements TBS_Usuario_Service {
    public Object findByKey(Serializable id) {
            // TODO Auto-generated method stub
            return tbUsuarioDao.findByKey(id);
+   }
+   
+    @Override
+   public List findByNick(String usuario) {
+           // TODO Auto-generated method stub
+           return tbUsuarioDao.findByNick(usuario);
    }
    
    @Override

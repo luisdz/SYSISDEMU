@@ -16,6 +16,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 /**
  *
@@ -64,6 +65,19 @@ public class TBS_UsuarioDaoImpl implements TBS_UsuarioDao {
 		// TODO Auto-generated method stub
 		TbsUsuario usuario = (TbsUsuario) getCurrentSession().get(TbsUsuario.class, id);
 		return usuario;
+	}
+        
+        
+         @Override
+	public List findByNick(String usuario) {
+		// TODO Auto-generated method stub
+		//TbsUsuario usuario2 = (TbsUsuario) getCurrentSession().get(TbsUsuario.class, usuario);
+            
+                DetachedCriteria dc = DetachedCriteria.forClass(TbsUsuario.class);
+                dc.add(Restrictions.eq("usuario","\'" + usuario + "\'"));
+                 
+               System.out.println("User : "+dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list());
+		return dc.getExecutableCriteria(sessionFactory.getCurrentSession()).list();
 	}
         
         @Override

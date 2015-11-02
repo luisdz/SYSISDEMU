@@ -102,7 +102,7 @@ public class TBS_UsuarioController {
 		ModelAndView modelAndView = new ModelAndView("home");
 		 System.out.println("entra aqui POST persona"+usuario);
                 
-                usuario.setClave("e10adc3949ba59abbe56e057f20f883e");
+                usuario.setClave("$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.");
                 usuario.setEstado(1);
                  
                 tbsUsuarioService.save(usuario);
