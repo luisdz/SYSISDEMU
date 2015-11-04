@@ -99,12 +99,12 @@
 							<!-- start: USER DROPDOWN -->
 							<li class="dropdown current-user">
 								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-									<img src="${pageContext.request.contextPath}/assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs"><%=SecurityContextHolder.getContext().getAuthentication().getName()%> </span> <i class="fa fa-caret-down "></i>
+									<img src="${pageContext.request.contextPath}/assets/images/avatar-1-small.jpg" class="img-circle" alt=""> <span class="username hidden-xs"><%=SecurityContextHolder.getContext().getAuthentication().getAuthorities()%> </span> <i class="fa fa-caret-down "></i>
 								</a>
 								<ul class="dropdown-menu dropdown-dark">
 									<li>
 										<a href="pages_user_profile.html">
-											My Profile
+											<%=SecurityContextHolder.getContext().getAuthentication().getName()%>
 										</a>
 									</li>
 									<li>

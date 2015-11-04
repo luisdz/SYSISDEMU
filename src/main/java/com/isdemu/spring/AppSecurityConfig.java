@@ -6,11 +6,16 @@
 package com.isdemu.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  *
@@ -21,30 +26,37 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-	  auth.inMemoryAuthentication().withUser("tom").password("123456").roles("USER");
-	  auth.inMemoryAuthentication().withUser("bill").password("123456").roles("ADMIN");
-	  auth.inMemoryAuthentication().withUser("james").password("123456").roles("SUPERADMIN");
+    @Qualifier("customUserDetailsService")//inyectas a spring el servcio
+    UserDetailsService userDetailsService;
+    
+        @Autowired
+	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+	//auth.inMemoryAuthentication().withUser("bill").password("123456").roles("ADMIN");
+         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+      	}
+        	@Bean
+	public PasswordEncoder passwordEncoder(){
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
 	}
  
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
  
 	  http.authorizeRequests()
-                
-		.antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
-               // .antMatchers("/Inventario/**").access("hasRole('ROLE_SUPERADMIN')")
-		.antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
-		.and().formLogin()
-                .loginProcessingUrl("/j_spring_security_check")
-                
-                .loginPage("/login").failureUrl("/login?error")
-                .defaultSuccessUrl("/index")
-               .usernameParameter("username").passwordParameter("password")
-               .and()
-                 .logout().logoutSuccessUrl("/login?logout") 
+                  
+             // .antMatchers("/inventario/**").access("hasRole('ADMIN')")
+              .antMatchers("/Depreciacion/**").access("hasRole('ADMIN')")
+              .antMatchers("/confidential/**").access("hasRole('ADMIN')")
+	      .and().formLogin()
+              .loginProcessingUrl("/j_spring_security_check")
+              .loginPage("/login").failureUrl("/login?error")
+              .defaultSuccessUrl("/index")
+              .usernameParameter("username").passwordParameter("password")
+              .and()
+              .logout().logoutSuccessUrl("/login?logout") 
               .and().csrf().disable()
-                  ;
+               ;
                         
           
  

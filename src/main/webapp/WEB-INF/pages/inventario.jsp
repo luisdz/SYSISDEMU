@@ -139,7 +139,7 @@
                                 <label for="form-field-select-3">
                                     Ubicacion<span id="span_clasi" class="symbol "></span>
                                 </label>
-                                <form:select path="" class="form-control" id="ubicacion" name="ubicacion" onchange="return validaUbicacion(event);">
+                                <form:select path="TbcUbicacion.idUbicacion" class="form-control" id="ubicacion" name="ubicacion" onchange="return validaUbicacion(event);">
                                     <form:option value="0"  label="Selecciona una Ubicacion"/>
                                    
                                 </form:select>

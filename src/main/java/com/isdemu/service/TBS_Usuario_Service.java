@@ -5,8 +5,10 @@
  */
 package com.isdemu.service;
 
+import com.isdemu.model.TbsUsuario;
 import java.io.Serializable;
 import java.util.List;
+import org.springframework.security.core.userdetails.User;
 
 /**
  *
@@ -22,4 +24,5 @@ public interface TBS_Usuario_Service {
     public String getRol(String usuario);
     //public List getAllidUbicacion(Serializable id);
      public void update(Object obj);
+     public List findByNick(String usuario);
 }
